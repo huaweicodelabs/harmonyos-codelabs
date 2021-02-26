@@ -1,0 +1,14 @@
+<DirectionalLayout xmlns:ohos="http://schemas.huawei.com/res/ohos"
+                   ohos:width="match_parent"
+                   ohos:height="40vp">
+
+    <Text
+            ohos:id="$+id:device_text"
+            ohos:width="match_parent"
+            ohos:height="match_parent"
+            ohos:text_color="#55000000"
+            ohos:left_margin="10vp"
+            ohos:text_size="16fp"/>
+
+
+</DirectionalLayout>

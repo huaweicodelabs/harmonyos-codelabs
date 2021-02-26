@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ Copyright (c) 2021 Huawei Device Co., Ltd.
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ -->
+<DirectionalLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:background_element="$graphic:background_card"
+    ohos:height="300vp"
+    ohos:orientation="vertical"
+    ohos:width="match_parent">
+
+    <DependentLayout
+        ohos:height="49vp"
+        ohos:left_padding="12vp"
+        ohos:right_padding="12vp"
+        ohos:width="match_parent">
+
+        <Text
+            ohos:height="match_parent"
+            ohos:text="选择设备"
+            ohos:text_size="18fp"
+            ohos:vertical_center="true"
+            ohos:width="match_content" />
+
+        <Text
+            ohos:text_size="14fp"
+            ohos:align_parent_right="true"
+            ohos:height="match_parent"
+            ohos:id="$+id:cancel"
+            ohos:text="取消"
+            ohos:text_color="blue"
+            ohos:vertical_center="true"
+            ohos:width="match_content" />
+    </DependentLayout>
+
+    <DirectionalLayout
+        ohos:background_element="#eeeeee"
+        ohos:height="1vp"
+        ohos:width="match_parent" />
+
+
+    <ListContainer
+        ohos:height="250vp"
+        ohos:id="$+id:list_devices"
+        ohos:width="match_parent" />
+
+
+</DirectionalLayout>

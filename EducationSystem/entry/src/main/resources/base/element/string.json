@@ -1,0 +1,20 @@
+{
+  "string": [
+    {
+      "name": "app_name",
+      "value": "亲子早教系统"
+    },
+    {
+      "name": "mainability_description",
+      "value": "Java_Phone_Empty Feature Ability"
+    },
+    {
+      "name": "remoteserviceability_description",
+      "value": "product detail remote service"
+    },
+    {
+      "name": "mathgameserviceability_description",
+      "value": "hap sample empty service"
+    }
+  ]
+}

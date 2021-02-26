@@ -1,0 +1,75 @@
+{
+  "app": {
+    "bundleName": "com.huawei.codelab",
+    "vendor": "huawei",
+    "version": {
+      "code": 1,
+      "name": "1.0"
+    },
+    "apiVersion": {
+      "compatible": 3,
+      "target": 3
+    }
+  },
+  "deviceConfig": {},
+  "module": {
+    "package": "com.huawei.codelab",
+    "name": ".MainAbility",
+    "reqCapabilities": [
+      "video_support"
+    ],
+    "deviceType": [
+      "default"
+    ],
+    "distro": {
+      "deliveryWithInstall": true,
+      "moduleName": "entry",
+      "moduleType": "entry"
+    },
+    "abilities": [
+      {
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home",
+              "action.video.play"
+            ]
+          }
+        ],
+        "orientation": "portrait",
+        "formEnabled": false,
+        "name": "com.huawei.codelab.MainAbility",
+        "icon": "$media:icon",
+        "description": "$string:mainability_description",
+        "label": "DistributedVideo",
+        "type": "page",
+        "launchType": "standard"
+      },
+      {
+        "visible": true,
+        "name": "com.huawei.codelab.VideoMigrateService",
+        "type": "service"
+      }
+    ],
+    "reqPermissions": [
+      {
+        "name": "ohos.permission.DISTRIBUTED_DATASYNC"
+      },
+      {
+        "name": "ohos.permission.DISTRIBUTED_DEVICE_STATE_CHANGE"
+      },
+      {
+        "name": "ohos.permission.GET_DISTRIBUTED_DEVICE_INFO"
+      },
+      {
+        "name": "ohos.permission.GRT_BUNDLE_INFO"
+      },
+      {
+        "name": "ohos.permission.INTERNET"
+      }
+    ]
+  }
+}

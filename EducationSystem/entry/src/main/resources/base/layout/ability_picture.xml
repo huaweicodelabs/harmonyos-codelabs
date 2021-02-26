@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ Copyright (c) 2021 Huawei Device Co., Ltd.
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ -->
+<DirectionalLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:height="match_parent"
+    ohos:width="match_parent"
+    ohos:orientation="vertical">
+
+    <Text
+        ohos:id="$+id:text_title"
+        ohos:height="match_content"
+        ohos:width="match_content"
+        ohos:layout_alignment="horizontal_center"
+        ohos:padding="20vp"
+        ohos:text="益智拼图游戏"
+        ohos:text_size="28vp"
+        />
+
+    <DirectionalLayout
+        ohos:id="$+id:pt_line_1"
+        ohos:height="match_content"
+        ohos:width="match_content"
+        ohos:layout_alignment="horizontal_center"
+        ohos:orientation="horizontal"
+        ohos:top_margin="10vp">
+
+        <Image
+            ohos:id="$+id:pt_0000"
+            ohos:height="70vp"
+            ohos:width="70vp"
+            ohos:image_src="$media:picture_01.jpg"
+            ohos:padding="0"
+            ohos:scale_mode="zoom_center">
+        </Image>
+
+        <Image
+            ohos:id="$+id:pt_0001"
+            ohos:height="70vp"
+            ohos:width="70vp"
+            ohos:image_src="$media:picture_02.jpg"
+            ohos:padding="0"
+            ohos:scale_mode="zoom_center">
+        </Image>
+
+        <Image
+            ohos:id="$+id:pt_0002"
+            ohos:height="70vp"
+            ohos:width="70vp"
+            ohos:image_src="$media:picture_03.jpg"
+            ohos:padding="0"
+            ohos:scale_mode="zoom_center">
+        </Image>
+    </DirectionalLayout>
+
+    <DirectionalLayout
+        ohos:id="$+id:pt_line_2"
+        ohos:height="match_content"
+        ohos:width="match_content"
+        ohos:layout_alignment="horizontal_center"
+        ohos:orientation="horizontal"
+        ohos:padding="0">
+
+        <Image
+            ohos:id="$+id:pt_0100"
+            ohos:height="70vp"
+            ohos:width="70vp"
+            ohos:image_src="$media:picture_04.jpg"
+            ohos:padding="0"
+            ohos:scale_mode="zoom_center">
+        </Image>
+
+        <Image
+            ohos:id="$+id:pt_0101"
+            ohos:height="70vp"
+            ohos:width="70vp"
+            ohos:image_src="$media:picture_05.jpg"
+            ohos:padding="0"
+            ohos:scale_mode="zoom_center">
+        </Image>
+
+        <Image
+            ohos:id="$+id:pt_0102"
+            ohos:height="70vp"
+            ohos:width="70vp"
+            ohos:image_src="$media:picture_06.jpg"
+            ohos:padding="0"
+            ohos:scale_mode="zoom_center">
+        </Image>
+    </DirectionalLayout>
+
+    <DirectionalLayout
+        ohos:id="$+id:pt_line_3"
+        ohos:height="match_content"
+        ohos:width="match_content"
+        ohos:layout_alignment="horizontal_center"
+        ohos:orientation="horizontal"
+        ohos:padding="0"
+        ohos:scale_mode="zoom_center">
+
+        <Image
+            ohos:id="$+id:pt_0200"
+            ohos:height="70vp"
+            ohos:width="70vp"
+            ohos:image_src="$media:picture_07.jpg"
+            ohos:padding="0"
+            ohos:scale_mode="zoom_center">
+        </Image>
+
+        <Image
+            ohos:id="$+id:pt_0201"
+            ohos:height="70vp"
+            ohos:width="70vp"
+            ohos:image_src="$media:picture_08.jpg"
+            ohos:padding="0"
+            ohos:scale_mode="zoom_center">
+        </Image>
+
+        <Image
+            ohos:id="$+id:pt_0202"
+            ohos:height="70vp"
+            ohos:width="70vp"
+            ohos:image_src="$media:picture_09.jpg"
+            ohos:padding="0"
+            ohos:scale_mode="zoom_center"
+            ohos:visibility="invisible">
+        </Image>
+    </DirectionalLayout>
+
+    <DirectionalLayout
+        xmlns:ohos="http://schemas.huawei.com/res/ohos"
+        ohos:height="match_content"
+        ohos:width="match_content"
+        ohos:layout_alignment="horizontal_center"
+        ohos:orientation="horizontal">
+
+        <Button
+            ohos:id="$+id:restart_button"
+            ohos:height="match_content"
+            ohos:width="match_content"
+            ohos:background_element="$graphic:background_button"
+            ohos:left_padding="15vp"
+            ohos:right_margin="20vp"
+            ohos:right_padding="15vp"
+            ohos:text="重新开始"
+            ohos:text_size="20vp"
+            ohos:top_margin="40vp">
+        </Button>
+
+        <Button
+            ohos:id="$+id:picture_together"
+            ohos:height="match_content"
+            ohos:width="match_content"
+            ohos:background_element="$graphic:background_button"
+            ohos:left_padding="15vp"
+            ohos:right_padding="15vp"
+            ohos:text="亲子协同"
+            ohos:text_size="20vp"
+            ohos:top_margin="40vp">
+        </Button>
+    </DirectionalLayout>
+
+
+    <Image
+        ohos:id="$+id:final_image"
+        ohos:height="210vp"
+        ohos:width="210vp"
+        ohos:image_src="$media:picture.jpg"
+        ohos:layout_alignment="horizontal_center"
+        ohos:scale_mode="zoom_center"
+        ohos:top_margin="40vp">
+    </Image>
+
+</DirectionalLayout>

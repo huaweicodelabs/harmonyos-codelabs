@@ -1,0 +1,28 @@
+<DirectionalLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:height="200vp"
+    ohos:width="match_parent"
+    ohos:alignment="horizontal_center"
+    ohos:background_element="#ffffff"
+    ohos:clickable="false"
+    ohos:enabled="false"
+    ohos:orientation="vertical"
+    ohos:top_padding="15vp">
+
+    <Text
+        ohos:height="match_content"
+        ohos:width="match_parent"
+        ohos:layout_alignment="horizontal_center"
+        ohos:text="Harmony devices"
+        ohos:text_color="#000000"
+        ohos:text_size="18vp"/>
+
+    <ListContainer
+        ohos:id="$+id:device_list_container"
+        ohos:height="match_parent"
+        ohos:width="match_parent"
+        ohos:orientation="vertical"
+        />
+
+</DirectionalLayout>
+

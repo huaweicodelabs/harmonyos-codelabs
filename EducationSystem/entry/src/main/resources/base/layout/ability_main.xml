@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ Copyright (c) 2021 Huawei Device Co., Ltd.
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ -->
+<DirectionalLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:height="match_parent"
+    ohos:width="match_parent"
+    ohos:orientation="vertical">
+
+    <Text
+        ohos:height="match_content"
+        ohos:width="match_content"
+        ohos:layout_alignment="horizontal_center"
+        ohos:padding="10vp"
+        ohos:text="基于HarmonyOS分布式技术的"
+        ohos:text_size="20vp"
+        ohos:top_padding="20vp"
+        />
+
+    <Text
+        ohos:height="match_content"
+        ohos:width="match_content"
+        ohos:layout_alignment="horizontal_center"
+        ohos:text="亲子早教系统"
+        ohos:text_size="20vp"
+        />
+
+    <Button
+        ohos:id="$+id:math_game"
+        ohos:height="100vp"
+        ohos:width="300vp"
+        ohos:background_element="$graphic:background_button"
+        ohos:layout_alignment="horizontal_center"
+        ohos:left_padding="15vp"
+        ohos:right_padding="15vp"
+        ohos:text="早教算数题"
+        ohos:text_size="30vp"
+        ohos:top_margin="20vp">
+    </Button>
+
+    <Button
+        ohos:id="$+id:picture_game"
+        ohos:height="100vp"
+        ohos:width="300vp"
+        ohos:background_element="$graphic:background_button"
+        ohos:layout_alignment="horizontal_center"
+        ohos:left_padding="15vp"
+        ohos:right_padding="15vp"
+        ohos:text="益智拼图游戏"
+        ohos:text_size="30vp"
+        ohos:top_margin="20vp">
+    </Button>
+
+
+    <Button
+        ohos:height="100vp"
+        ohos:width="300vp"
+        ohos:background_element="$graphic:background_button"
+        ohos:layout_alignment="horizontal_center"
+        ohos:left_padding="15vp"
+        ohos:right_padding="15vp"
+        ohos:text="更多功能敬请期待"
+        ohos:text_size="30vp"
+        ohos:top_margin="20vp">
+    </Button>
+
+</DirectionalLayout>

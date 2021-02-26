@@ -1,0 +1,41 @@
+<DirectionalLayout xmlns:ohos="http://schemas.huawei.com/res/ohos"
+                   ohos:width="match_content"
+                   ohos:height="match_content"
+                   ohos:right_margin="4vp"
+                   ohos:left_margin="4vp"
+                   ohos:orientation="vertical">
+
+    <DependentLayout
+            ohos:width="220vp"
+            ohos:height="140vp">
+        <Image
+                ohos:id="$+id:image_iv"
+                ohos:width="220vp"
+                ohos:height="140vp"
+                ohos:scale_mode="center"
+            />
+    </DependentLayout>
+
+    <Text
+            ohos:id="$+id:name_tv"
+            ohos:width="match_parent"
+            ohos:height="match_content"
+            ohos:max_text_lines="1"
+            ohos:text_alignment="left"
+            ohos:text_color="#333333"
+            ohos:text_size="16fp"
+            ohos:top_margin="4vp"
+            ohos:bottom_margin="4vp"
+            />
+
+    <Text
+            ohos:id="$+id:content_tv"
+            ohos:width="match_parent"
+            ohos:height="match_content"
+            ohos:max_text_lines="1"
+            ohos:enabled="true"
+            ohos:text_alignment="left"
+            ohos:text_color="#999999"
+            ohos:text_size="14fp" />
+
+</DirectionalLayout>

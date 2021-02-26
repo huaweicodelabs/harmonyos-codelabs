@@ -1,0 +1,76 @@
+<DirectionalLayout xmlns:ohos="http://schemas.huawei.com/res/ohos"
+                   ohos:width="match_parent"
+                   ohos:height="match_parent"
+                   ohos:orientation="vertical">
+    <DirectionalLayout
+        ohos:height="match_content"
+        ohos:width="match_parent"
+        ohos:orientation="vertical"
+        >
+        <!--滚动的视频图片-->
+        <DependentLayout
+            ohos:id="$+id:video_advertisement_container_view"
+            ohos:width="match_parent"
+            ohos:left_margin="20vp"
+            ohos:height="175vp"
+            ohos:top_margin="20vp"
+            ohos:right_margin="12vp"
+            >
+            <PageSlider
+                ohos:id="$+id:video_advertisement_viewpager"
+                ohos:width="match_parent"
+                ohos:height="match_parent"
+                ohos:orientation="horizontal"/>
+
+            <PageSliderIndicator
+                ohos:id="$+id:video_advertisement_indicator"
+                ohos:right_margin="8vp"
+                ohos:bottom_margin="7vp"
+                ohos:width="match_content"
+                ohos:height="match_content"
+                ohos:align_parent_bottom="true"
+                ohos:align_parent_right="true" />
+        </DependentLayout>
+        <!--即将上映-->
+        <DirectionalLayout
+            ohos:width="match_parent"
+            ohos:height="22vp"
+            ohos:top_margin="12vp"
+            ohos:left_margin="24vp"
+            ohos:right_margin="12vp"
+            ohos:orientation="horizontal">
+            <Text
+                ohos:id="$+id:video_play_title"
+                ohos:text="Coming soon"
+                ohos:text_size="16fp"
+                ohos:text_color="#ff000000"
+                ohos:text_alignment="4"
+                ohos:layout_alignment="vertical_center"
+                ohos:width="match_content"
+                ohos:height="match_content" />
+            <Image
+                ohos:left_margin="6vp"
+                ohos:width="13vp"
+                ohos:height="13vp"
+                ohos:layout_alignment="vertical_center"
+                ohos:image_src="$media:ic_next"/>
+
+        </DirectionalLayout>
+        <!--可横向滑动的视频图片-->
+        <DirectionalLayout
+            ohos:width="match_parent"
+            ohos:height="500vp"
+            ohos:orientation="vertical">
+            <ListContainer
+                ohos:id="$+id:video_list_play_view"
+                ohos:width="match_parent"
+                ohos:height="match_content"
+                ohos:orientation="horizontal"
+                ohos:left_margin="18vp"
+                ohos:top_margin="12vp"
+                >
+            </ListContainer>
+        </DirectionalLayout>
+    </DirectionalLayout>
+
+</DirectionalLayout>

@@ -1,0 +1,111 @@
+{
+  "app": {
+    "bundleName": "com.huawei.codelab",
+    "vendor": "huawei",
+    "version": {
+      "code": 1,
+      "name": "1.0"
+    },
+    "apiVersion": {
+      "compatible": 3,
+      "target": 4,
+      "releaseType": "Beta1"
+    }
+  },
+  "deviceConfig": {},
+  "module": {
+    "package": "com.huawei.codelab",
+    "name": ".MyApplication",
+    "deviceType": [
+      "tv",
+      "tablet",
+      "phone"
+    ],
+    "distro": {
+      "deliveryWithInstall": true,
+      "moduleName": "entry",
+      "moduleType": "entry"
+    },
+    "abilities": [
+      {
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home",
+              "action.system.picture",
+              "action.system.math",
+              "action.system.draw.rem",
+              "action.system.draw.loc"
+            ]
+          }
+        ],
+        "orientation": "portrait",
+        "name": "com.huawei.codelab.MainAbility",
+        "icon": "$media:icon",
+        "description": "$string:mainability_description",
+        "label": "亲子早教系统",
+        "type": "page",
+        "launchType": "standard"
+      },
+      {
+        "name": "com.huawei.codelab.PictureGameServiceAbility",
+        "icon": "$media:icon",
+        "description": "$string:remoteserviceability_description",
+        "type": "service"
+      },
+      {
+        "name": "com.huawei.codelab.MathGameServiceAbility",
+        "icon": "$media:icon",
+        "description": "$string:mathgameserviceability_description",
+        "type": "service"
+      }
+    ],
+    "reqPermissions": [
+      {
+        "reason": "",
+        "name": "ohos.permission.servicebus.ACCESS_SERVICE",
+        "used-scene": {
+          "ability": [
+            "MainAbility"
+          ],
+          "when": "inuse"
+        }
+      },
+      {
+        "reason": "多设备协同",
+        "name": "ohos.permission.DISTRIBUTED_DATASYNC",
+        "used-scene": {
+          "ability": [
+            "MainAbility"
+          ],
+          "when": "always"
+        }
+      },
+      {
+        "name": "ohos.abilitydemo.permission.PROVIDER",
+        "reason": "get right",
+        "usedScene": {
+          "ability": [
+            "MainAbility"
+          ],
+          "when": "inuse"
+        }
+      },
+      {
+        "name": "ohos.permission.DISTRIBUTED_DEVICE_STATE_CHANGE"
+      },
+      {
+        "name": "ohos.permission.GET_DISTRIBUTED_DEVICE_INFO"
+      },
+      {
+        "name": "ohos.permission.GRT_BUNDLE_INFO"
+      },
+      {
+        "name": "ohos.permission.INTERNET"
+      }
+    ]
+  }
+}

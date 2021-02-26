@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DependentLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:height="match_parent"
+    ohos:width="match_parent"
+    ohos:background_element="#00000000">
+
+    <DirectionalLayout
+        ohos:id="$+id:controller_bottom_layout"
+        ohos:height="80vp"
+        ohos:width="match_parent"
+        ohos:align_parent_bottom="true"
+        ohos:background_element="#88000000"
+        ohos:left_padding="10vp"
+        ohos:orientation="vertical"
+        ohos:right_padding="10vp">
+
+        <DependentLayout
+            ohos:height="0vp"
+            ohos:width="match_parent"
+            ohos:weight="2">
+
+            <Image
+                ohos:id="$+id:play_backward"
+                ohos:height="40vp"
+                ohos:width="40vp"
+                ohos:right_margin="20vp"
+                ohos:left_of="$+id:play_controller"
+                ohos:padding="10vp"
+                ohos:image_src="$media:ic_backward"
+                ohos:scale_mode="stretch"
+                />
+
+            <Image
+                ohos:id="$+id:play_controller"
+                ohos:height="40vp"
+                ohos:width="40vp"
+                ohos:horizontal_center="true"
+                ohos:image_src="$media:ic_music_stop"
+                ohos:scale_mode="stretch"
+                />
+
+            <Image
+                ohos:id="$+id:play_forward"
+                ohos:height="40vp"
+                ohos:width="40vp"
+                ohos:left_margin="20vp"
+                ohos:padding="10vp"
+                ohos:right_of="$id:play_controller"
+                ohos:image_src="$media:ic_forward"
+                ohos:scale_mode="stretch"
+                />
+
+        </DependentLayout>
+
+        <DirectionalLayout
+            ohos:height="0vp"
+            ohos:width="match_parent"
+            ohos:orientation="horizontal"
+            ohos:alignment="vertical_center"
+            ohos:weight="2">
+
+            <Text
+                ohos:id="$+id:current_time"
+                ohos:height="match_content"
+                ohos:width="match_content"
+                ohos:right_margin="5vp"
+                ohos:text="00:00:00"
+                ohos:text_color="#ffffff"
+                ohos:text_size="12vp"/>
+
+            <Slider
+                ohos:id="$+id:progress"
+                ohos:height="35vp"
+                ohos:width="0vp"
+                ohos:orientation="horizontal"
+                ohos:progress_color="#FF6103"
+                ohos:progress_width="5vp"
+                ohos:weight="1"/>
+
+            <Text
+                ohos:id="$+id:end_time"
+                ohos:height="match_content"
+                ohos:width="match_content"
+                ohos:right_margin="5vp"
+                ohos:text="00:00:00"
+                ohos:text_color="#ffffff"
+                ohos:text_size="12vp"/>
+
+        </DirectionalLayout>
+
+    </DirectionalLayout>
+
+</DependentLayout>

@@ -1,0 +1,142 @@
+<DependentLayout xmlns:ohos="http://schemas.huawei.com/res/ohos"
+                 ohos:width="match_parent"
+                 ohos:padding="30vp"
+                 ohos:background_element="#ffffff"
+                 ohos:height="match_parent">
+
+    <Button
+            ohos:id="$+id:remote_resume"
+            ohos:width="60vp"
+            ohos:height="40vp"
+            ohos:background_element="$graphic:corner_remote_controller_bg"
+            ohos:text_color="#55000000"
+            ohos:text="播放"
+            ohos:text_size="16fp"
+            ohos:text_alignment="center"/>
+
+    <Button
+            ohos:id="$+id:remote_pause"
+            ohos:right_of="$+id:remote_resume"
+            ohos:left_margin="20vp"
+            ohos:width="60vp"
+            ohos:height="40vp"
+            ohos:background_element="$graphic:corner_remote_controller_bg"
+            ohos:text_color="#55000000"
+            ohos:text="暂停"
+            ohos:text_size="16fp"
+            ohos:text_alignment="center"/>
+
+    <Button
+            ohos:id="$+id:remote_stop"
+            ohos:right_of="$+id:remote_pause"
+            ohos:left_margin="20vp"
+            ohos:width="60vp"
+            ohos:height="40vp"
+            ohos:background_element="$graphic:corner_remote_controller_bg"
+            ohos:text="停止"
+            ohos:text_color="#55000000"
+            ohos:text_size="16fp"
+            ohos:text_alignment="center"/>
+
+    <Button
+            ohos:id="$+id:remote_forward"
+            ohos:below="$id:remote_resume"
+            ohos:top_margin="20vp"
+            ohos:width="60vp"
+            ohos:height="40vp"
+            ohos:background_element="$graphic:corner_remote_controller_bg"
+            ohos:text_color="#55000000"
+            ohos:text="前进"
+            ohos:text_size="16fp"
+            ohos:text_alignment="center"/>
+
+    <Button
+            ohos:id="$+id:remote_reward"
+            ohos:below="$id:remote_pause"
+            ohos:right_of="$id:remote_forward"
+            ohos:width="60vp"
+            ohos:height="40vp"
+            ohos:top_margin="20vp"
+            ohos:background_element="$graphic:corner_remote_controller_bg"
+            ohos:left_margin="20vp"
+            ohos:text_color="#55000000"
+            ohos:text="后退"
+            ohos:text_size="16fp"
+            ohos:text_alignment="center"/>
+
+    <Button
+            ohos:id="$+id:remote_volume_up"
+            ohos:below="$id:remote_forward"
+            ohos:top_margin="20vp"
+            ohos:width="60vp"
+            ohos:height="40vp"
+            ohos:background_element="$graphic:corner_remote_controller_bg"
+            ohos:text_color="#55000000"
+            ohos:text="音量+"
+            ohos:text_size="16fp"
+            ohos:text_alignment="center"/>
+
+    <Button
+            ohos:id="$+id:remote_volume_down"
+            ohos:below="$id:remote_forward"
+            ohos:right_of="$id:remote_volume_up"
+            ohos:left_margin="20vp"
+            ohos:width="60vp"
+            ohos:height="40vp"
+            ohos:top_margin="20vp"
+            ohos:background_element="$graphic:corner_remote_controller_bg"
+            ohos:text="音量-"
+            ohos:text_color="#55000000"
+            ohos:text_size="16fp"
+            ohos:text_alignment="center"/>
+
+    <DirectionalLayout
+            ohos:below="$id:remote_volume_up"
+            ohos:top_margin="20vp"
+            ohos:id="$+id:remote_progress_seek_layout"
+            ohos:width="match_parent"
+            ohos:height="match_content"
+            ohos:alignment="vertical_center"
+            ohos:orientation="horizontal">
+
+        <Text
+                ohos:id="$+id:remote_progress_seek_title"
+                ohos:width="match_content"
+                ohos:height="match_content"
+                ohos:text_size="16fp"
+                ohos:text="进度调节："/>
+
+        <Slider
+                ohos:id="$+id:remote_progress_seek"
+                ohos:height="30vp"
+                ohos:left_margin="20vp"
+                ohos:orientation="horizontal"
+                ohos:width="200vp"/>
+
+    </DirectionalLayout>
+
+    <DirectionalLayout
+            ohos:below="$id:remote_progress_seek_layout"
+            ohos:top_margin="20vp"
+            ohos:width="match_parent"
+            ohos:height="match_content"
+            ohos:alignment="vertical_center"
+            ohos:orientation="horizontal">
+
+        <Text
+                ohos:id="$+id:remote_volume_seek_title"
+                ohos:width="match_content"
+                ohos:height="match_content"
+                ohos:text_size="16fp"
+                ohos:text="音量调节："/>
+
+        <Slider
+                ohos:id="$+id:remote_volume_seek"
+                ohos:height="30vp"
+                ohos:left_margin="20vp"
+                ohos:orientation="horizontal"
+                ohos:width="200vp"/>
+
+    </DirectionalLayout>
+
+</DependentLayout>

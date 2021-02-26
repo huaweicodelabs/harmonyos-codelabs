@@ -1,0 +1,83 @@
+{
+  "app": {
+    "bundleName": "com.huawei.codelab",
+    "vendor": "huawei",
+    "version": {
+      "code": 1,
+      "name": "1.0"
+    },
+    "apiVersion": {
+      "compatible": 3,
+      "target": 3
+    }
+  },
+  "deviceConfig": {},
+  "module": {
+    "package": "com.huawei.codelab",
+    "name": ".NewsDemo",
+    "reqCapabilities": [
+      "video_support"
+    ],
+    "deviceType": [
+      "default",
+      "tv"
+    ],
+    "distro": {
+      "deliveryWithInstall": true,
+      "moduleName": "entry",
+      "moduleType": "entry"
+    },
+    "abilities": [
+      {
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home",
+              "action.detail"
+            ]
+          }
+        ],
+        "orientation": "portrait",
+        "formEnabled": false,
+        "name": "com.huawei.codelab.NewsAbility",
+        "icon": "$media:icon",
+        "description": "$string:mainability_description",
+        "label": "NewsDemo",
+        "type": "page",
+        "launchType": "standard"
+      },
+      {
+        "visible": true,
+        "name": "com.huawei.codelab.SharedService",
+        "type": "service"
+      }
+    ],
+    "reqPermissions": [
+      {
+        "reason": "",
+        "name": "ohos.permission.servicebus.ACCESS_SERVICE"
+      },
+      {
+        "name": "ohos.permission.DISTRIBUTED_DATASYNC"
+      },
+      {
+        "name": "ohos.permission.DISTRIBUTED_DEVICE_STATE_CHANGE"
+      },
+      {
+        "name": "ohos.permission.GET_DISTRIBUTED_DEVICE_INFO"
+      },
+      {
+        "name": "ohos.permission.SYSTEM_FLOAT_WINDOW"
+      },
+      {
+        "name": "ohos.permission.INTERNET"
+      },
+      {
+        "name": "ohos.permission.R"
+      }
+    ]
+  }
+}

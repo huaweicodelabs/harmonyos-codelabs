@@ -1,0 +1,10 @@
+// INewsDemoIDL.idl
+
+// Declare any non-default types here with sequenceable or interface statements
+
+interface com.huawei.codelab.INewsDemoIDL {
+    /*
+     * Demo service method use some parameters
+     */
+    void tranShare([in]String title ,[in]String reads,[in]String likes,[in]String content,[in]String image);
+}

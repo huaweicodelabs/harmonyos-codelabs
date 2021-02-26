@@ -1,0 +1,20 @@
+{
+  "color": [
+    {
+      "name": "news_type_text_off",
+      "value": "#55000000"
+    },
+    {
+      "name": "news_type_text_on",
+      "value": "#afaafa"
+    },
+    {
+      "name": "white",
+      "value": "#ffffff"
+    },
+    {
+      "name": "half_transparent",
+      "value": "#55000000"
+    }
+  ]
+}

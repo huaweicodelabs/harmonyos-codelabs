@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ Copyright (c) 2021 Huawei Device Co., Ltd.
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ -->
+<DirectionalLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:height="match_parent"
+    ohos:width="match_parent"
+    ohos:orientation="vertical">
+
+    <Text
+        ohos:height="match_content"
+        ohos:width="match_content"
+        ohos:layout_alignment="horizontal_center"
+        ohos:padding="20vp"
+        ohos:text="早教算数题"
+        ohos:text_size="38vp"
+        />
+
+    <DirectionalLayout
+        ohos:height="match_content"
+        ohos:width="match_content"
+        ohos:layout_alignment="horizontal_center"
+        ohos:orientation="horizontal"
+        ohos:top_margin="10vp">
+
+        <Text
+            ohos:id="$+id:number1"
+            ohos:height="120vp"
+            ohos:width="120vp"
+            ohos:background_element="#007CFD"
+            ohos:padding="20vp"
+            ohos:text_alignment="center"
+            ohos:text_size="200"
+            />
+
+        <Text
+            ohos:height="match_content"
+            ohos:width="match_content"
+            ohos:background_element="$graphic:background_ability_main"
+            ohos:text="+"
+            ohos:text_size="200"
+            ohos:top_padding="20vp"
+            />
+
+        <Text
+            ohos:id="$+id:number2"
+            ohos:height="120vp"
+            ohos:width="120vp"
+            ohos:background_element="#007CFD"
+            ohos:padding="20vp"
+            ohos:text_alignment="center"
+            ohos:text_size="200"
+            />
+    </DirectionalLayout>
+
+    <TextField
+        ohos:id="$+id:answer"
+        ohos:height="match_content"
+        ohos:width="match_content"
+        ohos:background_element="$graphic:background_ability_main"
+        ohos:hint="答题区"
+        ohos:layout_alignment="horizontal_center"
+        ohos:text_size="200"
+        ohos:top_margin="30vp"
+        />
+
+    <Button
+        ohos:id="$+id:answer_btn"
+        ohos:height="match_content"
+        ohos:width="match_content"
+        ohos:background_element="$graphic:background_button"
+        ohos:layout_alignment="horizontal_center"
+        ohos:left_padding="15vp"
+        ohos:right_padding="15vp"
+        ohos:text="提交答案"
+        ohos:text_size="30vp"
+        ohos:top_margin="100vp">
+    </Button>
+
+    <Button
+        ohos:id="$+id:next_btn"
+        ohos:height="match_content"
+        ohos:width="match_content"
+        ohos:background_element="$graphic:background_button"
+        ohos:layout_alignment="horizontal_center"
+        ohos:left_padding="15vp"
+        ohos:right_padding="15vp"
+        ohos:text="下一试题"
+        ohos:text_size="30vp"
+        ohos:top_margin="20vp">
+    </Button>
+
+    <Button
+        ohos:id="$+id:help_btn"
+        ohos:height="match_content"
+        ohos:width="match_content"
+        ohos:background_element="$graphic:background_button"
+        ohos:layout_alignment="horizontal_center"
+        ohos:left_padding="15vp"
+        ohos:right_padding="15vp"
+        ohos:text="实时辅导"
+        ohos:text_size="30vp"
+        ohos:top_margin="20vp">
+    </Button>
+
+</DirectionalLayout>
