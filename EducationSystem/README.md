@@ -2,8 +2,11 @@ Education System
 
 What is it?
 •Distance education and multi-screen collaboration are an important scene of smart education. 
+
 •In this article, CodeLab uses a parent-child early education system to complete two comprehensive cases of distributed early education arithmetic problems and distributed puzzle games.
+
 •It aims to help developers quickly understand the experience of HarmonyOS application development, multi-screen collaborative interaction, and distributed cross-device transfer. 
+
 •From project creation, code writing, to compilation, construction, deployment and operation.
 
 Installation requirements
