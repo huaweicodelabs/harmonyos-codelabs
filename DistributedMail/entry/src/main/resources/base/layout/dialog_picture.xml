@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DirectionalLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:height="match_parent"
+    ohos:width="match_parent"
+    ohos:orientation="vertical">
+
+    <Text
+        ohos:height="50vp"
+        ohos:width="match_parent"
+        ohos:text="请选择需要添加的附件"
+        ohos:text_alignment="center"
+        ohos:text_size="16fp"/>
+
+    <Component
+        ohos:height="1vp"
+        ohos:width="match_parent"
+        ohos:background_element="#cccccc"
+        ohos:left_margin="10vp"
+        ohos:right_margin="10vp"/>
+
+    <ListContainer
+        ohos:id="$+id:list_container_pic"
+        ohos:height="match_parent"
+        ohos:width="match_parent"/>
+</DirectionalLayout>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ Copyright (c) 2021 Huawei Device Co., Ltd.
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ -->
+<DirectionalLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:height="match_parent"
+    ohos:width="match_parent"
+    ohos:background_element="$media:bg_image"
+    ohos:orientation="vertical">
+
+    <DependentLayout
+        ohos:height="match_parent"
+        ohos:width="match_parent"
+        ohos:layout_alignment="vertical_center"
+        ohos:left_padding="20vp"
+        ohos:right_padding="20vp"
+        ohos:weight="1">
+
+        <Image
+            ohos:id="$+id:left_image"
+            ohos:height="match_content"
+            ohos:width="match_content"
+            ohos:align_parent_left="true"
+            ohos:image_src="$media:ic_image_left"
+            ohos:vertical_center="true"/>
+
+        <DirectionalLayout
+            ohos:height="match_content"
+            ohos:width="match_content"
+            ohos:alignment="vertical_center"
+            ohos:orientation="vertical"
+            ohos:right_of="$id:left_image"
+            ohos:vertical_center="true">
+
+            <Text
+                ohos:id="$+id:date"
+                ohos:height="match_parent"
+                ohos:width="match_parent"
+                ohos:text="分布式相机"
+                ohos:text_color="#000000"
+                ohos:text_size="18fp"/>
+
+            <Text
+                ohos:id="$+id:time"
+                ohos:height="match_parent"
+                ohos:width="match_parent"
+                ohos:text="照片预览"
+                ohos:text_color="#C0C0C0"
+                ohos:text_size="13fp"/>
+        </DirectionalLayout>
+
+        <Image
+            ohos:height="match_content"
+            ohos:width="match_content"
+            ohos:align_parent_right="true"
+            ohos:image_src="$media:ic_image_right"
+            ohos:vertical_center="true"/>
+    </DependentLayout>
+
+    <Image
+        ohos:id="$+id:image"
+        ohos:height="0vp"
+        ohos:width="match_parent"
+        ohos:layout_alignment="horizontal_center"
+        ohos:top_margin="20vp"
+        ohos:weight="10"/>
+
+    <Image
+        ohos:height="0vp"
+        ohos:width="match_content"
+        ohos:image_src="$media:ic_image_foot"
+        ohos:layout_alignment="horizontal_center"
+        ohos:scale_mode="center"
+        ohos:weight="2"/>
+</DirectionalLayout>

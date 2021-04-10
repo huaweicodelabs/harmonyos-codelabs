@@ -1,0 +1,24 @@
+{
+  "string": [
+    {
+      "name": "app_name",
+      "value": "MailDemo"
+    },
+    {
+      "name": "mainability_description",
+      "value": "hap sample empty page"
+    },
+    {
+      "name": "tips_mail_continue_nodevice",
+      "value": "迁移失败，没有发现可迁移的设备..."
+    },
+    {
+      "name": "tips_mail_continue_failed",
+      "value": "迁移失败，请稍后重试..."
+    },
+    {
+      "name": "studyability_description",
+      "value": "hap sample empty page"
+    }
+  ]
+}

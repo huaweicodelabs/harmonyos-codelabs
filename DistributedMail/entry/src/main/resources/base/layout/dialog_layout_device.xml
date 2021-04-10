@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DirectionalLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:height="300vp"
+    ohos:width="match_parent"
+    ohos:orientation="vertical">
+
+    <DirectionalLayout
+        ohos:height="match_parent"
+        ohos:width="match_parent"
+        ohos:background_element="$graphic:background_white_radius_10"
+        ohos:bottom_margin="10vp"
+        ohos:left_margin="20vp"
+        ohos:orientation="vertical"
+        ohos:right_margin="20vp">
+
+        <Text
+            ohos:height="50vp"
+            ohos:width="match_parent"
+            ohos:left_padding="20vp"
+            ohos:text="迁移到其他设备"
+            ohos:text_alignment="vertical_center"
+            ohos:text_color="#000000"
+            ohos:text_size="16fp"/>
+
+        <ListContainer
+            ohos:id="$+id:list_container_device"
+            ohos:height="0vp"
+            ohos:width="match_parent"
+            ohos:weight="1"/>
+
+        <DirectionalLayout
+            ohos:height="50vp"
+            ohos:width="match_parent"
+            ohos:orientation="horizontal">
+
+            <Text
+                ohos:id="$+id:operate_no"
+                ohos:height="match_parent"
+                ohos:width="0vp"
+                ohos:text="取消"
+                ohos:text_alignment="center"
+                ohos:text_color="#1e90ff"
+                ohos:text_size="17fp"
+                ohos:weight="1"/>
+
+            <Component
+                ohos:height="25vp"
+                ohos:width="1vp"
+                ohos:background_element="#cccccc"
+                ohos:layout_alignment="vertical_center"/>
+
+            <Text
+                ohos:id="$+id:operate_yes"
+                ohos:height="match_parent"
+                ohos:width="0vp"
+                ohos:text="确定"
+                ohos:text_alignment="center"
+                ohos:text_color="#1e90ff"
+                ohos:text_size="17fp"
+                ohos:weight="1"/>
+        </DirectionalLayout>
+    </DirectionalLayout>
+</DirectionalLayout>

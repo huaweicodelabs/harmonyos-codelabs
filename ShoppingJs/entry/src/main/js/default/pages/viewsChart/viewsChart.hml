@@ -1,0 +1,12 @@
+<div class="container">
+    <stack class="chart-region">
+        <image class="chart-background" src="common/background.png">
+        </image>
+        <chart class="chart-data" type="line" ref="linechart" options="{{lineOps}}" datasets="{{lineData}}">
+        </chart>
+    </stack>
+    <button value="setInterval" onclick="autoAddData" class="button-sty">
+    </button>
+    <button value="Add data" onclick="addData" class="button-sty">
+    </button>
+</div>

@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StackLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:height="match_parent"
+    ohos:width="match_parent">
+
+    <DirectionalLayout
+        ohos:height="match_parent"
+        ohos:width="match_parent"
+        ohos:orientation="vertical">
+
+        <DependentLayout
+            ohos:height="60vp"
+            ohos:width="match_parent"
+            ohos:top_margin="10vp">
+
+            <Text
+                ohos:id="$+id:call_test"
+                ohos:height="match_content"
+                ohos:width="match_content"
+                ohos:horizontal_center="1"
+                ohos:multiple_lines="false"
+                ohos:text="邮件回复"
+                ohos:text_color="#ff000000"
+                ohos:text_size="24fp"
+                ohos:top_margin="3vp"/>
+
+            <Image
+                ohos:id="$+id:mail_edit_continue"
+                ohos:height="50vp"
+                ohos:width="50vp"
+                ohos:align_parent_bottom="1"
+                ohos:align_parent_right="1"
+                ohos:image_src="$media:icon_qianyi"
+                ohos:padding="10vp"
+                ohos:right_margin="10vp"
+                ohos:scale_mode="zoom_center"
+                />
+        </DependentLayout>
+
+        <DirectionalLayout
+            ohos:id="$+id:mail_edit_center_layout"
+            ohos:height="match_parent"
+            ohos:width="match_parent"
+            ohos:orientation="vertical">
+
+            <DirectionalLayout
+                ohos:height="50vp"
+                ohos:width="match_parent"
+                ohos:layout_alignment="16"
+                ohos:orientation="horizontal">
+
+                <Text
+                    ohos:height="match_parent"
+                    ohos:width="100vp"
+                    ohos:layout_alignment="vertical_center"
+                    ohos:left_padding="20vp"
+                    ohos:text="收件人"
+                    ohos:text_alignment="64"
+                    ohos:text_color="#ff000000"
+                    ohos:text_size="18fp"/>
+
+                <TextField
+                    ohos:id="$+id:mail_edit_receiver"
+                    ohos:height="match_parent"
+                    ohos:width="match_parent"
+                    ohos:hint="收件人"
+                    ohos:layout_alignment="vertical_center"
+                    ohos:multiple_lines="false"
+                    ohos:text_alignment="64"
+                    ohos:text_color="#99000000"
+                    ohos:text_cursor_visible="true"
+                    ohos:text_size="14fp"/>
+            </DirectionalLayout>
+
+            <DirectionalLayout
+                ohos:height="50vp"
+                ohos:width="match_parent"
+                ohos:layout_alignment="16"
+                ohos:orientation="0">
+
+                <Text
+                    ohos:height="-2"
+                    ohos:width="100vp"
+                    ohos:layout_alignment="vertical_center"
+                    ohos:left_padding="20vp"
+                    ohos:text="抄送"
+                    ohos:text_alignment="64"
+                    ohos:text_color="#ff000000"
+                    ohos:text_size="18fp"/>
+
+                <TextField
+                    ohos:id="$+id:mail_edit_cc"
+                    ohos:height="match_parent"
+                    ohos:width="match_parent"
+                    ohos:hint="抄送"
+                    ohos:layout_alignment="vertical_center"
+                    ohos:multiple_lines="false"
+                    ohos:text_alignment="64"
+                    ohos:text_color="#99000000"
+                    ohos:text_size="14fp"/>
+            </DirectionalLayout>
+
+            <StackLayout
+                ohos:height="50vp"
+                ohos:width="match_parent">
+
+                <DirectionalLayout
+                    ohos:height="50vp"
+                    ohos:width="match_parent"
+                    ohos:orientation="horizontal"
+                    ohos:right_margin="70vp">
+
+                    <Text
+                        ohos:height="match_parent"
+                        ohos:width="100vp"
+                        ohos:layout_alignment="vertical_center"
+                        ohos:left_padding="20vp"
+                        ohos:text="主题"
+                        ohos:text_alignment="64"
+                        ohos:text_color="#ff000000"
+                        ohos:text_size="18fp"/>
+
+                    <TextField
+                        ohos:id="$+id:mail_edit_title"
+                        ohos:height="match_parent"
+                        ohos:width="match_parent"
+                        ohos:hint="主题"
+                        ohos:layout_alignment="vertical_center"
+                        ohos:multiple_lines="false"
+                        ohos:text_alignment="64"
+                        ohos:text_color="#99000000"
+                        ohos:text_size="14fp"/>
+                </DirectionalLayout>
+
+                <Image
+                    ohos:id="$+id:open_dir"
+                    ohos:height="50vp"
+                    ohos:width="50vp"
+                    ohos:image_src="$media:icon_fujian"
+                    ohos:layout_alignment="right|vertical_center"
+                    ohos:padding="16vp"
+                    ohos:scale_mode="zoom_center"/>
+            </StackLayout>
+
+            <DirectionalLayout
+                ohos:height="match_parent"
+                ohos:width="match_parent"
+                ohos:bottom_margin="70vp"
+                ohos:orientation="vertical">
+
+
+                <TextField
+                    ohos:id="$+id:mail_edit_content"
+                    ohos:height="0vp"
+                    ohos:width="match_parent"
+                    ohos:hint="邮件正文"
+                    ohos:left_padding="20vp"
+                    ohos:multiple_lines="true"
+                    ohos:right_padding="20vp"
+                    ohos:text_alignment="36"
+                    ohos:text_color="#99000000"
+                    ohos:text_cursor_visible="true"
+                    ohos:text_size="14fp"
+                    ohos:top_padding="10vp"
+                    ohos:weight="1"/>
+
+                <DirectionalLayout
+                    ohos:height="0vp"
+                    ohos:width="match_parent"
+                    ohos:orientation="vertical"
+                    ohos:weight="2">
+
+                    <Text
+                        ohos:height="30vp"
+                        ohos:width="100vp"
+                        ohos:layout_alignment="vertical_center"
+                        ohos:left_padding="20vp"
+                        ohos:text="附件"
+                        ohos:text_alignment="64"
+                        ohos:text_size="18fp"/>
+
+                    <ListContainer
+                        ohos:id="$+id:attachment_list"
+                        ohos:height="100vp"
+                        ohos:width="match_parent"
+                        ohos:layout_alignment="horizontal_center"
+                        ohos:orientation="horizontal"/>
+                </DirectionalLayout>
+            </DirectionalLayout>
+        </DirectionalLayout>
+    </DirectionalLayout>
+
+    <Button
+        ohos:height="50vp"
+        ohos:width="match_parent"
+        ohos:background_element="#236ea1"
+        ohos:layout_alignment="bottom"
+        ohos:text="发送"
+        ohos:text_alignment="center"
+        ohos:text_color="#ffffff"
+        ohos:text_size="18fp"
+        />
+</StackLayout>

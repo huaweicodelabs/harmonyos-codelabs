@@ -1,0 +1,52 @@
+{
+  "app": {
+    "bundleName": "com.huawei.codelab",
+    "vendor": "huawei",
+    "version": {
+      "code": 1,
+      "name": "1.0"
+    },
+    "apiVersion": {
+      "compatible": 3,
+      "target": 4,
+      "releaseType": "Beta1"
+    }
+  },
+  "deviceConfig": {},
+  "module": {
+    "package": "com.huawei.codelab",
+    "name": "testModule",
+    "deviceType": [
+      "phone"
+    ],
+    "distro": {
+      "deliveryWithInstall": true,
+      "moduleName": "entry_test",
+      "moduleType": "feature"
+    },
+    "abilities": [
+      {
+        "name": "decc.testkit.runner.JsEntryAbility",
+        "description": "Test Entry Ability",
+        "icon": "$media:icon",
+        "label": "TestAbility",
+        "launchType": "standard",
+        "orientation": "landscape",
+        "visible": true,
+        "type": "page"
+      }
+    ],
+    "js": [
+      {
+        "pages": [
+          "pages/index/index"
+        ],
+        "name": "default",
+        "window": {
+          "designWidth": 750,
+          "autoDesignWidth": false
+        }
+      }
+    ]
+  }
+}
