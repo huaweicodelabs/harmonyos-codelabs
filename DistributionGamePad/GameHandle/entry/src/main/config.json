@@ -1,0 +1,124 @@
+{
+  "app": {
+    "bundleName": "com.huawei.codelab",
+    "vendor": "huawei",
+    "version": {
+      "code": 1,
+      "name": "1.0"
+    },
+    "apiVersion": {
+      "compatible": 4,
+      "target": 4,
+      "releaseType": "Beta1"
+    }
+  },
+  "deviceConfig": {},
+  "module": {
+    "package": "com.huawei.codelab",
+    "name": ".MyApplication",
+    "deviceType": [
+      "phone"
+    ],
+    "distro": {
+      "deliveryWithInstall": true,
+      "moduleName": "entry",
+      "moduleType": "entry"
+    },
+    "abilities": [
+      {
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ],
+        "orientation": "landscape",
+        "name": "com.huawei.codelab.MainAbility",
+        "icon": "$media:icon",
+        "description": "$string:mainability_description",
+        "label": "Distributed Handle",
+        "type": "page",
+        "launchType": "standard"
+      },
+      {
+        "backgroundModes": [
+          "dataTransfer"
+        ],
+        "name": "com.huawei.codelab.service.GameServiceAbility",
+        "icon": "$media:icon",
+        "description": "$string:gameserviceability_description",
+        "type": "service"
+      },
+      {
+        "orientation": "landscape",
+        "name": "com.huawei.codelab.HandleAbility",
+        "icon": "$media:icon",
+        "description": "$string:handleability_description",
+        "label": "Distributed Handle",
+        "type": "page",
+        "launchType": "standard"
+      }
+    ],
+    "reqPermissions": [
+      {
+        "name": "ohos.permission.DISTRIBUTED_DATASYNC",
+        "reason": "demo use distribution",
+        "usedScene": {
+          "ability": [
+            ".MainAbility",
+            ".HandleAbility"
+          ],
+          "when": "inuse"
+        }
+      },
+      {
+        "name": "ohos.permission.DISTRIBUTED_DEVICE_STATE_CHANGE",
+        "reason": "demo use distribution",
+        "usedScene": {
+          "ability": [
+            ".MainAbility",
+            ".HandleAbility"
+          ],
+          "when": "inuse"
+        }
+      },
+      {
+        "name": "ohos.permission.GET_DISTRIBUTED_DEVICE_INFO",
+        "reason": "demo use distribution",
+        "usedScene": {
+          "ability": [
+            ".MainAbility",
+            ".HandleAbility"
+          ],
+          "when": "inuse"
+        }
+      },
+      {
+        "name": "ohos.permission.GET_BUNDLE_INFO",
+        "reason": "demo use distribution",
+        "usedScene": {
+          "ability": [
+            ".MainAbility",
+            ".HandleAbility"
+          ],
+          "when": "inuse"
+        }
+      },
+      {
+        "name": "ohos.permission.VIBRATE",
+        "reason": "demo use distribution",
+        "usedScene": {
+          "ability": [
+            ".MainAbility",
+            ".HandleAbility"
+          ],
+          "when": "inuse"
+        }
+      }
+    ]
+  }
+}

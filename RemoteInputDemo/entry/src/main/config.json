@@ -1,0 +1,123 @@
+{
+  "app": {
+    "bundleName": "com.huawei.codelab",
+    "vendor": "huawei",
+    "version": {
+      "code": 1,
+      "name": "1.0"
+    },
+    "apiVersion": {
+      "compatible": 3,
+      "target": 3
+    }
+  },
+  "deviceConfig": {},
+  "module": {
+    "package": "com.huawei.codelab",
+    "name": ".MyApplication",
+    "deviceType": [
+      "phone",
+      "tv"
+    ],
+    "distro": {
+      "deliveryWithInstall": true,
+      "moduleName": "entry",
+      "moduleType": "entry"
+    },
+    "abilities": [
+      {
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ],
+        "orientation": "landscape",
+        "name": "com.huawei.codelab.MainAbility",
+        "icon": "$media:icon",
+        "description": "$string:mainability_description",
+        "label": "$string:app_name",
+        "type": "page",
+        "launchType": "singleton"
+      },
+      {
+        "orientation": "portrait",
+        "name": "com.huawei.codelab.RemoteInputAbility",
+        "icon": "$media:icon",
+        "description": "$string:remoteinputability_description",
+        "label": "$string:app_name",
+        "type": "page",
+        "launchType": "standard"
+      },
+      {
+        "name": "com.huawei.codelab.service.RemoteService",
+        "icon": "$media:icon",
+        "description": "$string:RemoteService_description",
+        "type": "service"
+      },
+      {
+        "orientation": "landscape",
+        "name": "com.huawei.codelab.MoviePlayAbility",
+        "icon": "$media:icon",
+        "description": "$string:movieplayability_description",
+        "label": "$string:app_name",
+        "type": "page",
+        "launchType": "standard"
+      }
+    ],
+    "reqPermissions": [
+      {
+        "name": "ohos.permission.DISTRIBUTED_DATASYNC",
+        "reason": "多设备协同",
+        "usedScene": {
+          "ability": [
+            ".MainAbility",
+            ".RemoteInputAbility",
+            ".RemoteService"
+          ],
+          "when": "inuse"
+        }
+      },
+      {
+        "name": "ohos.permission.DISTRIBUTED_DEVICE_STATE_CHANGE",
+        "reason": "获取设备状态变化",
+        "usedScene": {
+          "ability": [
+            ".MainAbility",
+            ".RemoteInputAbility",
+            ".RemoteService"
+          ],
+          "when": "inuse"
+        }
+      },
+      {
+        "name": "ohos.permission.GET_DISTRIBUTED_DEVICE_INFO",
+        "reason": "获取设备基本信息",
+        "usedScene": {
+          "ability": [
+            ".MainAbility",
+            ".RemoteInputAbility",
+            ".RemoteService"
+          ],
+          "when": "inuse"
+        }
+      },
+      {
+        "name": "ohos.permission.GRT_BUNDLE_INFO",
+        "reason": "获取应用信息",
+        "usedScene": {
+          "ability": [
+            ".MainAbility",
+            ".RemoteInputAbility",
+            ".RemoteService"
+          ],
+          "when": "inuse"
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DependentLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:background_element="#00000000"
+    ohos:height="match_parent"
+    ohos:width="match_parent">
+
+    <DirectionalLayout
+        ohos:align_parent_bottom="true"
+        ohos:background_element="#99000000"
+        ohos:height="60vp"
+        ohos:id="$+id:controller_bottom_layout"
+        ohos:left_padding="10vp"
+        ohos:orientation="vertical"
+       ohos:alignment="center"
+        ohos:width="match_parent">
+
+        <Image
+            ohos:height="48vp"
+            ohos:horizontal_center="true"
+            ohos:id="$+id:play_controller"
+            ohos:image_src="$media:video_stop"
+            ohos:scale_mode="stretch"
+            ohos:width="48vp" />
+
+    </DirectionalLayout>
+
+</DependentLayout>

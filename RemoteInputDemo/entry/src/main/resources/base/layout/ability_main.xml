@@ -1,0 +1,810 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DirectionalLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:height="match_parent"
+    ohos:orientation="horizontal"
+    ohos:background_element="$graphic:background_ability_main"
+    ohos:width="match_parent">
+
+    <DirectionalLayout
+        ohos:id="$+id:layout_left"
+        ohos:height="match_content"
+        ohos:width="280vp"
+        ohos:orientation="vertical">
+
+        <DirectionalLayout
+            ohos:id="$+id:layout_textfield"
+            ohos:height="match_content"
+            ohos:width="match_parent">
+
+            <TextField
+                ohos:background_element="$graphic:background_text_field"
+                ohos:height="30vp"
+                ohos:id="$+id:TV_input"
+                ohos:top_margin="5vp"
+                ohos:left_margin="28vp"
+                ohos:right_margin="28vp"
+                ohos:left_padding="8vp"
+                ohos:top_padding="6vp"
+                ohos:bubble_width="10vp"
+                ohos:bubble_height="10vp"
+                ohos:layout_alignment="horizontal_center"
+                ohos:text_size="15fp"
+                ohos:hint="搜索"
+                ohos:width="match_parent" />
+
+        </DirectionalLayout>
+
+        <DirectionalLayout
+            ohos:height="match_content"
+            ohos:width="match_content"
+            ohos:top_margin="15vp"
+            ohos:layout_alignment="horizontal_center"
+            ohos:id="$+id:keyBoardComponent"
+            ohos:background_element="$graphic:background_keyboard">
+
+            <DirectionalLayout
+                ohos:height="match_content"
+                ohos:width="match_parent"
+                ohos:orientation="horizontal"
+                ohos:id="$+id:firstRow">
+
+                <Button
+                    ohos:height="match_content"
+                    ohos:width="match_content"
+                    ohos:id="$+id:clear"
+                    ohos:padding="6vp"
+                    ohos:top_margin="10vp"
+                    ohos:left_margin="15vp"
+                    ohos:text_size="15fp"
+                    ohos:text="清空"
+                    ohos:background_element="$graphic:background_button"/>
+
+                <Button
+                    ohos:height="match_content"
+                    ohos:width="match_content"
+                    ohos:alignment="right"
+                    ohos:top_margin="10vp"
+                    ohos:left_margin="110vp"
+                    ohos:id="$+id:del"
+                    ohos:padding="6vp"
+                    ohos:text_size="15fp"
+                    ohos:text="删除"
+                    ohos:background_element="$graphic:background_button"/>
+
+            </DirectionalLayout>
+
+            <DirectionalLayout
+                ohos:height="match_content"
+                ohos:width="match_parent"
+                ohos:top_margin="5vp"
+                ohos:orientation="horizontal"
+                ohos:id="$+id:secondRow">
+
+                <Button
+                    ohos:height="match_content"
+                    ohos:width="25vp"
+                    ohos:layout_alignment="right"
+                    ohos:left_margin="10vp"
+                    ohos:id="$+id:button_A"
+                    ohos:padding="6vp"
+                    ohos:text_size="15fp"
+                    ohos:text="A"
+                    ohos:background_element="$graphic:background_button"/>
+
+                <Button
+                    ohos:height="match_content"
+                    ohos:width="25vp"
+                    ohos:layout_alignment="right"
+                    ohos:left_margin="10vp"
+                    ohos:id="$+id:button_B"
+                    ohos:padding="6vp"
+                    ohos:text_size="15fp"
+                    ohos:text="B"
+                    ohos:background_element="$graphic:background_button"/>
+
+                <Button
+                    ohos:height="match_content"
+                    ohos:width="25vp"
+                    ohos:layout_alignment="right"
+                    ohos:left_margin="10vp"
+                    ohos:id="$+id:button_C"
+                    ohos:padding="6vp"
+                    ohos:text_size="15fp"
+                    ohos:text="C"
+                    ohos:background_element="$graphic:background_button"/>
+
+                <Button
+                    ohos:height="match_content"
+                    ohos:width="25vp"
+                    ohos:layout_alignment="right"
+                    ohos:left_margin="10vp"
+                    ohos:id="$+id:button_D"
+                    ohos:padding="6vp"
+                    ohos:text_size="15fp"
+                    ohos:text="D"
+                    ohos:background_element="$graphic:background_button"/>
+
+                <Button
+                    ohos:height="match_content"
+                    ohos:width="25vp"
+                    ohos:layout_alignment="right"
+                    ohos:left_margin="10vp"
+                    ohos:id="$+id:button_E"
+                    ohos:padding="6vp"
+                    ohos:text_size="15fp"
+                    ohos:text="E"
+                    ohos:background_element="$graphic:background_button"/>
+
+                <Button
+                    ohos:height="match_content"
+                    ohos:width="25vp"
+                    ohos:layout_alignment="right"
+                    ohos:left_margin="10vp"
+                    ohos:right_margin="10vp"
+                    ohos:id="$+id:button_F"
+                    ohos:padding="6vp"
+                    ohos:text_size="15fp"
+                    ohos:text="F"
+                    ohos:background_element="$graphic:background_button"/>
+
+            </DirectionalLayout>
+
+            <DirectionalLayout
+                ohos:height="match_content"
+                ohos:width="match_parent"
+                ohos:top_margin="5vp"
+                ohos:orientation="horizontal"
+                ohos:id="$+id:thirdRow">
+
+                <Button
+                    ohos:height="match_content"
+                    ohos:width="25vp"
+                    ohos:layout_alignment="right"
+                    ohos:left_margin="10vp"
+                    ohos:id="$+id:button_G"
+                    ohos:padding="6vp"
+                    ohos:text_size="15fp"
+                    ohos:text="G"
+                    ohos:background_element="$graphic:background_button"/>
+
+                <Button
+                    ohos:height="match_content"
+                    ohos:width="25vp"
+                    ohos:layout_alignment="right"
+                    ohos:left_margin="10vp"
+                    ohos:id="$+id:button_H"
+                    ohos:padding="6vp"
+                    ohos:text_size="15fp"
+                    ohos:text="H"
+                    ohos:background_element="$graphic:background_button"/>
+
+                <Button
+                    ohos:height="match_content"
+                    ohos:width="25vp"
+                    ohos:layout_alignment="right"
+                    ohos:left_margin="10vp"
+                    ohos:id="$+id:button_I"
+                    ohos:padding="6vp"
+                    ohos:text_size="15fp"
+                    ohos:text="I"
+                    ohos:background_element="$graphic:background_button"/>
+
+                <Button
+                    ohos:height="match_content"
+                    ohos:width="25vp"
+                    ohos:layout_alignment="right"
+                    ohos:left_margin="10vp"
+                    ohos:id="$+id:button_J"
+                    ohos:padding="6vp"
+                    ohos:text_size="15fp"
+                    ohos:text="J"
+                    ohos:background_element="$graphic:background_button"/>
+
+                <Button
+                    ohos:height="match_content"
+                    ohos:width="25vp"
+                    ohos:layout_alignment="right"
+                    ohos:left_margin="10vp"
+                    ohos:id="$+id:button_K"
+                    ohos:padding="6vp"
+                    ohos:text_size="15fp"
+                    ohos:text="K"
+                    ohos:background_element="$graphic:background_button"/>
+
+                <Button
+                    ohos:height="match_content"
+                    ohos:width="25vp"
+                    ohos:layout_alignment="right"
+                    ohos:left_margin="10vp"
+                    ohos:right_margin="10vp"
+                    ohos:id="$+id:button_L"
+                    ohos:padding="6vp"
+                    ohos:text_size="15fp"
+                    ohos:text="L"
+                    ohos:background_element="$graphic:background_button"/>
+
+            </DirectionalLayout>
+
+            <DirectionalLayout
+                ohos:height="match_content"
+                ohos:width="match_parent"
+                ohos:top_margin="5vp"
+                ohos:orientation="horizontal"
+                ohos:id="$+id:fourthRow">
+
+                <Button
+                    ohos:height="match_content"
+                    ohos:width="25vp"
+                    ohos:layout_alignment="right"
+                    ohos:left_margin="10vp"
+                    ohos:id="$+id:button_M"
+                    ohos:padding="6vp"
+                    ohos:text_size="15fp"
+                    ohos:text="M"
+                    ohos:background_element="$graphic:background_button"/>
+
+                <Button
+                    ohos:height="match_content"
+                    ohos:width="25vp"
+                    ohos:layout_alignment="right"
+                    ohos:left_margin="10vp"
+                    ohos:id="$+id:button_N"
+                    ohos:padding="6vp"
+                    ohos:text_size="15fp"
+                    ohos:text="N"
+                    ohos:background_element="$graphic:background_button"/>
+
+                <Button
+                    ohos:height="match_content"
+                    ohos:width="25vp"
+                    ohos:layout_alignment="right"
+                    ohos:left_margin="10vp"
+                    ohos:id="$+id:button_O"
+                    ohos:padding="6vp"
+                    ohos:text_size="15fp"
+                    ohos:text="O"
+                    ohos:background_element="$graphic:background_button"/>
+
+                <Button
+                    ohos:height="match_content"
+                    ohos:width="25vp"
+                    ohos:layout_alignment="right"
+                    ohos:left_margin="10vp"
+                    ohos:id="$+id:button_P"
+                    ohos:padding="6vp"
+                    ohos:text_size="15fp"
+                    ohos:text="P"
+                    ohos:background_element="$graphic:background_button"/>
+
+                <Button
+                    ohos:height="match_content"
+                    ohos:width="25vp"
+                    ohos:layout_alignment="right"
+                    ohos:left_margin="10vp"
+                    ohos:id="$+id:button_Q"
+                    ohos:padding="6vp"
+                    ohos:text_size="15fp"
+                    ohos:text="Q"
+                    ohos:background_element="$graphic:background_button"/>
+
+                <Button
+                    ohos:height="match_content"
+                    ohos:width="25vp"
+                    ohos:layout_alignment="right"
+                    ohos:left_margin="10vp"
+                    ohos:right_margin="10vp"
+                    ohos:id="$+id:button_R"
+                    ohos:padding="6vp"
+                    ohos:text_size="15fp"
+                    ohos:text="R"
+                    ohos:background_element="$graphic:background_button"/>
+
+            </DirectionalLayout>
+
+            <DirectionalLayout
+                ohos:height="match_content"
+                ohos:width="match_parent"
+                ohos:top_margin="5vp"
+                ohos:orientation="horizontal"
+                ohos:id="$+id:fifthRow">
+
+                <Button
+                    ohos:height="match_content"
+                    ohos:width="25vp"
+                    ohos:layout_alignment="right"
+                    ohos:left_margin="10vp"
+                    ohos:id="$+id:button_S"
+                    ohos:padding="6vp"
+                    ohos:text_size="15fp"
+                    ohos:text="S"
+                    ohos:background_element="$graphic:background_button"/>
+
+                <Button
+                    ohos:height="match_content"
+                    ohos:width="25vp"
+                    ohos:layout_alignment="right"
+                    ohos:left_margin="10vp"
+                    ohos:id="$+id:button_T"
+                    ohos:padding="6vp"
+                    ohos:text_size="15fp"
+                    ohos:text="T"
+                    ohos:background_element="$graphic:background_button"/>
+
+                <Button
+                    ohos:height="match_content"
+                    ohos:width="25vp"
+                    ohos:layout_alignment="right"
+                    ohos:left_margin="10vp"
+                    ohos:id="$+id:button_U"
+                    ohos:padding="6vp"
+                    ohos:text_size="15fp"
+                    ohos:text="U"
+                    ohos:background_element="$graphic:background_button"/>
+
+                <Button
+                    ohos:height="match_content"
+                    ohos:width="25vp"
+                    ohos:layout_alignment="right"
+                    ohos:left_margin="10vp"
+                    ohos:id="$+id:button_V"
+                    ohos:padding="6vp"
+                    ohos:text_size="15fp"
+                    ohos:text="V"
+                    ohos:background_element="$graphic:background_button"/>
+
+                <Button
+                    ohos:height="match_content"
+                    ohos:width="25vp"
+                    ohos:layout_alignment="right"
+                    ohos:left_margin="10vp"
+                    ohos:id="$+id:button_W"
+                    ohos:padding="6vp"
+                    ohos:text_size="15fp"
+                    ohos:text="W"
+                    ohos:background_element="$graphic:background_button"/>
+
+                <Button
+                    ohos:height="match_content"
+                    ohos:width="25vp"
+                    ohos:layout_alignment="right"
+                    ohos:left_margin="10vp"
+                    ohos:right_margin="10vp"
+                    ohos:id="$+id:button_X"
+                    ohos:padding="6vp"
+                    ohos:text_size="15fp"
+                    ohos:text="X"
+                    ohos:background_element="$graphic:background_button"/>
+
+            </DirectionalLayout>
+
+            <DirectionalLayout
+                ohos:height="match_content"
+                ohos:width="match_parent"
+                ohos:top_margin="5vp"
+                ohos:orientation="horizontal"
+                ohos:id="$+id:sixthRow">
+
+                <Button
+                    ohos:height="match_content"
+                    ohos:width="25vp"
+                    ohos:layout_alignment="right"
+                    ohos:left_margin="10vp"
+                    ohos:id="$+id:button_Y"
+                    ohos:padding="6vp"
+                    ohos:text_size="15fp"
+                    ohos:text="Y"
+                    ohos:background_element="$graphic:background_button"/>
+
+                <Button
+                    ohos:height="match_content"
+                    ohos:width="25vp"
+                    ohos:layout_alignment="right"
+                    ohos:left_margin="10vp"
+                    ohos:id="$+id:button_Z"
+                    ohos:padding="6vp"
+                    ohos:text_size="15fp"
+                    ohos:text="Z"
+                    ohos:background_element="$graphic:background_button"/>
+
+                <Button
+                    ohos:height="match_content"
+                    ohos:width="25vp"
+                    ohos:layout_alignment="right"
+                    ohos:left_margin="10vp"
+                    ohos:id="$+id:button_0"
+                    ohos:padding="6vp"
+                    ohos:text_size="15fp"
+                    ohos:text="0"
+                    ohos:background_element="$graphic:background_button"/>
+
+                <Button
+                    ohos:height="match_content"
+                    ohos:width="25vp"
+                    ohos:layout_alignment="right"
+                    ohos:left_margin="10vp"
+                    ohos:id="$+id:button_1"
+                    ohos:padding="6vp"
+                    ohos:text_size="15fp"
+                    ohos:text="1"
+                    ohos:background_element="$graphic:background_button"/>
+
+                <Button
+                    ohos:height="match_content"
+                    ohos:width="25vp"
+                    ohos:layout_alignment="right"
+                    ohos:left_margin="10vp"
+                    ohos:id="$+id:button_2"
+                    ohos:padding="6vp"
+                    ohos:text_size="15fp"
+                    ohos:text="2"
+                    ohos:background_element="$graphic:background_button"/>
+
+                <Button
+                    ohos:height="match_content"
+                    ohos:width="25vp"
+                    ohos:layout_alignment="right"
+                    ohos:left_margin="10vp"
+                    ohos:right_margin="10vp"
+                    ohos:id="$+id:button_3"
+                    ohos:padding="6vp"
+                    ohos:text_size="15fp"
+                    ohos:text="3"
+                    ohos:background_element="$graphic:background_button"/>
+
+            </DirectionalLayout>
+
+            <DirectionalLayout
+                ohos:height="match_content"
+                ohos:width="match_parent"
+                ohos:top_margin="5vp"
+                ohos:bottom_margin="10vp"
+                ohos:orientation="horizontal"
+                ohos:id="$+id:seventhRow">
+
+                <Button
+                    ohos:height="match_content"
+                    ohos:width="25vp"
+                    ohos:layout_alignment="right"
+                    ohos:left_margin="10vp"
+                    ohos:id="$+id:button_4"
+                    ohos:padding="6vp"
+                    ohos:text_size="15fp"
+                    ohos:text="4"
+                    ohos:background_element="$graphic:background_button"/>
+
+                <Button
+                    ohos:height="match_content"
+                    ohos:width="25vp"
+                    ohos:layout_alignment="right"
+                    ohos:left_margin="10vp"
+                    ohos:id="$+id:button_5"
+                    ohos:padding="6vp"
+                    ohos:text_size="15fp"
+                    ohos:text="5"
+                    ohos:background_element="$graphic:background_button"/>
+
+                <Button
+                    ohos:height="match_content"
+                    ohos:width="25vp"
+                    ohos:layout_alignment="right"
+                    ohos:left_margin="10vp"
+                    ohos:id="$+id:button_6"
+                    ohos:padding="6vp"
+                    ohos:text_size="15fp"
+                    ohos:text="6"
+                    ohos:background_element="$graphic:background_button"/>
+
+                <Button
+                    ohos:height="match_content"
+                    ohos:width="25vp"
+                    ohos:layout_alignment="right"
+                    ohos:left_margin="10vp"
+                    ohos:id="$+id:button_7"
+                    ohos:padding="6vp"
+                    ohos:text_size="15fp"
+                    ohos:text="7"
+                    ohos:background_element="$graphic:background_button"/>
+
+                <Button
+                    ohos:height="match_content"
+                    ohos:width="25vp"
+                    ohos:layout_alignment="right"
+                    ohos:left_margin="10vp"
+                    ohos:id="$+id:button_8"
+                    ohos:padding="6vp"
+                    ohos:text_size="15fp"
+                    ohos:text="8"
+                    ohos:background_element="$graphic:background_button"/>
+
+                <Button
+                    ohos:height="match_content"
+                    ohos:width="25vp"
+                    ohos:layout_alignment="right"
+                    ohos:left_margin="10vp"
+                    ohos:right_margin="10vp"
+                    ohos:id="$+id:button_9"
+                    ohos:padding="6vp"
+                    ohos:text_size="15fp"
+                    ohos:text="9"
+                    ohos:background_element="$graphic:background_button"/>
+
+            </DirectionalLayout>
+
+        </DirectionalLayout>
+
+    </DirectionalLayout>
+
+    <ScrollView
+        ohos:id="$+id:scrollview"
+        ohos:height="match_content"
+        ohos:width="match_content">
+
+        <TableLayout
+            ohos:id="$+id:tableLayout"
+            ohos:height="match_content"
+            ohos:width="match_content"
+            ohos:row_count="1"
+            ohos:column_count="2"
+            ohos:orientation="horizontal">
+
+            <DirectionalLayout
+                ohos:id="$+id:layout_movie_one"
+                ohos:height="match_content"
+                ohos:width="match_content"
+                ohos:orientation="vertical"
+                ohos:padding="5vp">
+
+                <Image
+                    ohos:height="match_content"
+                    ohos:width="match_content"
+                    ohos:id="$+id:image_one"
+                    ohos:image_src="$media:wuxianerji"
+                    ohos:background_element="red"/>
+
+                <Text
+                    ohos:height="match_content"
+                    ohos:width="match_content"
+                    ohos:id="$+id:text_one"
+                    ohos:text="无线耳机"
+                    ohos:text_size="15fp"
+                    ohos:text_color="yellow"
+                    ohos:layout_alignment="horizontal_center"/>
+
+            </DirectionalLayout>
+
+            <DirectionalLayout
+                ohos:id="$+id:layout_movie_two"
+                ohos:height="match_content"
+                ohos:width="match_content"
+                ohos:orientation="vertical"
+                ohos:padding="5vp">
+
+                <Image
+                    ohos:height="match_content"
+                    ohos:width="match_content"
+                    ohos:left_margin="8vp"
+                    ohos:id="$+id:image_two"
+                    ohos:image_src="$media:zhinengyanjing"
+                    ohos:background_element="red"/>
+
+                <Text
+                    ohos:height="match_content"
+                    ohos:width="match_content"
+                    ohos:id="$+id:text_two"
+                    ohos:text="智能眼镜"
+                    ohos:text_size="15fp"
+                    ohos:text_color="yellow"
+                    ohos:layout_alignment="center"/>
+
+            </DirectionalLayout>
+
+            <DirectionalLayout
+                ohos:id="$+id:layout_movie_three"
+                ohos:height="match_content"
+                ohos:width="match_content"
+                ohos:orientation="vertical"
+                ohos:padding="5vp">
+
+                <Image
+                    ohos:height="match_content"
+                    ohos:width="match_content"
+                    ohos:id="$+id:image_three"
+                    ohos:image_src="$media:yinxiang"
+                    ohos:background_element="red"/>
+
+                <Text
+                    ohos:height="match_content"
+                    ohos:width="match_content"
+                    ohos:id="$+id:text_three"
+                    ohos:text="音响"
+                    ohos:text_size="15fp"
+                    ohos:text_color="yellow"
+                    ohos:layout_alignment="horizontal_center"/>
+
+            </DirectionalLayout>
+
+            <DirectionalLayout
+                ohos:id="$+id:layout_movie_four"
+                ohos:height="match_content"
+                ohos:width="match_content"
+                ohos:orientation="vertical"
+                ohos:padding="5vp">
+
+                <Image
+                    ohos:height="match_content"
+                    ohos:width="match_content"
+                    ohos:left_margin="8vp"
+                    ohos:id="$+id:image_four"
+                    ohos:image_src="$media:qijiandian"
+                    ohos:background_element="red"/>
+
+                <Text
+                    ohos:height="match_content"
+                    ohos:width="match_content"
+                    ohos:id="$+id:text_fou"
+                    ohos:text="旗舰店"
+                    ohos:text_size="15fp"
+                    ohos:text_color="yellow"
+                    ohos:layout_alignment="center"/>
+
+            </DirectionalLayout>
+
+            <DirectionalLayout
+                ohos:id="$+id:layout_movie_five"
+                ohos:height="match_content"
+                ohos:width="match_content"
+                ohos:orientation="vertical"
+                ohos:padding="5vp">
+
+                <Image
+                    ohos:height="match_content"
+                    ohos:width="match_content"
+                    ohos:id="$+id:image_five"
+                    ohos:image_src="$media:huyang"
+                    ohos:background_element="red"/>
+
+                <Text
+                    ohos:height="match_content"
+                    ohos:width="match_content"
+                    ohos:id="$+id:text_five"
+                    ohos:text="胡杨树"
+                    ohos:text_size="15fp"
+                    ohos:text_color="yellow"
+                    ohos:layout_alignment="horizontal_center"/>
+
+            </DirectionalLayout>
+
+            <DirectionalLayout
+                ohos:id="$+id:layout_movie_six"
+                ohos:height="match_content"
+                ohos:width="match_content"
+                ohos:orientation="vertical"
+                ohos:padding="5vp">
+
+                <Image
+                    ohos:height="match_content"
+                    ohos:width="match_content"
+                    ohos:left_margin="8vp"
+                    ohos:id="$+id:image_six"
+                    ohos:image_src="$media:shamo"
+                    ohos:background_element="red"/>
+
+                <Text
+                    ohos:height="match_content"
+                    ohos:width="match_content"
+                    ohos:id="$+id:text_six"
+                    ohos:text="沙漠"
+                    ohos:text_size="15fp"
+                    ohos:text_color="yellow"
+                    ohos:layout_alignment="center"/>
+
+            </DirectionalLayout>
+
+            <DirectionalLayout
+                ohos:id="$+id:layout_movie_seven"
+                ohos:height="match_content"
+                ohos:width="match_content"
+                ohos:orientation="vertical"
+                ohos:padding="5vp">
+
+                <Image
+                    ohos:height="match_content"
+                    ohos:width="match_content"
+                    ohos:id="$+id:image_seven"
+                    ohos:image_src="$media:WATCHFIT"
+                    ohos:background_element="red"/>
+
+                <Text
+                    ohos:height="match_content"
+                    ohos:width="match_content"
+                    ohos:id="$+id:text_seven"
+                    ohos:text="WATCHFIT"
+                    ohos:text_size="15fp"
+                    ohos:text_color="yellow"
+                    ohos:layout_alignment="horizontal_center"/>
+
+            </DirectionalLayout>
+
+            <DirectionalLayout
+                ohos:id="$+id:layout_movie_eight"
+                ohos:height="match_content"
+                ohos:width="match_content"
+                ohos:orientation="vertical"
+                ohos:padding="5vp">
+
+                <Image
+                    ohos:height="match_content"
+                    ohos:width="match_content"
+                    ohos:left_margin="8vp"
+                    ohos:id="$+id:image_eight"
+                    ohos:image_src="$media:WATCHGT2"
+                    ohos:background_element="red"/>
+
+                <Text
+                    ohos:height="match_content"
+                    ohos:width="match_content"
+                    ohos:id="$+id:text_eight"
+                    ohos:text="WATCHGT2"
+                    ohos:text_size="15fp"
+                    ohos:text_color="yellow"
+                    ohos:layout_alignment="center"/>
+
+            </DirectionalLayout>
+
+            <DirectionalLayout
+                ohos:id="$+id:layout_movie_nine"
+                ohos:height="match_content"
+                ohos:width="match_content"
+                ohos:orientation="vertical"
+                ohos:padding="5vp">
+
+                <Image
+                    ohos:height="match_content"
+                    ohos:width="match_content"
+                    ohos:id="$+id:image_nine"
+                    ohos:image_src="$media:WATCHGT2PRO"
+                    ohos:background_element="red"/>
+
+                <Text
+                    ohos:height="match_content"
+                    ohos:width="match_content"
+                    ohos:id="$+id:text_nine"
+                    ohos:text="WATCHGT2PRO"
+                    ohos:text_size="15fp"
+                    ohos:text_color="yellow"
+                    ohos:layout_alignment="horizontal_center"/>
+
+            </DirectionalLayout>
+
+            <DirectionalLayout
+                ohos:id="$+id:layout_movie_ten"
+                ohos:height="match_content"
+                ohos:width="match_content"
+                ohos:orientation="vertical"
+                ohos:padding="5vp">
+
+                <Image
+                    ohos:height="match_content"
+                    ohos:width="match_content"
+                    ohos:left_margin="8vp"
+                    ohos:id="$+id:image_ten"
+                    ohos:image_src="$media:xingkonglan"
+                    ohos:background_element="red"/>
+
+                <Text
+                    ohos:height="match_content"
+                    ohos:width="match_content"
+                    ohos:id="$+id:text_ten"
+                    ohos:text="星空蓝"
+                    ohos:text_size="15fp"
+                    ohos:text_color="yellow"
+                    ohos:layout_alignment="center"/>
+
+            </DirectionalLayout>
+
+        </TableLayout>
+
+    </ScrollView>
+
+</DirectionalLayout>

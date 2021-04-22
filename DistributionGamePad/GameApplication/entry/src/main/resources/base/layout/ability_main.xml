@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DependentLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:height="match_parent"
+    ohos:width="match_parent">
+
+    <Button
+        ohos:id="$+id:button_plane"
+        ohos:width="match_content"
+        ohos:height="match_content"
+        ohos:text_size="50px"
+        ohos:text="飞机大战"
+        ohos:top_padding="6px"
+        ohos:bottom_padding="6px"
+        ohos:right_padding="40px"
+        ohos:left_padding="40px"
+        ohos:text_color="white"
+        ohos:background_element="$graphic:button_element"
+        ohos:center_in_parent="true"
+        ohos:align_parent_bottom="true"
+        ohos:bottom_margin="100px"/>
+
+</DependentLayout>

@@ -1,0 +1,165 @@
+/*
+ * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+.container {
+    flex-direction: column;
+    background-color: black;
+}
+
+.title {
+    font-weight: 600;
+    color: #ccc;
+    background-color: black;
+}
+
+.tag-list {
+    width: 100%;
+}
+
+.todo-list-item {
+    width: 100%;
+}
+
+.todo-item {
+    height: 120px;
+    width: 100%;
+    border-radius: 5px;
+    align-items: center;
+}
+
+.flex-row {
+    flex-direction: row;
+    align-item: center;
+}
+
+.todo-name-mark {
+    width: 100%;
+    height: 100%;
+    align-items: center;
+}
+
+.todo-name {
+    font-size: 32px;
+    color: white;
+    height: 100px;
+    margin-right: 5px;
+    max-lines: 1;
+    text-overflow: ellipsis;
+}
+
+.text-default {
+    color: white;
+}
+
+.text-gray {
+    color: gray;
+}
+
+.todo-mark {
+    width: 18px;
+    height: 30%;
+    margin-left: 16px;
+    border-radius: 50px;
+    background-color: lightslategrey;
+}
+
+.todo-time {
+    font-size: 32px;
+    width: 100%;
+    height: 100%;
+    text-align: left;
+    color: gray;
+    margin-top:2px;
+}
+
+.urgent {
+    background-color: firebrick;
+}
+
+.senior {
+    background-color: gold;
+}
+
+.middle {
+    background-color: mediumaquamarine;
+}
+
+.low {
+    background-color: #0D9FFB;
+}
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: flex;
+}
+
+.todo-image {
+    width: 50px;
+    height: 50%;
+    object-fit: contain;
+    margin-left: 10px;
+    margin-top: 3px;
+}
+
+.todo-text-wrapper {
+    height: 100%;
+    flex-grow: 1;
+    margin: 0px 32px;
+    flex-direction: column;
+}
+
+@media (device-type: tv) {
+    .todo-item {
+        height: 50px;
+    }
+
+    .todo-name {
+        font-size: 18px;
+    }
+
+    .todo-time {
+        font-size: 16px;
+    }
+
+    .todo-mark {
+        width: 10px;
+        height: 10px;
+    }
+}
+
+@media (device-type: phone) {
+    .title {
+        font-size: 42px;
+        margin-top: 36px;
+        margin-bottom: 36px;
+        margin-left: 24px;
+    }
+}
+
+@media (device-type: wearable) {
+    .title {
+        font-size: 52px;
+        height: 20%;
+        text-align: center;
+    }
+
+    .todo-list-item {
+        padding-left: 100px;
+        padding-right: 50px;
+    }
+}

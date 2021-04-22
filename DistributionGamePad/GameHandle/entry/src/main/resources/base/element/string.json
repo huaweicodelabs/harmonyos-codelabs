@@ -1,0 +1,24 @@
+{
+  "string": [
+    {
+      "name": "app_name",
+      "value": "MyDeviceManagerHelper"
+    },
+    {
+      "name": "mainability_description",
+      "value": "Java_Phone_Empty Feature Ability"
+    },
+    {
+      "name": "gameserviceability_description",
+      "value": "hap sample empty service"
+    },
+    {
+      "name": "handleability_description",
+      "value": "Java_Phone_Empty Feature Ability"
+    },
+    {
+      "name": "HelloWorld",
+      "value": "Hello World"
+    }
+  ]
+}

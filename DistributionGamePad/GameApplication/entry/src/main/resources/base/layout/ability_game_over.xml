@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DependentLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:height="match_parent"
+    ohos:width="match_parent"
+    ohos:background_element="$graphic:background_ability_game_over">
+
+    <Text
+        ohos:id="$+id:game_over"
+        ohos:height="match_content"
+        ohos:width="match_content"
+        ohos:text_color="white"
+        ohos:center_in_parent="true"
+        ohos:align_parent_top="true"
+        ohos:text="游戏结束"
+        ohos:text_size="30fp"
+        ohos:top_margin="100vp"
+        />
+    <Text
+        ohos:id="$+id:playerOne"
+        ohos:height="match_content"
+        ohos:width="match_content"
+        ohos:text_color="white"
+        ohos:center_in_parent="true"
+        ohos:align_parent_top="true"
+        ohos:text="玩家一分数：3400"
+        ohos:text_size="20fp"
+        ohos:top_margin="200vp"
+        />
+    <Text
+        ohos:id="$+id:playerTwo"
+        ohos:height="match_content"
+        ohos:width="match_content"
+        ohos:text_color="white"
+        ohos:center_in_parent="true"
+        ohos:align_parent_top="true"
+        ohos:text="玩家二分数：5600"
+        ohos:text_size="20fp"
+        ohos:top_margin="250vp"
+        />
+    <Text
+        ohos:id="$+id:explain_pause"
+        ohos:height="match_content"
+        ohos:width="match_content"
+        ohos:text_color="white"
+        ohos:center_in_parent="true"
+        ohos:align_parent_bottom="true"
+        ohos:text="pause：返回主页"
+        ohos:text_size="20fp"
+        ohos:bottom_margin="50vp"
+        />
+    <Text
+        ohos:id="$+id:explain_restart"
+        ohos:height="match_content"
+        ohos:width="match_content"
+        ohos:text_color="white"
+        ohos:center_in_parent="true"
+        ohos:align_parent_bottom="true"
+        ohos:text="start：重新开始"
+        ohos:text_size="20fp"
+        ohos:bottom_margin="10vp"
+        />
+
+</DependentLayout>

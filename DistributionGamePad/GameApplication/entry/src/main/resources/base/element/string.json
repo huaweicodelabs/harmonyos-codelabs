@@ -1,0 +1,28 @@
+{
+  "string": [
+    {
+      "name": "app_name",
+      "value": "GameApplication"
+    },
+    {
+      "name": "mainability_description",
+      "value": "Java_Phone_Empty Feature Ability"
+    },
+    {
+      "name": "planegameability_description",
+      "value": "Java_Phone_Empty Feature Ability"
+    },
+    {
+      "name": "HelloWorld",
+      "value": "Hello World"
+    },
+    {
+      "name": "gameserviceability_description",
+      "value": "hap sample empty service"
+    },
+    {
+      "name": "gameoverability_description",
+      "value": "Java_Phone_Empty Feature Ability"
+    }
+  ]
+}

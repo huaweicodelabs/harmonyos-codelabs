@@ -1,0 +1,28 @@
+{
+  "string": [
+    {
+      "name": "app_name",
+      "value": "RemoteInputDemo"
+    },
+    {
+      "name": "mainability_description",
+      "value": "Java_Phone_Empty Feature Ability"
+    },
+    {
+      "name": "HelloWorld",
+      "value": "Hello World"
+    },
+    {
+      "name": "remoteinputability_description",
+      "value": "Java_Phone_Empty Feature Ability"
+    },
+    {
+      "name": "RemoteService_description",
+      "value": "hap sample empty service"
+    },
+    {
+      "name": "movieplayability_description",
+      "value": "Java_Phone_Empty Feature Ability"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+<!--
+ Copyright (c) 2021 Huawei Device Co., Ltd.
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+     http://www.apache.org/licenses/LICENSE-2.0
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ -->
+
+<div class="container">
+    <text class="title">
+        {{ $t('strings.hello') }}  {{title}}
+    </text>
+    <list class="tag-list" initialindex="{{initialIndex}}">
+        <list-item for="{{taskList}}" class="todo-list-item" focusable="false">
+            <div class="todo-item flex-row" onclick="completeEvent({{$item.id}})">
+                <image class="todo-image" src="{{$item.checkBtn}}" ></image>
+                <div class="todo-text-wrapper">
+                    <div class="todo-name-mark">
+                        <text class="todo-name {{$item.color}}" focusable="false">{{$item.event}}</text>
+                        <text class="todo-mark {{$item.tag}} {{$item.showTag}}"></text>
+                    </div>
+                    <text class="todo-time" >{{$item.time}}</text>
+                </div>
+            </div>
+        </list-item>
+    </list>
+</div>

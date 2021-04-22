@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:harmonyos="http://schemas.huawei.com/res/harmonyos" harmonyos:shape="rectangle">
+<corners
+    harmonyos:radius="16dp"/>
+<solid
+    harmonyos:color="#70DBDB"/>
+</shape>

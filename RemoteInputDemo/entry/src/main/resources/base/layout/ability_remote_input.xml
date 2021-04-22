@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DirectionalLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:height="match_parent"
+    ohos:orientation="vertical"
+    ohos:alignment="top"
+    ohos:background_element="#EEEEEE"
+    ohos:width="match_parent">
+
+    <DirectionalLayout
+        ohos:height="108vp"
+        ohos:width="match_parent"
+        ohos:alignment="center">
+        <DirectionalLayout
+            ohos:alignment="center"
+            ohos:height="match_content"
+            ohos:orientation="horizontal"
+            ohos:top_margin="15vp"
+            ohos:width="match_parent">
+            <Image
+                ohos:height="match_content"
+                ohos:width="match_content"
+                ohos:margin="5vp"
+                ohos:scale_mode="stretch"
+                ohos:image_src="$media:TV"/>
+
+            <Text
+                ohos:height="match_content"
+                ohos:width="match_content"
+                ohos:margin="5vp"
+                ohos:text_size="20vp"
+                ohos:text="华为智慧屏"/>
+        </DirectionalLayout>
+
+        <TextField
+            ohos:id="$+id:remote_input"
+            ohos:height="45vp"
+            ohos:width="match_parent"
+            ohos:text_size="18vp"
+            ohos:bottom_margin="15vp"
+            ohos:top_margin="15vp"
+            ohos:left_margin="30vp"
+            ohos:right_margin="30vp"
+            ohos:left_padding="10vp"
+            ohos:right_padding="10vp"
+            ohos:multiple_lines="false"
+            ohos:text_alignment="vertical_center"
+            ohos:background_element="$graphic:background_text_field"/>
+
+    </DirectionalLayout>
+
+    <DirectionalLayout
+        ohos:alignment="center"
+        ohos:background_element="$graphic:background_round"
+        ohos:height="216vp"
+        ohos:left_margin="30vp"
+        ohos:right_margin="30vp"
+        ohos:top_margin="10vp"
+        ohos:bottom_margin="15vp"
+        ohos:width="match_parent">
+        <DirectionalLayout
+            ohos:height="50vp"
+            ohos:width="60vp"
+            ohos:bottom_margin="25vp"
+            ohos:background_element="$graphic:background_ability_remote_input"
+            ohos:alignment="center">
+
+            <Image
+                ohos:id="$+id:up_button"
+                ohos:height="match_content"
+                ohos:width="match_content"
+                ohos:image_src="$media:up"/>
+
+        </DirectionalLayout>
+
+        <DirectionalLayout
+            ohos:height="60vp"
+            ohos:width="match_parent"
+            ohos:alignment="center"
+            ohos:orientation="horizontal">
+            <DirectionalLayout
+                ohos:height="50vp"
+                ohos:width="60vp"
+                ohos:alignment="center"
+                ohos:background_element="$graphic:background_ability_remote_input">
+                <Image
+                    ohos:id="$+id:left_button"
+                    ohos:height="match_content"
+                    ohos:width="match_content"
+                    ohos:image_src="$media:left"/>
+            </DirectionalLayout>
+
+            <DirectionalLayout
+                ohos:height="50vp"
+                ohos:width="60vp"
+                ohos:alignment="center"
+                ohos:margin="30vp"
+                ohos:background_element="$graphic:background_ability_remote_input">
+                <Image
+                    ohos:id="$+id:ok_button"
+                    ohos:height="match_content"
+                    ohos:width="match_content"
+                    ohos:image_src="$media:OK"/>
+            </DirectionalLayout>
+
+            <DirectionalLayout
+                ohos:height="50vp"
+                ohos:width="60vp"
+                ohos:alignment="center"
+                ohos:background_element="$graphic:background_ability_remote_input">
+                <Image
+                    ohos:id="$+id:right_button"
+                    ohos:height="match_content"
+                    ohos:width="match_content"
+                    ohos:image_src="$media:right"/>
+            </DirectionalLayout>
+
+        </DirectionalLayout>
+
+        <DirectionalLayout
+            ohos:height="50vp"
+            ohos:width="60vp"
+            ohos:top_margin="25vp"
+            ohos:background_element="$graphic:background_ability_remote_input"
+            ohos:alignment="center">
+
+            <Image
+                ohos:id="$+id:down_button"
+                ohos:height="match_content"
+                ohos:width="match_content"
+                ohos:image_src="$media:down"/>
+
+        </DirectionalLayout>
+
+    </DirectionalLayout>
+
+    <DependentLayout
+        ohos:height="50vp"
+        ohos:width="match_parent"
+        ohos:left_margin="35vp"
+        ohos:right_margin="35vp"
+        ohos:alignment="center">
+        <DirectionalLayout
+            ohos:height="match_parent"
+            ohos:width="60vp"
+            ohos:align_parent_left="true"
+            ohos:alignment="center"
+            ohos:background_element="$graphic:background_ability_remote_input">
+            <Image
+                ohos:id="$+id:go_back"
+                ohos:height="match_content"
+                ohos:width="match_content"
+                ohos:image_src="$media:goback"/>
+        </DirectionalLayout>
+
+        <DirectionalLayout
+            ohos:height="match_parent"
+            ohos:width="60vp"
+            ohos:align_parent_right="true"
+            ohos:alignment="center"
+            ohos:background_element="$graphic:background_ability_remote_input">
+            <Image
+                ohos:id="$+id:close_fa"
+                ohos:height="match_content"
+                ohos:width="match_content"
+                ohos:image_src="$media:close"/>
+        </DirectionalLayout>
+    </DependentLayout>
+
+    <DirectionalLayout
+        ohos:alignment="center"
+        ohos:height="240vp"
+        ohos:width="match_parent">
+
+    </DirectionalLayout>
+
+</DirectionalLayout>
