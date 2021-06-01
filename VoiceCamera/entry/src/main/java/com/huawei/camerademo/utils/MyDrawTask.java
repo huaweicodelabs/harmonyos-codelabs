@@ -1,10 +1,10 @@
 /*
  * Copyright (c) 2021 Huawei Device Co., Ltd.
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Licensed under the Apache License,Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -26,7 +26,7 @@ import ohos.media.image.PixelMap;
 /**
  * MyDrawTask
  *
- * @since 2021-3-8
+ * @since 2021-03-08
  */
 public class MyDrawTask implements Component.DrawTask {
     private static final int HALF = 2;
@@ -36,6 +36,11 @@ public class MyDrawTask implements Component.DrawTask {
     private PixelMap pixelMap;
     private RectFloat rectSrc;
 
+    /**
+     * MyDrawTask
+     *
+     * @param component component
+     */
     public MyDrawTask(Component component) {
         this.component = component;
     }
@@ -43,11 +48,11 @@ public class MyDrawTask implements Component.DrawTask {
     /**
      * putPixelMap
      *
-     * @param pixelMap Provides images in forms of pixel matrices
+     * @param pm Provides images in forms of pixel matrices
      */
-    public void putPixelMap(PixelMap pixelMap) {
-        if (pixelMap != null) {
-            this.pixelMap = pixelMap;
+    public void putPixelMap(PixelMap pm) {
+        if (pm != null) {
+            pixelMap = pm;
             int halfWidth = pixelMap.getImageInfo().size.width / HALF;
             int halfHeight = pixelMap.getImageInfo().size.height / HALF;
             int center = Math.min(halfWidth, halfHeight);
@@ -57,7 +62,7 @@ public class MyDrawTask implements Component.DrawTask {
     }
 
     @Override
-    public void onDraw(Component component, Canvas canvas) {
+    public void onDraw(Component component1, Canvas canvas) {
         int halfWidth = component.getWidth() / HALF;
         int halfHeight = component.getHeight() / HALF;
         int center = Math.min(halfWidth, halfHeight);

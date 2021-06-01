@@ -1,7 +1,6 @@
 /*
- * Copyright (c) Huawei Technologies Co., Ltd. 2021-2021. All rights reserved.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Licensed under the Apache License,Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -23,7 +22,7 @@ package com.huawei.codelab.utils;
  */
 public class MovieSearchUtils {
     /**
-     * MovieSearchUtils
+     * 构造函数
      *
      * @since 2020-12-03
      */
@@ -31,11 +30,11 @@ public class MovieSearchUtils {
     }
 
     /**
-     * MyCommonEventSubscriber
+     * 是否包含当前影片
      *
-     * @param movieName movieName
-     * @param searchName searchName
-     * @return boolean
+     * @param movieName 影片名称
+     * @param searchName 搜索内容
+     * @return 布尔值
      * @since 2020-12-03
      */
     public static boolean isContainMovie(String movieName, String searchName) {

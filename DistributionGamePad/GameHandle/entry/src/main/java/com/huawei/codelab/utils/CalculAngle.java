@@ -1,9 +1,10 @@
 /*
- * Copyright (c) Huawei Technologies Co., Ltd. 2021-2021. All rights reserved.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Licensed under the Apache License,Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -109,6 +110,8 @@ public class CalculAngle {
      *
      * @param smallCircle 小环
      * @param bigCircle 大环
+     * @param layout layout
+     * @param screenHeight 屏幕高度
      */
     public CalculAngle(Button smallCircle, Button bigCircle, Component layout, int screenHeight) {
         this.smallCircle = smallCircle;
@@ -187,7 +190,7 @@ public class CalculAngle {
      * @return X轴移动方向
      */
     private boolean getFlagX() {
-        return 0 < moveX - startPosX ? true : false;
+        return moveX - startPosX > 0 ? true : false;
     }
 
     /**
@@ -197,13 +200,13 @@ public class CalculAngle {
      * @return Y轴移动方向
      */
     private boolean getFlagY() {
-        return 0 < moveY - startPosY ? true : false;
+        return moveY - startPosY > 0 ? true : false;
     }
 
     // 计算移动距离的绝对值
     private float getDisAbsX() {
         disAbsX = Math.abs(moveX - startPosX);
-        if (Constants.MIN_SLIDE > disAbsX) {
+        if (disAbsX < Constants.MIN_SLIDE) {
             return 1f;
         }
         return disAbsX;
@@ -212,7 +215,7 @@ public class CalculAngle {
     // 计算移动距离的绝对值
     private float getDisAbsY() {
         disAbsY = Math.abs(moveY - startPosY);
-        if (Constants.MIN_SLIDE > disAbsY) {
+        if (disAbsY < Constants.MIN_SLIDE) {
             return 1f;
         }
         return disAbsY;

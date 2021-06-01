@@ -1,10 +1,10 @@
 /*
  * Copyright (c) 2021 Huawei Device Co., Ltd.
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Licensed under the Apache License,Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -17,10 +17,10 @@ package com.huawei.codelab.devices;
 
 import com.huawei.codelab.ResourceTable;
 
+import ohos.agp.components.BaseItemProvider;
 import ohos.agp.components.Component;
 import ohos.agp.components.ComponentContainer;
 import ohos.agp.components.LayoutScatter;
-import ohos.agp.components.RecycleItemProvider;
 import ohos.agp.components.Text;
 import ohos.app.Context;
 import ohos.distributedschedule.interwork.DeviceInfo;
@@ -33,12 +33,24 @@ import java.util.Optional;
  *
  * @since 2021-01-11
  */
-public class DevicesListAdapter extends RecycleItemProvider {
+public class DevicesListAdapter extends BaseItemProvider {
+    private static final int SUBSTRING_START = 0;
+
+    private static final int SUBSTRING_END = 4;
+
     private List<DeviceInfo> deviceInfoList;
+
     private Context context;
 
-    public DevicesListAdapter(List<DeviceInfo> listBasicInfo, Context context) {
-        this.deviceInfoList = listBasicInfo;
+    /**
+     * DevicesListAdapter
+     *
+     * @param deviceInfoList deviceInfoList
+     * @param context Context
+     * @since 2021-03-12
+     */
+    public DevicesListAdapter(List<DeviceInfo> deviceInfoList, Context context) {
+        this.deviceInfoList = deviceInfoList;
         this.context = context;
     }
 
@@ -78,15 +90,22 @@ public class DevicesListAdapter extends RecycleItemProvider {
         }
         if (viewHolder != null) {
             viewHolder.devicesName.setText(deviceInfoList.get(position).getDeviceName());
-            String deviceID = deviceInfoList.get(position).getDeviceId();
-            deviceID = deviceID.substring(0, 4) + "******" + deviceID.substring(deviceID.length() - 4);
-            viewHolder.devicesId.setText(deviceID);
+            String deviceId = deviceInfoList.get(position).getDeviceId();
+            deviceId = deviceId.substring(SUBSTRING_START, SUBSTRING_END) + "******"
+                + deviceId.substring(deviceId.length() - SUBSTRING_END);
+            viewHolder.devicesId.setText(deviceId);
         }
         return mComponent;
     }
 
+    /**
+     * ViewHolder
+     *
+     * @since 2021-03-12
+     */
     private static class ViewHolder {
         private Text devicesName;
+
         private Text devicesId;
     }
 }

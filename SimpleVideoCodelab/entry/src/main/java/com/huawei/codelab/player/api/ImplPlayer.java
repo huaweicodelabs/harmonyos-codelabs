@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 Huawei Device Co., Ltd. All rights reserved.
+ * Copyright (c) Huawei Technologies Co., Ltd. 2021-2021. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,54 +17,58 @@
 package com.huawei.codelab.player.api;
 
 import com.huawei.codelab.player.HmPlayer;
-import com.huawei.codelab.player.constant.PlayerStatus;
+import com.huawei.codelab.player.constant.PlayerStatu;
 
-import ohos.agp.components.surfaceprovider.SurfaceProvider;
+import ohos.agp.graphics.Surface;
 
 /**
  * IPlayer interface
  *
- * @since 2020-12-04
- *
+ * @since 2021-04-04
  */
 public interface ImplPlayer {
     /**
-     * Player
+     * addSurface
+     *
+     * @param surface surface
+     */
+    void addSurface(Surface surface);
+
+    /**
+     * addPlayerStatuCallback
      *
      * @param callback callback
      */
-    void addPlayerStatusCallback(StatusChangeListener callback);
+    void addPlayerStatuCallback(StatuChangeListener callback);
 
     /**
-     * Player
+     * removePlayerStatuCallback
      *
      * @param callback callback
      */
-    void removePlayerStatuCallback(StatusChangeListener callback);
+    void removePlayerStatuCallback(StatuChangeListener callback);
 
     /**
-     * Player
+     * addPlayerViewCallback
      *
      * @param callback callback
      */
     void addPlayerViewCallback(ScreenChangeListener callback);
 
     /**
-     * Player
+     * removePlayerViewCallback
      *
      * @param callback callback
      */
     void removePlayerViewCallback(ScreenChangeListener callback);
 
     /**
-     * play the video
-     *
+     * play
      */
     void play();
 
     /**
      * replay
-     *
      */
     void replay();
 
@@ -78,103 +82,79 @@ public interface ImplPlayer {
 
     /**
      * resume
-     *
      */
     void resume();
 
     /**
      * pause
-     *
      */
     void pause();
 
     /**
-     * getAudioCurrentPosition
+     * getCurrentPosition
      *
-     * @return int
+     * @return current position
      */
-    int getAudioCurrentPosition();
+    int getCurrentPosition();
 
     /**
-     * getAudioDuration
+     * getDuration
      *
-     * @return int
+     * @return duration
      */
-    int getAudioDuration();
-
-    /**
-     * getDurationText
-     *
-     * @return string
-     */
-    String getDurationText();
-
-    /**
-     * getCurrentText
-     *
-     * @return string
-     */
-    String getCurrentText();
+    int getDuration();
 
     /**
      * getVolume
      *
-     * @return int
+     * @return float
      */
-    int getVolume();
+    float getVolume();
 
     /**
-     * setVolume
+     * set play volume
      *
-     * @param volume volume
+     * @param volume 0~1
      */
-    void setVolume(int volume);
+    void setVolume(float volume);
 
     /**
-     * setPlaySpeed
+     * set play speed
      *
-     * @param speed speed
+     * @param speed 0~12
      */
     void setPlaySpeed(float speed);
 
     /**
-     * change the screen direction
+     * getVideoScale
      *
+     * @return double
      */
-    void changeScreen();
+    double getVideoScale();
 
     /**
      * rewindTo
      *
-     * @param startMicrosecond startMicrosecond
+     * @param startMicrosecond startMicrosecond(ms)
      */
     void rewindTo(int startMicrosecond);
 
     /**
      * isPlaying
      *
-     * @return true
+     * @return isPlaying
      */
     boolean isPlaying();
 
     /**
-     * stop the video
-     *
+     * stop
      */
     void stop();
 
     /**
-     * release the video
-     *
+     * release
      */
     void release();
-
-    /**
-     * getPlayerView
-     *
-     * @return SurfaceProvider
-     */
-    SurfaceProvider getPlayerView();
 
     /**
      * getLifecycle
@@ -193,7 +173,29 @@ public interface ImplPlayer {
     /**
      * getPlayerStatu
      *
-     * @return PlayerStatus
+     * @return PlayerStatu
      */
-    PlayerStatus getPlayerStatu();
+    PlayerStatu getPlayerStatu();
+
+    /**
+     * resizeScreen
+     *
+     * @param width width
+     * @param height height
+     */
+    void resizeScreen(int width, int height);
+
+    /**
+     * openGesture
+     *
+     * @param isOpen isOpen
+     */
+    void openGesture(boolean isOpen);
+
+    /**
+     * openGesture
+     *
+     * @return isGestureOpen
+     */
+    boolean isGestureOpen();
 }

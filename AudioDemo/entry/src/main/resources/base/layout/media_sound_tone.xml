@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<DirectionalLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:height="match_parent"
+    ohos:width="match_parent"
+    ohos:orientation="vertical">
+
+    <Button
+        ohos:id="$+id:sound0"
+        ohos:height="match_content"
+        ohos:width="match_content"
+        ohos:background_element="gray"
+        ohos:layout_alignment="horizontal_center"
+        ohos:text="SYSTEM_DTMF_0"
+        ohos:text_size="30vp"
+        ohos:top_margin="20vp"/>
+
+    <Button
+        ohos:id="$+id:sound1"
+        ohos:height="match_content"
+        ohos:width="match_content"
+        ohos:background_element="gray"
+        ohos:layout_alignment="horizontal_center"
+        ohos:text="SYSTEM_DTMF_1"
+        ohos:text_size="30vp"
+        ohos:top_margin="20vp"/>
+
+    <Button
+        ohos:id="$+id:sound2"
+        ohos:height="match_content"
+        ohos:width="match_content"
+        ohos:background_element="gray"
+        ohos:layout_alignment="horizontal_center"
+        ohos:text="SYSTEM_DTMF_2"
+        ohos:text_size="30vp"
+        ohos:top_margin="20vp"/>
+
+    <Button
+        ohos:id="$+id:sound3"
+        ohos:height="match_content"
+        ohos:width="match_content"
+        ohos:background_element="gray"
+        ohos:layout_alignment="horizontal_center"
+        ohos:text="SYSTEM_DTMF_3"
+        ohos:text_size="30vp"
+        ohos:top_margin="20vp"/>
+
+    <Button
+        ohos:id="$+id:sound4"
+        ohos:height="match_content"
+        ohos:width="match_content"
+        ohos:background_element="gray"
+        ohos:layout_alignment="horizontal_center"
+        ohos:text="SYSTEM_DTMF_4"
+        ohos:text_size="30vp"
+        ohos:top_margin="20vp"/>
+
+    <Button
+        ohos:id="$+id:sound5"
+        ohos:height="match_content"
+        ohos:width="match_content"
+        ohos:background_element="gray"
+        ohos:layout_alignment="horizontal_center"
+        ohos:text="SYSTEM_DTMF_5"
+        ohos:text_size="30vp"
+        ohos:top_margin="20vp"/>
+
+    <Button
+        ohos:id="$+id:sound6"
+        ohos:height="match_content"
+        ohos:width="match_content"
+        ohos:background_element="gray"
+        ohos:layout_alignment="horizontal_center"
+        ohos:text="SYSTEM_DTMF_6"
+        ohos:text_size="30vp"
+        ohos:top_margin="20vp"/>
+
+    <Button
+        ohos:id="$+id:sound7"
+        ohos:height="match_content"
+        ohos:width="match_content"
+        ohos:background_element="gray"
+        ohos:layout_alignment="horizontal_center"
+        ohos:text="SYSTEM_DTMF_7"
+        ohos:text_size="30vp"
+        ohos:top_margin="20vp"/>
+
+    <Button
+        ohos:id="$+id:sound8"
+        ohos:height="match_content"
+        ohos:width="match_content"
+        ohos:background_element="gray"
+        ohos:layout_alignment="horizontal_center"
+        ohos:text="SYSTEM_DTMF_8"
+        ohos:text_size="30vp"
+        ohos:top_margin="20vp"/>
+
+    <Button
+        ohos:id="$+id:sound9"
+        ohos:height="match_content"
+        ohos:width="match_content"
+        ohos:background_element="gray"
+        ohos:layout_alignment="horizontal_center"
+        ohos:text="SYSTEM_DTMF_9"
+        ohos:text_size="30vp"
+        ohos:top_margin="20vp"/>
+
+    <!--    <Button-->
+    <!--        ohos:id="$+id:sound_keypress_standard"-->
+    <!--        ohos:height="match_content"-->
+    <!--        ohos:width="match_content"-->
+    <!--        ohos:background_element="gray"-->
+    <!--        ohos:layout_alignment="horizontal_center"-->
+    <!--        ohos:text="SYSTEM_KEYPRESS_STANDARD"-->
+    <!--        ohos:text_size="30vp"-->
+    <!--        ohos:top_margin="30vp"/>-->
+
+</DirectionalLayout>
+
+

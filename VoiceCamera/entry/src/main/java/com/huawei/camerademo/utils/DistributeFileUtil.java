@@ -1,10 +1,10 @@
 /*
  * Copyright (c) 2021 Huawei Device Co., Ltd.
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Licensed under the Apache License,Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -32,22 +32,22 @@ import ohos.media.image.common.Size;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.List;
 
 /**
  * DistributeFileUtil
  *
- * @since 2021-03-8
+ * @since 2021-03-08
  */
 public class DistributeFileUtil {
     private static final String TAG = DistributeFileUtil.class.getSimpleName();
     private static final int CACHE_SIZE = 1024;
     private static final int IO_END_LEN = -1;
-    private Context context;
+    private static final int DEGREES_90 = 90;
 
     private static File getDisFile(Context context, String fileName) {
         File distributedDir = context.getDistributedDir();
@@ -84,6 +84,7 @@ public class DistributeFileUtil {
             while ((len = in.read(buffer)) != IO_END_LEN) {
                 out.write(buffer, 0, len);
             }
+
             // 拷贝成功，启动远程FA
             startRemoteFas(context, disPath.getCanonicalPath());
         } catch (IOException e) {
@@ -130,7 +131,7 @@ public class DistributeFileUtil {
                 decodingOpts.desiredSize = new Size(0, 0);
                 decodingOpts.desiredRegion = new Rect(0, 0, 0, 0);
                 decodingOpts.desiredPixelFormat = PixelFormat.ARGB_8888;
-                decodingOpts.rotateDegrees = 90;
+                decodingOpts.rotateDegrees = DEGREES_90;
                 return imageSource.createPixelmap(decodingOpts);
             } else {
                 showTip(context, "imageSource == null error error error");

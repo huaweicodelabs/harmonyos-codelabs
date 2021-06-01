@@ -1,7 +1,6 @@
 /*
- * Copyright (c) Huawei Technologies Co., Ltd. 2021-2021. All rights reserved.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Licensed under the Apache License,Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -16,12 +15,8 @@
 
 package com.huawei.codelab.devices;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
 import com.huawei.codelab.ResourceTable;
-import com.huawei.codelab.utils.LogUtil;
+import com.huawei.codelab.utils.Constants;
 
 import ohos.agp.colors.RgbPalette;
 import ohos.agp.components.AbsButton;
@@ -37,6 +32,10 @@ import ohos.agp.components.element.StateElement;
 import ohos.app.Context;
 import ohos.distributedschedule.interwork.DeviceInfo;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 /**
  * 设备列表适配器
  *
@@ -47,7 +46,7 @@ public class DevicesListAdapter extends BaseItemProvider {
 
     private Context context;
 
-    private List<Integer> selectPositions = new ArrayList<>();
+    private List<Integer> selectPositions = new ArrayList<>(0);
 
     /**
      * 功能描述
@@ -80,23 +79,23 @@ public class DevicesListAdapter extends BaseItemProvider {
     public Component getComponent(int position, Component component, ComponentContainer componentContainer) {
         ViewHolder viewHolder = null;
         Component mComponent = component;
+        AbsButton.CheckedStateChangedListener changedListener = new AbsButton.CheckedStateChangedListener() {
+            @Override
+            public void onCheckedChanged(AbsButton absButton, boolean isSelected) {
+                if (isSelected) {
+                    selectPositions.add(new Integer(position));
+                } else {
+                    selectPositions.remove(new Integer(position));
+                }
+            }
+        };
         if (mComponent == null) {
             mComponent = LayoutScatter.getInstance(context).parse(ResourceTable.Layout_item_device_list, null, false);
             viewHolder = new ViewHolder();
             if (mComponent.findComponentById(ResourceTable.Id_device_name) instanceof Checkbox) {
                 viewHolder.devicesName = (Checkbox) mComponent.findComponentById(ResourceTable.Id_device_name);
                 viewHolder.devicesName.setButtonElement(viewHolder.getCheckElement());
-                viewHolder.devicesName.setCheckedStateChangedListener(new AbsButton.CheckedStateChangedListener() {
-                    @Override
-                    public void onCheckedChanged(AbsButton absButton, boolean isSelected) {
-                        if (isSelected) {
-                            selectPositions.add(new Integer(position));
-                        } else {
-                            selectPositions.remove(new Integer(position));
-                        }
-                        LogUtil.info("checkbox", "position is: " + position);
-                    }
-                });
+                viewHolder.devicesName.setCheckedStateChangedListener(changedListener);
             }
             if (mComponent.findComponentById(ResourceTable.Id_device_id) instanceof Text) {
                 viewHolder.devicesId = (Text) mComponent.findComponentById(ResourceTable.Id_device_id);
@@ -110,8 +109,8 @@ public class DevicesListAdapter extends BaseItemProvider {
         if (viewHolder != null) {
             viewHolder.devicesName.setText(deviceInfoList.get(position).getDeviceName());
             String deviceId = deviceInfoList.get(position).getDeviceId();
-            deviceId = deviceId.substring(0, 4) + "******"
-                + deviceId.substring(deviceId.length() - 4);
+            deviceId = deviceId.substring(0, Constants.RESERVED_LENGTH) + "******"
+                + deviceId.substring(deviceId.length() - Constants.RESERVED_LENGTH);
             viewHolder.devicesId.setText(deviceId);
         }
         return mComponent;
@@ -123,9 +122,9 @@ public class DevicesListAdapter extends BaseItemProvider {
      * @return selectDeviceInfos 设备信息
      */
     public List<DeviceInfo> getSelectDevices() {
-        List<DeviceInfo> selectDeviceInfos = new ArrayList<>();
-        for (int i = 0; i < selectPositions.size(); i++) {
-            selectDeviceInfos.add(deviceInfoList.get(selectPositions.get(i)));
+        List<DeviceInfo> selectDeviceInfos = new ArrayList<>(0);
+        for (Integer index: selectPositions) {
+            selectDeviceInfos.add(deviceInfoList.get(index));
         }
         return selectDeviceInfos;
     }

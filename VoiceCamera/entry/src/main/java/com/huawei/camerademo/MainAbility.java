@@ -1,10 +1,10 @@
 /*
  * Copyright (c) 2021 Huawei Device Co., Ltd.
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Licensed under the Apache License,Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -17,7 +17,6 @@ package com.huawei.camerademo;
 
 import static com.huawei.camerademo.utils.PermissionBridge.EVENT_PERMISSION_DENIED;
 import static com.huawei.camerademo.utils.PermissionBridge.EVENT_PERMISSION_GRANTED;
-
 import static ohos.bundle.IBundleManager.PERMISSION_GRANTED;
 
 import com.huawei.camerademo.slice.MainAbilitySlice;
@@ -35,7 +34,7 @@ import java.util.List;
 /**
  * MainAbility
  *
- * @since 2021-3-8
+ * @since 2021-03-08
  */
 public class MainAbility extends Ability {
     private static final int PERMISSION_REQUEST_CODE = 1;
@@ -58,7 +57,7 @@ public class MainAbility extends Ability {
                                 SystemPermission.DISTRIBUTED_DATASYNC,
                                 SystemPermission.MICROPHONE));
         permissions.removeIf(
-                permission ->
+            permission ->
                         verifySelfPermission(permission) == PERMISSION_GRANTED || !canRequestPermission(permission));
 
         if (!permissions.isEmpty()) {

@@ -1,10 +1,10 @@
 /*
  * Copyright (c) 2021 Huawei Device Co., Ltd.
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Licensed under the Apache License,Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -14,8 +14,6 @@
  */
 
 package com.huawei.codelab.point;
-
-import com.huawei.codelab.utils.CommonData;
 
 import ohos.agp.components.Component;
 import ohos.agp.render.Canvas;
@@ -34,23 +32,23 @@ import java.util.List;
  * @since 2021-01-11
  */
 public class DrawPoint extends Component implements Component.DrawTask {
-    private static final String TAG = CommonData.TAG + DrawPoint.class.getSimpleName();
     private static final int STROKE_WIDTH = 15;
-    private float[] pointsX;
-    private float[] pointsY;
-    private boolean[] isLastPoint;
-    private Paint paint;
-    private OnDrawCallBack callBack;
-    private boolean isLocal;
-    private List<MyPoint> localPoints = new ArrayList<>();
-    private List<MyPoint> remotePoints = new ArrayList<>();
 
-    /**
-     * DrawPoint CallBack
-     */
-    public interface OnDrawCallBack {
-        void callBack(List<MyPoint> points);
-    }
+    private float[] pointXs;
+
+    private float[] pointYs;
+
+    private boolean[] isLastPoints;
+
+    private Paint paint;
+
+    private OnDrawCallBack callBack;
+
+    private boolean isLocal;
+
+    private List<MyPoint> localPoints = new ArrayList<>();
+
+    private List<MyPoint> remotePoints = new ArrayList<>();
 
     /**
      * DrawPoint
@@ -68,24 +66,23 @@ public class DrawPoint extends Component implements Component.DrawTask {
      * setDrawParams
      *
      * @param isLastPoint isLastPoint
-     * @param pointsX     pointsX
-     * @param pointsY     pointsY
+     * @param pointsX pointsX
+     * @param pointsY pointsY
      */
     public void setDrawParams(boolean[] isLastPoint, float[] pointsX, float[] pointsY) {
-        this.pointsX = pointsX;
-        this.pointsY = pointsY;
-        this.isLastPoint = isLastPoint;
+        pointXs = pointsX;
+        pointYs = pointsY;
+        isLastPoints = isLastPoint;
         invalidate();
     }
-
 
     /**
      * setOnDrawBack
      *
-     * @param callBack setOnDrawBack
+     * @param drawCallBack setOnDrawBack
      */
-    public void setOnDrawBack(OnDrawCallBack callBack) {
-        this.callBack = callBack;
+    public void setOnDrawBack(OnDrawCallBack drawCallBack) {
+        callBack = drawCallBack;
     }
 
     private void init() {
@@ -95,43 +92,49 @@ public class DrawPoint extends Component implements Component.DrawTask {
         paint.setStrokeWidth(STROKE_WIDTH);
         addDrawTask(this);
 
-        setTouchEventListener(
-                (component, touchEvent) -> {
-                    int crtX = (int) touchEvent.getPointerPosition(touchEvent.getIndex()).getX();
-                    int crtY = (int) touchEvent.getPointerPosition(touchEvent.getIndex()).getY();
-                    MyPoint point = new MyPoint(crtX, crtY);
+        setTouchEventListener((component, touchEvent) -> {
+            int crtX = (int) touchEvent.getPointerPosition(touchEvent.getIndex()).getX();
+            int crtY = (int) touchEvent.getPointerPosition(touchEvent.getIndex()).getY();
+            MyPoint point = new MyPoint(crtX, crtY);
 
-                    if (touchEvent.getAction() == TouchEvent.PRIMARY_POINT_UP) {
-                        point.setLastPoint(true);
-                        localPoints.add(point);
-                        callBack.callBack(localPoints);
-                    }
+            if (touchEvent.getAction() == TouchEvent.PRIMARY_POINT_UP) {
+                point.setLastPoint(true);
+                localPoints.add(point);
+                callBack.callBack(localPoints);
+                System.out.println("up:" + crtY);
+            }
 
-                    if (touchEvent.getAction() == TouchEvent.PRIMARY_POINT_DOWN) {
-                        localPoints.add(point);
-                    }
+            if (touchEvent.getAction() == TouchEvent.PRIMARY_POINT_DOWN) {
+                localPoints.add(point);
+                System.out.println("down:" + crtY);
+            }
 
-                    if (touchEvent.getAction() == TouchEvent.POINT_MOVE) {
-                        localPoints.add(point);
-                    }
+            if (touchEvent.getAction() == TouchEvent.POINT_MOVE) {
+                localPoints.add(point);
+                System.out.println("move:" + crtY);
+            }
 
-                    invalidate();
-                    return true;
-                });
+            invalidate();
+            return true;
+        });
     }
 
     @Override
     public void onDraw(Component component, Canvas canvas) {
         remotePoints.clear();
-        if (pointsX != null && pointsX.length > 1) {
-            for (int i = 0; i < pointsX.length; i++) {
-                float finalX = pointsX[i];
-                float finalY = pointsY[i];
-                boolean isLast = isLastPoint[i];
+        if (pointXs != null && pointXs.length > 1) {
+            for (int i = 0; i < pointXs.length; i++) {
+                float finalX = pointXs[i];
+                float finalY = pointYs[i];
+                boolean isLast = isLastPoints[i];
                 remotePoints.add(new MyPoint(finalX, finalY, isLast));
             }
+
+            // draw remote points
             drawPoints(canvas, remotePoints, false);
         }
+
+        // draw local points
         drawPoints(canvas, localPoints, true);
     }
 
@@ -165,5 +168,19 @@ public class DrawPoint extends Component implements Component.DrawTask {
                 canvas.drawLine(first, last, paint);
             }
         }
+    }
+
+    /**
+     * OnDrawCallBack
+     *
+     * @since 2021-01-11
+     */
+    public interface OnDrawCallBack {
+        /**
+         * callBack
+         *
+         * @param points List
+         */
+        void callBack(List<MyPoint> points);
     }
 }

@@ -1,7 +1,6 @@
 /*
- * Copyright (c) Huawei Technologies Co., Ltd. 2021-2021. All rights reserved.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Licensed under the Apache License,Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -26,7 +25,7 @@ import ohos.agp.window.service.WindowManager;
 import ohos.bundle.IBundleManager;
 
 /**
- * 功能描述
+ * ability主入口
  *
  * @since 2021-02-26
  */
@@ -40,9 +39,9 @@ public class MainAbility extends Ability {
         super.setMainRoute(MainAbilitySlice.class.getName());
 
         if (verifySelfPermission(DISTRIBUTED_DATASYNC) != IBundleManager.PERMISSION_GRANTED) {
-            // has no permission
+            // 没有权限
             if (canRequestPermission(DISTRIBUTED_DATASYNC)) {
-                // toast
+                // 弹框
                 requestPermissionsFromUser(
                         new String[]{DISTRIBUTED_DATASYNC}, 0);
             }

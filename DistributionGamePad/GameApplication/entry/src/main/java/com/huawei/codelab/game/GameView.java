@@ -1,7 +1,6 @@
 /*
- * Copyright (c) Huawei Technologies Co., Ltd. 2021-2021. All rights reserved.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Licensed under the Apache License,Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -74,7 +73,7 @@ public class GameView extends Component implements Component.DrawTask {
 
     private static final int ANGULAR_180 = 180;
 
-    private static List<Explosion> explosions = new ArrayList<>(); // 爆炸效果集合
+    private static List<Explosion> explosions = new ArrayList<>(0); // 爆炸效果集合
 
     private static PixelMapHolder myPlaneOnePixelMapHolder; // 我的飞机一
     private static PixelMapHolder myPlaneTwoPixelMapHolder; // 我的飞机二
@@ -94,9 +93,9 @@ public class GameView extends Component implements Component.DrawTask {
 
     private List<String> deviceIds; // 连接手柄id集合
     private List<MyPlane> myPlanes; // 创建飞机集合
-    private List<EnemyPlane> enemyPlanes = new ArrayList<>(); // 敌机集合
-    private List<Bomb> bombs = new ArrayList<>(); // 炸弹集合
-    private List<Bullet> bullets = new ArrayList<>(); // 子弹集合
+    private List<EnemyPlane> enemyPlanes = new ArrayList<>(0); // 敌机集合
+    private List<Bomb> bombs = new ArrayList<>(0); // 炸弹集合
+    private List<Bullet> bullets = new ArrayList<>(0); // 子弹集合
 
     private Paint paint;
     private Paint textPaint;
@@ -444,18 +443,23 @@ public class GameView extends Component implements Component.DrawTask {
                 if (spirit instanceof EnemyPlane) {
                     enemyPlane = (EnemyPlane) spirit;
                 }
-                if (enemyPlane != null) {
-                    createExposion(myPlane.getPlaneX(), myPlane.getPlaneY());
-                    createExposion(enemyPlane.getPlaneX(), enemyPlane.getPlaneY());
-                    enemyPlanes.remove(enemyPlane);
-                    myPlane.setBombNum(0);
-                    myPlane.destroy();
-                    if (myPlanes.size() == MAXMYPLANENUM) {
-                        iterator.remove();
-                    } else {
-                        status = Constants.GAME_STOP; // 游戏结束标识
-                    }
-                }
+                judgeGameOver(enemyPlane, myPlane, iterator);
+            }
+        }
+    }
+
+    // 判断飞机被销毁或者游戏结束
+    private void judgeGameOver(EnemyPlane enemyPlane, MyPlane myPlane, Iterator<MyPlane> iterator) {
+        if (enemyPlane != null) {
+            createExposion(myPlane.getPlaneX(), myPlane.getPlaneY());
+            createExposion(enemyPlane.getPlaneX(), enemyPlane.getPlaneY());
+            enemyPlanes.remove(enemyPlane);
+            myPlane.setBombNum(0);
+            myPlane.destroy();
+            if (myPlanes.size() == MAXMYPLANENUM) {
+                iterator.remove();
+            } else {
+                status = Constants.GAME_STOP; // 游戏结束标识
             }
         }
     }

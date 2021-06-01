@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 Huawei Device Co., Ltd. All rights reserved.
+ * Copyright (c) Huawei Technologies Co., Ltd. 2021-2021. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,8 +22,7 @@ import ohos.hiviewdfx.HiLogLabel;
 /**
  * Log util
  *
- * @since 2020-12-04
- *
+ * @since 2021-04-04
  */
 public class LogUtil {
     private static final String TAG_LOG = "LogUtil";
@@ -32,7 +31,8 @@ public class LogUtil {
 
     private static final String LOG_FORMAT = "%{public}s: %{public}s";
 
-    private LogUtil() {}
+    private LogUtil() {
+    }
 
     /**
      * Print debug log
@@ -63,5 +63,4 @@ public class LogUtil {
     public static void error(String tag, String msg) {
         HiLog.error(LABEL_LOG, LOG_FORMAT, tag, msg);
     }
-
 }

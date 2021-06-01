@@ -1,10 +1,10 @@
 /*
  * Copyright (c) 2021 Huawei Device Co., Ltd.
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Licensed under the Apache License,Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -125,7 +125,7 @@ public class MailEditSlice extends AbilitySlice implements IAbilityContinuation 
         fillView();
         setAttachmentProvider(rootView);
 
-        rootView.findComponentById(ResourceTable.Id_call_test).setClickedListener(c -> { });
+        rootView.findComponentById(ResourceTable.Id_call_test).setClickedListener(listener -> { });
     }
 
     private void setAttachmentProvider(Component rootView) {
@@ -147,6 +147,12 @@ public class MailEditSlice extends AbilitySlice implements IAbilityContinuation 
                                 .setPixelMap(source.createPixelmap(0, null));
                     } catch (FileNotFoundException e) {
                         LogUtil.error(TAG, "setAttachmentProvider Error");
+                    } finally {
+                        try {
+                            fileInputStream.close();
+                        } catch (IOException e) {
+                            LogUtil.error(TAG, "close fileInputStream Error");
+                        }
                     }
                 }
             };
@@ -244,6 +250,12 @@ public class MailEditSlice extends AbilitySlice implements IAbilityContinuation 
                                     .setPixelMap(source.createPixelmap(0, null));
                         } catch (FileNotFoundException e) {
                             LogUtil.error(TAG, "showDialog() FileNotFound Exception");
+                        } finally {
+                            try {
+                                fileInputStream.close();
+                            } catch (IOException e) {
+                                LogUtil.error(TAG, "close fileInputStream error");
+                            }
                         }
                     }
                 };
@@ -306,11 +318,11 @@ public class MailEditSlice extends AbilitySlice implements IAbilityContinuation 
                 File fr = new File(distributedFilePath);
                 in = new FileInputStream(fileDescriptor);
                 out = new FileOutputStream(fr);
-                byte[] buffer = new byte[CACHE_SIZE];
+                byte[] buffers = new byte[CACHE_SIZE];
                 int count = 0;
                 LogUtil.info(TAG, "START WRITING");
-                while ((count = in.read(buffer)) != IO_END_LEN) {
-                    out.write(buffer, 0, count);
+                while ((count = in.read(buffers)) != IO_END_LEN) {
+                    out.write(buffers, 0, count);
                 }
                 out.close();
                 LogUtil.info(TAG, "STOP WRITING");

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<state-container xmlns:ohos="http://schemas.huawei.com/res/ohos">
+    <item ohos:element="$graphic:button_record_pressed" ohos:state="component_state_pressed" />
+    <item ohos:element="$graphic:button_record_normal" ohos:state="component_state_empty" />
+</state-container>

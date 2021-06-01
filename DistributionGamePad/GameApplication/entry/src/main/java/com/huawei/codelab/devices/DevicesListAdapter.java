@@ -1,7 +1,6 @@
 /*
- * Copyright (c) Huawei Technologies Co., Ltd. 2021-2021. All rights reserved.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Licensed under the Apache License,Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -45,7 +44,7 @@ public class DevicesListAdapter extends BaseItemProvider {
     private static final int FOUR = 4;
     private List<DeviceInfo> deviceInfoList;
     private Context context;
-    private List<Integer> selectPositions = new ArrayList<>();
+    private List<Integer> selectPositions = new ArrayList<>(0);
 
     /**
      * 设备列表适配器 构造函数
@@ -78,22 +77,23 @@ public class DevicesListAdapter extends BaseItemProvider {
     public Component getComponent(int position, Component component, ComponentContainer componentContainer) {
         ViewHolder viewHolder = null;
         Component mComponent = component;
+        AbsButton.CheckedStateChangedListener changedListener = new AbsButton.CheckedStateChangedListener() {
+            @Override
+            public void onCheckedChanged(AbsButton absButton, boolean isSelected) {
+                if (isSelected) {
+                    selectPositions.add(new Integer(position));
+                } else {
+                    selectPositions.remove(new Integer(position));
+                }
+            }
+        };
         if (mComponent == null) {
             mComponent = LayoutScatter.getInstance(context).parse(ResourceTable.Layout_item_device_list, null, false);
             viewHolder = new ViewHolder();
             if (mComponent.findComponentById(ResourceTable.Id_device_name) instanceof Checkbox) {
                 viewHolder.devicesName = (Checkbox) mComponent.findComponentById(ResourceTable.Id_device_name);
                 viewHolder.devicesName.setButtonElement(viewHolder.getCheckElement());
-                viewHolder.devicesName.setCheckedStateChangedListener(new AbsButton.CheckedStateChangedListener() {
-                    @Override
-                    public void onCheckedChanged(AbsButton absButton, boolean isSelected) {
-                        if (isSelected) {
-                            selectPositions.add(new Integer(position));
-                        } else {
-                            selectPositions.remove(new Integer(position));
-                        }
-                    }
-                });
+                viewHolder.devicesName.setCheckedStateChangedListener(changedListener);
             }
             if (mComponent.findComponentById(ResourceTable.Id_device_id) instanceof Text) {
                 viewHolder.devicesId = (Text) mComponent.findComponentById(ResourceTable.Id_device_id);

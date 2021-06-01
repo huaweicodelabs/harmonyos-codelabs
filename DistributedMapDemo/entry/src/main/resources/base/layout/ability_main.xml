@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DependentLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:height="match_parent"
+    ohos:width="match_parent"
+    ohos:orientation="vertical">
+
+    <DependentLayout
+        ohos:height="match_content"
+        ohos:width="match_parent">
+
+        <com.huawei.codelab.map.NavMap
+            ohos:id="$+id:map"
+            ohos:horizontal_center="true"
+            ohos:height="match_parent"
+            ohos:width="match_parent" />
+
+        <DirectionalLayout
+            ohos:background_element="#ffffff"
+            ohos:id="$+id:select_point"
+            ohos:height="match_content"
+            ohos:orientation="vertical"
+            ohos:width="match_parent">
+
+            <DirectionalLayout
+                ohos:margin="15vp"
+                ohos:background_element="$graphic:background_card_gray"
+                ohos:height="match_content"
+                ohos:orientation="vertical"
+                ohos:width="match_parent">
+
+                <TextField
+                    ohos:text="我的位置"
+                    ohos:hint="输入起点"
+                    ohos:bubble_width="0"
+                    ohos:bubble_height="0"
+                    ohos:element_padding="10vp"
+                    ohos:element_left="$media:route_start"
+                    ohos:left_padding="10vp"
+                    ohos:text_size="16vp"
+                    ohos:text_alignment="vertical_center"
+                    ohos:height="35vp"
+                    ohos:id="$+id:start_point_field"
+                    ohos:width="match_parent" />
+
+                <Component
+                    ohos:background_element="#dddddd"
+                    ohos:height="1vp"
+                    ohos:width="match_parent" />
+
+                <TextField
+                    ohos:bubble_width="0"
+                    ohos:bubble_height="0"
+                    ohos:element_padding="10vp"
+                    ohos:element_left="$media:route_end"
+                    ohos:left_padding="10vp"
+                    ohos:text_size="16vp"
+                    ohos:hint="输入终点"
+                    ohos:text_alignment="vertical_center"
+                    ohos:height="35vp"
+                    ohos:id="$+id:end_point_field"
+                    ohos:width="match_parent" />
+
+            </DirectionalLayout>
+
+            <Component
+                ohos:background_element="#eeeeee"
+                ohos:height="1vp"
+                ohos:width="match_parent" />
+        </DirectionalLayout>
+
+        <DependentLayout
+            ohos:background_element="#ffffff"
+            ohos:visibility="hide"
+            ohos:below="$id:select_point"
+            ohos:height="match_parent"
+            ohos:id="$+id:layout_input_tips"
+            ohos:width="match_parent">
+
+            <ListContainer
+                ohos:height="match_parent"
+                ohos:id="$+id:list_input_tips"
+                ohos:width="match_parent" />
+        </DependentLayout>
+
+
+        <DependentLayout
+            ohos:visibility="hide"
+            ohos:left_padding="12vp"
+            ohos:right_padding="12vp"
+            ohos:id="$+id:route_tips"
+            ohos:orientation="horizontal"
+            ohos:background_element="black"
+            ohos:height="50vp"
+            ohos:width="match_parent">
+
+            <Image
+                ohos:scale_mode="stretch"
+                ohos:id="$+id:route_img"
+                ohos:vertical_center="true"
+                ohos:height="25vp"
+                ohos:width="25vp" />
+
+            <Text
+                ohos:id="$+id:route_content"
+                ohos:right_of="$id:route_img"
+                ohos:height="match_content"
+                ohos:text="前方直行50米"
+                ohos:text_color="white"
+                ohos:text_size="16fp"
+                ohos:vertical_center="true"
+                ohos:width="match_content" />
+
+        </DependentLayout>
+
+    </DependentLayout>
+
+    <DirectionalLayout
+        ohos:visibility="hide"
+        ohos:orientation="horizontal"
+        ohos:align_parent_bottom="true"
+        ohos:background_element="white"
+        ohos:height="match_content"
+        ohos:id="$+id:nav_bottom"
+        ohos:width="match_parent">
+
+        <Button
+            ohos:visibility="hide"
+            ohos:layout_alignment="vertical_center"
+            ohos:left_margin="20vp"
+            ohos:background_element="$graphic:button_bg"
+            ohos:height="match_content"
+            ohos:id="$+id:nav_translate"
+            ohos:padding="10vp"
+            ohos:text="迁移"
+            ohos:text_color="white"
+            ohos:text_size="18vp"
+            ohos:width="60vp" />
+
+        <Button
+            ohos:visibility="hide"
+            ohos:background_element="$graphic:button_bg"
+            ohos:height="match_content"
+            ohos:id="$+id:end_nav"
+            ohos:margin="20vp"
+            ohos:padding="10vp"
+            ohos:text="结束导航"
+            ohos:text_color="white"
+            ohos:text_size="18vp"
+            ohos:width="match_parent" />
+
+        <Button
+            ohos:background_element="$graphic:button_bg"
+            ohos:height="match_content"
+            ohos:id="$+id:start_nav"
+            ohos:margin="20vp"
+            ohos:padding="10vp"
+            ohos:text="开始导航"
+            ohos:text_color="white"
+            ohos:text_size="18vp"
+            ohos:width="match_parent" />
+    </DirectionalLayout>
+
+</DependentLayout>

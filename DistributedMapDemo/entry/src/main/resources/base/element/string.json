@@ -1,0 +1,28 @@
+{
+  "string": [
+    {
+      "name": "app_name",
+      "value": "DistributedMapDemo"
+    },
+    {
+      "name": "mainability_description",
+      "value": "Java_Phone_Empty Feature Ability"
+    },
+    {
+      "name": "watchservice_description",
+      "value": "hap sample empty service"
+    },
+    {
+      "name": "watchmainability_description",
+      "value": "Java_Phone_Empty Feature Ability"
+    },
+    {
+      "name": "carmainability_description",
+      "value": "Java_Phone_Empty Feature Ability"
+    },
+    {
+      "name": "reason_description",
+      "value": "need request location permission"
+    }
+  ]
+}

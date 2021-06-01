@@ -1,0 +1,12 @@
+// ImplVideoMigration.idl
+
+// Declare any non-default types here with sequenceable or interface statements
+
+interface com.huawei.codelab.ImplVideoMigration {
+
+    void flyIn([in] int startTimemiles);
+
+    void playControl([in] int controlCode,[in]int extras);
+
+    int flyOut();
+}

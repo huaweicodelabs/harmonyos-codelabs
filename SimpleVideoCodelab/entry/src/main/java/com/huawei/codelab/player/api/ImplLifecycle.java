@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 Huawei Device Co., Ltd. All rights reserved.
+ * Copyright (c) Huawei Technologies Co., Ltd. 2021-2021. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,30 +19,30 @@ package com.huawei.codelab.player.api;
 /**
  * ImplLifecycle
  *
- * @since 2020-12-04
+ * @since 2021-04-09
+ *
  */
-
 public interface ImplLifecycle {
     /**
-     * start the HmPlayer
+     * onStart
      *
      */
     void onStart();
 
     /**
-     * turn the HmPlayer foreground
+     * onForeground
      *
      */
     void onForeground();
 
     /**
-     * turn the HmPlayer to background
+     * onBackground
      *
      */
     void onBackground();
 
     /**
-     * stop the HmPlayer
+     * onStop
      *
      */
     void onStop();

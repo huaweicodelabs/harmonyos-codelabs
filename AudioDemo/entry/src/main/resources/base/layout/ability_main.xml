@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DependentLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:height="match_parent"
+    ohos:width="match_parent"
+    ohos:alignment="center"
+    ohos:orientation="vertical">
+
+    <Button
+        ohos:id="$+id:sound_music_play_btn"
+        ohos:height="50vp"
+        ohos:width="150vp"
+        ohos:background_element="$graphic:selector_ability_main"
+        ohos:left_padding="10vp"
+        ohos:right_padding="10vp"
+        ohos:text="音频播放"
+        ohos:text_color="$color:blue"
+        ohos:text_size="18vp"/>
+
+    <Button
+        ohos:id="$+id:sound_system_play_btn"
+        ohos:height="50vp"
+        ohos:width="150vp"
+        ohos:background_element="$graphic:selector_ability_main"
+        ohos:below="$id:sound_music_play_btn"
+        ohos:left_padding="10vp"
+        ohos:right_padding="10vp"
+        ohos:text="短音播放"
+        ohos:text_color="$color:blue"
+        ohos:text_size="18vp"
+        ohos:top_margin="10vp"/>
+
+    <Button
+        ohos:id="$+id:sound_record_btn"
+        ohos:height="50vp"
+        ohos:width="150vp"
+        ohos:background_element="$graphic:selector_ability_main"
+        ohos:below="$id:sound_system_play_btn"
+        ohos:left_padding="10vp"
+        ohos:right_padding="10vp"
+        ohos:text="音频采集"
+        ohos:text_color="$color:blue"
+        ohos:text_size="18vp"
+        ohos:top_margin="10vp"/>
+
+    <Button
+        ohos:id="$+id:sound_volume_btn"
+        ohos:height="50vp"
+        ohos:width="150vp"
+        ohos:background_element="$graphic:selector_ability_main"
+        ohos:below="$id:sound_record_btn"
+        ohos:left_padding="10vp"
+        ohos:right_padding="10vp"
+        ohos:text="音量管理"
+        ohos:text_color="$color:blue"
+        ohos:text_size="18vp"
+        ohos:top_margin="10vp"/>
+
+</DependentLayout>

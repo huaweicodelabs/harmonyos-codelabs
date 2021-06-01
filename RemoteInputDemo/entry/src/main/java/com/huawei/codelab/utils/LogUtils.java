@@ -1,7 +1,6 @@
 /*
- * Copyright (c) Huawei Technologies Co., Ltd. 2021-2021. All rights reserved.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Licensed under the Apache License,Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -20,7 +19,7 @@ import ohos.hiviewdfx.HiLog;
 import ohos.hiviewdfx.HiLogLabel;
 
 /**
- * LogUtils
+ * 日志工具类
  *
  * @since 2021-02-25
  */
@@ -35,40 +34,40 @@ public class LogUtils {
     }
 
     /**
-     * Print debug log
+     * 打印调试日志
      *
-     * @param tag log tag
-     * @param msg log message
+     * @param tag 日志标签
+     * @param msg 日志信息
      */
     public static void debug(String tag, String msg) {
         HiLog.debug(LABEL_LOG, LOG_FORMAT, tag, msg);
     }
 
     /**
-     * Print info log
+     * 打印信息日志
      *
-     * @param tag log tag
-     * @param msg log message
+     * @param tag 日志标签
+     * @param msg 日志信息
      */
     public static void info(String tag, String msg) {
         HiLog.info(LABEL_LOG, LOG_FORMAT, tag, msg);
     }
 
     /**
-     * Print warn log
+     * 打印警告日志
      *
-     * @param tag log tag
-     * @param msg log message
+     * @param tag 日志标签
+     * @param msg 日志信息
      */
     public static void warn(String tag, String msg) {
         HiLog.warn(LABEL_LOG, LOG_FORMAT, tag, msg);
     }
 
     /**
-     * Print error log
+     * 打印错误日志
      *
-     * @param tag log tag
-     * @param msg log message
+     * @param tag 日志标签
+     * @param msg 日志信息
      */
     public static void error(String tag, String msg) {
         HiLog.error(LABEL_LOG, LOG_FORMAT, tag, msg);

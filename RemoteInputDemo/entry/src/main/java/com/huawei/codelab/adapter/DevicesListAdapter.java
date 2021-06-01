@@ -1,7 +1,6 @@
 /*
- * Copyright (c) Huawei Technologies Co., Ltd. 2021-2021. All rights reserved.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Licensed under the Apache License,Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -30,7 +29,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * Device list adapter
+ * 设备列表适配器
  *
  * @since 2021-02-25
  */
@@ -40,10 +39,10 @@ public class DevicesListAdapter extends BaseItemProvider {
     private Context context;
 
     /**
-     * DevicesListAdapter
+     * 设备列表适配器构造方法
      *
-     * @param listBasicInfo listBasicInfo
-     * @param context context
+     * @param listBasicInfo 基础列表信息
+     * @param context 上下文
      * @since 2021-2-25
      */
     public DevicesListAdapter(List<DeviceInfo> listBasicInfo, Context context) {
@@ -90,7 +89,7 @@ public class DevicesListAdapter extends BaseItemProvider {
     }
 
     /**
-     * ViewHolder
+     * 数据封装类
      *
      * @since 2021-03-12
      */

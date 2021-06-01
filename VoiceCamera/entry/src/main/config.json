@@ -1,14 +1,15 @@
 {
   "app": {
-    "bundleName": "com.huawei.codedemo",
+    "bundleName": "com.huawei.camerademo",
     "vendor": "huawei",
     "version": {
       "code": 1,
       "name": "1.0"
     },
     "apiVersion": {
-      "compatible": 3,
-      "target": 4
+      "compatible": 4,
+      "target": 5,
+      "releaseType": "Release"
     }
   },
   "deviceConfig": {},

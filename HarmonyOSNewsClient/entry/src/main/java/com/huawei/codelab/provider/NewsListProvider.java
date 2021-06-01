@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 Huawei Device Co., Ltd.All rights reserved.
+ * Copyright (c) 2021 Huawei Device Co., Ltd.
  * Licensed under the Apache License,Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -16,14 +16,14 @@
 package com.huawei.codelab.provider;
 
 import com.huawei.codelab.ResourceTable;
-import com.huawei.codelab.been.NewsInfo;
+import com.huawei.codelab.bean.NewsInfo;
 import com.huawei.codelab.utils.CommonUtils;
 
+import ohos.agp.components.BaseItemProvider;
 import ohos.agp.components.Component;
 import ohos.agp.components.ComponentContainer;
 import ohos.agp.components.Image;
 import ohos.agp.components.LayoutScatter;
-import ohos.agp.components.BaseItemProvider;
 import ohos.agp.components.Text;
 import ohos.app.Context;
 
@@ -56,13 +56,13 @@ public class NewsListProvider extends BaseItemProvider {
     }
 
     @Override
-    public Object getItem(int i) {
-        return newsInfoList.get(i);
+    public Object getItem(int position) {
+        return newsInfoList.get(position);
     }
 
     @Override
-    public long getItemId(int i) {
-        return i;
+    public long getItemId(int position) {
+        return position;
     }
 
     @Override

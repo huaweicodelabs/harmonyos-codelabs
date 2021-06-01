@@ -1,19 +1,20 @@
 {
   "app": {
-    "bundleName": "com.huawei.codelab",
+    "bundleName": "com.huawei.cookbook",
     "vendor": "huawei",
     "version": {
       "code": 1,
       "name": "1.0"
     },
     "apiVersion": {
-      "compatible": 3,
-      "target": 3
+      "compatible": 4,
+      "target": 4,
+      "releaseType": "Release"
     }
   },
   "deviceConfig": {},
   "module": {
-    "package": "com.huawei.codelab",
+    "package": "ohos.codelabs.distributedvideo",
     "name": ".MainAbility",
     "reqCapabilities": [
       "video_support"
@@ -34,14 +35,13 @@
               "entity.system.home"
             ],
             "actions": [
-              "action.system.home",
-              "action.video.play"
+              "action.system.home"
             ]
           }
         ],
         "orientation": "portrait",
         "formEnabled": false,
-        "name": "com.huawei.codelab.MainAbility",
+        "name": "ohos.codelabs.distributedvideo.MainAbility",
         "icon": "$media:icon",
         "description": "$string:mainability_description",
         "label": "DistributedVideo",
@@ -49,8 +49,21 @@
         "launchType": "standard"
       },
       {
+        "orientation": "unspecified",
+        "configChanges": [
+          "orientation"
+        ],
+        "formEnabled": false,
+        "name": ".PlayerAbility",
+        "icon": "$media:icon",
+        "description": "$string:videodetailabilityslice_description",
+        "label": "SimplePlayer",
+        "type": "page",
+        "launchType": "standard"
+      },
+      {
         "visible": true,
-        "name": "com.huawei.codelab.VideoMigrateService",
+        "name": ".VideoMigrateService",
         "type": "service"
       }
     ],

@@ -1,7 +1,6 @@
 /*
- * Copyright (c) Huawei Technologies Co., Ltd. 2021-2021. All rights reserved.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Licensed under the Apache License,Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -97,23 +96,27 @@ public class GameServiceAbility extends Ability {
         @Override
         public boolean onRemoteRequest(int code, MessageParcel data, MessageParcel reply, MessageOption option) {
             String deviceId = data.readString();
+            taskDispatcher.syncDispatch(new Runnable() {
+                @Override
+                public void run() {
+                    syncDispatchRequest(deviceId, data);
+                }
+            });
+            return true;
+        }
+
+        private void syncDispatchRequest(String deviceId, MessageParcel data) {
             int angle = data.readInt();
             int buttonA = data.readInt();
             int buttonB = data.readInt();
             int pause = data.readInt();
             int start = data.readInt();
-            taskDispatcher.syncDispatch(new Runnable() {
-                @Override
-                public void run() {
-                    for (Handle handle: MainAbilitySlice.getHandles()) {
-                        if (deviceId.equals(handle.getDeviceId())) {
-                            handle.operation(angle, buttonA, buttonB, pause, start);
-                            break;
-                        }
-                    }
+            for (Handle handle: MainAbilitySlice.getHandles()) {
+                if (deviceId.equals(handle.getDeviceId())) {
+                    handle.operation(angle, buttonA, buttonB, pause, start);
+                    break;
                 }
-            });
-            return true;
+            }
         }
     }
 }

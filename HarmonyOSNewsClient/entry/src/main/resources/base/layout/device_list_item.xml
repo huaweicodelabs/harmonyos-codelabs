@@ -12,7 +12,7 @@
         ohos:orientation="vertical">
 
         <Text
-            ohos:id="$+id:item_chlid_textview"
+            ohos:id="$+id:item_child_textview"
             ohos:height="40vp"
             ohos:width="match_parent"
             ohos:background_element="#DCDCDC"

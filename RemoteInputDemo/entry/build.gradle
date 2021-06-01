@@ -1,8 +1,16 @@
 apply plugin: 'com.huawei.ohos.hap'
 ohos {
-    compileSdkVersion 3
+    compileSdkVersion 5
     defaultConfig {
-        compatibleSdkVersion 3
+        compatibleSdkVersion 5
+    }
+    buildTypes {
+        release {
+            proguardOpt {
+                proguardEnabled false
+                rulesFiles 'proguard-rules.pro'
+            }
+        }
     }
 }
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 Huawei Device Co., Ltd.All rights reserved.
+ * Copyright (c) 2021 Huawei Device Co., Ltd.
  * Licensed under the Apache License,Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -37,8 +37,12 @@ import java.util.Optional;
  */
 public class CommonUtils {
     private static final String TAG = "Common Utils";
+    private static final String ERROR_MESSAGE = "some error happened";
     private static final int GET_COLOR_STATE_FAILED = -1;
     private static final int JSON_READ_ERROR = -1;
+
+    private CommonUtils() {
+    }
 
     /**
      * Get color method
@@ -52,7 +56,7 @@ public class CommonUtils {
         try {
             return context.getResourceManager().getElement(resourceId).getColor();
         } catch (IOException | NotExistException | WrongTypeException e) {
-            LogUtils.i(TAG, "some exception happend");
+            LogUtils.info(TAG, "some exception happened");
         }
         return GET_COLOR_STATE_FAILED;
     }
@@ -77,14 +81,14 @@ public class CommonUtils {
             decodingOptions.desiredPixelFormat = PixelFormat.ARGB_8888;
             return imageSource.createPixelmap(decodingOptions);
         } catch (IOException e) {
-            LogUtils.i(TAG, "some error happended");
+            LogUtils.info(TAG, ERROR_MESSAGE);
         } finally {
             try {
                 if (drawableInputStream != null) {
                     drawableInputStream.close();
                 }
             } catch (IOException e) {
-                LogUtils.e(TAG, "some error happened");
+                LogUtils.error(TAG, ERROR_MESSAGE);
             }
         }
         return null;
@@ -106,7 +110,7 @@ public class CommonUtils {
                 return new String(buffers, StandardCharsets.UTF_8);
             }
         } catch (IOException e) {
-            LogUtils.e(TAG, "some error happened");
+            LogUtils.error(TAG, ERROR_MESSAGE);
         }
         return Optional.of(jsonPath).toString();
     }

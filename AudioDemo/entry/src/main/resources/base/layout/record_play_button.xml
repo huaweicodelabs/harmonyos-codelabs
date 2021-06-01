@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DirectionalLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:height="match_parent"
+    ohos:width="match_parent"
+    ohos:alignment="center"
+    ohos:background_element="$graphic:selector_ability_main"
+    ohos:orientation="horizontal">
+
+    <Image
+        ohos:height="15vp"
+        ohos:width="15vp"
+        ohos:right_margin="10vp"
+        ohos:image_src="$media:ic_horns"
+        ohos:scale_mode="stretch"/>
+
+    <Component
+        ohos:id="$+id:animation_view"
+        ohos:height="15vp"
+        ohos:width="20vp"/>
+
+</DirectionalLayout>

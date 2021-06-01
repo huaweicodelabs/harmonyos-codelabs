@@ -1,7 +1,6 @@
 /*
- * Copyright (c) Huawei Technologies Co., Ltd. 2021-2021. All rights reserved.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Licensed under the Apache License,Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -47,7 +46,7 @@ import java.util.List;
  */
 public class MainAbilitySlice extends AbilitySlice {
     private static final HiLogLabel TAG = new HiLogLabel(HiLog.LOG_APP, 0xD001400, "mainAbilitySlice");
-    private static List<Handle> handles = new ArrayList<>(); // 保存手柄连接信息
+    private static List<Handle> handles = new ArrayList<>(0); // 保存手柄连接信息
     private SelectDeviceDialog dialog;
 
     @Override
@@ -134,7 +133,7 @@ public class MainAbilitySlice extends AbilitySlice {
             }
 
             @Override
-            public void onAbilityDisconnectDone(ElementName elementName, int i) {
+            public void onAbilityDisconnectDone(ElementName elementName, int index) {
                 if (handleInfo.getProxy() != null) {
                     handleInfo.setProxy(null);
                 }

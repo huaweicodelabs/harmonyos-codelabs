@@ -1,0 +1,12 @@
+apply plugin: 'com.huawei.ohos.hap'
+ohos {
+    compileSdkVersion 5
+    defaultConfig {
+        compatibleSdkVersion 4
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar', '*.har'])
+    implementation 'com.google.code.gson:gson:2.8.0'
+}

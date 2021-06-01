@@ -122,7 +122,6 @@ export default {
             mySelect: '/common/nav/icon-my-select.png',
         },
         iconImageFlag: 1,
-        isRefreshing: 'false',
         menu: [
             {
                 id: '01',
@@ -495,19 +494,6 @@ export default {
             this.icon.shoppingCarts = this.icon.shoppingCart;
             this.icon.mys = this.icon.mySelect;
         }
-    },
-    refresh: function (e) {
-        var that = this;
-        prompt.showToast({
-            message: "刷新开始......"
-        });
-        that.isRefreshing = e.refreshing;
-        setTimeout(function () {
-            that.isRefreshing = false;
-            prompt.showToast({
-                message: "刷新结束......"
-            })
-        }, 3000);
     },
     addShopping(e) {
         if (e.checked) {
