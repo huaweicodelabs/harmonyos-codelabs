@@ -22,16 +22,26 @@ import ohos.agp.window.dialog.ToastDialog;
 import ohos.app.Context;
 import ohos.app.dispatcher.TaskDispatcher;
 import ohos.app.dispatcher.task.TaskPriority;
+import ohos.net.HttpResponseCache;
+import ohos.net.NetHandle;
+import ohos.net.NetManager;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.Proxy;
 import java.net.URL;
+import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
 
+import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManager;
 
 /**
  * 网络请求管理类
@@ -41,11 +51,27 @@ import javax.net.ssl.HttpsURLConnection;
 public class HttpUtils {
     private static final String TAG = HttpUtils.class.getName();
 
+    private static final String REQUEST_METHOD_GET = "GET";
+
+    private static final String SSL_PROVIDER_TLS = "TLS";
+
+    private static final int CONNECT_TIME_OUT = 5000;
+
+    private static final int READ_TIME_OUT = 5000;
+
     private static HttpUtils instance;
+
+    private HttpResponseCache httpResponseCache;
 
     private Context context;
 
     private TaskDispatcher globalTaskDispatcher;
+
+    private InputStream dataStream;
+
+    private InputStreamReader inputStreamReader;
+
+    private BufferedReader reader;
 
     /**
      * 构造方法
@@ -55,6 +81,7 @@ public class HttpUtils {
     private HttpUtils(Context context) {
         this.context = context;
         globalTaskDispatcher = context.getGlobalTaskDispatcher(TaskPriority.DEFAULT);
+        httpResponseCache = HttpResponseCache.getInstalled();
     }
 
     /**
@@ -98,45 +125,89 @@ public class HttpUtils {
      * @throws IOException
      */
     private void doGet(String address, ResponseCallback callback) throws IOException {
-        LogUtils.info(TAG, "doGet:");
-        InputStream inputStream = null;
-        InputStreamReader inputStreamReader = null;
-        BufferedReader bufferedReader = null;
+        HttpURLConnection connection = null;
         try {
-            URL url = new URL(address);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("GET");
-            int responseCode = connection.getResponseCode();
-            if (responseCode == HttpsURLConnection.HTTP_OK) {
-                inputStream = connection.getInputStream();
+            connection = getNetConnection(address, REQUEST_METHOD_GET);
+            StringBuilder resultBuffer = new StringBuilder();
+            int reqCode = connection.getResponseCode();
+            if (reqCode == HttpURLConnection.HTTP_OK) {
+                dataStream = connection.getInputStream();
+                inputStreamReader = new InputStreamReader(dataStream, StandardCharsets.UTF_8);
+                reader = new BufferedReader(inputStreamReader);
+                String tempLine;
+                while ((tempLine = reader.readLine()) != null) {
+                    resultBuffer.append(tempLine);
+                }
+                if (callback != null) {
+                    System.out.println("onSuccess:");
+                    context.getUITaskDispatcher().syncDispatch(() -> callback.onSuccess(resultBuffer.toString()));
+                }
+                if (httpResponseCache != null) {
+                    httpResponseCache.flush();
+                }
             } else {
-                doGet(address, callback);
-                return;
+                throw new IOException(connection.getResponseMessage());
             }
-            inputStreamReader = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
-            bufferedReader = new BufferedReader(inputStreamReader);
-            String line;
-            StringBuilder stringBuilder = new StringBuilder(0);
-            while ((line = bufferedReader.readLine()) != null) {
-                stringBuilder.append(line);
+        } catch (IOException | KeyManagementException | NoSuchAlgorithmException e) {
+            if (callback != null) {
+                showError(e.getMessage());
+                LogUtils.error(TAG, "doGet IOException:" + e.getMessage());
             }
-            String result = stringBuilder.toString();
-            LogUtils.info(TAG, "result:" + result);
-            context.getUITaskDispatcher().syncDispatch(() -> callback.onSuccess(result));
-        } catch (IOException e) {
-            showError(e.getMessage());
-            LogUtils.error(TAG, "doGet IOException:" + e.getMessage());
         } finally {
-            if (bufferedReader != null) {
-                bufferedReader.close();
+            if (connection != null) {
+                connection.disconnect();
             }
             if (inputStreamReader != null) {
                 inputStreamReader.close();
             }
-            if (inputStream != null) {
-                inputStream.close();
+            if (dataStream != null) {
+                dataStream.close();
+            }
+            if (reader != null) {
+                reader.close();
             }
         }
+    }
+
+    /**
+     * 获取Connection
+     *
+     * @param strUrl 请求链接
+     * @param method 请求方式
+     * @return HttpURLConnection对象
+     * @throws KeyManagementException exception
+     * @throws IOException exception
+     * @throws NoSuchAlgorithmException exception
+     */
+    private HttpURLConnection getNetConnection(String strUrl, String method)
+        throws KeyManagementException, IOException, NoSuchAlgorithmException {
+        NetManager netManager = NetManager.getInstance(context);
+        NetHandle netHandle = netManager.getDefaultNet();
+        if (netHandle == null) {
+            throw new NullPointerException();
+        }
+        HttpURLConnection connection;
+        SSLContext sslcontext = SSLContext.getInstance(SSL_PROVIDER_TLS);
+        sslcontext.init(null, new TrustManager[] {new MyX509TrustManager()}, new java.security.SecureRandom());
+        HostnameVerifier ignoreHostnameVerifier = (hostname, session) -> true;
+        HttpsURLConnection.setDefaultHostnameVerifier(ignoreHostnameVerifier);
+        HttpsURLConnection.setDefaultSSLSocketFactory(sslcontext.getSocketFactory());
+        URL url = new URL(strUrl);
+        URLConnection urlConnection = netHandle.openConnection(url, Proxy.NO_PROXY);
+        if (urlConnection instanceof HttpsURLConnection) {
+            connection = (HttpsURLConnection) urlConnection;
+        } else if (urlConnection instanceof HttpURLConnection) {
+            connection = (HttpURLConnection) urlConnection;
+        } else {
+            throw new NullPointerException();
+        }
+        connection.setRequestMethod(method);
+        connection.setConnectTimeout(CONNECT_TIME_OUT);
+        connection.setReadTimeout(READ_TIME_OUT);
+        connection.setDoOutput(true);
+        connection.setDoInput(true);
+        connection.connect();
+        return connection;
     }
 
     private void showError(String content) {
