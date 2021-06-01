@@ -44,7 +44,7 @@ DistributionGamePad: Control the plane game on the TV through the mobile phone.
 Links: https://github.com/huaweicodelabs/harmonyos-codelabs/tree/main/DistributionGamePad
 
 AudioDemo: Audio playback management applications, including audio playback, audio capture, and audio management (fast forward, fast rewind, pause, play, volume control), etc.
-Links: https://gitee.com/openharmony/codelabs/tree/master/AudioDemo
+Links: https://github.com/huaweicodelabs/harmonyos-codelabs/tree/main/AudioDemo
 
 DistributedMapDemo: Demonstrate HarmonyOS distributed functionality that simulates navigation through apps and flows navigation data between phones, smart wearables, and tablets.
-Links: https://gitee.com/openharmony/codelabs/tree/master/DistributedMapDemo
+Links: https://github.com/huaweicodelabs/harmonyos-codelabs/tree/main/DistributedMapDemo
