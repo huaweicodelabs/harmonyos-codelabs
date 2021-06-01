@@ -20,9 +20,9 @@ VoiceCamera：展示了一个基于分布式文件系统和AI语音识别功能�
 
 JSPlaygroundDemo：利用HarmonyOS“一次开发、多端部署”特性，开发一个能同时运行在手机、大屏、运动表的“To-Do List”Demo，链接：https://github.com/huaweicodelabs/harmonyos-codelabs/tree/main/JSPlaygroundDemo
 
-RemoteInputDemo：展示了通过手机输入文字到电视的跨设备输入能力，链接：https://github.com/huaweicodelabs/harmonyos-codelabs/tree/main/RemoteInputDemo-master
+RemoteInputDemo：展示了通过手机输入文字到电视的跨设备输入能力，链接：https://github.com/huaweicodelabs/harmonyos-codelabs/tree/main/RemoteInputDemo
 
-DistributionGamePad：分布式游戏手柄，可以通过手机端跨设备控制电视上的飞机游戏，链接：https://github.com/huaweicodelabs/harmonyos-codelabs/tree/main/DistributionGamePad-master
+DistributionGamePad：分布式游戏手柄，可以通过手机端跨设备控制电视上的飞机游戏，链接：https://github.com/huaweicodelabs/harmonyos-codelabs/tree/main/DistributionGamePad
 
 AudioDemo：音频播放相关管理应用包括音频播放、声音采集和音频相关管理（快进、快退、暂停、播放、音量控制）等功能，链接：https://github.com/huaweicodelabs/harmonyos-codelabs/tree/main/AudioDemo
 
