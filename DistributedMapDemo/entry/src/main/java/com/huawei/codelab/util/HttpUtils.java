@@ -37,11 +37,13 @@ import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
+import java.security.cert.X509Certificate;
 
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 
 /**
  * 网络请求管理类
@@ -139,7 +141,6 @@ public class HttpUtils {
                     resultBuffer.append(tempLine);
                 }
                 if (callback != null) {
-                    System.out.println("onSuccess:");
                     context.getUITaskDispatcher().syncDispatch(() -> callback.onSuccess(resultBuffer.toString()));
                 }
                 if (httpResponseCache != null) {
@@ -235,5 +236,25 @@ public class HttpUtils {
          * @param result result
          */
         void onSuccess(String result);
+    }
+
+    /**
+     * MyX509TrustManager
+     *
+     * @since 2021-03-12
+     */
+    private static class MyX509TrustManager implements X509TrustManager {
+        @Override
+        public void checkClientTrusted(X509Certificate[] certificates, String authType) {
+        }
+
+        @Override
+        public void checkServerTrusted(X509Certificate[] ax509certificate, String authType) {
+        }
+
+        @Override
+        public X509Certificate[] getAcceptedIssuers() {
+            return null;
+        }
     }
 }
