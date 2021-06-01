@@ -1,7 +1,6 @@
 /*
- * Copyright (c) Huawei Technologies Co., Ltd. 2021-2021. All rights reserved.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Licensed under the Apache License,Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -29,7 +28,7 @@ import ohos.rpc.IRemoteObject;
 import java.util.Map;
 
 /**
- * ConnectManagerIml
+ * 远程管理类实现
  *
  * @since 2021-02-25
  */
@@ -56,9 +55,9 @@ public class ConnectManagerIml implements ConnectManager {
     private MyRemoteProxy proxy;
 
     /**
-     * 获取实例
+     * 获取管理类实例
      *
-     * @return instance
+     * @return 管理类实例
      */
     public static synchronized ConnectManager getInstance() {
         if (instance == null) {
@@ -70,8 +69,8 @@ public class ConnectManagerIml implements ConnectManager {
     /**
      * 连接远程PA
      *
-     * @param context context
-     * @param deviceId deviceId
+     * @param context 上下文
+     * @param deviceId 设备id
      */
     @Override
     public void connectPa(Context context, String deviceId) {

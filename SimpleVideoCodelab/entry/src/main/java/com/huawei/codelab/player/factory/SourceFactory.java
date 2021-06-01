@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 Huawei Device Co., Ltd. All rights reserved.
+ * Copyright (c) Huawei Technologies Co., Ltd. 2021-2021. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ import java.io.IOException;
 /**
  * SourceFactory
  *
- * @since 2020-12-04
+ * @since 2021-04-04
  *
  */
 public class SourceFactory {
@@ -78,9 +78,9 @@ public class SourceFactory {
     }
 
     /**
-     * getSource of Source
+     * getSource
      *
-     * @return Source
+     * @return Source Source
      */
     public Source getSource() {
         return mPlayerSource;

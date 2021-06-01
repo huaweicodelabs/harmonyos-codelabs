@@ -1,7 +1,6 @@
 /*
- * Copyright (c) Huawei Technologies Co., Ltd. 2021-2021. All rights reserved.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Licensed under the Apache License,Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -67,6 +66,7 @@ public class RemoteInputAbilitySlice extends AbilitySlice {
 
         // 获取大屏ID用于配对
         deviceIdConn = intent.getStringParam("localDeviceId");
+
         // 全屏设置
         WindowManagerUtils.setWindows();
         initView();
@@ -160,6 +160,7 @@ public class RemoteInputAbilitySlice extends AbilitySlice {
     private void buttonClickSound() {
         // 步骤1：实例化对象
         SoundPlayer soundPlayer = new SoundPlayer("packageName");
+
         // 步骤2：播放键盘敲击音，音量为1.0
         soundPlayer.playSound(SoundPlayer.SoundType.KEY_CLICK, 1.0f);
     }

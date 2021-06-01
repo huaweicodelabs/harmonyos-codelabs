@@ -87,8 +87,7 @@ export default {
                 title: '上市时间',
                 content: '2021年1月',
             }
-        ],
-        isRefreshing: 'false'
+        ]
     },
     onInit() {
     },

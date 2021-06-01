@@ -1,7 +1,6 @@
 /*
- * Copyright (c) Huawei Technologies Co., Ltd. 2021-2021. All rights reserved.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Licensed under the Apache License,Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -43,7 +42,7 @@ public abstract class Spirit {
     private int width; // 宽
     private int height; // 高
     private int speed; // 速度
-    private boolean destroyed; // 是否被销毁
+    private boolean isDestroyed; // 是否被销毁
 
     /**
      *  spirit constructor
@@ -54,7 +53,7 @@ public abstract class Spirit {
      */
     public Spirit(PixelMapHolder pixelMapHolder) {
         this.pixelMapHolder = pixelMapHolder;
-        this.destroyed = false;
+        this.isDestroyed = false;
         this.width = pixelMapHolder.getPixelMap().getImageInfo().size.width;
         this.height = pixelMapHolder.getPixelMap().getImageInfo().size.height;
     }
@@ -100,7 +99,7 @@ public abstract class Spirit {
     }
 
     public boolean isDestroyed() {
-        return destroyed;
+        return isDestroyed;
     }
 
     /**
@@ -111,7 +110,7 @@ public abstract class Spirit {
      */
     public void destroy() {
         pixelMapHolder = null;
-        destroyed = true;
+        isDestroyed = true;
     }
 
     /**

@@ -1,10 +1,10 @@
 /*
  * Copyright (c) 2021 Huawei Device Co., Ltd.
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Licensed under the Apache License,Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -14,6 +14,8 @@
  */
 
 package com.huawei.codelab.slice;
+
+import static ohos.security.SystemPermission.DISTRIBUTED_DATASYNC;
 
 import com.huawei.codelab.ResourceTable;
 import com.huawei.codelab.utils.CommonData;
@@ -25,8 +27,6 @@ import ohos.aafwk.content.Operation;
 import ohos.agp.components.Component;
 import ohos.bundle.IBundleManager;
 
-import static ohos.security.SystemPermission.DISTRIBUTED_DATASYNC;
-
 /**
  * MainAbilitySlice
  *
@@ -34,6 +34,7 @@ import static ohos.security.SystemPermission.DISTRIBUTED_DATASYNC;
  */
 public class MainAbilitySlice extends AbilitySlice {
     private static final String TAG = CommonData.TAG + MainAbilitySlice.class.getSimpleName();
+
     private static final int PERMISSION_CODE = 10000000;
 
     @Override
@@ -44,11 +45,10 @@ public class MainAbilitySlice extends AbilitySlice {
         initView();
     }
 
-
     void grantPermission() {
         if (verifySelfPermission(DISTRIBUTED_DATASYNC) != IBundleManager.PERMISSION_GRANTED) {
             if (canRequestPermission(DISTRIBUTED_DATASYNC)) {
-                requestPermissionsFromUser(new String[]{DISTRIBUTED_DATASYNC}, PERMISSION_CODE);
+                requestPermissionsFromUser(new String[] {DISTRIBUTED_DATASYNC}, PERMISSION_CODE);
             }
         }
     }
@@ -58,6 +58,33 @@ public class MainAbilitySlice extends AbilitySlice {
         findComponentById(ResourceTable.Id_picture_game).setClickedListener(new ButtonClick());
     }
 
+    private void mathGame() {
+        LogUtil.info(TAG, "Click ResourceTable Id_math_game");
+        Intent mathGameIntent = new Intent();
+        Operation operationMath = new Intent.OperationBuilder().withBundleName(getBundleName())
+            .withAbilityName(CommonData.ABILITY_MAIN)
+            .withAction(CommonData.MATH_PAGE)
+            .build();
+        mathGameIntent.setOperation(operationMath);
+        startAbility(mathGameIntent);
+    }
+
+    private void pictureGame() {
+        LogUtil.info(TAG, "Click ResourceTable Id_picture_game");
+        Intent pictureGameIntent = new Intent();
+        Operation operationPicture = new Intent.OperationBuilder().withBundleName(getBundleName())
+            .withAbilityName(CommonData.ABILITY_MAIN)
+            .withAction(CommonData.PICTURE_PAGE)
+            .build();
+        pictureGameIntent.setOperation(operationPicture);
+        startAbility(pictureGameIntent);
+    }
+
+    /**
+     * ButtonClick
+     *
+     * @since 2021-01-11
+     */
     private class ButtonClick implements Component.ClickedListener {
         @Override
         public void onClick(Component component) {
@@ -75,29 +102,4 @@ public class MainAbilitySlice extends AbilitySlice {
             }
         }
     }
-
-    private void mathGame() {
-        LogUtil.info(TAG, "Click ResourceTable Id_math_game");
-        Intent mathGameIntent = new Intent();
-        Operation operationMath = new Intent.OperationBuilder()
-                .withBundleName(getBundleName())
-                .withAbilityName(CommonData.ABILITY_MAIN)
-                .withAction(CommonData.MATH_PAGE)
-                .build();
-        mathGameIntent.setOperation(operationMath);
-        startAbility(mathGameIntent);
-    }
-
-    private void pictureGame() {
-        LogUtil.info(TAG, "Click ResourceTable Id_picture_game");
-        Intent pictureGameIntent = new Intent();
-        Operation operationPicture = new Intent.OperationBuilder()
-                .withBundleName(getBundleName())
-                .withAbilityName(CommonData.ABILITY_MAIN)
-                .withAction(CommonData.PICTURE_PAGE)
-                .build();
-        pictureGameIntent.setOperation(operationPicture);
-        startAbility(pictureGameIntent);
-    }
-
 }

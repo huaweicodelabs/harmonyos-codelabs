@@ -23,14 +23,6 @@
                     ohos:alignment="vertical_center"
                     ohos:orientation="horizontal">
 
-                <Image
-                        ohos:id="$+id:image"
-                        ohos:width="50vp"
-                        ohos:height="50vp"
-                        ohos:scale_mode="stretch"
-                        ohos:layout_alignment="left"
-                        ohos:image_src="$media:huawei"/>
-
                 <Text
                         ohos:id="$+id:title_icon"
                         ohos:width="match_content"
@@ -77,7 +69,7 @@
                     ohos:multiple_lines="true"
                     ohos:text_color="#708090"
                     ohos:text_size="16vp"
-                    ohos:text_alignment="center_horizontal"
+                    ohos:text_alignment="horizontal_center"
                     ohos:top_margin="5vp"/>
 
         </DirectionalLayout>
@@ -118,7 +110,7 @@
                 ohos:id="$+id:button1"
                 ohos:width="20vp"
                 ohos:height="20vp"
-                ohos:image_src="$media:message_icon.jpg"
+                ohos:image_src="$media:message_icon"
                 ohos:scale_mode="stretch"
                 ohos:left_margin="20vp"/>
 
@@ -126,7 +118,7 @@
                 ohos:id="$+id:button2"
                 ohos:width="20vp"
                 ohos:height="20vp"
-                ohos:image_src="$media:collect_icon.jpg"
+                ohos:image_src="$media:collect_icon"
                 ohos:scale_mode="stretch"
                 ohos:left_margin="20vp"/>
 
@@ -134,7 +126,7 @@
                 ohos:id="$+id:button3"
                 ohos:width="20vp"
                 ohos:height="20vp"
-                ohos:image_src="$media:like_icon.jpg"
+                ohos:image_src="$media:like_icon"
                 ohos:scale_mode="stretch"
                 ohos:left_margin="20vp"/>
 
@@ -142,7 +134,7 @@
                 ohos:id="$+id:button4"
                 ohos:width="20vp"
                 ohos:height="20vp"
-                ohos:image_src="$media:share_icon.jpg"
+                ohos:image_src="$media:share_icon"
                 ohos:scale_mode="stretch"
                 ohos:left_margin="20vp"/>
     </DirectionalLayout>

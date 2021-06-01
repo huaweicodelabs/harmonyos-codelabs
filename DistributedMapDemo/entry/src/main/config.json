@@ -1,0 +1,102 @@
+{
+  "app": {
+    "bundleName": "com.huawei.codelab",
+    "vendor": "huawei",
+    "version": {
+      "code": 1,
+      "name": "1.0"
+    },
+    "apiVersion": {
+      "compatible": 4,
+      "target": 5,
+      "releaseType": "Release"
+    }
+  },
+  "deviceConfig": {},
+  "module": {
+    "package": "com.huawei.codelab",
+    "name": ".MyApplication",
+    "deviceType": [
+      "phone",
+      "tablet",
+      "wearable"
+    ],
+    "distro": {
+      "deliveryWithInstall": true,
+      "moduleName": "entry",
+      "moduleType": "entry"
+    },
+    "abilities": [
+      {
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ],
+        "orientation": "unspecified",
+        "name": "com.huawei.codelab.MainAbility",
+        "icon": "$media:icon",
+        "description": "$string:mainability_description",
+        "label": "DistributedMapDemo",
+        "type": "page",
+        "launchType": "standard"
+      },
+      {
+        "name": "com.huawei.codelab.WatchService",
+        "icon": "$media:icon",
+        "description": "$string:watchservice_description",
+        "type": "service"
+      },
+      {
+        "orientation": "portrait",
+        "name": "com.huawei.codelab.WatchAbility",
+        "icon": "$media:icon",
+        "description": "$string:watchmainability_description",
+        "label": "entry",
+        "type": "page",
+        "launchType": "standard"
+      }
+    ],
+    "reqPermissions": [
+      {
+        "reason": "distributed permission request",
+        "name": "ohos.permission.DISTRIBUTED_DATASYNC",
+        "usedScene": {
+          "ability": [
+            "com.huawei.codelab.MainAbility",
+            "com.huawei.codelab.WatchAbility"
+          ],
+          "when": "always"
+        }
+      },
+      {
+        "reason": "get Local Location",
+        "name": "ohos.permission.LOCATION",
+        "usedScene": {
+          "ability": [
+            "com.huawei.codelab.MainAbility",
+            "com.huawei.codelab.WatchAbility"
+          ],
+          "when": "always"
+        }
+      },
+      {
+        "name": "ohos.permission.INTERNET"
+      },
+      {
+        "name": "ohos.permission.DISTRIBUTED_DEVICE_STATE_CHANGE"
+      },
+      {
+        "name": "ohos.permission.GET_DISTRIBUTED_DEVICE_INFO"
+      },
+      {
+        "name": "ohos.permission.GET_BUNDLE_INFO"
+      }
+    ]
+  }
+}

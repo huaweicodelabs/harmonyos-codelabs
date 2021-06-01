@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 Huawei Device Co., Ltd. All rights reserved.
+ * Copyright (c) Huawei Technologies Co., Ltd. 2021-2021. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,83 +16,44 @@
 
 package com.huawei.codelab.player;
 
-import com.huawei.codelab.player.constant.PlayerStatus;
-import com.huawei.codelab.player.factory.SourceFactory;
-import com.huawei.codelab.player.manager.HmPlayerLifecycle;
-import com.huawei.codelab.util.LogUtil;
 import com.huawei.codelab.player.api.ImplLifecycle;
 import com.huawei.codelab.player.api.ImplPlayer;
 import com.huawei.codelab.player.api.ScreenChangeListener;
-import com.huawei.codelab.player.api.StatusChangeListener;
-import com.huawei.codelab.util.DateUtils;
+import com.huawei.codelab.player.api.StatuChangeListener;
+import com.huawei.codelab.player.constant.Constants;
+import com.huawei.codelab.player.constant.PlayerStatu;
+import com.huawei.codelab.player.factory.SourceFactory;
+import com.huawei.codelab.player.manager.HmPlayerLifecycle;
+import com.huawei.codelab.util.LogUtil;
 
-import ohos.agp.components.Component;
-import ohos.agp.components.DependentLayout;
-import ohos.agp.components.surfaceprovider.SurfaceProvider;
 import ohos.agp.graphics.Surface;
-import ohos.agp.graphics.SurfaceOps;
-import ohos.agp.window.service.WindowManager;
 import ohos.app.Context;
-import ohos.media.audio.AudioManager;
-import ohos.media.audio.AudioRemoteException;
+import ohos.app.dispatcher.task.TaskPriority;
 import ohos.media.common.Source;
 import ohos.media.player.Player;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Hm player
  *
- * @since 2020-12-04
+ * @since 2021-04-04
  */
 public class HmPlayer implements ImplPlayer {
-    private static final String TAG = "HmPlayer";
+    private static final String TAG = HmPlayer.class.getSimpleName();
     private static final int MICRO_MILLI_RATE = 1000;
-    private static final int MAX_MUSIC_VOLUME = 100;
-    private static final int MIM_MUSIC_VOLUME = 0;
-    private static final int CAPACITY = 6;
-    private static final int CORE_POOL_SIZE = 2;
-    private static final int MAX_POOL_SIZE = 20;
-    private static final int KEEP_ALIVE_TIME = 3;
-    private Player player;
-    private SurfaceProvider surfaceView;
+    private Player mPlayer;
     private Surface surface;
-    private AudioManager audio;
-    private HmPlayerLifecycle lifecycle;
-    private Builder playerBuilder;
-    private PlayerStatus status = PlayerStatus.IDEL;
+    private HmPlayerLifecycle mLifecycle;
+    private Builder mBuilder;
+    private PlayerStatu mStatu = PlayerStatu.IDEL;
+    private float currentVolume = 1;
+    private double videoScale = Constants.NUMBER_NEGATIVE_1;
+    private boolean isGestureOpen;
 
-    private List<StatusChangeListener> statusChangeCallbacks = new ArrayList<>(0);
+    private List<StatuChangeListener> statuChangeCallbacks = new ArrayList<>(0);
     private List<ScreenChangeListener> screenChangeCallbacks = new ArrayList<>(0);
-    private ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(CORE_POOL_SIZE, MAX_POOL_SIZE,
-            KEEP_ALIVE_TIME, TimeUnit.SECONDS, new LinkedBlockingQueue<>(CAPACITY),
-            new ThreadPoolExecutor.DiscardOldestPolicy());
-    private boolean isSurfaceViewCreated;
-
-    private SurfaceOps.Callback surfaceCallback = new SurfaceOps.Callback() {
-        @Override
-        public void surfaceCreated(SurfaceOps surfaceOps) {
-            LogUtil.info(TAG, "surfaceCreated");
-            isSurfaceViewCreated = true;
-            surface = surfaceOps.getSurface();
-            start();
-        }
-
-        @Override
-        public void surfaceChanged(SurfaceOps surfaceOps, int i, int width, int height) {
-            LogUtil.info(TAG, "surfaceChanged i is " + i + ",width is " + width + ",height is " + height);
-        }
-
-        @Override
-        public void surfaceDestroyed(SurfaceOps surfaceOps) {
-            LogUtil.info(TAG, "surfaceDestroyed");
-            isSurfaceViewCreated = false;
-        }
-    };
 
     /**
      * constructor of HmPlayer
@@ -100,20 +61,15 @@ public class HmPlayer implements ImplPlayer {
      * @param builder builder
      */
     private HmPlayer(Builder builder) {
-        playerBuilder = builder;
-        WindowManager.getInstance().getTopWindow().get().setTransparent(true); // 不设置窗体透明会挡住播放内容，除非设置pinToZTop为true
-        audio = new AudioManager(playerBuilder.context.getBundleName());
-        lifecycle = new HmPlayerLifecycle(this);
-        surfaceView = new SurfaceProvider(playerBuilder.context);
-        DependentLayout.LayoutConfig layoutConfig = new DependentLayout.LayoutConfig();
-        layoutConfig.addRule(DependentLayout.LayoutConfig.CENTER_IN_PARENT);
-        surfaceView.setLayoutConfig(layoutConfig);
-        surfaceView.setVisibility(Component.VISIBLE);
-        surfaceView.setFocusable(Component.FOCUS_ENABLE);
-        surfaceView.setTouchFocusable(true);
-        surfaceView.requestFocus();
-        surfaceView.pinToZTop(playerBuilder.isTopPlay);
-        surfaceView.getSurfaceOps().get().addCallback(surfaceCallback);
+        mBuilder = builder;
+        mLifecycle = new HmPlayerLifecycle(this);
+    }
+
+    private void initBasePlayer() {
+        mPlayer = new Player(mBuilder.mContext);
+        Source source = new SourceFactory(mBuilder.mContext, mBuilder.filePath).getSource();
+        mPlayer.setSource(source);
+        mPlayer.setPlayerCallback(new HmPlayerCallback());
     }
 
     /**
@@ -125,85 +81,77 @@ public class HmPlayer implements ImplPlayer {
         @Override
         public void onPrepared() {
             LogUtil.info(TAG, "onPrepared is called ");
-            for (StatusChangeListener callback : statusChangeCallbacks) {
-                status = PlayerStatus.PREPARED;
-                callback.statusCallback(PlayerStatus.PREPARED);
+            for (StatuChangeListener callback : statuChangeCallbacks) {
+                mStatu = PlayerStatu.PREPARED;
+                callback.statuCallback(PlayerStatu.PREPARED);
             }
         }
 
         @Override
         public void onMessage(int info, int i1) {
             LogUtil.info(TAG, "onMessage info is " + info + ",i1 is" + i1);
-            if (info == Player.PLAYER_INFO_VIDEO_RENDERING_START && i1 == 0) {
-                // start to rendering ，show controller
-                for (StatusChangeListener callback : statusChangeCallbacks) {
-                    status = PlayerStatus.PLAY;
-                    callback.statusCallback(PlayerStatus.PLAY);
+            if (i1 == 0) {
+                switch (info) {
+                    case Player.PLAYER_INFO_VIDEO_RENDERING_START:
+                        for (StatuChangeListener callback : statuChangeCallbacks) {
+                            mStatu = PlayerStatu.PLAY;
+                            callback.statuCallback(PlayerStatu.PLAY);
+                        }
+                        if (mBuilder.isPause) {
+                            pause();
+                        }
+                        break;
+                    case Player.PLAYER_INFO_BUFFERING_START:
+                        for (StatuChangeListener callback : statuChangeCallbacks) {
+                            mStatu = PlayerStatu.BUFFERING;
+                            callback.statuCallback(PlayerStatu.BUFFERING);
+                        }
+                        break;
+                    case Player.PLAYER_INFO_BUFFERING_END:
+                        for (StatuChangeListener callback : statuChangeCallbacks) {
+                            mStatu = PlayerStatu.PLAY;
+                            callback.statuCallback(PlayerStatu.PLAY);
+                        }
+                        break;
+                    default:
+                        break;
                 }
-            } else if (info == Player.PLAYER_INFO_BUFFERING_START && i1 == 0) {
-                for (StatusChangeListener callback : statusChangeCallbacks) {
-                    status = PlayerStatus.BUFFERING;
-                    callback.statusCallback(PlayerStatus.BUFFERING);
-                }
-            } else if (info == Player.PLAYER_INFO_BUFFERING_END && i1 == 0) {
-                for (StatusChangeListener callback : statusChangeCallbacks) {
-                    status = PlayerStatus.PLAY;
-                    callback.statusCallback(PlayerStatus.PLAY);
-                }
-            } else {
-                LogUtil.info(TAG, "onMessage else message");
             }
         }
 
         @Override
-        public void onError(int i, int i1) {
-            LogUtil.info(TAG, "onError is called ,i is " + i + ",i1 is " + i1);
-            for (StatusChangeListener callback : statusChangeCallbacks) {
-                status = PlayerStatus.ERROR;
-                callback.statusCallback(PlayerStatus.ERROR);
+        public void onError(int type, int extra) {
+            LogUtil.info(TAG, "onError is called ,i is " + type + ",i1 is " + extra);
+            for (StatuChangeListener callback : statuChangeCallbacks) {
+                mStatu = PlayerStatu.ERROR;
+                callback.statuCallback(PlayerStatu.ERROR);
             }
             release();
         }
 
         @Override
-        public void onResolutionChanged(int x, int y) {
-            LogUtil.info(TAG, "onResolutionChanged i is " + x + ",i1 is " + y);
-            if (!playerBuilder.isStretch && x != 0 && y != 0) {
-                getBuilder().context.getUITaskDispatcher().delayDispatch(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (x > y) {
-                            surfaceView.setWidth(surfaceView.getWidth());
-                            surfaceView.setHeight(Math.min(y * surfaceView.getWidth() / x, surfaceView.getHeight()));
-                        } else {
-                            surfaceView.setHeight(surfaceView.getHeight());
-                            surfaceView.setWidth(Math.min(x * surfaceView.getHeight() / y, surfaceView.getWidth()));
-                        }
-                    }
-                }, 0);
+        public void onResolutionChanged(int videoX, int videoY) {
+            LogUtil.info(TAG, "onResolutionChanged videoX is " + videoX + ",videoY is " + videoY);
+            if (!mBuilder.isStretch && videoX != 0 && videoY != 0) {
+                videoScale = (double) videoX / videoY;
             }
         }
 
         @Override
         public void onPlayBackComplete() {
-            for (StatusChangeListener callback : statusChangeCallbacks) {
-                status = PlayerStatus.COMPLETE;
-                callback.statusCallback(PlayerStatus.COMPLETE);
+            for (StatuChangeListener callback : statuChangeCallbacks) {
+                mStatu = PlayerStatu.COMPLETE;
+                callback.statuCallback(PlayerStatu.COMPLETE);
             }
-            stop();
         }
 
         @Override
         public void onRewindToComplete() {
             resume();
-            if (playerBuilder.isPause) {
-                playerBuilder.isPause = false;
-                pause();
-            }
         }
 
         @Override
-        public void onBufferingChange(int i) {
+        public void onBufferingChange(int value) {
         }
 
         @Override
@@ -214,6 +162,18 @@ public class HmPlayer implements ImplPlayer {
         @Override
         public void onMediaTimeIncontinuity(Player.MediaTimeInfo mediaTimeInfo) {
             LogUtil.info(TAG, "onMediaTimeIncontinuity is called");
+            for (Player.StreamInfo streanInfo : mPlayer.getStreamInfo()) {
+                int streamType = streanInfo.getStreamType();
+                if (streamType == Player.StreamInfo.MEDIA_STREAM_TYPE_AUDIO && mStatu == PlayerStatu.PREPARED) {
+                    for (StatuChangeListener callback : statuChangeCallbacks) {
+                        mStatu = PlayerStatu.PLAY;
+                        callback.statuCallback(PlayerStatu.PLAY);
+                    }
+                    if (mBuilder.isPause) {
+                        pause();
+                    }
+                }
+            }
         }
     }
 
@@ -221,40 +181,43 @@ public class HmPlayer implements ImplPlayer {
      * start time consuming operation
      */
     private void start() {
-        if (isSurfaceViewCreated) {
-            threadPoolExecutor.execute(() -> {
-                player.setVideoSurface(surface);
-                player.prepare();
-                if (playerBuilder.startMillisecond > 0) {
-                    int microsecond = playerBuilder.startMillisecond * MICRO_MILLI_RATE;
-                    player.rewindTo(microsecond);
+        if (mPlayer != null) {
+            mBuilder.mContext.getGlobalTaskDispatcher(TaskPriority.DEFAULT).asyncDispatch(() -> {
+                if (surface != null) {
+                    mPlayer.setVideoSurface(surface);
                 } else {
-                    player.play();
+                    LogUtil.error(TAG, "The surface has not been initialized.");
                 }
+                mPlayer.prepare();
+                if (mBuilder.startMillisecond > 0) {
+                    int microsecond = mBuilder.startMillisecond * MICRO_MILLI_RATE;
+                    mPlayer.rewindTo(microsecond);
+                }
+                mPlayer.play();
             });
         }
     }
 
     @Override
-    public SurfaceProvider getPlayerView() {
-        return surfaceView;
-    }
-
-    @Override
     public ImplLifecycle getLifecycle() {
-        return lifecycle;
+        return mLifecycle;
     }
 
     @Override
-    public void addPlayerStatusCallback(StatusChangeListener callback) {
+    public void addSurface(Surface videoSurface) {
+        this.surface = videoSurface;
+    }
+
+    @Override
+    public void addPlayerStatuCallback(StatuChangeListener callback) {
         if (callback != null) {
-            statusChangeCallbacks.add(callback);
+            statuChangeCallbacks.add(callback);
         }
     }
 
     @Override
-    public void removePlayerStatuCallback(StatusChangeListener callback) {
-        statusChangeCallbacks.remove(callback);
+    public void removePlayerStatuCallback(StatuChangeListener callback) {
+        statuChangeCallbacks.remove(callback);
     }
 
     @Override
@@ -271,25 +234,41 @@ public class HmPlayer implements ImplPlayer {
 
     @Override
     public Builder getBuilder() {
-        return playerBuilder;
+        return mBuilder;
     }
 
     @Override
-    public PlayerStatus getPlayerStatu() {
-        return status;
+    public PlayerStatu getPlayerStatu() {
+        return mStatu;
+    }
+
+    @Override
+    public void resizeScreen(int width, int height) {
+        for (ScreenChangeListener screenChangeCallback : screenChangeCallbacks) {
+            screenChangeCallback.screenCallback(width, height);
+        }
+    }
+
+    @Override
+    public void openGesture(boolean isOpen) {
+        isGestureOpen = isOpen;
+    }
+
+    @Override
+    public boolean isGestureOpen() {
+        return isPlaying() && isGestureOpen;
     }
 
     @Override
     public void play() {
-        for (StatusChangeListener callback : statusChangeCallbacks) {
-            status = PlayerStatus.PREPARING;
-            callback.statusCallback(PlayerStatus.PREPARING);
+        if (mPlayer != null) {
+            mPlayer.reset();
         }
-        release();
-        player = new Player(playerBuilder.context);
-        player.setPlayerCallback(new HmPlayerCallback());
-        Source source = new SourceFactory(playerBuilder.context, playerBuilder.filePath).getSource();
-        player.setSource(source);
+        for (StatuChangeListener callback : statuChangeCallbacks) {
+            mStatu = PlayerStatu.PREPARING;
+            callback.statuCallback(PlayerStatu.PREPARING);
+        }
+        initBasePlayer();
         start();
     }
 
@@ -298,189 +277,139 @@ public class HmPlayer implements ImplPlayer {
         if (isPlaying()) {
             rewindTo(0);
         } else {
-            reload(playerBuilder.filePath, 0);
+            reload(mBuilder.filePath, 0);
         }
     }
 
     @Override
     public void reload(String filepath, int startMillisecond) {
-        playerBuilder.filePath = filepath;
-        playerBuilder.startMillisecond = startMillisecond;
+        mBuilder.filePath = filepath;
+        mBuilder.startMillisecond = startMillisecond;
         play();
     }
 
     @Override
     public void stop() {
-        if (player == null) {
+        if (mPlayer == null) {
             return;
         }
-        player.stop();
-        for (StatusChangeListener callback : statusChangeCallbacks) {
-            status = PlayerStatus.STOP;
-            callback.statusCallback(PlayerStatus.STOP);
+        mPlayer.stop();
+        for (StatuChangeListener callback : statuChangeCallbacks) {
+            mStatu = PlayerStatu.STOP;
+            callback.statuCallback(PlayerStatu.STOP);
         }
     }
 
     @Override
     public void release() {
-        if (player == null) {
+        if (mPlayer == null) {
             return;
         }
-        if (status != PlayerStatus.IDEL) {
-            player.release();
-            for (StatusChangeListener callback : statusChangeCallbacks) {
-                status = PlayerStatus.IDEL;
-                callback.statusCallback(PlayerStatus.IDEL);
+        if (mStatu != PlayerStatu.IDEL) {
+            videoScale = Constants.NUMBER_NEGATIVE_1;
+            mPlayer.release();
+            for (StatuChangeListener callback : statuChangeCallbacks) {
+                mStatu = PlayerStatu.IDEL;
+                callback.statuCallback(PlayerStatu.IDEL);
             }
         }
     }
 
-    /**
-     * resume playback
-     */
     @Override
     public void resume() {
-        if (player == null) {
+        if (mPlayer == null) {
             return;
         }
-        if (status != PlayerStatus.IDEL) {
+        if (mStatu != PlayerStatu.IDEL) {
             if (!isPlaying()) {
-                player.play();
+                mPlayer.play();
             }
-            for (StatusChangeListener callback : statusChangeCallbacks) {
-                status = PlayerStatus.PLAY;
-                callback.statusCallback(PlayerStatus.PLAY);
+            for (StatuChangeListener callback : statuChangeCallbacks) {
+                mStatu = PlayerStatu.PLAY;
+                callback.statuCallback(PlayerStatu.PLAY);
             }
         }
     }
 
-    /**
-     * pause playback
-     */
     @Override
     public void pause() {
-        if (player == null) {
+        if (mPlayer == null) {
             return;
         }
         if (isPlaying()) {
-            player.pause();
-            for (StatusChangeListener callback : statusChangeCallbacks) {
-                status = PlayerStatus.PAUSE;
-                callback.statusCallback(PlayerStatus.PAUSE);
+            mPlayer.pause();
+            for (StatuChangeListener callback : statuChangeCallbacks) {
+                mStatu = PlayerStatu.PAUSE;
+                callback.statuCallback(PlayerStatu.PAUSE);
             }
         }
     }
 
-    /**
-     * Get audio current play position
-     *
-     * @return play position
-     */
     @Override
-    public int getAudioCurrentPosition() {
-        if (player == null) {
+    public int getCurrentPosition() {
+        if (mPlayer == null) {
             return 0;
         }
-        return player.getCurrentTime();
+        return mPlayer.getCurrentTime();
     }
 
-    /**
-     * Get audio duration
-     *
-     * @return audio duration
-     */
     @Override
-    public int getAudioDuration() {
-        if (player == null) {
+    public int getDuration() {
+        if (mPlayer == null) {
             return 0;
         }
-        return player.getDuration();
+        return mPlayer.getDuration();
     }
 
     @Override
-    public int getVolume() {
-        int curVolume = 0;
-        if (audio == null) {
-            return curVolume;
-        }
-        try {
-            curVolume = audio.getVolume(AudioManager.AudioVolumeType.STREAM_MUSIC);
-        } catch (AudioRemoteException e) {
-            LogUtil.error(TAG, "get current volume failed");
-        }
-        return curVolume;
+    public float getVolume() {
+        return currentVolume;
     }
 
     @Override
-    public void setVolume(int volume) {
-        if (audio == null) {
-            return;
-        }
-        if (volume > MAX_MUSIC_VOLUME) {
-            audio.setVolume(AudioManager.AudioVolumeType.STREAM_MUSIC, MAX_MUSIC_VOLUME);
-        } else if (volume < MIM_MUSIC_VOLUME) {
-            audio.setVolume(AudioManager.AudioVolumeType.STREAM_MUSIC, MIM_MUSIC_VOLUME);
-        } else {
-            audio.setVolume(AudioManager.AudioVolumeType.STREAM_MUSIC, volume);
+    public void setVolume(float volume) {
+        if (mPlayer != null) {
+            if (mPlayer.setVolume(volume)) {
+                currentVolume = volume;
+            }
         }
     }
 
-    /**
-     * set play speed
-     *
-     * @param speed 0~12
-     */
     @Override
     public void setPlaySpeed(float speed) {
-        if (player == null) {
+        if (mPlayer == null) {
             return;
         }
-        if (status != PlayerStatus.IDEL) {
-            player.setPlaybackSpeed(speed);
+        if (mStatu != PlayerStatu.IDEL) {
+            mPlayer.setPlaybackSpeed(speed);
         }
     }
 
     @Override
-    public void changeScreen() {
+    public double getVideoScale() {
+        return videoScale;
     }
 
-    /**
-     * whether player is running or not
-     *
-     * @return isPlaying boolean
-     */
     @Override
     public boolean isPlaying() {
-        return player.isNowPlaying();
+        if (mPlayer != null) {
+            return mPlayer.isNowPlaying();
+        }
+        return false;
     }
 
-    /**
-     * Rewind to specified time position
-     *
-     * @param startMicrosecond time
-     */
     @Override
     public void rewindTo(int startMicrosecond) {
-        if (player == null) {
+        if (mPlayer == null) {
             return;
         }
-        if (status != PlayerStatus.IDEL) {
-            for (StatusChangeListener callback : statusChangeCallbacks) {
-                status = PlayerStatus.BUFFERING;
-                callback.statusCallback(PlayerStatus.BUFFERING);
+        if (mStatu != PlayerStatu.IDEL) {
+            for (StatuChangeListener callback : statuChangeCallbacks) {
+                mStatu = PlayerStatu.BUFFERING;
+                callback.statuCallback(PlayerStatu.BUFFERING);
             }
-            player.rewindTo(startMicrosecond * MICRO_MILLI_RATE);
+            mPlayer.rewindTo(startMicrosecond * MICRO_MILLI_RATE);
         }
-    }
-
-    @Override
-    public String getDurationText() {
-        return DateUtils.msToString(getAudioDuration());
-    }
-
-    @Override
-    public String getCurrentText() {
-        return DateUtils.msToString(getAudioCurrentPosition());
     }
 
     /**
@@ -489,10 +418,9 @@ public class HmPlayer implements ImplPlayer {
      * @since 2020-12-04
      */
     public static class Builder {
-        private Context context;
-        private String filePath = "";
-        private int startMillisecond = 0;
-        private boolean isTopPlay;
+        private Context mContext;
+        private String filePath;
+        private int startMillisecond;
         private boolean isStretch;
         private boolean isPause;
 
@@ -502,7 +430,9 @@ public class HmPlayer implements ImplPlayer {
          * @param context context
          */
         public Builder(Context context) {
-            this.context = context;
+            mContext = context;
+            filePath = "";
+            startMillisecond = 0;
         }
 
         /**
@@ -546,42 +476,31 @@ public class HmPlayer implements ImplPlayer {
         }
 
         /**
-         * setTopPlay of Builder
-         *
-         * @param topPlay topPlay
-         * @return Builder
-         */
-        public Builder setTopPlay(boolean topPlay) {
-            isTopPlay = topPlay;
-            return this;
-        }
-
-        /**
          * setStretch of Builder
          *
-         * @param stretch stretch
+         * @param isS isStretch
          * @return Builder
          */
-        public Builder setStretch(boolean stretch) {
-            isStretch = stretch;
+        public Builder setStretch(boolean isS) {
+            this.isStretch = isS;
             return this;
         }
 
         /**
          * setPause of Builder
          *
-         * @param pause pause
+         * @param isP isPause
          * @return Builder
          */
-        public Builder setPause(boolean pause) {
-            isPause = pause;
+        public Builder setPause(boolean isP) {
+            this.isPause = isP;
             return this;
         }
 
         /**
-         * create of ImplPlayer
+         * create of Builder
          *
-         * @return ImplPlayer
+         * @return IPlayer
          */
         public ImplPlayer create() {
             return new HmPlayer(this);

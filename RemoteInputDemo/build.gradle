@@ -1,10 +1,9 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
 apply plugin: 'com.huawei.ohos.app'
 
 ohos {
-    compileSdkVersion 3
+    compileSdkVersion 5
     defaultConfig {
-        compatibleSdkVersion 3
+        compatibleSdkVersion 5
     }
 }
 
@@ -16,10 +15,10 @@ buildscript {
         maven {
             url 'https://developer.huawei.com/repo/'
         }
-		jcenter()
+        jcenter()
     }
     dependencies {
-        classpath 'com.huawei.ohos:hap:2.4.1.4'
+        classpath 'com.huawei.ohos:hap:2.4.2.7'
     }
 }
 
@@ -31,6 +30,6 @@ allprojects {
         maven {
             url 'https://developer.huawei.com/repo/'
         }
-		jcenter()
+        jcenter()
     }
 }

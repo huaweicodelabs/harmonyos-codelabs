@@ -5,6 +5,28 @@
     ohos:width="match_parent"
     ohos:background_element="#00000000">
 
+    <DependentLayout
+        ohos:id="$+id:controller_top_layout"
+        ohos:height="40vp"
+        ohos:width="match_parent"
+        ohos:align_parent_top="true"
+        ohos:alignment="vertical_center"
+        ohos:background_element="#88000000">
+
+        <Image
+            ohos:id="$+id:back"
+            ohos:height="match_parent"
+            ohos:width="60vp"
+            ohos:bottom_padding="10vp"
+            ohos:image_src="$media:ic_back"
+            ohos:left_padding="20vp"
+            ohos:right_padding="20vp"
+            ohos:scale_mode="stretch"
+            ohos:top_padding="10vp"
+            />
+
+    </DependentLayout>
+
     <DirectionalLayout
         ohos:id="$+id:controller_bottom_layout"
         ohos:height="80vp"
@@ -24,10 +46,10 @@
                 ohos:id="$+id:play_backward"
                 ohos:height="40vp"
                 ohos:width="40vp"
-                ohos:right_margin="20vp"
+                ohos:image_src="$media:ic_backward"
                 ohos:left_of="$+id:play_controller"
                 ohos:padding="10vp"
-                ohos:image_src="$media:ic_backward"
+                ohos:right_margin="20vp"
                 ohos:scale_mode="stretch"
                 />
 
@@ -44,10 +66,10 @@
                 ohos:id="$+id:play_forward"
                 ohos:height="40vp"
                 ohos:width="40vp"
+                ohos:image_src="$media:ic_forward"
                 ohos:left_margin="20vp"
                 ohos:padding="10vp"
                 ohos:right_of="$id:play_controller"
-                ohos:image_src="$media:ic_forward"
                 ohos:scale_mode="stretch"
                 />
 
@@ -56,8 +78,8 @@
         <DirectionalLayout
             ohos:height="0vp"
             ohos:width="match_parent"
-            ohos:orientation="horizontal"
             ohos:alignment="vertical_center"
+            ohos:orientation="horizontal"
             ohos:weight="2">
 
             <Text

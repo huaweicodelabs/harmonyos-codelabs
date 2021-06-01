@@ -1,10 +1,10 @@
 /*
  * Copyright (c) 2021 Huawei Device Co., Ltd.
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Licensed under the Apache License,Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -22,7 +22,9 @@ package com.huawei.codelab.point;
  */
 public class MyPoint extends ohos.agp.utils.Point {
     private float positionX;
+
     private float positionY;
+
     private boolean isLastPoint = false;
 
     /**
@@ -40,8 +42,8 @@ public class MyPoint extends ohos.agp.utils.Point {
     /**
      * 构造函数
      *
-     * @param positionX   x
-     * @param positionY   y
+     * @param positionX x
+     * @param positionY y
      * @param isLastPoint isLastPoint
      */
     public MyPoint(float positionX, float positionY, boolean isLastPoint) {
@@ -63,8 +65,7 @@ public class MyPoint extends ohos.agp.utils.Point {
         return isLastPoint;
     }
 
-    public void setLastPoint(boolean lastPoint) {
-        isLastPoint = lastPoint;
+    public void setLastPoint(boolean isLast) {
+        isLastPoint = isLast;
     }
-
 }

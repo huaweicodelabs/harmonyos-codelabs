@@ -1,7 +1,6 @@
 /*
- * Copyright (c) Huawei Technologies Co., Ltd. 2021-2021. All rights reserved.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Licensed under the Apache License,Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -32,9 +31,9 @@ public class AbilityMgr {
     private AbilitySlice abilitySlice;
 
     /**
-     * AbilityMgr
+     * 构造函数
      *
-     * @param abilitySlice abilitySlice
+     * @param abilitySlice abilitySlice实例
      * @since 2021-02-25
      */
     public AbilityMgr(AbilitySlice abilitySlice) {
@@ -43,10 +42,10 @@ public class AbilityMgr {
     }
 
     /**
-     * returnMainAbility
+     * 返回主界面
      *
-     * @param bundleName bundleName
-     * @param abilityName abilityName
+     * @param bundleName bundle名称
+     * @param abilityName ability名称
      * @since 2021-02-25
      */
     public void returnMainAbility(String bundleName, String abilityName) {
@@ -61,11 +60,11 @@ public class AbilityMgr {
     }
 
     /**
-     * openRemoteAbility
+     * 启动远程ability
      *
-     * @param deviceId deviceId
-     * @param bundleName bundleName
-     * @param abilityName abilityName
+     * @param deviceId 设备id
+     * @param bundleName bundle名称
+     * @param abilityName ability名称
      * @since 2021-02-25
      */
     public void openRemoteAbility(String deviceId, String bundleName, String abilityName) {
@@ -85,10 +84,10 @@ public class AbilityMgr {
     }
 
     /**
-     * playMovie
+     * 播放影片
      *
-     * @param bundleName bundleName
-     * @param abilityName abilityName
+     * @param bundleName bundle名称
+     * @param abilityName ability名称
      * @since 2021-02-25
      */
     public void playMovie(String bundleName, String abilityName) {

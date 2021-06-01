@@ -1,10 +1,10 @@
 /*
  * Copyright (c) 2021 Huawei Device Co., Ltd.
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Licensed under the Apache License,Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -26,12 +26,13 @@ import java.util.List;
 /**
  * ListComponentAdapter
  *
+ * @param <T> generics
  * @since 2021-02-13
  */
 public abstract class ListComponentAdapter<T> extends BaseItemProvider {
     LayoutScatter layoutScatter;
     private Context mContext;
-    private List<T> mListBean;
+    private List<T> mListBeans;
     private int mXmlId;
 
     /**
@@ -43,7 +44,7 @@ public abstract class ListComponentAdapter<T> extends BaseItemProvider {
      */
     public ListComponentAdapter(Context context, List<T> list, int xmlId) {
         this.mContext = context;
-        this.mListBean = list;
+        this.mListBeans = list;
         this.mXmlId = xmlId;
         layoutScatter = LayoutScatter.getInstance(mContext);
     }
@@ -59,12 +60,12 @@ public abstract class ListComponentAdapter<T> extends BaseItemProvider {
 
     @Override
     public int getCount() {
-        return mListBean.size();
+        return mListBeans.size();
     }
 
     @Override
     public T getItem(int i) {
-        return mListBean.get(i);
+        return mListBeans.get(i);
     }
 
     @Override
@@ -75,7 +76,7 @@ public abstract class ListComponentAdapter<T> extends BaseItemProvider {
     @Override
     public Component getComponent(int i, Component component, ComponentContainer componentContainer) {
         CommentViewHolder commentViewHolder = CommentViewHolder.getCommentViewHolder(mContext, component, mXmlId);
-        T t = mListBean.get(i);
+        T t = mListBeans.get(i);
         onBindViewHolder(commentViewHolder, t, i);
         commentViewHolder.getConvertView().setClickedListener(component1 -> onItemClick(component, t, i));
         return commentViewHolder.getConvertView();

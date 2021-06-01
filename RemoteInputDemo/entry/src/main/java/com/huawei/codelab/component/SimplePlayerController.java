@@ -1,7 +1,6 @@
 /*
- * Copyright (c) Huawei Technologies Co., Ltd. 2021-2021. All rights reserved.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Licensed under the Apache License,Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -26,7 +25,7 @@ import ohos.app.Context;
 import ohos.media.player.Player;
 
 /**
- * SimplePlayerController
+ * 简易视频播放功能
  *
  * @since 2021-03-08
  */
@@ -36,10 +35,10 @@ public class SimplePlayerController extends ComponentContainer {
     private Image playToggle;
 
     /**
-     * constructor of PlayerController
+     * 构造函数
      *
-     * @param context builder
-     * @param player player
+     * @param context 上下文
+     * @param player 播放器实例
      */
     public SimplePlayerController(Context context, Player player) {
         super(context);

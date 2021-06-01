@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  ~ Copyright (c) Huawei Technologies Co., Ltd. 2021-2021. All rights reserved.
+  -->
+
+<state-container xmlns:ohos="http://schemas.huawei.com/res/ohos">
+    <item ohos:element="$graphic:button_pressed_ability_main" ohos:state="component_state_pressed" />
+    <item ohos:element="$graphic:button_normal_ability_main" ohos:state="component_state_empty" />
+</state-container>

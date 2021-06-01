@@ -1,10 +1,10 @@
 /*
  * Copyright (c) 2021 Huawei Device Co., Ltd.
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Licensed under the Apache License,Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -50,17 +50,21 @@ public class MainAbility extends Ability implements IAbilityContinuation {
         List<String> applyPermissions = new ArrayList<>();
         for (String element : permissions) {
             LogUtil.info(TAG, "check permission: " + element);
-            if (verifySelfPermission(element) != 0) {
-                if (canRequestPermission(element)) {
-                    applyPermissions.add(element);
-                } else {
-                    LogUtil.info(TAG, "user deny permission");
-                }
-            } else {
-                LogUtil.info(TAG, "user granted permission: " + element);
-            }
+            checkPermission(applyPermissions, element);
         }
         requestPermissionsFromUser(applyPermissions.toArray(new String[0]), 0);
+    }
+
+    private void checkPermission(List<String> applyPermissions, String element) {
+        if (verifySelfPermission(element) != 0) {
+            if (canRequestPermission(element)) {
+                applyPermissions.add(element);
+            } else {
+                LogUtil.info(TAG, "user deny permission");
+            }
+        } else {
+            LogUtil.info(TAG, "user granted permission: " + element);
+        }
     }
 
     @Override

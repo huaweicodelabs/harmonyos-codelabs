@@ -7,8 +7,9 @@
       "name": "1.0"
     },
     "apiVersion": {
-      "compatible": 3,
-      "target": 3
+      "compatible": 4,
+      "target": 5,
+      "releaseType": "Release"
     }
   },
   "deviceConfig": {},
@@ -68,12 +69,6 @@
       },
       {
         "name": "ohos.permission.GET_BUNDLE_INFO"
-      }
-    ],
-    "defPermissions": [
-      {
-        "name": "com.huawei.maildemo.DataAbilityShellProvider.PROVIDER",
-        "grantMode": "system_grant"
       }
     ]
   }

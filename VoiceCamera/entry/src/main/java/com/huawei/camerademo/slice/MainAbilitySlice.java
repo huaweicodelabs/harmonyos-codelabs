@@ -1,10 +1,10 @@
 /*
  * Copyright (c) 2021 Huawei Device Co., Ltd.
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Licensed under the Apache License,Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -16,7 +16,6 @@
 package com.huawei.camerademo.slice;
 
 import static com.huawei.camerademo.utils.CameraUtil.CAMERA_IMAGE_FILE_PATH;
-
 import static ohos.media.camera.device.Camera.FrameConfigType.FRAME_CONFIG_PICTURE;
 import static ohos.media.camera.device.Camera.FrameConfigType.FRAME_CONFIG_PREVIEW;
 
@@ -75,12 +74,22 @@ import java.util.concurrent.TimeUnit;
 /**
  * MainAbilitySlice
  *
- * @since 2021-3-8
+ * @since 2021-03-08
  */
 public class MainAbilitySlice extends AbilitySlice implements PermissionBridge.OnPermissionStateListener {
     private static final HiLogLabel TAG = new HiLogLabel(3, 0xD001100, "MainAbilitySlice");
 
     private static final int EVENT_IMAGESAVING_PROMTING = 0x0000024;
+
+    private static final int POOL_SIZE = 3;
+    private static final int ALIVE_TIME = 3;
+    private static final int CAPACITY = 6;
+    private static final int SLEEP_TIME = 200;
+    private static final int BYTES_LENGTH = 1280;
+    private static final int VAD_END_WAIT_MS = 2000;
+    private static final int VAD_FRONT_WAIT_MS = 4800;
+    private static final int SAMPLE_RATE = 16000;
+    private static final int TIMEOUT_DURATION = 20000;
 
     private static final int SCREEN_WIDTH = 1080;
 
@@ -100,6 +109,23 @@ public class MainAbilitySlice extends AbilitySlice implements PermissionBridge.O
         COMMAND_MAP.put("拍照", true);
         COMMAND_MAP.put("茄子", true);
     }
+
+    private EventHandler handler = new EventHandler(EventRunner.current()) {
+        @Override
+        protected void processEvent(InnerEvent event) {
+            switch (event.eventId) {
+                case EVENT_IMAGESAVING_PROMTING:
+                    HiLog.info(TAG, "EVENT_IMAGESAVING_PROMTING");
+                    MyDrawTask drawTask = new MyDrawTask(smallImage);
+                    smallImage.addDrawTask(drawTask);
+                    drawTask.putPixelMap(CameraUtil.getPixelMap(bytes, "", 1));
+                    smallImage.setEnabled(true);
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
 
     private Surface previewSurface;
 
@@ -207,7 +233,7 @@ public class MainAbilitySlice extends AbilitySlice implements PermissionBridge.O
         }
         takePictureImage.setEnabled(false);
         isCameraRear = !isCameraRear;
-        CameraUtil.isCameraRear = isCameraRear;
+        CameraUtil.setIsCameraRear(isCameraRear);
         openCamera();
     }
 
@@ -277,25 +303,25 @@ public class MainAbilitySlice extends AbilitySlice implements PermissionBridge.O
         initSurface();
         initAudioCapturer();
         initControlComponents();
-        initASRClient();
+        initAsrClient();
         creamEventHandler = new EventHandler(EventRunner.create("CameraBackground"));
     }
 
     private void initAudioCapturer() {
         poolExecutor =
                 new ThreadPoolExecutor(
-                        3,
-                        3,
-                        3,
+                        POOL_SIZE,
+                        POOL_SIZE,
+                        ALIVE_TIME,
                         TimeUnit.SECONDS,
-                        new LinkedBlockingQueue<>(6),
+                        new LinkedBlockingQueue<>(CAPACITY),
                         new ThreadPoolExecutor.DiscardOldestPolicy());
 
         AudioStreamInfo audioStreamInfo =
                 new AudioStreamInfo.Builder()
                         .encodingFormat(AudioStreamInfo.EncodingFormat.ENCODING_PCM_16BIT)
                         .channelMask(AudioStreamInfo.ChannelMask.CHANNEL_IN_MONO)
-                        .sampleRate(16000)
+                        .sampleRate(SAMPLE_RATE)
                         .build();
 
         AudioCapturerInfo audioCapturerInfo = new AudioCapturerInfo.Builder().audioStreamInfo(audioStreamInfo).build();
@@ -316,61 +342,60 @@ public class MainAbilitySlice extends AbilitySlice implements PermissionBridge.O
     }
 
     private void initListener() {
-        AsrListener asrListener =
-                new MyAsrListener() {
-                    @Override
-                    public void onInit(PacMap params) {
-                        super.onInit(params);
-                        openAudio();
-                        HiLog.info(TAG, "======onInit======");
-                    }
+        AsrListener asrListener = new MyAsrListener() {
+            @Override
+            public void onInit(PacMap params) {
+                super.onInit(params);
+                openAudio();
+                HiLog.info(TAG, "======onInit======");
+            }
 
-                    @Override
-                    public void onError(int error) {
-                        super.onError(error);
-                        HiLog.info(TAG, "======error:" + error);
-                    }
+            @Override
+            public void onError(int error) {
+                super.onError(error);
+                HiLog.info(TAG, "======error:" + error);
+            }
 
-                    @Override
-                    public void onIntermediateResults(PacMap pacMap) {
-                        super.onIntermediateResults(pacMap);
-                        HiLog.info(TAG, "======onIntermediateResults:");
-                        String result = pacMap.getString(AsrResultKey.RESULTS_INTERMEDIATE);
-                        boolean recognizeResult = recognizeWords(result);
+            @Override
+            public void onIntermediateResults(PacMap pacMap) {
+                super.onIntermediateResults(pacMap);
+                HiLog.info(TAG, "======onIntermediateResults:");
+                String result = pacMap.getString(AsrResultKey.RESULTS_INTERMEDIATE);
+                boolean recognizeResult = recognizeWords(result);
 
-                        if (recognizeResult && !recognizeOver) {
-                            recognizeOver = true;
-                            takePicture(new Component(getContext()));
-                            asrClient.stopListening();
-                        }
-                    }
+                if (recognizeResult && !recognizeOver) {
+                    recognizeOver = true;
+                    takePicture(new Component(getContext()));
+                    asrClient.stopListening();
+                }
+            }
 
-                    @Override
-                    public void onResults(PacMap results) {
-                        super.onResults(results);
-                        HiLog.info(TAG, "======onResults:");
+            @Override
+            public void onResults(PacMap results) {
+                super.onResults(results);
+                HiLog.info(TAG, "======onResults:");
 
-                        recognizeOver = false;
-                        asrClient.startListening(setStartIntent());
-                    }
+                recognizeOver = false;
+                asrClient.startListening(setStartIntent());
+            }
 
-                    @Override
-                    public void onEnd() {
-                        super.onEnd();
-                        HiLog.info(TAG, "======onEnd:");
+            @Override
+            public void onEnd() {
+                super.onEnd();
+                HiLog.info(TAG, "======onEnd:");
+                recognizeOver = false;
+                asrClient.stopListening();
+                asrClient.startListening(setStartIntent());
+            }
+        };
 
-                        recognizeOver = false;
-                        asrClient.stopListening();
-                        asrClient.startListening(setStartIntent());
-                    }
-                };
         // Initializes asr.
         if (asrClient != null) {
             asrClient.init(setInitIntent(), asrListener);
         }
     }
 
-    private void initASRClient() {
+    private void initAsrClient() {
         asrClient = AsrClient.createAsrClient(this).orElse(null);
         TaskDispatcher taskDispatcher = getAbility().getMainTaskDispatcher();
         taskDispatcher.asyncDispatch(
@@ -383,10 +408,17 @@ public class MainAbilitySlice extends AbilitySlice implements PermissionBridge.O
     }
 
     @Override
-    public void onPermissionDenied() {}
+    public void onPermissionDenied() {
+    }
 
+    /**
+     * CameraStateCallbackImpl
+     *
+     * @since 2021-03-08
+     */
     class CameraStateCallbackImpl extends CameraStateCallback {
-        CameraStateCallbackImpl() {}
+        CameraStateCallbackImpl() {
+        }
 
         @Override
         public void onCreated(Camera camera) {
@@ -397,7 +429,7 @@ public class MainAbilitySlice extends AbilitySlice implements PermissionBridge.O
             }
 
             try {
-                Thread.sleep(200);
+                Thread.sleep(SLEEP_TIME);
             } catch (InterruptedException exception) {
                 HiLog.info(TAG, "Waiting to be interrupted");
             }
@@ -431,6 +463,11 @@ public class MainAbilitySlice extends AbilitySlice implements PermissionBridge.O
         }
     }
 
+    /**
+     * SurfaceCallBack
+     *
+     * @since 2021-03-08
+     */
     class SurfaceCallBack implements SurfaceOps.Callback {
         @Override
         public void surfaceCreated(SurfaceOps callbackSurfaceOps) {
@@ -441,29 +478,13 @@ public class MainAbilitySlice extends AbilitySlice implements PermissionBridge.O
         }
 
         @Override
-        public void surfaceChanged(SurfaceOps callbackSurfaceOps, int format, int width, int height) {}
+        public void surfaceChanged(SurfaceOps callbackSurfaceOps, int format, int width, int height) {
+        }
 
         @Override
-        public void surfaceDestroyed(SurfaceOps callbackSurfaceOps) {}
+        public void surfaceDestroyed(SurfaceOps callbackSurfaceOps) {
+        }
     }
-
-    private EventHandler handler =
-            new EventHandler(EventRunner.current()) {
-                @Override
-                protected void processEvent(InnerEvent event) {
-                    switch (event.eventId) {
-                        case EVENT_IMAGESAVING_PROMTING:
-                            HiLog.info(TAG, "EVENT_IMAGESAVING_PROMTING");
-                            MyDrawTask drawTask = new MyDrawTask(smallImage);
-                            smallImage.addDrawTask(drawTask);
-                            drawTask.putPixelMap(CameraUtil.getPixelMap(bytes, "", 1));
-                            smallImage.setEnabled(true);
-                            break;
-                        default:
-                            break;
-                    }
-                }
-            };
 
     /**
      * showBigPic
@@ -495,26 +516,28 @@ public class MainAbilitySlice extends AbilitySlice implements PermissionBridge.O
 
     private AsrIntent setStartIntent() {
         AsrIntent asrIntent = new AsrIntent();
-        asrIntent.setVadEndWaitMs(2000);
-        asrIntent.setVadFrontWaitMs(4800);
-        asrIntent.setTimeoutThresholdMs(20000);
+        asrIntent.setVadEndWaitMs(VAD_END_WAIT_MS);
+        asrIntent.setVadFrontWaitMs(VAD_FRONT_WAIT_MS);
+        asrIntent.setTimeoutThresholdMs(TIMEOUT_DURATION);
         return asrIntent;
     }
 
     /**
      * Obtains PCM audio streams and sends them to the ASR engine during recording.
+     *
+     * @since 2021-03-08
      */
     private class AudioCaptureRunnable implements Runnable {
         @Override
         public void run() {
-            byte[] buffers = new byte[1280];
+            byte[] buffers = new byte[BYTES_LENGTH];
             audioCapturer.start();
             while (isRecord) {
-                int ret = audioCapturer.read(buffers, 0, 1280);
+                int ret = audioCapturer.read(buffers, 0, BYTES_LENGTH);
                 if (ret <= 0) {
                     HiLog.error(TAG, "======Error read data");
                 } else {
-                    asrClient.writePcm(buffers, buffers.length);
+                    asrClient.writePcm(buffers, BYTES_LENGTH);
                 }
             }
         }

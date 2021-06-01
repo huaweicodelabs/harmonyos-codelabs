@@ -2,42 +2,36 @@
 apply plugin: 'com.huawei.ohos.app'
 
 ohos {
-    compileSdkVersion 4
+    compileSdkVersion 5
     defaultConfig {
-        compatibleSdkVersion 3
+        compatibleSdkVersion 4
     }
 }
-	
+
 buildscript {
     repositories {
         maven {
-            url 'http://repo.ark.tools.huawei.com/artifactory/maven-public/'
+            url 'https://repo.huaweicloud.com/repository/maven/'
         }
         maven {
             url 'https://developer.huawei.com/repo/'
         }
-		maven {
-            url 'http://artifactory.cde.huawei.com/artifactory/Product-Binary-Release'
-        }
-		jcenter()
+        jcenter()
     }
     dependencies {
-        classpath 'com.huawei.ohos:hap:2.4.1.1'
-        classpath 'com.huawei.ohos:decctest:1.0.0.+'
+        classpath 'com.huawei.ohos:hap:2.4.2.7'
+        classpath 'com.huawei.ohos:decctest:1.0.0.7'
     }
 }
 
 allprojects {
     repositories {
         maven {
-            url 'https://mirrors.huaweicloud.com/repository/maven/'
+            url 'https://repo.huaweicloud.com/repository/maven/'
         }
         maven {
             url 'https://developer.huawei.com/repo/'
         }
-		maven {
-            url 'http://artifactory.cde.huawei.com/artifactory/Product-Binary-Release'
-        }
-		jcenter()
+        jcenter()
     }
 }

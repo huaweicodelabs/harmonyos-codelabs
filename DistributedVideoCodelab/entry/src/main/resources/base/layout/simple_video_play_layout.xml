@@ -2,13 +2,23 @@
     xmlns:ohos="http://schemas.huawei.com/res/ohos"
     ohos:id="$+id:parent"
     ohos:height="match_parent"
-    ohos:width="match_parent">
+    ohos:width="match_parent"
+    ohos:alignment="center"
+    ohos:background_element="#ffffff">
 
-    <DependentLayout
-        ohos:id="$+id:parent_layout"
+    <ohos.codelabs.distributedvideo.player.view.PlayerView
+        ohos:id="$+id:player_view"
         ohos:height="match_parent"
-        ohos:width="match_parent"
-        ohos:alignment="center"
-        ohos:background_element="#ffffff"/>
+        ohos:width="match_parent"/>
+
+    <ohos.codelabs.distributedvideo.player.view.PlayerLoading
+        ohos:id="$+id:loading_view"
+        ohos:height="match_parent"
+        ohos:width="match_parent"/>
+
+    <ohos.codelabs.distributedvideo.player.view.SimplePlayerController
+        ohos:id="$+id:controller_view"
+        ohos:height="match_parent"
+        ohos:width="match_parent"/>
 
 </DependentLayout>

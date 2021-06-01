@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 Huawei Device Co., Ltd. All rights reserved.
+ * Copyright (c) Huawei Technologies Co., Ltd. 2021-2021. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,98 +17,96 @@
 package com.huawei.codelab.slice;
 
 import com.huawei.codelab.ResourceTable;
-import com.huawei.codelab.player.constant.Constants;
-import com.huawei.codelab.player.component.PlayerLoading;
-import com.huawei.codelab.player.component.SimplePlayerController;
-import com.huawei.codelab.util.AbilitySliceRouteUtil;
-import com.huawei.codelab.util.LogUtil;
 import com.huawei.codelab.player.HmPlayer;
 import com.huawei.codelab.player.api.ImplPlayer;
+import com.huawei.codelab.player.constant.Constants;
+import com.huawei.codelab.player.view.PlayerLoading;
+import com.huawei.codelab.player.view.PlayerView;
+import com.huawei.codelab.player.view.SimplePlayerController;
+import com.huawei.codelab.util.LogUtil;
+import com.huawei.codelab.util.ScreenUtils;
 
 import ohos.aafwk.ability.AbilitySlice;
-import ohos.aafwk.ability.fraction.Fraction;
 import ohos.aafwk.content.Intent;
 import ohos.agp.components.DependentLayout;
+import ohos.app.dispatcher.task.TaskPriority;
+import ohos.bundle.AbilityInfo;
 
 /**
- * PlayerAbilitySlice
+ * SimplePlayerAbilitySlice
  *
- * @since 2020-12-04
+ * @since 2021-04-04
  */
 public class SimplePlayerAbilitySlice extends AbilitySlice {
     private static final String TAG = SimplePlayerAbilitySlice.class.getSimpleName();
-    private static ImplPlayer implPlayer;
-    private int startMillisecond;
+    private ImplPlayer player;
+    private DependentLayout parentLayout;
+    private PlayerView playerView;
+    private PlayerLoading loadingView;
+    private SimplePlayerController controllerView;
     private String url = "entry/resources/base/media/gubeishuizhen.mp4";
 
     @Override
     public void onStart(Intent intent) {
         super.onStart(intent);
         super.setUIContent(ResourceTable.Layout_simple_video_play_layout);
-        startMillisecond = intent.getIntParam(Constants.INTENT_STARTTIME_PARAM, 0);
+        player = new HmPlayer.Builder(this).setFilePath(url).create();
+        player.getLifecycle().onStart();
         initComponent();
-        implPlayer.getLifecycle().onStart();
-    }
-
-    public static ImplPlayer getImplPlayer() {
-        return implPlayer;
     }
 
     private void initComponent() {
-        Fraction fraction = new Fraction();
-        DependentLayout layout = null;
         if (findComponentById(ResourceTable.Id_parent) instanceof DependentLayout) {
-            layout = (DependentLayout) findComponentById(ResourceTable.Id_parent);
+            parentLayout = (DependentLayout) findComponentById(ResourceTable.Id_parent);
         }
+        if (findComponentById(ResourceTable.Id_player_view) instanceof PlayerView) {
+            playerView = (PlayerView) findComponentById(ResourceTable.Id_player_view);
+        }
+        if (findComponentById(ResourceTable.Id_loading_view) instanceof PlayerLoading) {
+            loadingView = (PlayerLoading) findComponentById(ResourceTable.Id_loading_view);
+        }
+        if (findComponentById(ResourceTable.Id_controller_view) instanceof SimplePlayerController) {
+            controllerView = (SimplePlayerController) findComponentById(ResourceTable.Id_controller_view);
+        }
+        playerView.bind(player);
+        loadingView.bind(player);
+        controllerView.bind(player);
+    }
 
-        DependentLayout playerLayout = null;
-        if (findComponentById(ResourceTable.Id_parent_layout) instanceof DependentLayout) {
-            playerLayout = (DependentLayout) findComponentById(ResourceTable.Id_parent_layout);
-        }
-        implPlayer = new HmPlayer.Builder(this).setStartMillisecond(startMillisecond).setFilePath(url).create();
-        SimplePlayerController simplePlayerController = new SimplePlayerController(this, implPlayer);
-        PlayerLoading playerLoading = new PlayerLoading(this, implPlayer);
-        playerLayout.addComponent(implPlayer.getPlayerView());
-        playerLayout.addComponent(playerLoading);
-        playerLayout.addComponent(simplePlayerController);
-        implPlayer.play();
+    @Override
+    protected void onOrientationChanged(AbilityInfo.DisplayOrientation displayOrientation) {
+        super.onOrientationChanged(displayOrientation);
+        int screenWidth = ScreenUtils.getScreenWidth(this);
+        parentLayout.setWidth(screenWidth);
+        player.openGesture(displayOrientation == AbilityInfo.DisplayOrientation.LANDSCAPE);
     }
 
     @Override
     public void onActive() {
         super.onActive();
-        AbilitySliceRouteUtil.getInstance().addRoute(this);
-    }
-
-    @Override
-    protected void onInactive() {
-        LogUtil.info(TAG, "onInactive is called");
-        super.onInactive();
+        getGlobalTaskDispatcher(TaskPriority.DEFAULT).delayDispatch(() -> player.play(), Constants.NUMBER_1000);
     }
 
     @Override
     public void onForeground(Intent intent) {
-        implPlayer.getLifecycle().onForeground();
+        player.getLifecycle().onForeground();
         super.onForeground(intent);
     }
 
     @Override
     protected void onBackground() {
         LogUtil.info(TAG, "onBackground is called");
-        implPlayer.getLifecycle().onBackground();
+        player.getLifecycle().onBackground();
         super.onBackground();
-    }
-
-    @Override
-    protected void onBackPressed() {
-        super.onBackPressed();
     }
 
     @Override
     protected void onStop() {
         LogUtil.info(TAG, "onStop is called");
-        AbilitySliceRouteUtil.getInstance().removeRoute(this);
-        implPlayer.getLifecycle().onStop();
+        loadingView.unbind();
+        controllerView.unbind();
+        playerView.unbind();
+        player.getLifecycle().onStop();
         super.onStop();
     }
 }

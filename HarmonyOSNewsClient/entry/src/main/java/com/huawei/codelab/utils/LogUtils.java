@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 Huawei Device Co., Ltd.All rights reserved.
+ * Copyright (c) 2021 Huawei Device Co., Ltd.
  * Licensed under the Apache License,Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -39,7 +39,7 @@ public class LogUtils {
      * @param tag log tag
      * @param msg log message
      */
-    public static void i(String tag, String msg) {
+    public static void info(String tag, String msg) {
         HiLog.info(LABEL_LOG, LOG_FORMAT, tag, msg);
     }
 
@@ -49,7 +49,7 @@ public class LogUtils {
      * @param tag log tag
      * @param msg log message
      */
-    public static void e(String tag, String msg) {
+    public static void error(String tag, String msg) {
         HiLog.info(LABEL_LOG, LOG_FORMAT, tag, msg);
     }
 }

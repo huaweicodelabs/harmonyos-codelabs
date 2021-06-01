@@ -1,7 +1,6 @@
 /*
- * Copyright (c) Huawei Technologies Co., Ltd. 2021-2021. All rights reserved.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Licensed under the Apache License,Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -32,7 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * MyAlertDialog
+ * 设备选择弹框
  *
  * @since 2021-02-25
  */
@@ -44,24 +43,24 @@ public class SelectDeviceDialog {
     private List<DeviceInfo> deviceIfs = new ArrayList<>(INIT_SIZE);
 
     /**
-     * dialog select item listener
+     * 设备选择监听
      *
      * @since 2021-02-25
      */
     public interface SelectResultListener {
         /**
-         * select call back
+         * 设备选择回调
          *
-         * @param deviceInfo device info
+         * @param deviceInfo 设备信息
          */
         void callBack(DeviceInfo deviceInfo);
     }
 
     /**
-     * SelectDeviceDialog
+     * 设备选择回调弹框
      *
-     * @param context context
-     * @param callBack callBack
+     * @param context 上下文
+     * @param callBack 回调
      * @since 2021-02-25
      */
     public SelectDeviceDialog(Context context, SelectResultListener callBack) {
@@ -102,7 +101,7 @@ public class SelectDeviceDialog {
     }
 
     /**
-     * show dialog
+     * 显示弹框
      */
     public void show() {
         commonDialog.show();

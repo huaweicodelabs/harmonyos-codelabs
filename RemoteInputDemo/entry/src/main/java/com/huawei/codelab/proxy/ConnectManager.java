@@ -1,7 +1,6 @@
 /*
- * Copyright (c) Huawei Technologies Co., Ltd. 2021-2021. All rights reserved.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Licensed under the Apache License,Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -21,24 +20,24 @@ import ohos.app.Context;
 import java.util.Map;
 
 /**
- * ConnectManager
+ * 远程连接管理类接口
  *
  * @since 2021-02-25
  */
 public interface ConnectManager {
     /**
-     * 连接远程pa
+     * 连接远程PA
      *
-     * @param context context
-     * @param deviceId deviceId
+     * @param context 上下文
+     * @param deviceId 设备id
      */
     void connectPa(Context context, String deviceId);
 
     /**
-     * 发送移动请求到大屏PA
+     * 发送指令
      *
-     * @param requestType requestType
-     * @param params params
+     * @param requestType 指令类型
+     * @param params 指令参数
      */
     void sendRequest(int requestType, Map<String, String> params);
 }

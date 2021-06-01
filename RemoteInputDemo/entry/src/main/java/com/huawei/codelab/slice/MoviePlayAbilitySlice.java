@@ -1,7 +1,6 @@
 /*
- * Copyright (c) Huawei Technologies Co., Ltd. 2021-2021. All rights reserved.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Licensed under the Apache License,Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -36,7 +35,7 @@ import ohos.media.player.Player;
 import java.io.IOException;
 
 /**
- * MoviePlayAbilitySlice
+ * 视频播放界面
  *
  * @since 2021-03-05
  */
@@ -70,6 +69,7 @@ public class MoviePlayAbilitySlice extends AbilitySlice {
     public void onStart(Intent intent) {
         super.onStart(intent);
         super.setUIContent(ResourceTable.Layout_ability_movie_play);
+
         // 全屏设置
         WindowManagerUtils.setWindows();
         WindowManager.getInstance().getTopWindow().get().setTransparent(true); // 不设置窗体透明会挡住播放内容

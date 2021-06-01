@@ -1,7 +1,6 @@
 /*
- * Copyright (c) Huawei Technologies Co., Ltd. 2021-2021. All rights reserved.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Licensed under the Apache License,Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -17,13 +16,13 @@
 package com.huawei.codelab.constants;
 
 /**
- * 事件名称
+ * 事件
  *
  * @since 2021-02-26
  */
 public class EventConstants {
     /**
-     * move left
+     * 远程遥控事件
      *
      */
     public static final String SCREEN_REMOTE_CONTROLL_EVENT = "screen_remote_control_event";

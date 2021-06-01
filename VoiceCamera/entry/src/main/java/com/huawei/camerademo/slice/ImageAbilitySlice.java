@@ -1,10 +1,10 @@
 /*
  * Copyright (c) 2021 Huawei Device Co., Ltd.
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Licensed under the Apache License,Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -31,7 +31,7 @@ import ohos.media.image.PixelMap;
 /**
  * ImageAbilitySlice
  *
- * @since 2021-3-8
+ * @since 2021-03-08
  */
 public class ImageAbilitySlice extends AbilitySlice {
     static final HiLogLabel TAG = new HiLogLabel(HiLog.LOG_APP, 0x00201, ImageAbilitySlice.class.getName());

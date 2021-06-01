@@ -1,7 +1,6 @@
 /*
- * Copyright (c) Huawei Technologies Co., Ltd. 2021-2021. All rights reserved.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Licensed under the Apache License,Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -17,33 +16,33 @@
 package com.huawei.codelab.constants;
 
 /**
- * Constants
+ * 移动指令
  *
  * @since 2021-02-04
  */
 public class Constants {
     /**
-     * move left
+     * 左
      *
      */
     public static final String MOVE_LEFT = "left";
     /**
-     *  move right
+     * 右
      *
      */
     public static final String MOVE_RIGHT = "right";
     /**
-     * move down
+     * 下
      *
      */
     public static final String MOVE_DOWN = "down";
     /**
-     * move up
+     * 上
      *
      */
     public static final String MOVE_UP = "up";
     /**
-     * go back
+     * 返回
      *
      */
     public static final String GO_BACK = "goback";

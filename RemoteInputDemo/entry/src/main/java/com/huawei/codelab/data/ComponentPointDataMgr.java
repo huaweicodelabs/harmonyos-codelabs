@@ -1,7 +1,6 @@
 /*
- * Copyright (c) Huawei Technologies Co., Ltd. 2021-2021. All rights reserved.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Licensed under the Apache License,Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -21,7 +20,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * 影片静态类
+ * 影片静态信息类
  *
  * @since 2021-02-26
  */
@@ -55,11 +54,11 @@ public class ComponentPointDataMgr {
     }
 
     /**
-     * 根据坐标获取当前焦点
+     * 获取移动影片
      *
-     * @param pointX X轴坐标
-     * @param pointY Y轴坐标
-     * @return 返回
+     * @param pointX x位置
+     * @param pointY Y位置
+     * @return 影片位置信息
      */
     public static Optional<ComponentPointData> getMoviePoint(int pointX, int pointY) {
         for (ComponentPointData componentPointData : componentPointDataMgrs) {
@@ -71,10 +70,10 @@ public class ComponentPointDataMgr {
     }
 
     /**
-     * 根据影片名称获取焦点
+     * 获取当前聚焦影片位置
      *
-     * @param name 名称
-     * @return 返回
+     * @param name 影片名
+     * @return 影片位置信息
      */
     public static Optional<ComponentPointData> getConstantMovie(String name) {
         for (ComponentPointData componentPointData : componentPointDataMgrs) {

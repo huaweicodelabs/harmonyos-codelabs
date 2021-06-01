@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DirectionalLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:height="match_parent"
+    ohos:width="match_parent"
+    ohos:orientation="vertical">
+
+    <Text
+        ohos:height="match_content"
+        ohos:width="match_content"
+        ohos:left_margin="10vp"
+        ohos:text="通知音量"
+        ohos:text_size="40"
+        ohos:top_margin="50vp"/>
+
+    <Slider
+        ohos:id="$+id:sound_volume_bar"
+        ohos:height="8vp"
+        ohos:width="match_parent"
+        ohos:left_margin="10vp"
+        ohos:progress_color="#FFFFFFFF"
+        ohos:progress_element="#33FFFFFF"
+        ohos:right_margin="10vp"
+        ohos:top_margin="10vp"/>
+
+    <Text
+        ohos:height="match_content"
+        ohos:width="match_content"
+        ohos:left_margin="10vp"
+        ohos:text="媒体音量"
+        ohos:text_size="40"
+        ohos:top_margin="50vp"/>
+
+    <Slider
+        ohos:id="$+id:sound_volume_bar2"
+        ohos:height="8vp"
+        ohos:width="match_parent"
+        ohos:left_margin="10vp"
+        ohos:progress_color="#FFFFFFFF"
+        ohos:progress_element="#33FFFFFF"
+        ohos:right_margin="10vp"
+        ohos:top_margin="10vp"/>
+
+    <Text
+        ohos:height="match_content"
+        ohos:width="match_content"
+        ohos:left_margin="10vp"
+        ohos:text="通话音量"
+        ohos:text_size="40"
+        ohos:top_margin="50vp"/>
+
+    <Slider
+        ohos:id="$+id:sound_volume_bar3"
+        ohos:height="8vp"
+        ohos:width="match_parent"
+        ohos:left_margin="10vp"
+        ohos:progress_color="#FFFFFFFF"
+        ohos:progress_element="#33FFFFFF"
+        ohos:right_margin="10vp"
+        ohos:top_margin="10vp"/>
+
+    <Button
+        ohos:id="$+id:sound_volume_tone"
+        ohos:height="match_content"
+        ohos:width="match_content"
+        ohos:background_element="gray"
+        ohos:layout_alignment="horizontal_center"
+        ohos:text="tone音"
+        ohos:text_size="30vp"
+        ohos:top_margin="30vp"
+        ohos:visibility="hide"/>
+</DirectionalLayout>

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 Huawei Device Co., Ltd.All rights reserved.
+ * Copyright (c) 2021 Huawei Device Co., Ltd.
  * Licensed under the Apache License,Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -17,10 +17,10 @@ package com.huawei.codelab.provider;
 
 import com.huawei.codelab.ResourceTable;
 
+import ohos.agp.components.BaseItemProvider;
 import ohos.agp.components.Component;
 import ohos.agp.components.ComponentContainer;
 import ohos.agp.components.LayoutScatter;
-import ohos.agp.components.BaseItemProvider;
 import ohos.agp.components.Text;
 import ohos.app.Context;
 import ohos.distributedschedule.interwork.DeviceInfo;
@@ -54,13 +54,13 @@ public class DevicesListProvider extends BaseItemProvider {
     }
 
     @Override
-    public Object getItem(int i) {
-        return deviceInfoList.get(i);
+    public Object getItem(int position) {
+        return deviceInfoList.get(position);
     }
 
     @Override
-    public long getItemId(int i) {
-        return i;
+    public long getItemId(int position) {
+        return position;
     }
 
     @Override
@@ -70,7 +70,7 @@ public class DevicesListProvider extends BaseItemProvider {
         if (temp == null) {
             temp = LayoutScatter.getInstance(context).parse(ResourceTable.Layout_device_list_item, null, false);
             viewHolder = new ViewHolder();
-            viewHolder.devicesName = (Text) temp.findComponentById(ResourceTable.Id_item_chlid_textview);
+            viewHolder.devicesName = (Text) temp.findComponentById(ResourceTable.Id_item_child_textview);
             temp.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) temp.getTag();

@@ -15,6 +15,9 @@
     {
       "name": "half_transparent",
       "value": "#55000000"
+    },    {
+      "name": "dark_grey",
+      "value": "#282828"
     }
   ]
 }

@@ -1,10 +1,10 @@
 /*
  * Copyright (c) 2021 Huawei Device Co., Ltd.
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Licensed under the Apache License,Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -23,7 +23,7 @@ import ohos.media.image.common.Size;
 /**
  * CameraUtil
  *
- * @since 2021-3-8
+ * @since 2021-03-08
  */
 public class CameraUtil {
     /**
@@ -34,7 +34,13 @@ public class CameraUtil {
     /**
      * is camera rear
      */
-    public static boolean isCameraRear = false;
+    private static boolean isCameraRear = false;
+
+    private static final int DEGREES_90 = 90;
+    private static final int DEGREES_270 = 270;
+
+    private CameraUtil() {
+    }
 
     /**
      * Obtains the PixelMap of an image.
@@ -57,8 +63,12 @@ public class CameraUtil {
         }
         ImageSource.DecodingOptions decodingOpts = new ImageSource.DecodingOptions();
         decodingOpts.desiredSize = new Size(0, 0);
-        decodingOpts.rotateDegrees = (isCameraRear ? 270 : 90) * rotateCount;
+        decodingOpts.rotateDegrees = (isCameraRear ? DEGREES_270 : DEGREES_90) * rotateCount;
         decodingOpts.desiredPixelFormat = PixelFormat.ARGB_8888;
         return imageSource.createPixelmap(decodingOpts);
+    }
+
+    public static void setIsCameraRear(boolean isCameraRear) {
+        CameraUtil.isCameraRear = isCameraRear;
     }
 }

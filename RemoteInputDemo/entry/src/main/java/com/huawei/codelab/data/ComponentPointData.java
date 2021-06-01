@@ -1,7 +1,6 @@
 /*
- * Copyright (c) Huawei Technologies Co., Ltd. 2021-2021. All rights reserved.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Licensed under the Apache License,Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -37,7 +36,7 @@ public class ComponentPointData {
     private int pointY;
 
     /**
-     * 功能描述
+     * 构造函数
      *
      * @since 2021-03-12
      */
@@ -45,12 +44,12 @@ public class ComponentPointData {
     }
 
     /**
-     * ComponentPointData
+     * 构造函数
      *
-     * @param movieName movieName
-     * @param movieFirstName movieFirstName
-     * @param pointX pointX
-     * @param pointY pointY
+     * @param movieName 影片名
+     * @param movieFirstName 符合搜索条件的首个影片名
+     * @param pointX x坐标
+     * @param pointY y坐标
      * @since 2021-03-03
      */
     public ComponentPointData(String movieName, String movieFirstName, int pointX, int pointY) {

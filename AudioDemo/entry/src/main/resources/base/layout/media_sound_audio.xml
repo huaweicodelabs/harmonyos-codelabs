@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DirectionalLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:height="match_parent"
+    ohos:width="match_parent"
+    ohos:orientation="vertical">
+
+    <DirectionalLayout
+        ohos:height="match_content"
+        ohos:width="match_parent"
+        ohos:alignment="vertical_center"
+        ohos:bottom_margin="50vp"
+        ohos:left_margin="20vp"
+        ohos:orientation="horizontal"
+        ohos:top_margin="50vp">
+
+        <Text
+            ohos:id="$+id:real_time_text"
+            ohos:height="match_content"
+            ohos:width="match_content"
+            ohos:text="实时播放："
+            ohos:text_color="#000000"
+            ohos:text_size="14vp"/>
+
+        <Switch
+            ohos:id="$+id:real_time_switch"
+            ohos:height="20vp"
+            ohos:width="40vp"
+            ohos:text_state_off="off"
+            ohos:text_state_on="on"
+            ohos:thumb_element="$graphic:thumb"
+            ohos:track_element="$graphic:track"/>
+
+    </DirectionalLayout>
+
+
+    <SlideDrawer
+        ohos:id="$+id:slide_drawer_record"
+        ohos:height="match_content"
+        ohos:width="match_parent"
+        ohos:left_padding="20vp">
+
+        <DependentLayout
+            ohos:height="100vp"
+            ohos:width="100vp"
+            ohos:alignment="center">
+
+            <RoundProgressBar
+                ohos:id="$+id:progressbar_record"
+                ohos:height="match_parent"
+                ohos:width="match_parent"
+                ohos:background_instruct_element="$graphic:background_record_progress"
+                ohos:center_in_parent="true"
+                ohos:progress_color="$color:blue"
+                ohos:progress_width="10vp"
+                />
+
+            <Button
+                ohos:id="$+id:button_record"
+                ohos:height="80vp"
+                ohos:width="80vp"
+
+                ohos:background_element="$graphic:selector_button_record"
+                ohos:center_in_parent="true"/>
+
+            <Image
+                ohos:height="50vp"
+                ohos:width="50vp"
+                ohos:center_in_parent="true"
+                ohos:image_src="$media:ic_recorder"
+                ohos:scale_mode="stretch"/>
+        </DependentLayout>
+
+    </SlideDrawer>
+
+</DirectionalLayout>

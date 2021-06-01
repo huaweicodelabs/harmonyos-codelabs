@@ -1,10 +1,10 @@
 /*
  * Copyright (c) 2021 Huawei Device Co., Ltd.
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Licensed under the Apache License,Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -45,15 +45,29 @@ import java.util.List;
  */
 public class MathGameAbilitySlice extends AbilitySlice {
     private static final String TAG = CommonData.TAG + MathGameAbilitySlice.class.getSimpleName();
+
+    private static final int MAX_NUM = 100;
+
+    private static final int EXCEPTION_NUM = -1;
+
     private Text numberText1;
+
     private Text numberText2;
+
     private TextField answerText;
+
     private int number1;
+
     private int number2;
+
     private int answer;
+
     private Button answerBtn;
+
     private Button nextBtn;
+
     private Button helpBtn;
+
     private List<DeviceInfo> devices = new ArrayList<>();
 
     @Override
@@ -90,13 +104,79 @@ public class MathGameAbilitySlice extends AbilitySlice {
     }
 
     private void setQuestion() {
-        number1 = CommonUtil.getRandomInt(100);
-        number2 = CommonUtil.getRandomInt(100);
+        number1 = CommonUtil.getRandomInt(MAX_NUM);
+        number2 = CommonUtil.getRandomInt(MAX_NUM);
         numberText1.setText(number1 + "");
         numberText2.setText(number2 + "");
         answerText.setText("");
     }
 
+    private void checkAnswer() {
+        try {
+            answer = Integer.parseInt(answerText.getText());
+        } catch (NumberFormatException e) {
+            answer = EXCEPTION_NUM;
+        }
+        if (answer == number1 + number2) {
+            new ToastDialog(getContext()).setText("回答正确").setAlignment(LayoutAlignment.CENTER).show();
+        } else {
+            new ToastDialog(getContext()).setText("回答错误").setAlignment(LayoutAlignment.CENTER).show();
+        }
+    }
+
+    private void getDevices() {
+        if (devices.size() > 0) {
+            devices.clear();
+        }
+        List<DeviceInfo> deviceInfos =
+            DeviceManager.getDeviceList(ohos.distributedschedule.interwork.DeviceInfo.FLAG_GET_ONLINE_DEVICE);
+        LogUtil.info(TAG, "MathGameAbilitySlice deviceInfos size is :" + deviceInfos.size());
+        devices.addAll(deviceInfos);
+        showDevicesDialog();
+    }
+
+    private void showDevicesDialog() {
+        new SelectDeviceDialog(this, devices, deviceInfo -> {
+            startLocalFa(deviceInfo.getDeviceId());
+            startRemoteFa(deviceInfo.getDeviceId());
+        }).show();
+    }
+
+    private void startLocalFa(String deviceId) {
+        LogUtil.info(TAG, "startLocalFa......");
+        Intent intent = new Intent();
+        intent.setParam(CommonData.KEY_REMOTE_DEVICEID, deviceId);
+        intent.setParam(CommonData.KEY_IS_LOCAL, true);
+        Operation operation = new Intent.OperationBuilder().withBundleName(getBundleName())
+            .withAbilityName(CommonData.ABILITY_MAIN)
+            .withAction(CommonData.DRAW_PAGE)
+            .build();
+        intent.setOperation(operation);
+        startAbility(intent);
+    }
+
+    private void startRemoteFa(String deviceId) {
+        LogUtil.info(TAG, "startRemoteFa......");
+        String localDeviceId =
+            KvManagerFactory.getInstance().createKvManager(new KvManagerConfig(this)).getLocalDeviceInfo().getId();
+        Intent intent = new Intent();
+        intent.setParam(CommonData.KEY_REMOTE_DEVICEID, localDeviceId);
+        intent.setParam(CommonData.KEY_IS_LOCAL, false);
+        Operation operation = new Intent.OperationBuilder().withDeviceId(deviceId)
+            .withBundleName(getBundleName())
+            .withAbilityName(CommonData.ABILITY_MAIN)
+            .withAction(CommonData.DRAW_PAGE)
+            .withFlags(Intent.FLAG_ABILITYSLICE_MULTI_DEVICE)
+            .build();
+        intent.setOperation(operation);
+        startAbility(intent);
+    }
+
+    /**
+     * ButtonClick
+     *
+     * @since 2021-01-11
+     */
     private class ButtonClick implements Component.ClickedListener {
         @Override
         public void onClick(Component component) {
@@ -116,74 +196,4 @@ public class MathGameAbilitySlice extends AbilitySlice {
             }
         }
     }
-
-    private void checkAnswer() {
-        try {
-            answer = Integer.parseInt(answerText.getText());
-        } catch (NumberFormatException e) {
-            answer = -1;
-        }
-        if (answer == number1 + number2) {
-            new ToastDialog(getContext())
-                    .setText("回答正确")
-                    .setAlignment(LayoutAlignment.CENTER)
-                    .show();
-        } else {
-            new ToastDialog(getContext())
-                    .setText("回答错误")
-                    .setAlignment(LayoutAlignment.CENTER)
-                    .show();
-        }
-    }
-
-    private void getDevices() {
-        if (devices.size() > 0) {
-            devices.clear();
-        }
-        List<DeviceInfo> deviceInfos =
-                DeviceManager.getDeviceList(ohos.distributedschedule.interwork.DeviceInfo.FLAG_GET_ONLINE_DEVICE);
-        LogUtil.info(TAG, "MathGameAbilitySlice deviceInfos size is :" + deviceInfos.size());
-        devices.addAll(deviceInfos);
-        showDevicesDialog();
-    }
-
-    private void showDevicesDialog() {
-        new SelectDeviceDialog(this, devices, deviceInfo -> {
-            startLocalFa(deviceInfo.getDeviceId());
-            startRemoteFa(deviceInfo.getDeviceId());
-        }).show();
-    }
-
-    private void startLocalFa(String deviceId) {
-        LogUtil.info(TAG, "startLocalFa......");
-        Intent intent = new Intent();
-        intent.setParam(CommonData.KEY_REMOTE_DEVICEID, deviceId);
-        intent.setParam(CommonData.KEY_IS_LOCAL, true);
-        Operation operation = new Intent.OperationBuilder()
-                .withBundleName(getBundleName())
-                .withAbilityName(CommonData.ABILITY_MAIN)
-                .withAction(CommonData.DRAW_PAGE)
-                .build();
-        intent.setOperation(operation);
-        startAbility(intent);
-    }
-
-    private void startRemoteFa(String deviceId) {
-        LogUtil.info(TAG, "startRemoteFa......");
-        String localDeviceId = KvManagerFactory.getInstance()
-                .createKvManager(new KvManagerConfig(this)).getLocalDeviceInfo().getId();
-        Intent intent = new Intent();
-        intent.setParam(CommonData.KEY_REMOTE_DEVICEID, localDeviceId);
-        intent.setParam(CommonData.KEY_IS_LOCAL, false);
-        Operation operation = new Intent.OperationBuilder()
-                .withDeviceId(deviceId)
-                .withBundleName(getBundleName())
-                .withAbilityName(CommonData.ABILITY_MAIN)
-                .withAction(CommonData.DRAW_PAGE)
-                .withFlags(Intent.FLAG_ABILITYSLICE_MULTI_DEVICE)
-                .build();
-        intent.setOperation(operation);
-        startAbility(intent);
-    }
-
 }

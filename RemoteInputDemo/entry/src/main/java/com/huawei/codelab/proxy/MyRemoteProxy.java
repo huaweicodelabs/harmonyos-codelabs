@@ -1,7 +1,6 @@
 /*
- * Copyright (c) Huawei Technologies Co., Ltd. 2021-2021. All rights reserved.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Licensed under the Apache License,Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -27,7 +26,7 @@ import ohos.rpc.RemoteException;
 import java.util.Map;
 
 /**
- * 功能描述
+ * 远程连接代理类
  *
  * @since 2021-02-25
  */
@@ -37,11 +36,11 @@ public class MyRemoteProxy implements IRemoteBroker {
      */
     public static final int ERR_OK = 0;
     private static final String TAG = MyRemoteProxy.class.getSimpleName();
-    // request successful flag
+
     private final IRemoteObject remote;
 
     /**
-     * MyRemoteProxy
+     * 构造函数
      *
      * @param remote remote
      */

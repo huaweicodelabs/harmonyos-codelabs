@@ -1,7 +1,6 @@
 /*
- * Copyright (c) Huawei Technologies Co., Ltd. 2021-2021. All rights reserved.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Licensed under the Apache License,Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -150,20 +149,8 @@ public class HandleAbilitySlice extends AbilitySlice {
             int pointerCount = touchEvent.getPointerCount();
             switch (action) {
                 case TouchEvent.OTHER_POINT_DOWN:
-                    for (int i = 0; i < pointerCount; i++) {
-                        MmiPoint pointerPosition = touchEvent.getPointerPosition(i);
-                        boolean isInComponentArea =
-                            inComponentArea(imgA, pointerPosition.getX(), pointerPosition.getY());
-                        boolean isInComponentAreaB =
-                            inComponentArea(imgB, pointerPosition.getX(), pointerPosition.getY());
-                        if (isInComponentArea && isFlagA) {
-                            isFlagA = false;
-                            imgA.callOnClick();
-                        }
-                        if (isInComponentAreaB && isFlagB) {
-                            isFlagB = false;
-                            imgB.callOnClick();
-                        }
+                    for (int index = 0; index < pointerCount; index++) {
+                        otherPointDown(touchEvent, index);
                     }
                     break;
                 default:
@@ -172,6 +159,22 @@ public class HandleAbilitySlice extends AbilitySlice {
             return false;
         }
     };
+
+    private void otherPointDown(TouchEvent touchEvent, int index) {
+        MmiPoint pointerPosition = touchEvent.getPointerPosition(index);
+        boolean isInComponentArea =
+                inComponentArea(imgA, pointerPosition.getX(), pointerPosition.getY());
+        boolean isInComponentAreaB =
+                inComponentArea(imgB, pointerPosition.getX(), pointerPosition.getY());
+        if (isInComponentArea && isFlagA) {
+            isFlagA = false;
+            imgA.callOnClick();
+        }
+        if (isInComponentAreaB && isFlagB) {
+            isFlagB = false;
+            imgB.callOnClick();
+        }
+    }
 
     @Override
     public void onStart(Intent intent) {
@@ -252,10 +255,10 @@ public class HandleAbilitySlice extends AbilitySlice {
     private boolean connectRemotePa(String deviceId, int requestType) {
         Intent connectPaIntent = new Intent();
         Operation operation = new Intent.OperationBuilder().withDeviceId(deviceId)
-            .withBundleName(getBundleName())
-            .withAbilityName(GameServiceAbility.class.getName())
-            .withFlags(Intent.FLAG_ABILITYSLICE_MULTI_DEVICE)
-            .build();
+                .withBundleName(getBundleName())
+                .withAbilityName(GameServiceAbility.class.getName())
+                .withFlags(Intent.FLAG_ABILITYSLICE_MULTI_DEVICE)
+                .build();
         connectPaIntent.setOperation(operation);
 
         IAbilityConnection conn = new IAbilityConnection() {
@@ -264,13 +267,7 @@ public class HandleAbilitySlice extends AbilitySlice {
                 LogUtil.info(TAG, "onAbilityConnectDone......");
                 proxy = new GameRemoteProxy(remote, localDeviceId, calculAngle, handle);
                 LogUtil.error(TAG, "connectRemoteAbility done");
-                if (proxy != null) {
-                    try {
-                        proxy.senDataToRemote(requestType);
-                    } catch (RemoteException e) {
-                        LogUtil.error(TAG, "onAbilityConnectDone RemoteException");
-                    }
-                }
+                send(requestType);
             }
 
             @Override
@@ -283,6 +280,16 @@ public class HandleAbilitySlice extends AbilitySlice {
         };
         boolean ret = connectAbility(connectPaIntent, conn);
         return ret;
+    }
+
+    private void send(int requestType) {
+        if (proxy != null) {
+            try {
+                proxy.senDataToRemote(requestType);
+            } catch (RemoteException e) {
+                LogUtil.error(TAG, "onAbilityConnectDone RemoteException");
+            }
+        }
     }
 
     /**

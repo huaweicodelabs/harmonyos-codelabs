@@ -55,21 +55,21 @@ public class VideoMigrateService extends Ability {
 
     @Override
     protected IRemoteObject onConnect(Intent intent) {
-        return new MyBinder(DESCRIPTOR);
+        return new MyRemote(DESCRIPTOR);
     }
 
     /**
-     * MyBinder
+     * MyRemote
      *
      * @since 2020-12-04
      */
-    private class MyBinder extends VideoMigrationStub {
+    private class MyRemote extends VideoMigrationStub {
         /**
-         * constructor of PlayerLoading
+         * constructor of MyRemote
          *
          * @param descriptor descriptor
          */
-        MyBinder(String descriptor) {
+        MyRemote(String descriptor) {
             super(descriptor);
         }
 

@@ -1,7 +1,6 @@
 /*
- * Copyright (c) 2021 Huawei Device Co., Ltd. All rights reserved.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Licensed under the Apache License,Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -74,7 +73,7 @@ public class MainAbilitySlice extends AbilitySlice implements Component.ClickedL
             if (object instanceof AbilitySlice) {
                 present((AbilitySlice) object, new Intent());
             }
-        } catch (Exception e) {
+        } catch (ReflectiveOperationException e) {
             new ToastDialog(getContext())
                     .setText("Error!")
                     .show();

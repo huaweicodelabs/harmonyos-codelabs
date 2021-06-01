@@ -1,10 +1,10 @@
 /*
  * Copyright (c) 2021 Huawei Device Co., Ltd.
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Licensed under the Apache License,Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -14,6 +14,8 @@
  */
 
 package com.huawei.codelab.slice;
+
+import static ohos.security.SystemPermission.DISTRIBUTED_DATASYNC;
 
 import com.huawei.codelab.ResourceTable;
 import com.huawei.codelab.devices.SelectDeviceDialog;
@@ -46,14 +48,12 @@ import ohos.event.commonevent.CommonEventSupport;
 import ohos.event.commonevent.MatchingSkills;
 import ohos.rpc.IRemoteBroker;
 import ohos.rpc.IRemoteObject;
-import ohos.rpc.MessageParcel;
 import ohos.rpc.MessageOption;
+import ohos.rpc.MessageParcel;
 import ohos.rpc.RemoteException;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static ohos.security.SystemPermission.DISTRIBUTED_DATASYNC;
 
 /**
  * PictureGameAbilitySlice
@@ -62,50 +62,104 @@ import static ohos.security.SystemPermission.DISTRIBUTED_DATASYNC;
  */
 public class PictureGameAbilitySlice extends AbilitySlice {
     private static final String TAG = CommonData.TAG + PictureGameAbilitySlice.class.getSimpleName();
-    private static final int PERMISSION_CODE = 20201203;
-    private static final int DELAY_TIME = 10;
-    private Button restartButton;
-    private Button pictureTogether;
-    private Image image00 = null;
-    private Image image01 = null;
-    private Image image02 = null;
-    private Image image10 = null;
-    private Image image11 = null;
-    private Image image12 = null;
-    private Image image20 = null;
-    private Image image21 = null;
-    private Image image22 = null;
-    private Image[] imagePosition = {image00, image01, image02, image10, image11, image12, image20, image21, image22};
-    private int[] imageList = {ResourceTable.Media_picture_01, ResourceTable.Media_picture_02,
-            ResourceTable.Media_picture_03, ResourceTable.Media_picture_04,
-            ResourceTable.Media_picture_05, ResourceTable.Media_picture_06,
-            ResourceTable.Media_picture_07, ResourceTable.Media_picture_08,
-            ResourceTable.Media_picture_09};
-    private int[] imageResourceTable = {ResourceTable.Id_pt_0000, ResourceTable.Id_pt_0001, ResourceTable.Id_pt_0002,
-            ResourceTable.Id_pt_0100, ResourceTable.Id_pt_0101, ResourceTable.Id_pt_0102,
-            ResourceTable.Id_pt_0200, ResourceTable.Id_pt_0201, ResourceTable.Id_pt_0202};
-    private int[] imageIndex = new int[imageList.length];
 
-    private int imageX = 3;
-    private int imageY = 3;
+    private static final int PERMISSION_CODE = 20201203;
+
+    private static final int DELAY_TIME = 10;
+
+    private static final int DEFAULT_IMAGE_ID = -1;
+
+    private static final int DEFAULT_POSITION = -1;
+
+    private static final int MAX_RECIVE_TIME = 500;
+
+    private static final int LAST_IMAGE_INDEX = 8;
+
+    private static final int IMAGE_ROWS = 3;
+
+    private static final int IMAGE_COLUMNS = 3;
+
+    private static final int IMAGE_RANDOM_COUNT = 20;
+
+    private Button restartButton;
+
+    private Button pictureTogether;
+
+    private Image image00 = null;
+
+    private Image image01 = null;
+
+    private Image image02 = null;
+
+    private Image image10 = null;
+
+    private Image image11 = null;
+
+    private Image image12 = null;
+
+    private Image image20 = null;
+
+    private Image image21 = null;
+
+    private Image image22 = null;
+
+    private Image[] imagePositions = {image00, image01, image02, image10, image11, image12, image20, image21, image22};
+
+    private int[] images =
+        {ResourceTable.Media_picture_01, ResourceTable.Media_picture_02, ResourceTable.Media_picture_03,
+            ResourceTable.Media_picture_04, ResourceTable.Media_picture_05, ResourceTable.Media_picture_06,
+            ResourceTable.Media_picture_07, ResourceTable.Media_picture_08, ResourceTable.Media_picture_09};
+
+    private int[] imageResourceTables = {ResourceTable.Id_pt_0000, ResourceTable.Id_pt_0001, ResourceTable.Id_pt_0002,
+        ResourceTable.Id_pt_0100, ResourceTable.Id_pt_0101, ResourceTable.Id_pt_0102, ResourceTable.Id_pt_0200,
+        ResourceTable.Id_pt_0201, ResourceTable.Id_pt_0202};
+
+    private int[] imageIndexs = new int[images.length];
+
+    private int imageX = IMAGE_ROWS;
+
+    private int imageY = IMAGE_COLUMNS;
+
     private int imageCount = imageX * imageY;
+
     private int blankPosition = imageCount - 1;
+
     private int blankResId = ResourceTable.Id_pt_0202;
+
     private List<DeviceInfo> devices = new ArrayList<>();
+
     private PictureRemoteProxy proxy;
+
     private IAbilityConnection conn;
+
     private boolean isConnected = false;
+
     private MyCommonEventSubscriber subscriber;
 
     private String remoteDeviceId;
-    private boolean isLocal = true;
-    private String localDeviceId;
-    private int moveImageId = -1;
-    private int movePosition = -1;
 
-    private long sendTime = 0;
-    private long reciveTime = 0;
-    private boolean shareFlag = true;
+    private boolean isLocal = true;
+
+    private String localDeviceId;
+
+    private int moveImageId = DEFAULT_IMAGE_ID;
+
+    private int movePosition = DEFAULT_POSITION;
+
+    private long sendTime = 0L;
+
+    private long reciveTime = 0L;
+
+    private boolean isShare = true;
+
+    private static void grantPermission(Context context) {
+        LogUtil.info(TAG, "grantPermission");
+        if (context.verifySelfPermission(DISTRIBUTED_DATASYNC) != IBundleManager.PERMISSION_GRANTED) {
+            if (context.canRequestPermission(DISTRIBUTED_DATASYNC)) {
+                context.requestPermissionsFromUser(new String[] {DISTRIBUTED_DATASYNC}, PERMISSION_CODE);
+            }
+        }
+    }
 
     @Override
     public void onStart(Intent intent) {
@@ -129,15 +183,14 @@ public class PictureGameAbilitySlice extends AbilitySlice {
 
     private void initView(Intent intent) {
         LogUtil.info(TAG, "initView");
-        localDeviceId = KvManagerFactory.getInstance()
-                .createKvManager(new KvManagerConfig(this))
-                .getLocalDeviceInfo().getId();
+        localDeviceId =
+            KvManagerFactory.getInstance().createKvManager(new KvManagerConfig(this)).getLocalDeviceInfo().getId();
         isLocal = intent.getBooleanParam(CommonData.KEY_IS_LOCAL, true);
 
         for (int i = 0; i < imageCount; i++) {
-            if (findComponentById(imageResourceTable[i]) instanceof Image) {
-                imagePosition[i] = (Image) findComponentById(imageResourceTable[i]);
-                imagePosition[i].setClickedListener(new ImageClick());
+            if (findComponentById(imageResourceTables[i]) instanceof Image) {
+                imagePositions[i] = (Image) findComponentById(imageResourceTables[i]);
+                imagePositions[i].setClickedListener(new ImageClick());
             }
         }
         if (findComponentById(ResourceTable.Id_restart_button) instanceof Button) {
@@ -157,36 +210,15 @@ public class PictureGameAbilitySlice extends AbilitySlice {
         pictureRandom();
     }
 
-
     private void initRemoteView(Intent intent) {
         if (!isLocal) {
             remoteDeviceId = intent.getStringParam(CommonData.KEY_REMOTE_DEVICEID);
             connectRemotePa(remoteDeviceId, PictureRemoteProxy.REQUEST_SEND_DATA);
-            if (imageIndex != null) {
+            if (imageIndexs != null) {
                 updateDataInfo(intent);
             }
         }
     }
-
-    private class ImageClick implements Component.ClickedListener {
-        @Override
-        public void onClick(Component component) {
-            int imageId = component.getId();
-            for (int position = 0; position < imageIndex.length; position++) {
-                if (imageId == imageResourceTable[position]) {
-                    // Complete the picture movement and record the movement information
-                    moveFun(imageId, position);
-                    moveImageId = imageId;
-                    movePosition = position;
-                }
-            }
-            // Refresh the page display
-            setImageAndDecodeBounds(imageIndex);
-            // send data
-            senDataToRemoteFun();
-        }
-    }
-
 
     private void moveFun(int resourceId, int position) {
         LogUtil.info(TAG, "moveFun, resourceId is " + resourceId + " position is " + position);
@@ -196,8 +228,7 @@ public class PictureGameAbilitySlice extends AbilitySlice {
         int blankY = blankPosition % imageY;
         int num1 = Math.abs(positionX - blankX);
         int num2 = Math.abs(positionY - blankY);
-        LogUtil.info(TAG, "blankPosition is " + blankPosition +
-                " num1 is " + num1 + " num2 is " + num2);
+        LogUtil.info(TAG, "blankPosition is " + blankPosition + " num1 is " + num1 + " num2 is " + num2);
         if ((num1 == 0 && num2 == 1) || (num1 == 1 && num2 == 0)) {
             LogUtil.info(TAG, "can move image");
             if (findComponentById(resourceId) instanceof Image) {
@@ -205,12 +236,12 @@ public class PictureGameAbilitySlice extends AbilitySlice {
                 clickImage.setVisibility(Component.INVISIBLE);
             }
             Image blankButton = (Image) findComponentById(blankResId);
-            blankButton.setImageAndDecodeBounds(imageList[imageIndex[position]]);
+            blankButton.setPixelMap(images[imageIndexs[position]]);
             blankButton.setVisibility(Component.VISIBLE);
 
-            int imageTemp = imageIndex[position];
-            imageIndex[position] = imageIndex[blankPosition];
-            imageIndex[blankPosition] = imageTemp;
+            int imageTemp = imageIndexs[position];
+            imageIndexs[position] = imageIndexs[blankPosition];
+            imageIndexs[blankPosition] = imageTemp;
             LogUtil.info(TAG, "moveFun, come to change blank position");
             blankPosition = position;
             blankResId = resourceId;
@@ -226,8 +257,7 @@ public class PictureGameAbilitySlice extends AbilitySlice {
         int blankY = blankPosition % imageY;
         int num1 = Math.abs(positionX - blankX);
         int num2 = Math.abs(positionY - blankY);
-        LogUtil.info(TAG, "blankPosition is " + blankPosition +
-                " num1 is " + num1 + " num2 is " + num2);
+        LogUtil.info(TAG, "blankPosition is " + blankPosition + " num1 is " + num1 + " num2 is " + num2);
 
         if ((num1 == 0 && num2 == 1) || (num1 == 1 && num2 == 0)) {
             LogUtil.info(TAG, "setFlagValue, come to change blank position");
@@ -259,39 +289,38 @@ public class PictureGameAbilitySlice extends AbilitySlice {
         blankPosition = imageCount - 1;
     }
 
-    private void setImageClickable(boolean flag) {
-        LogUtil.info(TAG, "setImageClickable and flag is " + flag);
+    private void setImageClickable(boolean isClickable) {
+        LogUtil.info(TAG, "setImageClickable and flag is " + isClickable);
         for (int i = 0; i < imageCount; i++) {
-            imagePosition[i].setClickable(flag);
+            imagePositions[i].setClickable(isClickable);
         }
     }
 
     private void gameOverFun() {
-        boolean loop = true;
-        for (int i = 0; i < imageIndex.length; i++) {
-            if (imageIndex[i] != i) {
-                loop = false;
+        boolean isLoop = true;
+        for (int i = 0; i < imageIndexs.length; i++) {
+            if (imageIndexs[i] != i) {
+                isLoop = false;
                 break;
             }
         }
 
-        if (loop) {
+        if (isLoop) {
             LogUtil.info(TAG, "game is over");
             setImageClickable(false);
-            imagePosition[imageCount - 1].setImageAndDecodeBounds(ResourceTable.Media_picture_09);
-            imagePosition[imageCount - 1].setVisibility(Component.VISIBLE);
+            imagePositions[imageCount - 1].setPixelMap(ResourceTable.Media_picture_09);
+            imagePositions[imageCount - 1].setVisibility(Component.VISIBLE);
         }
     }
 
     private void connectRemotePa(String deviceId, int requestType) {
         if (!deviceId.isEmpty()) {
             Intent connectPaIntent = new Intent();
-            Operation operation = new Intent.OperationBuilder()
-                    .withDeviceId(deviceId)
-                    .withBundleName(getBundleName())
-                    .withAbilityName(CommonData.PICTURE_GAME_SERVICE_NAME)
-                    .withFlags(Intent.FLAG_ABILITYSLICE_MULTI_DEVICE)
-                    .build();
+            Operation operation = new Intent.OperationBuilder().withDeviceId(deviceId)
+                .withBundleName(getBundleName())
+                .withAbilityName(CommonData.PICTURE_GAME_SERVICE_NAME)
+                .withFlags(Intent.FLAG_ABILITYSLICE_MULTI_DEVICE)
+                .build();
             connectPaIntent.setOperation(operation);
 
             conn = new IAbilityConnection() {
@@ -302,7 +331,7 @@ public class PictureGameAbilitySlice extends AbilitySlice {
                 }
 
                 @Override
-                public void onAbilityDisconnectDone(ElementName elementName, int i) {
+                public void onAbilityDisconnectDone(ElementName elementName, int resultCode) {
                     disconnectAbility(this);
                     LogUtil.info(TAG, "onAbilityDisconnectDone......");
                 }
@@ -323,48 +352,8 @@ public class PictureGameAbilitySlice extends AbilitySlice {
         }
     }
 
-    class PictureRemoteProxy implements IRemoteBroker {
-        private static final int ERR_OK = 0;
-        private static final int REQUEST_START_ABILITY = 1;
-        private static final int REQUEST_SEND_DATA = 2;
-        private final IRemoteObject remote;
-
-        PictureRemoteProxy(IRemoteObject remote) {
-            this.remote = remote;
-        }
-
-        @Override
-        public IRemoteObject asObject() {
-            return remote;
-        }
-
-        private void senDataToRemote(int requestType) throws RemoteException {
-            MessageParcel data = MessageParcel.obtain();
-            MessageParcel reply = MessageParcel.obtain();
-            try {
-                isLocal = false;
-                data.writeIntArray(imageIndex);
-                data.writeString(localDeviceId);
-                data.writeBoolean(isLocal);
-                data.writeInt(moveImageId);
-                data.writeInt(movePosition);
-                MessageOption option = new MessageOption(MessageOption.TF_SYNC);
-                remote.sendRequest(requestType, data, reply, option);
-                int ec = reply.readInt();
-                if (ec != ERR_OK) {
-                    LogUtil.error(TAG, "ec != ERR_OK RemoteException");
-                }
-            } catch (RemoteException e) {
-                LogUtil.error(TAG, "RemoteException");
-            } finally {
-                data.reclaim();
-                reply.reclaim();
-            }
-        }
-    }
-
     private void senDataToRemoteFun() {
-        if (!shareFlag) {
+        if (!isShare) {
             LogUtil.info(TAG, "should not senDataToRemote");
             return;
         }
@@ -381,22 +370,12 @@ public class PictureGameAbilitySlice extends AbilitySlice {
         }
     }
 
-    private static void grantPermission(Context context) {
-        LogUtil.info(TAG, "grantPermission");
-        if (context.verifySelfPermission(DISTRIBUTED_DATASYNC) != IBundleManager.PERMISSION_GRANTED) {
-            if (context.canRequestPermission(DISTRIBUTED_DATASYNC)) {
-                context.requestPermissionsFromUser(
-                        new String[]{DISTRIBUTED_DATASYNC}, PERMISSION_CODE);
-            }
-        }
-    }
-
     private void getDevices() {
         if (devices.size() > 0) {
             devices.clear();
         }
         List<DeviceInfo> deviceInfos =
-                DeviceManager.getDeviceList(ohos.distributedschedule.interwork.DeviceInfo.FLAG_GET_ONLINE_DEVICE);
+            DeviceManager.getDeviceList(ohos.distributedschedule.interwork.DeviceInfo.FLAG_GET_ONLINE_DEVICE);
         LogUtil.info(TAG, "deviceInfos size is :" + deviceInfos.size());
         devices.addAll(deviceInfos);
         showDevicesDialog();
@@ -408,50 +387,25 @@ public class PictureGameAbilitySlice extends AbilitySlice {
         }).show();
     }
 
-    class MyCommonEventSubscriber extends CommonEventSubscriber {
-        MyCommonEventSubscriber(CommonEventSubscribeInfo info) {
-            super(info);
-        }
-
-        @Override
-        public void onReceiveEvent(CommonEventData commonEventData) {
-            reciveTime = System.currentTimeMillis();
-            LogUtil.info(TAG, "onReceiveEvent, sendTime - reciveTime is " + (sendTime - reciveTime));
-            if (Math.abs(sendTime - reciveTime) <= 500) {
-                LogUtil.info(TAG, "almost at the same time, do not handle recive msg");
-                shareFlag = false;
-                new ToastDialog(getContext())
-                        .setText("操作冲突，后续独立")
-                        .setAlignment(LayoutAlignment.CENTER)
-                        .show();
-                return;
-            }
-
-            Intent intent = commonEventData.getIntent();
-            updateDataInfo(intent);
-        }
-    }
-
     private void updateDataInfo(Intent intent) {
-        imageIndex = intent.getIntArrayParam(CommonData.KEY_IMAGE_INDEX);
-        moveImageId = intent.getIntParam(CommonData.KEY_MOVE_IMAGE_ID, -1);
-        movePosition = intent.getIntParam(CommonData.KEY_MOVE_POSITION, -1);
+        imageIndexs = intent.getIntArrayParam(CommonData.KEY_IMAGE_INDEX);
+        moveImageId = intent.getIntParam(CommonData.KEY_MOVE_IMAGE_ID, DEFAULT_IMAGE_ID);
+        movePosition = intent.getIntParam(CommonData.KEY_MOVE_POSITION, DEFAULT_POSITION);
         LogUtil.info(TAG, "receive moveImageId:" + moveImageId);
         LogUtil.info(TAG, "receive movePosition:" + movePosition);
-        getUITaskDispatcher().delayDispatch(() -> setImageAndDecodeBounds(imageIndex), DELAY_TIME);
+        getUITaskDispatcher().delayDispatch(this::setImages, DELAY_TIME);
     }
 
+    private void setImages() {
+        LogUtil.info(TAG, "setImages");
+        if (imageIndexs != null && imageIndexs.length > 0) {
+            for (int index = 0; index < imageIndexs.length; index++) {
+                imagePositions[index].setPixelMap(images[imageIndexs[index]]);
 
-    private void setImageAndDecodeBounds(int[] imageIndex) {
-        LogUtil.info(TAG, "setImageAndDecodeBounds");
-        if (imageIndex != null && imageIndex.length > 0) {
-            for (int index = 0; index < imageIndex.length; index++) {
-                imagePosition[index].setImageAndDecodeBounds(imageList[imageIndex[index]]);
-
-                if (imageIndex[index] == 8) {
-                    imagePosition[index].setVisibility(Component.INVISIBLE);
+                if (imageIndexs[index] == LAST_IMAGE_INDEX) {
+                    imagePositions[index].setVisibility(Component.INVISIBLE);
                 } else {
-                    imagePosition[index].setVisibility(Component.VISIBLE);
+                    imagePositions[index].setVisibility(Component.VISIBLE);
                 }
             }
         }
@@ -488,19 +442,117 @@ public class PictureGameAbilitySlice extends AbilitySlice {
 
     private void pictureRandom() {
         LogUtil.info(TAG, "pictureRandom start");
-        for (int i = 0; i < imageList.length; i++) {
-            imageIndex[i] = i;
+        for (int i = 0; i < images.length; i++) {
+            imageIndexs[i] = i;
         }
-        for (int count = 0; count < 20; count++) {
-            int rand1 = CommonUtil.getRandomInt(imageList.length - 1);
-            int rand2 = CommonUtil.getRandomInt(imageList.length - 1);
-            int imageTemp = imageIndex[rand1];
-            imageIndex[rand1] = imageIndex[rand2];
-            imageIndex[rand2] = imageTemp;
+        for (int count = 0; count < IMAGE_RANDOM_COUNT; count++) {
+            int rand1 = CommonUtil.getRandomInt(images.length - 1);
+            int rand2 = CommonUtil.getRandomInt(images.length - 1);
+            int imageTemp = imageIndexs[rand1];
+            imageIndexs[rand1] = imageIndexs[rand2];
+            imageIndexs[rand2] = imageTemp;
         }
         for (int i = 0; i < imageCount; i++) {
-            imagePosition[i].setImageAndDecodeBounds(imageList[imageIndex[i]]);
+            imagePositions[i].setPixelMap(images[imageIndexs[i]]);
         }
         LogUtil.info(TAG, "pictureRandom end");
+    }
+
+    /**
+     * ImageClick
+     *
+     * @since 2021-01-11
+     */
+    private class ImageClick implements Component.ClickedListener {
+        @Override
+        public void onClick(Component component) {
+            int imageId = component.getId();
+            for (int position = 0; position < imageIndexs.length; position++) {
+                if (imageId == imageResourceTables[position]) {
+                    // Complete the picture movement and record the movement information
+                    moveFun(imageId, position);
+                    moveImageId = imageId;
+                    movePosition = position;
+                }
+            }
+            // Refresh the page display
+            setImages();
+            // send data
+            senDataToRemoteFun();
+        }
+    }
+
+    /**
+     * PictureRemoteProxy
+     *
+     * @since 2021-01-11
+     */
+    class PictureRemoteProxy implements IRemoteBroker {
+        private static final int ERR_OK = 0;
+
+        private static final int REQUEST_START_ABILITY = 1;
+
+        private static final int REQUEST_SEND_DATA = 2;
+
+        private final IRemoteObject remote;
+
+        PictureRemoteProxy(IRemoteObject remote) {
+            this.remote = remote;
+        }
+
+        @Override
+        public IRemoteObject asObject() {
+            return remote;
+        }
+
+        private void senDataToRemote(int requestType) throws RemoteException {
+            MessageParcel data = MessageParcel.obtain();
+            MessageParcel reply = MessageParcel.obtain();
+            try {
+                isLocal = false;
+                data.writeIntArray(imageIndexs);
+                data.writeString(localDeviceId);
+                data.writeBoolean(isLocal);
+                data.writeInt(moveImageId);
+                data.writeInt(movePosition);
+                MessageOption option = new MessageOption(MessageOption.TF_SYNC);
+                remote.sendRequest(requestType, data, reply, option);
+                int ec = reply.readInt();
+                if (ec != ERR_OK) {
+                    LogUtil.error(TAG, "ec != ERR_OK RemoteException");
+                }
+            } catch (RemoteException e) {
+                LogUtil.error(TAG, "RemoteException");
+            } finally {
+                data.reclaim();
+                reply.reclaim();
+            }
+        }
+    }
+
+    /**
+     * MyCommonEventSubscriber
+     *
+     * @since 2021-01-11
+     */
+    class MyCommonEventSubscriber extends CommonEventSubscriber {
+        MyCommonEventSubscriber(CommonEventSubscribeInfo info) {
+            super(info);
+        }
+
+        @Override
+        public void onReceiveEvent(CommonEventData commonEventData) {
+            reciveTime = System.currentTimeMillis();
+            LogUtil.info(TAG, "onReceiveEvent, sendTime - reciveTime is " + (sendTime - reciveTime));
+            if (Math.abs(sendTime - reciveTime) <= MAX_RECIVE_TIME) {
+                LogUtil.info(TAG, "almost at the same time, do not handle recive msg");
+                isShare = false;
+                new ToastDialog(getContext()).setText("操作冲突，后续独立").setAlignment(LayoutAlignment.CENTER).show();
+                return;
+            }
+
+            Intent intent = commonEventData.getIntent();
+            updateDataInfo(intent);
+        }
     }
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 Huawei Device Co., Ltd. All rights reserved.
+ * Copyright (c) Huawei Technologies Co., Ltd. 2021-2021. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,28 +16,27 @@
 
 package com.huawei.codelab.player.manager;
 
-import com.huawei.codelab.util.LogUtil;
 import com.huawei.codelab.player.api.ImplLifecycle;
 import com.huawei.codelab.player.api.ImplPlayer;
-import com.huawei.codelab.player.constant.PlayerStatus;
+import com.huawei.codelab.player.constant.PlayerStatu;
 
 /**
  * HmPlayerLifecycle
  *
- * @since 2020-12-04
+ * @since 2021-04-09
+ *
  */
 public class HmPlayerLifecycle implements ImplLifecycle {
     private static final String TAG = HmPlayerLifecycle.class.getSimpleName();
-    private ImplPlayer player;
-    private boolean isBackGround;
+    private ImplPlayer mPlayer;
 
     /**
-     * constructor of HmPlayerLifecycle
+     * HmPlayerLifecycle
      *
      * @param player player
      */
     public HmPlayerLifecycle(ImplPlayer player) {
-        this.player = player;
+        mPlayer = player;
     }
 
     @Override
@@ -46,27 +45,20 @@ public class HmPlayerLifecycle implements ImplLifecycle {
 
     @Override
     public void onForeground() {
-        if (isBackGround) {
-            String url = player.getBuilder().getFilePath();
-            int startTime = player.getBuilder().getStartMillisecond();
-            player.reload(url, startTime);
-            isBackGround = false;
-        }
+        String url = mPlayer.getBuilder().getFilePath();
+        int startMillisecond = mPlayer.getBuilder().getStartMillisecond();
+        mPlayer.reload(url, startMillisecond);
     }
 
     @Override
     public void onBackground() {
-        if (!isBackGround) {
-            LogUtil.info(TAG, "onBackground is called ,palyer status is " + player.getPlayerStatu().getStatus());
-            player.getBuilder().setPause(player.getPlayerStatu() == PlayerStatus.PAUSE);
-            player.getBuilder().setFilePath(player.getBuilder().getFilePath());
-            player.getBuilder().setStartMillisecond(player.getAudioCurrentPosition());
-            player.release();
-            isBackGround = true;
-        }
+        mPlayer.getBuilder().setPause(mPlayer.getPlayerStatu() == PlayerStatu.PAUSE);
+        mPlayer.getBuilder().setStartMillisecond(mPlayer.getCurrentPosition());
+        mPlayer.release();
     }
 
     @Override
     public void onStop() {
+        mPlayer.release();
     }
 }

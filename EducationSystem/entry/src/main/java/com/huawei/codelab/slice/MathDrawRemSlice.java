@@ -1,10 +1,10 @@
 /*
  * Copyright (c) 2021 Huawei Device Co., Ltd.
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Licensed under the Apache License,Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -14,6 +14,8 @@
  */
 
 package com.huawei.codelab.slice;
+
+import static ohos.agp.components.ComponentContainer.LayoutConfig.MATCH_PARENT;
 
 import com.huawei.codelab.ResourceTable;
 import com.huawei.codelab.point.DrawPoint;
@@ -37,13 +39,11 @@ import ohos.event.commonevent.CommonEventSupport;
 import ohos.event.commonevent.MatchingSkills;
 import ohos.rpc.IRemoteBroker;
 import ohos.rpc.IRemoteObject;
-import ohos.rpc.MessageParcel;
 import ohos.rpc.MessageOption;
+import ohos.rpc.MessageParcel;
 import ohos.rpc.RemoteException;
 
 import java.util.List;
-
-import static ohos.agp.components.ComponentContainer.LayoutConfig.MATCH_PARENT;
 
 /**
  * Math Draw Page
@@ -52,15 +52,25 @@ import static ohos.agp.components.ComponentContainer.LayoutConfig.MATCH_PARENT;
  */
 public class MathDrawRemSlice extends AbilitySlice {
     private static final String TAG = CommonData.TAG + MathDrawRemSlice.class.getSimpleName();
+
     private DependentLayout area;
+
     private DrawPoint drawl;
-    private float[] pointsX;
-    private float[] pointsY;
+
+    private float[] pointXs;
+
+    private float[] pointYs;
+
     private IRemoteObject remoteObject;
+
     private MathRemoteProxy proxy;
+
     private Context context;
-    private boolean[] isLastPoint;
+
+    private boolean[] isLastPoints;
+
     private MyCommonEventSubscriber subscriber;
+
     private boolean isLocal;
 
     @Override
@@ -80,7 +90,7 @@ public class MathDrawRemSlice extends AbilitySlice {
      */
     private void initAndConnectDevice(Intent intent) {
         // Page initialization
-        this.context = MathDrawRemSlice.this;
+        context = MathDrawRemSlice.this;
         String remoteDeviceId = intent.getStringParam(CommonData.KEY_REMOTE_DEVICEID);
         isLocal = intent.getBooleanParam(CommonData.KEY_IS_LOCAL, false);
         if (findComponentById(ResourceTable.Id_text_title) instanceof Text) {
@@ -99,12 +109,11 @@ public class MathDrawRemSlice extends AbilitySlice {
     private void connectRemotePa(String deviceId) {
         if (!deviceId.isEmpty()) {
             Intent connectPaIntent = new Intent();
-            Operation operation = new Intent.OperationBuilder()
-                    .withDeviceId(deviceId)
-                    .withBundleName(getBundleName())
-                    .withAbilityName(CommonData.MATH_GAME_SERVICE_NAME)
-                    .withFlags(Intent.FLAG_ABILITYSLICE_MULTI_DEVICE)
-                    .build();
+            Operation operation = new Intent.OperationBuilder().withDeviceId(deviceId)
+                .withBundleName(getBundleName())
+                .withAbilityName(CommonData.MATH_GAME_SERVICE_NAME)
+                .withFlags(Intent.FLAG_ABILITYSLICE_MULTI_DEVICE)
+                .build();
             connectPaIntent.setOperation(operation);
 
             IAbilityConnection conn = new IAbilityConnection() {
@@ -115,7 +124,7 @@ public class MathDrawRemSlice extends AbilitySlice {
                 }
 
                 @Override
-                public void onAbilityDisconnectDone(ElementName elementName, int i) {
+                public void onAbilityDisconnectDone(ElementName elementName, int resultCode) {
                     LogUtil.info(TAG, "onAbilityDisconnectDone......");
                     disconnectAbility(this);
                 }
@@ -138,7 +147,6 @@ public class MathDrawRemSlice extends AbilitySlice {
         }
     }
 
-
     private void initDraw() {
         if (findComponentById(ResourceTable.Id_bac_area) instanceof DependentLayout) {
             area = (DependentLayout) findComponentById(ResourceTable.Id_bac_area);
@@ -154,13 +162,13 @@ public class MathDrawRemSlice extends AbilitySlice {
 
     private void drawPoint(List<MyPoint> points) {
         if (points != null && points.size() > 1) {
-            pointsX = new float[points.size()];
-            pointsY = new float[points.size()];
-            isLastPoint = new boolean[points.size()];
+            pointXs = new float[points.size()];
+            pointYs = new float[points.size()];
+            isLastPoints = new boolean[points.size()];
             for (int i = 0; i < points.size(); i++) {
-                pointsX[i] = points.get(i).getPositionX();
-                pointsY[i] = points.get(i).getPositionY();
-                isLastPoint[i] = points.get(i).isLastPoint();
+                pointXs[i] = points.get(i).getPositionX();
+                pointYs[i] = points.get(i).getPositionY();
+                isLastPoints[i] = points.get(i).isLastPoint();
             }
 
             // After the drawing is completed, send the data to the remote
@@ -190,66 +198,6 @@ public class MathDrawRemSlice extends AbilitySlice {
         unSubscribe();
     }
 
-    /**
-     * Establish a remote connection
-     */
-    class MathRemoteProxy implements IRemoteBroker {
-        private static final int ERR_OK = 0;
-        private static final int REQUEST_START_ABILITY = 1;
-        private static final int REQUEST_SEND_DATA = 2;
-        private final IRemoteObject remote;
-
-        MathRemoteProxy(IRemoteObject remote) {
-            this.remote = remote;
-        }
-
-        @Override
-        public IRemoteObject asObject() {
-            return remote;
-        }
-
-        private void senDataToRemote(int requestType) throws RemoteException {
-            LogUtil.info(TAG, "send data to local draw service");
-            MessageParcel data = MessageParcel.obtain();
-            MessageParcel reply = MessageParcel.obtain();
-            MessageOption option = new MessageOption(MessageOption.TF_SYNC);
-            try {
-                if (pointsX != null && pointsY != null && isLastPoint != null) {
-                    data.writeFloatArray(pointsX);
-                    data.writeFloatArray(pointsY);
-                    data.writeBooleanArray(isLastPoint);
-                }
-                remote.sendRequest(requestType, data, reply, option);
-                int ec = reply.readInt();
-                if (ec != ERR_OK) {
-                    LogUtil.error(TAG, "RemoteException:");
-                }
-            } catch (RemoteException e) {
-                LogUtil.error(TAG, "RemoteException:");
-            } finally {
-                data.reclaim();
-                reply.reclaim();
-            }
-        }
-    }
-
-    class MyCommonEventSubscriber extends CommonEventSubscriber {
-        MyCommonEventSubscriber(CommonEventSubscribeInfo info) {
-            super(info);
-        }
-
-        @Override
-        public void onReceiveEvent(CommonEventData commonEventData) {
-            Intent intent = commonEventData.getIntent();
-            pointsX = intent.getFloatArrayParam(CommonData.KEY_POINT_X);
-            pointsY = intent.getFloatArrayParam(CommonData.KEY_POINT_Y);
-            isLastPoint = intent.getBooleanArrayParam(CommonData.KEY_IS_LAST_POINT);
-            // After receiving the data, draw on the remote canvas
-            drawl.setDrawParams(isLastPoint, pointsX, pointsY);
-            LogUtil.info(TAG, "onReceiveEvent.....");
-        }
-    }
-
     private void subscribe() {
         MatchingSkills matchingSkills = new MatchingSkills();
         matchingSkills.addEvent(CommonData.MATH_DRAW_EVENT);
@@ -268,6 +216,76 @@ public class MathDrawRemSlice extends AbilitySlice {
             CommonEventManager.unsubscribeCommonEvent(subscriber);
         } catch (RemoteException e) {
             LogUtil.error(TAG, "unSubscribe Exception");
+        }
+    }
+
+    /**
+     * Establish a remote connection
+     *
+     * @since 2021-01-11
+     */
+    class MathRemoteProxy implements IRemoteBroker {
+        private static final int ERR_OK = 0;
+
+        private static final int REQUEST_START_ABILITY = 1;
+
+        private static final int REQUEST_SEND_DATA = 2;
+
+        private final IRemoteObject remote;
+
+        MathRemoteProxy(IRemoteObject remote) {
+            this.remote = remote;
+        }
+
+        @Override
+        public IRemoteObject asObject() {
+            return remote;
+        }
+
+        private void senDataToRemote(int requestType) throws RemoteException {
+            LogUtil.info(TAG, "send data to local draw service");
+            MessageParcel data = MessageParcel.obtain();
+            MessageParcel reply = MessageParcel.obtain();
+            MessageOption option = new MessageOption(MessageOption.TF_SYNC);
+            try {
+                if (pointXs != null && pointYs != null && isLastPoints != null) {
+                    data.writeFloatArray(pointXs);
+                    data.writeFloatArray(pointYs);
+                    data.writeBooleanArray(isLastPoints);
+                }
+                remote.sendRequest(requestType, data, reply, option);
+                int ec = reply.readInt();
+                if (ec != ERR_OK) {
+                    LogUtil.error(TAG, "RemoteException:");
+                }
+            } catch (RemoteException e) {
+                LogUtil.error(TAG, "RemoteException:");
+            } finally {
+                data.reclaim();
+                reply.reclaim();
+            }
+        }
+    }
+
+    /**
+     * MyCommonEventSubscriber
+     *
+     * @since 2021-01-11
+     */
+    class MyCommonEventSubscriber extends CommonEventSubscriber {
+        MyCommonEventSubscriber(CommonEventSubscribeInfo info) {
+            super(info);
+        }
+
+        @Override
+        public void onReceiveEvent(CommonEventData commonEventData) {
+            Intent intent = commonEventData.getIntent();
+            pointXs = intent.getFloatArrayParam(CommonData.KEY_POINT_X);
+            pointYs = intent.getFloatArrayParam(CommonData.KEY_POINT_Y);
+            isLastPoints = intent.getBooleanArrayParam(CommonData.KEY_IS_LAST_POINT);
+            // After receiving the data, draw on the remote canvas
+            drawl.setDrawParams(isLastPoints, pointXs, pointYs);
+            LogUtil.info(TAG, "onReceiveEvent.....");
         }
     }
 }

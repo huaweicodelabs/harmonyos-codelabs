@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 Huawei Device Co., Ltd.All rights reserved.
+ * Copyright (c) 2021 Huawei Device Co., Ltd.
  * Licensed under the Apache License,Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -17,10 +17,10 @@ package com.huawei.codelab.slice;
 
 import com.huawei.codelab.NewsAbility;
 import com.huawei.codelab.ResourceTable;
+import com.huawei.codelab.bean.NewsInfo;
+import com.huawei.codelab.bean.NewsType;
 import com.huawei.codelab.provider.NewsListProvider;
 import com.huawei.codelab.provider.NewsTypeProvider;
-import com.huawei.codelab.been.NewsInfo;
-import com.huawei.codelab.been.NewsType;
 import com.huawei.codelab.utils.CommonUtils;
 
 import com.google.gson.Gson;
@@ -42,8 +42,8 @@ import java.util.List;
  * @since 2020-12-04
  */
 public class NewsListAbilitySlice extends AbilitySlice {
-    private static final float FOURCE_TEXT_SIZE = 1.2f;
-    private static final float UNFOURCE_TEXT_SIZE = 1.0f;
+    private static final float FOCUS_TEXT_SIZE = 1.2f;
+    private static final float UNFOCUSED_TEXT_SIZE = 1.0f;
     private Text selectText;
 
     private ListContainer newsListContainer;
@@ -131,13 +131,13 @@ public class NewsListAbilitySlice extends AbilitySlice {
         if (isFocus) {
             selectText.setTextColor(
                     new Color(CommonUtils.getColor(NewsListAbilitySlice.this, ResourceTable.Color_news_type_text_on)));
-            selectText.setScaleX(FOURCE_TEXT_SIZE);
-            selectText.setScaleY(FOURCE_TEXT_SIZE);
+            selectText.setScaleX(FOCUS_TEXT_SIZE);
+            selectText.setScaleY(FOCUS_TEXT_SIZE);
         } else {
             selectText.setTextColor(
                     new Color(CommonUtils.getColor(NewsListAbilitySlice.this, ResourceTable.Color_news_type_text_off)));
-            selectText.setScaleX(UNFOURCE_TEXT_SIZE);
-            selectText.setScaleY(UNFOURCE_TEXT_SIZE);
+            selectText.setScaleX(UNFOCUSED_TEXT_SIZE);
+            selectText.setScaleY(UNFOCUSED_TEXT_SIZE);
         }
     }
 
