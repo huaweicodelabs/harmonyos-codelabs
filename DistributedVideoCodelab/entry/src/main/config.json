@@ -44,7 +44,7 @@
         "name": "ohos.codelabs.distributedvideo.MainAbility",
         "icon": "$media:icon",
         "description": "$string:mainability_description",
-        "label": "DistributedVideo",
+        "label": "$string:app_name",
         "type": "page",
         "launchType": "standard"
       },
@@ -57,7 +57,7 @@
         "name": ".PlayerAbility",
         "icon": "$media:icon",
         "description": "$string:videodetailabilityslice_description",
-        "label": "SimplePlayer",
+        "label": "$string:video_detail",
         "type": "page",
         "launchType": "standard"
       },

@@ -5,6 +5,10 @@
       "value": "video"
     },
     {
+      "name": "video_detail",
+      "value": "video detail"
+    },
+    {
       "name": "mainability_description",
       "value": "hap sample empty page"
     },

@@ -46,7 +46,7 @@
         "name": "com.huawei.codelab.MainAbility",
         "icon": "$media:icon",
         "description": "$string:mainability_description",
-        "label": "亲子早教系统",
+        "label": "$string:app_name",
         "type": "page",
         "launchType": "standard"
       },

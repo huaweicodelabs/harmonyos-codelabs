@@ -46,7 +46,7 @@
         "name": "com.huawei.maildemo.MainAbility",
         "icon": "$media:icon",
         "description": "$string:mainability_description",
-        "label": "MailDemo",
+        "label": "$string:app_name",
         "type": "page",
         "launchType": "standard"
       }

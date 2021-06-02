@@ -42,7 +42,7 @@
         "name": "com.huawei.codelab.MainAbility",
         "icon": "$media:icon",
         "description": "$string:mainability_description",
-        "label": "DistributedMapDemo",
+        "label": "$string:app_name",
         "type": "page",
         "launchType": "standard"
       },
@@ -57,7 +57,7 @@
         "name": "com.huawei.codelab.WatchAbility",
         "icon": "$media:icon",
         "description": "$string:watchmainability_description",
-        "label": "entry",
+        "label": "$string:app_name",
         "type": "page",
         "launchType": "standard"
       }

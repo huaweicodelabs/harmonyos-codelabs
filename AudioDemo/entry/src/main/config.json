@@ -44,7 +44,7 @@
         "name": "com.huawei.harmonyaudiodemo.MainAbility",
         "icon": "$media:icon",
         "description": "$string:mainability_description",
-        "label": "HarmonyAudioDemo",
+        "label": "$string:app_name",
         "type": "page",
         "launchType": "standard"
       }

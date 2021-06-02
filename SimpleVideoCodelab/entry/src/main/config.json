@@ -47,7 +47,7 @@
         "name": ".MainAbility",
         "icon": "$media:icon",
         "description": "$string:mainability_description",
-        "label": "SimplePlayer",
+        "label": "$string:app_name",
         "type": "page",
         "launchType": "standard"
       }

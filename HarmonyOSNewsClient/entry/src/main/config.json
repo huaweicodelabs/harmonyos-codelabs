@@ -46,7 +46,7 @@
         "name": "com.huawei.codelab.NewsAbility",
         "icon": "$media:icon",
         "description": "$string:mainability_description",
-        "label": "NewsDemo",
+        "label": "$string:app_name",
         "type": "page",
         "launchType": "standard"
       },
