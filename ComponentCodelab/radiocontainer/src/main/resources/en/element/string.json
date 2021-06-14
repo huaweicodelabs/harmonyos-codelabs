@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "radiocontainer_MainAbility",
+      "value": "radiocontainer_MainAbility"
+    },
+    {
+      "name": "mainability_description",
+      "value": "Java_Empty Ability"
+    },
+    {
+      "name": "mainability_HelloWorld",
+      "value": "Hello World"
+    }
+  ]
+}

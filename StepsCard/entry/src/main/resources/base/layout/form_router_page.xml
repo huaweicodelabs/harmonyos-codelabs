@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DirectionalLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:height="match_parent"
+    ohos:width="match_parent"
+    ohos:id="$+id:card_2_4"
+    ohos:background_element="#FFFFFFFF"
+    ohos:orientation="horizontal"
+    ohos:remote="true">
+
+        <ProgressBar
+            ohos:id="$+id:progressBar"
+            ohos:height="match_content"
+            ohos:width="100vp"
+            ohos:max="1000"
+            ohos:progress_width="10vp"
+            ohos:progress="20"
+            ohos:progress_color="#47CC47"/>
+
+        <DirectionalLayout
+            ohos:height="match_content"
+            ohos:width="200vp"
+            ohos:align_parent_bottom="true"
+            ohos:bottom_margin="12vp"
+            ohos:align_parent_right="true"
+            ohos:orientation="horizontal">
+
+            <Text
+                ohos:height="match_content"
+                ohos:width="match_content"
+                ohos:text="今天一共走了"
+                ohos:text_color="#E5000000"
+                ohos:text_size="16fp"
+                ohos:right_margin="10fp"
+                ohos:text_weight="500"
+                ohos:truncation_mode="ellipsis_at_end"/>
+            <Text
+                ohos:id="$+id:step"
+                ohos:height="match_content"
+                ohos:width="match_content"
+                ohos:text_color="#E5000000"
+                ohos:text_size="16fp"
+                ohos:text_weight="500"
+                ohos:truncation_mode="ellipsis_at_end"/>
+            <Text
+                ohos:height="match_content"
+                ohos:width="match_content"
+                ohos:text="步"
+                ohos:text_color="#E5000000"
+                ohos:left_margin="10fp"
+                ohos:text_size="16fp"
+                ohos:text_weight="500"
+                ohos:truncation_mode="ellipsis_at_end"/>
+        </DirectionalLayout>
+</DirectionalLayout>

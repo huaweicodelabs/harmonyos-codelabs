@@ -1,0 +1,15 @@
+<div class="card_root_layout" @click="routerEvent">
+    <div class="div_basic_container">
+        <!-- 环形进度条 -->
+        <progress type="ring" percent="{{percent}}" class="div_progress">
+        </progress>
+        <div class="title_container">
+            <text class="item_content">今天一共走了
+            </text>
+            <text class="item_title" >{{steps}}
+            </text>
+            <text class="item_content">步
+            </text>
+        </div>
+    </div>
+</div>

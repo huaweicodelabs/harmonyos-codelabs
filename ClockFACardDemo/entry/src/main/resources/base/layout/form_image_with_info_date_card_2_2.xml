@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DependentLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:height="match_parent"
+    ohos:width="match_parent"
+    ohos:background_element="#6A9F99"
+    ohos:remote="true">
+
+    <DirectionalLayout
+        ohos:height="match_content"
+        ohos:width="match_parent"
+        ohos:orientation="vertical"
+        >
+
+        <Text
+            ohos:id="$+id:date"
+            ohos:height="match_content"
+            ohos:width="match_parent"
+            ohos:text_alignment="horizontal_center"
+            ohos:margin="10fp"
+            ohos:text="2021-03-24"
+            ohos:text_font="sans-serif-medium"
+            ohos:text_size="10fp"
+            />
+    </DirectionalLayout>
+
+    <DirectionalLayout
+        ohos:id="$+id:title"
+        ohos:height="match_content"
+        ohos:width="match_parent"
+        ohos:alignment="horizontal_center"
+        ohos:orientation="horizontal"
+        ohos:top_margin="35fp"
+        >
+
+        <Text
+            ohos:height="match_content"
+            ohos:width="match_content"
+            ohos:margin="10vp"
+            ohos:text="HOUR"
+            ohos:text_size="10fp"
+            />
+
+        <Text
+            ohos:height="match_content"
+            ohos:width="match_content"
+            ohos:margin="10vp"
+            ohos:text="MIN"
+            ohos:text_size="10fp"
+            />
+
+        <Text
+            ohos:height="match_content"
+            ohos:width="match_content"
+            ohos:margin="10vp"
+            ohos:text="SEC"
+            ohos:text_size="10fp"
+            />
+    </DirectionalLayout>
+
+    <DirectionalLayout
+        ohos:id="$+id:time"
+        ohos:height="match_content"
+        ohos:width="match_parent"
+        ohos:alignment="horizontal_center"
+        ohos:below="$id:title"
+        ohos:orientation="horizontal"
+        ohos:top_margin="0.5fp"
+        >
+
+        <Text
+            ohos:id="$+id:hour"
+            ohos:height="match_content"
+            ohos:width="match_content"
+            ohos:left_margin="10vp"
+            ohos:right_margin="5vp"
+            ohos:text="00"
+            ohos:text_font="HwChinese-medium"
+            ohos:text_size="20fp"
+            ohos:top_margin="2vp"
+            />
+
+        <Text
+            ohos:height="match_content"
+            ohos:width="match_content"
+            ohos:text=":"
+            ohos:text_font="bold"
+            ohos:text_size="20fp"
+            ohos:top_margin="2vp"
+            />
+
+        <Text
+            ohos:id="$+id:min"
+            ohos:height="match_content"
+            ohos:width="match_content"
+            ohos:left_margin="5vp"
+            ohos:right_margin="5vp"
+            ohos:text="00"
+            ohos:text_font="HwChinese-medium"
+            ohos:text_size="20fp"
+            ohos:top_margin="2vp"
+            />
+
+        <Text
+            ohos:height="match_content"
+            ohos:width="match_content"
+            ohos:text=":"
+            ohos:text_font="bold"
+            ohos:text_size="20fp"
+            ohos:top_margin="2vp"
+            />
+
+        <Text
+            ohos:id="$+id:sec"
+            ohos:height="match_content"
+            ohos:width="match_content"
+            ohos:left_margin="5vp"
+            ohos:right_margin="10vp"
+            ohos:text="00"
+            ohos:text_font="HwChinese-medium"
+            ohos:text_size="20fp"
+            ohos:top_margin="2vp"
+            />
+    </DirectionalLayout>
+
+    <DirectionalLayout
+        ohos:height="match_content"
+        ohos:width="match_parent"
+        ohos:alignment="center"
+        ohos:below="$id:time"
+        ohos:margin="20fp"
+        ohos:orientation="horizontal"
+        >
+        <Text
+            ohos:id="$+id:sun"
+            ohos:height="match_content"
+            ohos:width="match_content"
+            ohos:text="日"
+            ohos:text_color="#C0C0C0"
+            ohos:text_size="10fp"
+            ohos:weight="1"
+            />
+        <Text
+            ohos:id="$+id:mon"
+            ohos:height="match_content"
+            ohos:width="match_content"
+            ohos:text="一"
+            ohos:text_color="#C0C0C0"
+            ohos:text_size="10fp"
+            ohos:weight="1"
+            />
+
+        <Text
+            ohos:id="$+id:tue"
+            ohos:height="match_content"
+            ohos:width="match_content"
+            ohos:text="二"
+            ohos:text_color="#C0C0C0"
+            ohos:text_size="10fp"
+            ohos:weight="1"
+            />
+
+        <Text
+            ohos:id="$+id:wed"
+            ohos:height="match_content"
+            ohos:width="match_content"
+            ohos:text="三"
+            ohos:text_color="#C0C0C0"
+            ohos:text_size="10fp"
+            ohos:weight="1"
+            />
+
+        <Text
+            ohos:id="$+id:thu"
+            ohos:height="match_content"
+            ohos:width="match_content"
+            ohos:text="四"
+            ohos:text_color="#C0C0C0"
+            ohos:text_size="10fp"
+            ohos:weight="1"
+            />
+
+        <Text
+            ohos:id="$+id:fri"
+            ohos:height="match_content"
+            ohos:width="match_content"
+            ohos:text="五"
+            ohos:text_color="#C0C0C0"
+            ohos:text_size="10fp"
+            ohos:weight="1"
+            />
+
+        <Text
+            ohos:id="$+id:sat"
+            ohos:height="match_content"
+            ohos:width="match_content"
+            ohos:text="六"
+            ohos:text_color="#C0C0C0"
+            ohos:text_size="10fp"
+            ohos:weight="1"
+            />
+    </DirectionalLayout>
+</DependentLayout>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DirectionalLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:height="40vp"
+    ohos:width="match_content">
+    <Text
+        ohos:id="$+id:news_type_text"
+        ohos:height="match_content"
+        ohos:width="match_content"
+        ohos:text_alignment="center"
+        ohos:left_padding="20vp"
+        ohos:right_padding="20vp"
+        ohos:text_color="#55000000"
+        ohos:text_size="16fp"/>
+</DirectionalLayout>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DirectionalLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:height="match_parent"
+    ohos:width="match_parent"
+    ohos:orientation="vertical">
+    <ListContainer
+        ohos:id="$+id:selector_list"
+        ohos:height="36vp"
+        ohos:width="match_parent"
+        ohos:top_padding="8vp"
+        ohos:orientation="horizontal"/>
+    <Component
+        ohos:height="1vp"
+        ohos:width="match_parent"
+        ohos:background_element="#70dbdb"/>
+    <ListContainer
+        ohos:id="$+id:news_container"
+        ohos:height="match_parent"
+        ohos:width="match_parent"/>
+</DirectionalLayout>

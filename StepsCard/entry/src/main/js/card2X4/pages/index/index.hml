@@ -1,0 +1,39 @@
+<div class="card_root_layout" on:click="routerEvent">
+    <div class="div_basic_container">
+    <!-- 左侧布局 -->
+        <div class="left_items">
+            <div class="left_items_top">
+                <text class="text">今天走了</text>
+                <image src="common/step2.png" id="stepImg"></image>
+            </div>
+            <div class="left_items_center">
+                <text id="stepValue" class="text">{{ mileage }}</text>
+                <text id="stepDesc" class="text">米</text>
+            </div>
+            <div class="left_items_bootom">
+                <text id="stepValue" class="text">{{ steps }}</text>
+                <text id="stepDesc" class="text">步</text>
+            </div>
+        </div>
+
+        <!-- 右侧布局 -->
+        <div class="right_items">
+            <!-- 进度条部分 -->
+            <div class="progress">
+                <!-- 进度值 -->
+                <div class="progressText">
+                    <text id="progressValue" class="text">{{percent}}</text>
+                    <text class="text">%</text>
+                </div>
+                <div class="progressDiv">
+                    <!-- 进度条 -->
+                    <progress type="horizontal" id="progress" percent="{{percent}}"></progress>
+                </div>
+            </div>
+            <!-- 线型图布局 -->
+            <div class="chartArea">
+                <chart type="line" id="chart" datasets="{{ datasets }}" options="{{ options }}"></chart>
+            </div>
+        </div>
+    </div>
+</div>

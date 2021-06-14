@@ -53,7 +53,6 @@ public class SimplePlayerController extends ComponentContainer implements ImplPl
     private static final int CONTROLLER_HIDE_DLEY_TIME = 5000;
     private static final int PROGRESS_RUNNING_TIME = 1000;
     private boolean mIsDragMode = false;
-    private Context mContext;
     private ImplPlayer mPlayer;
     private DependentLayout topLayout;
     private DirectionalLayout bottomLayout;
@@ -128,7 +127,6 @@ public class SimplePlayerController extends ComponentContainer implements ImplPl
      */
     public SimplePlayerController(Context context, AttrSet attrSet, String styleName) {
         super(context, attrSet, styleName);
-        mContext = context;
         createHandler();
         initView();
         initListener();
@@ -203,9 +201,9 @@ public class SimplePlayerController extends ComponentContainer implements ImplPl
             }
         });
         mForward.setClickedListener(component ->
-                mPlayer.rewindTo(mPlayer.getCurrentPosition() + Constants.REWIND_STEP));
+                mPlayer.rewindTo(getBasicTransTime(mPlayer.getCurrentPosition()) + Constants.REWIND_STEP));
         mBackward.setClickedListener(component ->
-                mPlayer.rewindTo(mPlayer.getCurrentPosition() - Constants.REWIND_STEP));
+                mPlayer.rewindTo(getBasicTransTime(mPlayer.getCurrentPosition()) - Constants.REWIND_STEP));
         mProgressBar.setValueChangedListener(
                 new Slider.ValueChangedListener() {
                     @Override
@@ -226,10 +224,14 @@ public class SimplePlayerController extends ComponentContainer implements ImplPl
                         if (slider.getProgress() == mPlayer.getDuration()) {
                             mPlayer.stop();
                         } else {
-                            mPlayer.rewindTo(slider.getProgress());
+                            mPlayer.rewindTo(getBasicTransTime(slider.getProgress()));
                         }
                     }
                 });
+    }
+
+    private int getBasicTransTime(int currentTime) {
+        return currentTime / PROGRESS_RUNNING_TIME * PROGRESS_RUNNING_TIME;
     }
 
     /**
@@ -275,6 +277,8 @@ public class SimplePlayerController extends ComponentContainer implements ImplPl
      * @since 2020-12-04
      */
     private class ControllerHandler extends EventHandler {
+        private int currentPosition;
+
         private ControllerHandler(EventRunner runner) {
             super(runner);
         }
@@ -288,12 +292,16 @@ public class SimplePlayerController extends ComponentContainer implements ImplPl
             switch (event.eventId) {
                 case Constants.PLAYER_PROGRESS_RUNNING:
                     if (mPlayer != null && mPlayer.isPlaying() && !mIsDragMode) {
+                        currentPosition = mPlayer.getCurrentPosition();
+                        while (currentPosition < PROGRESS_RUNNING_TIME) {
+                            currentPosition = mPlayer.getCurrentPosition();
+                        }
                         mContext.getUITaskDispatcher().asyncDispatch(() -> {
-                            mProgressBar.setProgressValue(mPlayer.getCurrentPosition());
-                            mCurrentTime.setText(DateUtils.msToString(mPlayer.getCurrentPosition()));
+                            mProgressBar.setProgressValue(currentPosition);
+                            mCurrentTime.setText(DateUtils.msToString(currentPosition));
                         });
                         mHandler.sendEvent(
-                                Constants.PLAYER_PROGRESS_RUNNING, PROGRESS_RUNNING_TIME, Priority.IMMEDIATE);
+                                Constants.PLAYER_PROGRESS_RUNNING, PROGRESS_RUNNING_TIME, Priority.HIGH);
                     }
                     break;
                 case Constants.PLAYER_CONTROLLER_HIDE:

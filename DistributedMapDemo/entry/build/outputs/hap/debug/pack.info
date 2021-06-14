@@ -1,0 +1,55 @@
+{
+    "summary": {
+        "app": {
+            "bundleName": "com.huawei.codelab",
+            "version": {
+                "code": 1,
+                "name": "1.0"
+            }
+        },
+        "modules": [
+            {
+                "deviceType": [
+                    "phone",
+                    "tablet",
+                    "wearable"
+                ],
+                "abilities": [
+                    {
+                        "name": "com.huawei.codelab.MainAbility",
+                        "label": "$string:app_name"
+                    },
+                    {
+                        "name": "com.huawei.codelab.WatchService"
+                    },
+                    {
+                        "name": "com.huawei.codelab.WatchAbility",
+                        "label": "$string:app_name"
+                    }
+                ],
+                "distro": {
+                    "moduleType": "entry",
+                    "deliveryWithInstall": true,
+                    "moduleName": "entry"
+                },
+                "apiVersion": {
+                    "compatible": 5,
+                    "releaseType": "Release",
+                    "target": 5
+                }
+            }
+        ]
+    },
+    "packages": [
+        {
+            "deviceType": [
+                "phone",
+                "tablet",
+                "wearable"
+            ],
+            "moduleType": "entry",
+            "deliveryWithInstall": true,
+            "name": "entry-debug-rich-unsigned"
+        }
+    ]
+}

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DirectionalLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:height="110vp"
+    ohos:width="match_parent"
+    ohos:orientation="vertical">
+    <DirectionalLayout
+        ohos:height="109vp"
+        ohos:width="match_parent"
+        ohos:orientation="horizontal"
+        ohos:padding="10vp">
+        <Text
+            ohos:id="$+id:item_news_title"
+            ohos:height="match_content"
+            ohos:width="0vp"
+            ohos:max_text_lines="3"
+            ohos:multiple_lines="true"
+            ohos:right_padding="20vp"
+            ohos:text_size="18vp"
+            ohos:weight="2"/>
+        <Image
+            ohos:id="$+id:item_news_image"
+            ohos:height="match_content"
+            ohos:width="0vp"
+            ohos:image_src="$media:news_image"
+            ohos:weight="1"/>
+    </DirectionalLayout>
+    <Component
+        ohos:height="1vp"
+        ohos:width="match_parent"
+        ohos:background_element="#70dbdb"/>
+</DirectionalLayout>

@@ -1,0 +1,113 @@
+{
+    "app": {
+        "bundleName": "com.huawei.codelab",
+        "vendor": "huawei",
+        "apiVersion": {
+            "compatible": 5,
+            "target": 5,
+            "releaseType": "Release"
+        },
+        "version": {
+            "code": 1,
+            "name": "1.0"
+        }
+    },
+    "deviceConfig": {
+        
+    },
+    "module": {
+        "name": ".MyApplication",
+        "deviceType": [
+            "phone",
+            "tablet",
+            "wearable"
+        ],
+        "distro": {
+            "deliveryWithInstall": true,
+            "moduleName": "entry",
+            "moduleType": "entry"
+        },
+        "abilities": [
+            {
+                "name": "com.huawei.codelab.MainAbility",
+                "description": "$string:mainability_description",
+                "icon": "$media:icon",
+                "label": "$string:app_name",
+                "type": "page",
+                "launchType": "standard",
+                "orientation": "unspecified",
+                "skills": [
+                    {
+                        "actions": [
+                            "action.system.home"
+                        ],
+                        "entities": [
+                            "entity.system.home"
+                        ]
+                    }
+                ],
+                "homeAbility": true
+            },
+            {
+                "name": "com.huawei.codelab.WatchService",
+                "description": "$string:watchservice_description",
+                "icon": "$media:icon",
+                "type": "service",
+                "homeAbility": false
+            },
+            {
+                "name": "com.huawei.codelab.WatchAbility",
+                "description": "$string:watchmainability_description",
+                "icon": "$media:icon",
+                "label": "$string:app_name",
+                "type": "page",
+                "launchType": "standard",
+                "orientation": "portrait",
+                "homeAbility": false
+            }
+        ],
+        "reqPermissions": [
+            {
+                "name": "ohos.permission.DISTRIBUTED_DATASYNC",
+                "reason": "distributed permission request",
+                "usedScene": {
+                    "ability": [
+                        "com.huawei.codelab.MainAbility",
+                        "com.huawei.codelab.WatchAbility"
+                    ],
+                    "when": "always"
+                }
+            },
+            {
+                "name": "ohos.permission.LOCATION",
+                "reason": "get Local Location",
+                "usedScene": {
+                    "ability": [
+                        "com.huawei.codelab.MainAbility",
+                        "com.huawei.codelab.WatchAbility"
+                    ],
+                    "when": "always"
+                }
+            },
+            {
+                "name": "ohos.permission.INTERNET"
+            },
+            {
+                "name": "ohos.permission.DISTRIBUTED_DEVICE_STATE_CHANGE"
+            },
+            {
+                "name": "ohos.permission.GET_DISTRIBUTED_DEVICE_INFO"
+            },
+            {
+                "name": "ohos.permission.GET_BUNDLE_INFO"
+            },
+            {
+                "name": "ohos.permission.GET_NETWORK_INFO"
+            },
+            {
+                "name": "ohos.permission.SET_NETWORK_INFO"
+            }
+        ],
+        "package": "com.huawei.codelab"
+    }
+}

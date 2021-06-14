@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DirectionalLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:width="match_parent"
+    ohos:height="match_parent"
+    ohos:orientation="vertical">
+    <DatePicker
+        ohos:id="$+id:date_pick"
+        ohos:height="150vp"
+        ohos:width="300vp"
+        ohos:background_element="#EDEDED"
+        ohos:top_margin="13vp"
+        ohos:layout_alignment="horizontal_center"
+        ohos:selected_normal_text_margin_ratio="6"
+        ohos:selected_text_size="16vp"
+        ohos:selected_text_color="#0000FF"
+        ohos:operated_text_color="#0000FF"
+        ohos:normal_text_size="13vp"
+        ohos:top_line_element="#9370DB"
+        ohos:bottom_line_element="#9370DB"
+        ohos:shader_color="#00CED1">
+    </DatePicker>
+    <DirectionalLayout
+        ohos:width="match_content"
+        ohos:height="35vp"
+        ohos:top_margin="13vp"
+        ohos:layout_alignment="horizontal_center"
+        ohos:orientation="horizontal">
+        <Text
+            ohos:width="match_content"
+            ohos:height="match_parent"
+            ohos:text_size="15vp"
+            ohos:padding="4vp"
+            ohos:text="Currently selected date:  "/>
+        <Text
+            ohos:id="$+id:text_date"
+            ohos:height="match_content"
+            ohos:width="100vp"
+            ohos:background_element="$graphic:button_element"
+            ohos:hint="date"
+            ohos:left_margin="13vp"
+            ohos:padding="4vp"
+            ohos:text_size="15vp">
+        </Text>
+    </DirectionalLayout>
+</DirectionalLayout>
