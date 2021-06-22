@@ -31,6 +31,9 @@ public class SensorData extends OrmObject {
     // stepsValue
     private int stepsValue;
 
+    // 实际步数
+    private int realValue;
+
     public SensorData() {
     }
 
@@ -39,10 +42,12 @@ public class SensorData extends OrmObject {
      *
      * @param date date
      * @param stepsValue stepsValue
+     * @param realValue
      */
-    public SensorData(String date, int stepsValue) {
+    public SensorData(String date, int stepsValue, int realValue) {
         this.date = date;
         this.stepsValue = stepsValue;
+        this.realValue = realValue;
     }
 
     public String getDate() {
@@ -59,5 +64,13 @@ public class SensorData extends OrmObject {
 
     public void setStepsValue(int stepsValue) {
         this.stepsValue = stepsValue;
+    }
+
+    public int getRealValue() {
+        return realValue;
+    }
+
+    public void setRealValue(int realValue) {
+        this.realValue = realValue;
     }
 }

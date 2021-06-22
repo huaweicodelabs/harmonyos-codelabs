@@ -67,10 +67,11 @@ public class DatabaseUtils {
      *
      * @param value 数据
      * @param connect 数据连接
+     * @param realValue 真实传感器数据
      */
-    public static void insertValues(float value, OrmContext connect) {
+    public static void insertValues(float value, float realValue, OrmContext connect) {
         String now = DateUtils.getDate(0);
-        SensorData sensorData = new SensorData(now, (int) value);
+        SensorData sensorData = new SensorData(now, (int) value, (int) realValue);
         // 查询今天是否有数据
         SensorData todayData = getSensorData(connect, now);
         boolean isInsert = false;
@@ -100,9 +101,9 @@ public class DatabaseUtils {
         List<SensorData> datas = connect.query(ormPredicates);
         SensorData sensorData = null;
         if (datas.size() > 0) {
-            sensorData = new SensorData(now, (int) (value - datas.get(0).getStepsValue()));
+            sensorData = new SensorData(now, (int) (value - datas.get(0).getRealValue()), (int) value);
         } else {
-            sensorData = new SensorData(now, (int) value);
+            sensorData = new SensorData(now, (int) value, (int) value);
         }
         return sensorData;
     }
@@ -133,8 +134,11 @@ public class DatabaseUtils {
      */
     public static List<ChartPoint> getLastFourDaysValue(OrmContext connect) {
         List<ChartPoint> results = new ArrayList<>(SHOW_DAYS);
-        OrmPredicates ormPredicates = new OrmPredicates(SensorData.class);
+        OrmPredicates ormPredicates = connect.where(SensorData.class);
+
+        List<SensorData> datas1 = connect.query(ormPredicates);
         for (int i = SHOW_DAYS; i > 0; i--) {
+            ormPredicates.clear();
             ormPredicates.equalTo(DATA_FILED_DATE, DateUtils.getDate(i));
             List<SensorData> datas = connect.query(ormPredicates);
             if (datas.size() == 0) {

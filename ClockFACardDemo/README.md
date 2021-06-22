@@ -1,6 +1,6 @@
 # ClockFACardDemo
 简介 
-• 本codelab旨在使开发人员了解HarmonyOS中JAVA卡片的开发，包含卡片的创建、更新、删除功能，实现了时分秒，年月日，星期的实时刷新效果。
+• 本cookbook旨在使开发人员了解HarmonyOS中JAVA卡片的开发，包含卡片的创建、更新、删除功能，实现了时分秒，年月日，星期的实时刷新效果。
 
 安装要求
 • 安装DevEco Studio
@@ -11,19 +11,20 @@
 
 用户指南
 • 下载此项目
-• 打开HUAWEI DevEco Studio，单击File> Open选择此ComponentCodelab
+• 打开HUAWEI DevEco Studio，单击File> Open选择此ClockFACardDemo
 • 单击Build> Build App(s)/Hap(s)>Build Debug Hap(s)以编译hap软件包
 • 单击Run> Run 'entry'以运行hap包
 
 注意
 • 您可以选择在模拟器或真机上运行hap软件包。
 • 如果在真机上运行它，则需要在项目的File> Project Structure> Modules> Signing Configs中配置签名和证书信息。
+• 由于目前暂无办法保证卡片服务不被系统销毁，需要通过手机管家> 应用启动管理> 时钟服务卡片> 点击右侧滑块> 选择开启“允许后台活动”开启后台运行权限，如需要也可开启“运行自启动”。
 
 许可
 请参阅LICENSE文件以获得更多信息。
 
 What is it?
-This codelab is designed to enable developers to understand the development of Java cards in HarmonyOS, including the creation, update, and deletion of cards, and the real-time refresh effect of hour, second, year, month, day, and week.
+This cookbook is designed to enable developers to understand the development of Java cards in HarmonyOS, including the creation, update, and deletion of cards, and the real-time refresh effect of hour, second, year, month, day, and week.
 
 Installation requirements
 • Install DevEco Studio
@@ -41,6 +42,7 @@ User guide
 Note
 • You can choose to run the hap package on the simulator or the phone.
 • If you run it on the phone, you need to configure the signature and certificate information in the project's File> Project Structure> Modules> Signing Configs.
+• Currently, there is no way to ensure that the card service will not be destroyed by the system. Go to Phone Manager > App Startup Management > Pedometer Service Card, touch the slider on the right, and select Enable Background Activities to enable the background running permission. You can also enable Auto Start if necessary.
 
 Licensing
 Please see LICENSE for more info.

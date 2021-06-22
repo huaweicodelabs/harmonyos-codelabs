@@ -71,7 +71,7 @@ export default {
             }
         },
         steps: 0,
-        percent: 20,
+        percent: 0,
         mileage: 0
     },
 

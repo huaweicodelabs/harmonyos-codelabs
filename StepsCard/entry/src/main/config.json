@@ -4,11 +4,7 @@
     "vendor": "huawei",
     "version": {
       "code": 1000000,
-      "name": "1.0"
-    },
-    "apiVersion": {
-      "compatible": 5,
-      "target": 5
+      "name": "1.0.0"
     }
   },
   "deviceConfig": {
@@ -19,13 +15,15 @@
   "module": {
     "package": "com.huawei.cookbook",
     "name": ".MyApplication",
+    "mainAbility": "com.huawei.cookbook.MainAbility",
     "deviceType": [
       "phone"
     ],
     "distro": {
       "deliveryWithInstall": true,
       "moduleName": "entry",
-      "moduleType": "entry"
+      "moduleType": "entry",
+      "installationFree": false
     },
     "reqPermissions": [
       {
@@ -33,11 +31,22 @@
         "reason": "get step count",
         "usedScene": {
           "ability": [
-            ".MainAbility"
+            ".MainAbility",
+            ".StepSensorService"
           ],
-          "when": "inuse"
+          "when": "always"
         }
       },
+      {
+        "name": "ohos.permission.KEEP_BACKGROUND_RUNNING",
+        "reason": "keep service ability backgroud running",
+        "usedScene": {
+          "ability": [
+            ".StepSensorService"
+          ],
+          "when": "always"
+        }
+      }
     ],
     "abilities": [
       {
@@ -66,7 +75,11 @@
         "icon": "$media:icon",
         "description": "$string:stepsensorservice_description",
         "type": "service",
-        "visible": false
+        "visible": true,
+        "backgroundModes": [
+          "dataTransfer",
+          "location"
+        ]
       },
       {
         "orientation": "unspecified",
@@ -76,9 +89,8 @@
         "label": "$string:app_name",
         "type": "page",
         "launchType": "standard",
-        "visible": false,
+        "visible": true,
         "formsEnabled": true,
-
         "forms": [
           {
             "jsComponentName": "card2X2",
@@ -86,14 +98,14 @@
             "scheduledUpdateTime": "10:30",
             "defaultDimension": "2*2",
             "name": "card2X2",
-            "description": "This is a step form card",
+            "description": "This is a step service widget",
             "colorMode": "auto",
             "type": "JS",
             "supportDimensions": [
               "2*2"
             ],
             "updateEnabled": true,
-            "updateDuration": 1
+            "updateDuration": 30
           },
           {
             "jsComponentName": "card2X4",
@@ -101,14 +113,14 @@
             "scheduledUpdateTime": "10:30",
             "defaultDimension": "2*4",
             "name": "card2X4",
-            "description": "This is a step form card",
+            "description": "This is a step service widget",
             "colorMode": "auto",
             "type": "JS",
             "supportDimensions": [
               "2*4"
             ],
             "updateEnabled": true,
-            "updateDuration": 1
+            "updateDuration": 30
           }
         ]
       }

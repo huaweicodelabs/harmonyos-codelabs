@@ -31,6 +31,7 @@ import ohos.aafwk.content.Intent;
 import ohos.data.DatabaseHelper;
 import ohos.data.orm.OrmContext;
 import ohos.data.orm.OrmPredicates;
+import ohos.event.notification.NotificationRequest;
 import ohos.eventhandler.EventHandler;
 import ohos.eventhandler.EventRunner;
 import ohos.eventhandler.InnerEvent;
@@ -49,7 +50,8 @@ import java.util.List;
  */
 public class StepSensorService extends Ability {
     private static final HiLogLabel LABEL_LOG = new HiLogLabel(3, 0xD001100, "Demo");
-    private static final long INTERVAL = 100000000L;
+    private static final long INTERVAL = 3000000000L;
+    private static final int NOTICE_ID = 1005;
     private CategoryMotionAgent categoryMotionAgent = new CategoryMotionAgent();
     private ICategoryMotionDataCallback categoryMotionDataCallback;
     private CategoryMotion categoryMotion;
@@ -59,7 +61,7 @@ public class StepSensorService extends Ability {
 
     @Override
     public void onStart(Intent intent) {
-        HiLog.error(LABEL_LOG, "StepSensorService::onStart");
+        HiLog.info(LABEL_LOG, "StepSensorService::onStart");
         super.onStart(intent);
         connect = helper.getOrmContext("FormDatabase", "FormDatabase.db", FormDatabase.class);
         myHandler = new MyEventHandler(EventRunner.getMainEventRunner());
@@ -68,6 +70,8 @@ public class StepSensorService extends Ability {
             public void onSensorDataModified(CategoryMotionData categoryMotionData) {
                 float[] values = categoryMotionData.getValues();
                 handleSensorData(values[0]);
+                // 设置通知
+                notice(values[0]);
             }
 
             @Override
@@ -82,6 +86,22 @@ public class StepSensorService extends Ability {
         if (categoryMotion != null) {
             categoryMotionAgent.setSensorDataCallback(categoryMotionDataCallback, categoryMotion, INTERVAL);
         }
+    }
+
+    // 前台service
+    private void notice(float stepValue) {
+        // 创建通知
+        NotificationRequest request = new NotificationRequest(NOTICE_ID);
+        request.setAlertOneTime(true);
+        NotificationRequest.NotificationNormalContent content = new NotificationRequest.NotificationNormalContent();
+        SensorData sensorData = DatabaseUtils.getSensorData(connect, DateUtils.getDate(0));
+        if (sensorData != null) {
+            content.setText("今天走了" + sensorData.getStepsValue() + "步");
+        }
+        NotificationRequest.NotificationContent notificationContent = new NotificationRequest.NotificationContent(content);
+        request.setContent(notificationContent);
+        // 绑定通知
+        keepBackgroundRunning(NOTICE_ID, request);
     }
 
     /**
@@ -99,11 +119,12 @@ public class StepSensorService extends Ability {
             @Override
             public void run() {
                 // 存储数据
-                DatabaseUtils.insertValues(realValue, connect);
+                DatabaseUtils.insertValues(realValue, value, connect);
                 // 更新页面
                 MainAbilitySlice.updatePage(stringValue);
                 // 更新卡片
                 updateForms(stringValue);
+
             }
         });
     }
@@ -163,5 +184,11 @@ public class StepSensorService extends Ability {
         protected void processEvent(InnerEvent event) {
             super.processEvent(event);
         }
+    }
+
+    @Override
+    public void onMemoryLevel(int level) {
+        HiLog.info(LABEL_LOG, "StepSensorService::level::" + level);
+        super.onMemoryLevel(level);
     }
 }

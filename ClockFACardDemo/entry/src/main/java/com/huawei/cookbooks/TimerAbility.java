@@ -20,6 +20,7 @@ import com.huawei.cookbooks.database.FormDatabase;
 import com.huawei.cookbooks.utils.ComponentProviderUtils;
 import com.huawei.cookbooks.utils.DatabaseUtils;
 
+import com.huawei.cookbooks.utils.DateUtils;
 import ohos.aafwk.ability.Ability;
 import ohos.aafwk.ability.FormException;
 import ohos.aafwk.content.Intent;
@@ -27,6 +28,7 @@ import ohos.agp.components.ComponentProvider;
 import ohos.data.DatabaseHelper;
 import ohos.data.orm.OrmContext;
 import ohos.data.orm.OrmPredicates;
+import ohos.event.notification.NotificationRequest;
 import ohos.hiviewdfx.HiLog;
 import ohos.hiviewdfx.HiLogLabel;
 import ohos.rpc.IRemoteObject;
@@ -41,6 +43,7 @@ import java.util.TimerTask;
 public class TimerAbility extends Ability {
     private static final HiLogLabel LABEL_LOG = new HiLogLabel(3, 0xD001100, "Demo");
     private static final long SEND_PERIOD = 1000L;
+    private static final int NOTICE_ID = 1005;
     private DatabaseHelper helper = new DatabaseHelper(this);
     private OrmContext connect;
 
@@ -50,8 +53,19 @@ public class TimerAbility extends Ability {
         connect = helper.getOrmContext("FormDatabase", "FormDatabase.db", FormDatabase.class);
         startTimer();
         super.onStart(intent);
-    }
 
+    }
+    private void notice() {
+        // 创建通知
+        NotificationRequest request = new NotificationRequest(NOTICE_ID);
+        request.setAlertOneTime(true);
+        NotificationRequest.NotificationNormalContent content = new NotificationRequest.NotificationNormalContent();
+        content.setText(DateUtils.getCurrentDate("yyyy-MM-dd HH:mm:ss"));
+        NotificationRequest.NotificationContent notificationContent = new NotificationRequest.NotificationContent(content);
+        request.setContent(notificationContent);
+        // 绑定通知
+        keepBackgroundRunning(NOTICE_ID, request);
+    }
     // 卡片更新定时器，每秒更新一次
     private void startTimer() {
         Timer timer = new Timer();
@@ -60,6 +74,7 @@ public class TimerAbility extends Ability {
                     @Override
                     public void run() {
                         updateForms();
+                        notice();
                     }
                 },
                 0,

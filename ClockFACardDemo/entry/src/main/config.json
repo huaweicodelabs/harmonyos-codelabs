@@ -4,7 +4,7 @@
     "vendor": "huawei",
     "version": {
       "code": 1000000,
-      "name": "1.0"
+      "name": "1.0.0"
     }
   },
   "deviceConfig": {
@@ -22,8 +22,21 @@
     "distro": {
       "deliveryWithInstall": true,
       "moduleName": "entry",
-      "moduleType": "entry"
+      "moduleType": "entry",
+      "installationFree": false
     },
+    "reqPermissions": [
+      {
+        "name": "ohos.permission.KEEP_BACKGROUND_RUNNING",
+        "reason": "keep service ability backgroud running",
+        "usedScene": {
+          "ability": [
+            ".StepSensorService"
+          ],
+          "when": "always"
+        }
+      }
+    ],
     "abilities": [
       {
         "skills": [
@@ -52,10 +65,10 @@
               "$layout:form_image_with_info_date_card_2_4"
             ],
             "isDefault": true,
-            "scheduledUpdateTime": "10:30",
+            "scheduledUpdateTime": "11:30",
             "defaultDimension": "2*2",
             "name": "DateCard",
-            "description": "This is a form card",
+            "description": "This is a service widget",
             "colorMode": "auto",
             "type": "Java",
             "supportDimensions": [
@@ -67,8 +80,16 @@
               "$layout:form_image_with_info_date_card_2_4"
             ],
             "updateEnabled": true,
-            "updateDuration": 1,
-            "formVisibleNotify": true
+            "updateDuration": 30,
+            "formVisibleNotify": true,
+            "metaData": {
+              "customizeData": [
+                {
+                  "name": "needBlurBackgroundForLauncher",
+                  "value": "true"
+                }
+              ]
+            }
           }
         ]
       },
@@ -77,7 +98,11 @@
         "icon": "$media:icon",
         "description": "$string:TimeAbility_description",
         "type": "service",
-        "visible": false
+        "visible": true,
+        "backgroundModes": [
+          "dataTransfer",
+          "location"
+        ]
       }
     ]
   }

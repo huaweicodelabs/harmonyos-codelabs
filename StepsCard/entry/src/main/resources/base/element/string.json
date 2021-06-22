@@ -2,7 +2,7 @@
   "string": [
     {
       "name": "app_name",
-      "value": "StepsCard"
+      "value": "计步器服务卡片"
     },
     {
       "name": "mainability_description",
@@ -19,10 +19,6 @@
     {
       "name": "stepformability_description",
       "value": "Java_Phone_Empty Feature Ability"
-    },
-    {
-      "name": "HelloWorld",
-      "value": "Hello World"
     }
   ]
 }

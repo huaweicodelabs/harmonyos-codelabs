@@ -80,7 +80,7 @@ public class MainAbilitySlice extends AbilitySlice implements PermissionBridge.O
         Operation operation = new Intent.OperationBuilder()
                 .withDeviceId("")
                 .withBundleName(getBundleName())
-                .withAbilityName(StepSensorService.class.getSimpleName())
+                .withAbilityName(StepSensorService.class.getName())
                 .build();
         intentService.setOperation(operation);
         startAbility(intentService);
