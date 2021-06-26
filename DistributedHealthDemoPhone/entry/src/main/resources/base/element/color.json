@@ -1,0 +1,13 @@
+{
+  "color": [
+
+    {
+      "name": "text_on",
+      "value": "#4169E1"
+    },
+    {
+      "name": "text_off",
+      "value": "#708090"
+    }
+  ]
+}

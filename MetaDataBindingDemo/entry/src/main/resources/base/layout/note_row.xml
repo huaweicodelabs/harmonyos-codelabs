@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DirectionalLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    xmlns:metaDataBinding="http://schemas.huawei.com/res/metaDatabinding"
+    ohos:height="match_parent"
+    ohos:width="match_parent"
+    ohos:background_element="$graphic:background_text_field"
+    ohos:orientation="vertical"
+    ohos:padding="12vp"
+    ohos:bottom_margin="12vp">
+
+    <using-meta-data
+        class="com.huawei.metadatabindingdemo.custom_data_source.metadata.NoteMetaData"
+        name="NoteMetaData"
+        schema="com.example.meta-data.note"/>
+
+    <Text
+        ohos:id="$+id:note_context"
+        ohos:height="match_content"
+        ohos:width="match_content"
+        ohos:text_size="18fp"
+        ohos:text_weight="600"
+        ohos:truncation_mode="ellipsis_at_end"
+        metaDataBinding:text="@{NoteMetaData.content}"/>
+
+    <Text
+        ohos:id="$+id:note_time"
+        ohos:height="match_content"
+        ohos:width="match_content"
+        ohos:text_color="#666666"
+        ohos:text_size="16fp"
+        ohos:top_margin="2vp"
+        metaDataBinding:text="*{NoteMetaData.getTime(@{NoteMetaData.time})}"/>
+
+</DirectionalLayout>

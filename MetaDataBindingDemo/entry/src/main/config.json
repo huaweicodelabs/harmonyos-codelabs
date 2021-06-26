@@ -1,0 +1,59 @@
+{
+  "app": {
+    "bundleName": "com.huawei.metadatabindingdemo",
+    "vendor": "huawei",
+    "version": {
+      "code": 1000000,
+      "name": "1.0.0"
+    }
+  },
+  "deviceConfig": {},
+  "module": {
+    "package": "com.huawei.metadatabindingdemo",
+    "name": ".MyApplication",
+    "deviceType": [
+      "phone"
+    ],
+    "distro": {
+      "deliveryWithInstall": true,
+      "moduleName": "entry",
+      "moduleType": "entry",
+      "installationFree": true
+    },
+    "abilities": [
+      {
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ],
+        "name": ".MainAbility",
+        "icon": "$media:icon",
+        "description": "$string:mainability_description",
+        "type": "page",
+        "label": "$string:label",
+        "launchType": "standard"
+      },
+      {
+        "name": "com.huawei.metadatabindingdemo.alarm.db.AlarmsDataAbility",
+        "icon": "$media:icon",
+        "description": "$string:clockdataability_description",
+        "type": "data",
+        "uri": "dataability://com.huawei.metadatabindingdemo.db.AlarmsDataAbility",
+        "visible": true
+      },
+      {
+        "name": "com.huawei.metadatabindingdemo.custom_data_source.db.NotesDataAbility",
+        "icon": "$media:icon",
+        "type": "data",
+        "uri": "dataability://com.huawei.metadatabindingdemo.db.NotesDataAbility",
+        "visible": true
+      }
+    ]
+  }
+}

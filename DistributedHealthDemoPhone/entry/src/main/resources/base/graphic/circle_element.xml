@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:ohos="http://schemas.huawei.com/res/harmonyos"
+       ohos:shape="oval">
+    <stroke
+        ohos:width="7"
+        ohos:color="#00688B"/>
+    <solid
+        ohos:color="#FFF85911"/>
+</shape>

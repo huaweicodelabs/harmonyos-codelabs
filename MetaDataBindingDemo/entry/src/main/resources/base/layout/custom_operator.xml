@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DirectionalLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    xmlns:metaDataBinding="http://schemas.huawei.com/res/metaDatabinding"
+    ohos:height="match_parent"
+    ohos:width="match_parent"
+    ohos:alignment="horizontal_center"
+    ohos:orientation="vertical">
+
+    <using-meta-data
+        class="com.huawei.metadatabindingdemo.custom_ui.metadata.CustomMetaData"
+        name="MetaData"
+        schema="com.example.meta-data.custom"/>
+
+    <!-- title -->
+    <DependentLayout
+        xmlns:ohos="http://schemas.huawei.com/res/ohos"
+        ohos:height="$float:titlePartHeight"
+        ohos:width="match_parent">
+
+        <DependentLayout
+            xmlns:ohos="http://schemas.huawei.com/res/ohos"
+            ohos:id="$+id:title_area_back_icon_hot_area"
+            ohos:height="$float:titlePartIconHotAreaHeight"
+            ohos:width="$float:titlePartIconHotAreaWidth"
+            ohos:align_parent_left="true"
+            ohos:center_in_parent="true"
+            ohos:left_margin="$float:titlePartIconHotAreaLeftMargin">
+
+            <Image
+                ohos:id="$+id:title_area_back_icon"
+                ohos:height="$float:titlePartIconHeight"
+                ohos:width="$float:titlePartIconWidth"
+                ohos:center_in_parent="true"
+                ohos:image_src="$graphic:icon_back"/>
+        </DependentLayout>
+
+        <Text
+            ohos:id="$+id:title_text"
+            ohos:height="match_parent"
+            ohos:width="match_content"
+            ohos:left_padding="$float:titleTextLeftPadding"
+            ohos:right_of="$id:title_area_back_icon_hot_area"
+            ohos:text="Custom Operator"
+            ohos:text_alignment="vertical_center"
+            ohos:text_color="$color:colorAppbarTitle"
+            ohos:text_font="medium"
+            ohos:text_size="$float:titleTextSize"/>
+    </DependentLayout>
+
+    <Switch
+        ohos:id="$+id:switch_color"
+        ohos:height="match_content"
+        ohos:width="match_content"
+        ohos:layout_alignment="horizontal_center"
+        ohos:top_margin="20vp"
+        metaDataBinding:checked="@={MetaData.bool_attr}"
+        />
+
+    <com.huawei.metadatabindingdemo.custom_ui.component.MyRadioButton
+        ohos:id="$+id:test_my_radiobt"
+        ohos:height="40vp"
+        ohos:width="match_content"
+        ohos:layout_alignment="horizontal_center"
+        ohos:text="Custom RadioButton"
+        ohos:text_size="20fp"
+        ohos:top_margin="20vp"
+        metaDataBinding:text_color_off2="*{MetaData.getColorOff(@{MetaData.bool_attr})}"
+        metaDataBinding:text_color_on2="*{MetaData.getColorOn(@{MetaData.bool_attr})}"
+        />
+
+    <com.huawei.metadatabindingdemo.custom_ui.component.MySquare
+        ohos:id="$+id:test_my_comp"
+        ohos:height="200vp"
+        ohos:width="200vp"
+        ohos:layout_alignment="horizontal_center"
+        ohos:top_margin="20vp"
+        metaDataBinding:enabled2="@{MetaData.bool_attr}"
+        />
+
+</DirectionalLayout>

@@ -1,0 +1,35 @@
+<vector xmlns:ohos="http://schemas.huawei.com/res/ohos"
+        ohos:height="20vp"
+        ohos:width="36vp"
+        ohos:viewportHeight="20"
+        ohos:viewportWidth="36">
+    <path
+        ohos:fillAlpha="0.1"
+        ohos:fillColor="#18181A"
+        ohos:fillType="evenOdd"
+        ohos:pathData="M26,0L10,0C4.4772,-0 0,4.4772 0,10C0,15.5228 4.4772,20 10,20L26,20C31.5228,20 36,15.5228 36,10C36,4.4772 31.5228,0 26,0Z"
+        ohos:strokeAlpha="0.1"
+        ohos:strokeColor="#00000000"
+        ohos:strokeWidth="1"/>
+    <path
+        ohos:fillAlpha="1"
+        ohos:fillColor="#000000"
+        ohos:fillType="evenOdd"
+        ohos:pathData="M10,10m8,0a8,8 0,1 0,-16 0a8,8 0,1 0,16 0"
+        ohos:strokeColor="#00000000"
+        ohos:strokeWidth="1"/>
+    <path
+        ohos:fillColor="#00000000"
+        ohos:fillType="evenOdd"
+        ohos:pathData="M10,10m8.5,0a8.5,8.5 0,1 0,-17 0a8.5,8.5 0,1 0,17 0"
+        ohos:strokeAlpha="0.05"
+        ohos:strokeColor="#000000"
+        ohos:strokeWidth="1"/>
+    <path
+        ohos:fillColor="#FFFFFF"
+        ohos:fillType="evenOdd"
+        ohos:pathData="M10,10m8,0a8,8 0,1 0,-16 0a8,8 0,1 0,16 0"
+        ohos:strokeColor="#00000000"
+        ohos:strokeWidth="1"/>
+</vector>
+

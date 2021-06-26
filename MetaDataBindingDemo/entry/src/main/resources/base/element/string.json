@@ -1,0 +1,32 @@
+{
+  "string": [
+    {
+      "name": "app_name",
+      "value": "MvvmDataBaseClock"
+    },
+    {
+      "name": "mainability_description",
+      "value": "Java_Phone_Settings Feature Ability"
+    },
+    {
+      "name": "label",
+      "value": "MetaDatabindingDemo"
+    },
+    {
+      "name": "settings_list_title",
+      "value": "Title"
+    },
+    {
+      "name": "clockdataability_description",
+      "value": "hap sample empty provider"
+    },
+    {
+      "name": "metadata_service",
+      "value": "MetaDataFrameworkService"
+    },
+    {
+      "name": "def_permission_description",
+      "value": "heiheihei"
+    }
+  ]
+}

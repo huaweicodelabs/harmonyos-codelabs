@@ -1,0 +1,41 @@
+<DependentLayout
+    ohos:id="$+id:root"
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:width="match_parent"
+    ohos:height="match_parent">
+
+    <DirectionalLayout
+        ohos:id="$+id:page_wrap"
+        ohos:width="match_parent"
+        ohos:height="match_parent"
+        ohos:above="$+id:footer"
+        ohos:orientation="vertical"
+        >
+        <ScrollView
+            ohos:id="$+id:page"
+            ohos:width="match_parent"
+            ohos:height="match_parent"
+            ></ScrollView>
+    </DirectionalLayout>
+
+    <Component
+        ohos:width="match_parent"
+        ohos:height="1vp"
+        ohos:above="$+id:footer"
+        ohos:background_element="#EDF1F5"
+        ></Component>
+
+    <DirectionalLayout
+        ohos:id="$+id:footer"
+        ohos:width="match_parent"
+        ohos:height="54vp"
+        ohos:align_parent_bottom="true"
+        ohos:orientation="horizontal">
+        <TabList
+            ohos:id="$+id:footer_tab"
+            ohos:width="match_parent"
+            ohos:height="match_parent"
+            ohos:top_padding="8vp"/>
+    </DirectionalLayout>
+
+</DependentLayout>

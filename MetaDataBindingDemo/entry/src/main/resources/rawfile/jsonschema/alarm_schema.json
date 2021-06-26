@@ -1,0 +1,27 @@
+{
+  "id": "com.example.meta-data.alarm",
+  "title": "alarm schema",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description": "alarm description",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "hour": {
+      "type": "integer"
+    },
+    "minutes": {
+      "type": "integer"
+    },
+    "daysofweek": {
+      "type": "integer"
+    },
+    "enabled": {
+      "type": "integer"
+    },
+    "message": {
+      "type": "string"
+    }
+  }
+}

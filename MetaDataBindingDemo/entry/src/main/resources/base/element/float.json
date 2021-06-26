@@ -1,0 +1,140 @@
+{
+  "float": [
+    {
+      "name": "titleTextSize",
+      "value": "24fp"
+    },
+    {
+      "name": "singleCardViewHeight",
+      "value": "80vp"
+    },
+    {
+      "name": "singleCardViewLeftMargin",
+      "value": "12vp"
+    },
+    {
+      "name": "singleCardViewTextHeight",
+      "value": "48vp"
+    },
+    {
+      "name": "singleCardViewRightMargin",
+      "value": "12vp"
+    },
+    {
+      "name": "textSizeBody1",
+      "value": "16fp"
+    },
+    {
+      "name": "textSizeBody2",
+      "value": "14fp"
+    },
+    {
+      "name": "titleTextLeftPadding",
+      "value": "4vp"
+    },
+    {
+      "name": "singleCardViewRightIconHeight",
+      "value": "48vp"
+    },
+    {
+      "name": "singleCardViewRightTextHeight",
+      "value": "48vp"
+    },
+    {
+      "name": "singleCardViewRightTextRightMargin",
+      "value": "4vp"
+    },
+    {
+      "name": "titlePartHeight",
+      "value": "56vp"
+    },
+    {
+      "name": "titlePartIconHotAreaHeight",
+      "value": "48vp"
+    },
+    {
+      "name": "titlePartIconHotAreaWidth",
+      "value": "48vp"
+    },
+    {
+      "name": "titlePartIconHotAreaLeftMargin",
+      "value": "12vp"
+    },
+    {
+      "name": "titlePartIconHotAreaRightMargin",
+      "value": "12vp"
+    },
+    {
+      "name": "titlePartIconHeight",
+      "value": "24vp"
+    },
+    {
+      "name": "titlePartIconWidth",
+      "value": "24vp"
+    },
+    {
+      "name": "listDividerHeight",
+      "value": "1vp"
+    },
+    {
+      "name": "listContainerTopPadding",
+      "value": "12vp"
+    },
+    {
+      "name": "listContainerBottomPadding",
+      "value": "14vp"
+    },
+    {
+      "name": "doubleLineItemLeftIconHeight",
+      "value": "24vp"
+    },
+    {
+      "name": "doubleLineItemLeftIconWidth",
+      "value": "24vp"
+    },
+    {
+      "name": "doubleLineItemLeftIconLeftMargin",
+      "value": "12vp"
+    },
+    {
+      "name": "doubleLineItemLeftIconRightMargin",
+      "value": "16vp"
+    },
+    {
+      "name": "doubleLineItemMainTextHeight",
+      "value": "24vp"
+    },
+    {
+      "name": "doubleLineItemMainTextTopMargin",
+      "value": "8vp"
+    },
+    {
+      "name": "doubleLineItemMainTextBottomMargin",
+      "value": "1vp"
+    },
+    {
+      "name": "doubleLineItemSubTextHeight",
+      "value": "24vp"
+    },
+    {
+      "name": "doubleLineItemSubTextBottomMargin",
+      "value": "8vp"
+    },
+    {
+      "name": "doubleLineItemSubTextTopMargin",
+      "value": "1vp"
+    },
+    {
+      "name": "doubleLineItemRightIconHotAreaRightMargin",
+      "value": "6vp"
+    },
+    {
+      "name": "doubleLineItemRightIconHotAreaHeight",
+      "value": "48vp"
+    },
+    {
+      "name": "doubleLineItemRightIconHotAreaWidth",
+      "value": "48vp"
+    }
+  ]
+}

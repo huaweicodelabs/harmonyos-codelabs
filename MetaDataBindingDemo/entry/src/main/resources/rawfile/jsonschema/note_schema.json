@@ -1,0 +1,18 @@
+{
+  "id": "com.example.meta-data.note",
+  "title": "text schema",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description": "text description",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "content": {
+      "type": "string"
+    },
+    "time": {
+      "type": "integer"
+    }
+  }
+}

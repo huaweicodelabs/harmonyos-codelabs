@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DirectionalLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    xmlns:metaDataBinding="http://schemas.huawei.com/res/metaDatabinding"
+    ohos:height="match_parent"
+    ohos:width="match_parent"
+    ohos:background_element="$color:colorAppBackground"
+    ohos:orientation="vertical">
+
+    <request-meta-data
+        name="ClockMetaData"
+        schema="com.example.meta-data.alarm"
+        uri="dataability:///com.huawei.metadatabindingdemo.db.AlarmsDataAbility"/>
+
+    <!-- title -->
+    <DependentLayout
+        xmlns:ohos="http://schemas.huawei.com/res/ohos"
+        ohos:height="$float:titlePartHeight"
+        ohos:width="match_parent"
+        ohos:background_element="$color:colorAppBackground">
+
+        <DependentLayout
+            xmlns:ohos="http://schemas.huawei.com/res/ohos"
+            ohos:id="$+id:title_area_back_icon_hot_area"
+            ohos:height="$float:titlePartIconHotAreaHeight"
+            ohos:width="$float:titlePartIconHotAreaWidth"
+            ohos:align_parent_left="true"
+            ohos:center_in_parent="true"
+            ohos:left_margin="$float:titlePartIconHotAreaLeftMargin">
+
+            <Image
+                ohos:id="$+id:title_area_back_icon"
+                ohos:height="$float:titlePartIconHeight"
+                ohos:width="$float:titlePartIconWidth"
+                ohos:center_in_parent="true"
+                ohos:image_src="$graphic:icon_back"/>
+        </DependentLayout>
+
+        <Text
+            ohos:id="$+id:title_text"
+            ohos:height="match_parent"
+            ohos:width="match_content"
+            ohos:left_padding="$float:titleTextLeftPadding"
+            ohos:right_of="$id:title_area_back_icon_hot_area"
+            ohos:text="Alarm Clock"
+            ohos:text_alignment="vertical_center"
+            ohos:text_color="$color:colorAppbarTitle"
+            ohos:text_font="medium"
+            ohos:text_size="$float:titleTextSize"/>
+    </DependentLayout>
+
+    <TimePicker
+        ohos:id="$+id:time_picker"
+        ohos:height="match_content"
+        ohos:width="match_parent"
+        ohos:bottom_line_element="#CFCFCF"
+        ohos:left_margin="15vp"
+        ohos:normal_text_size="20fp"
+        ohos:right_margin="15vp"
+        ohos:selected_text_color="#007DFF"
+        ohos:selected_text_size="20fp"
+        ohos:top_line_element="#CFCFCF"
+        ohos:top_margin="12vp"
+        metaDataBinding:hour="@={ClockMetaData.hour}"
+        metaDataBinding:minute="@={ClockMetaData.minutes}"
+        />
+
+    <DependentLayout
+        ohos:id="$+id:name_edit"
+        ohos:height="match_content"
+        ohos:width="match_parent"
+        ohos:background_element="$color:colorCardViewBg"
+        ohos:bottom_padding="15vp"
+        ohos:margin="12vp"
+        ohos:top_padding="15vp">
+
+        <Text
+            ohos:id="$+id:clock_name"
+            ohos:height="match_content"
+            ohos:width="match_content"
+            ohos:align_parent_left="true"
+            ohos:left_margin="15vp"
+            ohos:text="Alarm Name"
+            ohos:text_size="20fp"/>
+
+        <TextField
+            ohos:id="$+id:clock_name_text"
+            ohos:height="match_content"
+            ohos:width="match_content"
+            ohos:align_parent_right="true"
+            ohos:background_element="$graphic:background_text_field"
+            ohos:multiple_lines="false"
+            ohos:right_margin="15vp"
+            ohos:text_size="18fp"
+            metaDataBinding:text="@={ClockMetaData.message}"/>
+    </DependentLayout>
+
+    <Text
+        ohos:height="match_content"
+        ohos:width="match_content"
+        ohos:align_parent_left="true"
+        ohos:left_margin="15vp"
+        ohos:text="Real-time display"
+        ohos:text_size="20fp"
+        ohos:top_padding="25vp"/>
+
+    <DependentLayout
+        ohos:id="$+id:show_alarm"
+        ohos:height="match_content"
+        ohos:width="match_parent"
+        ohos:background_element="$color:colorCardViewBg"
+        ohos:bottom_padding="15vp"
+        ohos:margin="12vp"
+        ohos:top_margin="15vp"
+        ohos:top_padding="15vp">
+
+        <Text
+            ohos:id="$+id:show_alarm_name"
+            ohos:height="match_content"
+            ohos:width="match_content"
+            ohos:align_parent_left="true"
+            ohos:left_margin="15vp"
+            ohos:text_size="20fp"
+            metaDataBinding:text="@{ClockMetaData.message}"/>
+
+        <Text
+            ohos:id="$+id:show_alarm_time"
+            ohos:height="match_content"
+            ohos:width="match_content"
+            ohos:align_parent_right="true"
+            ohos:left_margin="15vp"
+            ohos:text_size="20fp"
+            metaDataBinding:text="@{ClockMetaData.hour} + ':' + @{ClockMetaData.minutes}"/>
+    </DependentLayout>
+
+</DirectionalLayout>

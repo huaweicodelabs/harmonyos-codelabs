@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DependentLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:height="match_parent"
+    ohos:width="match_parent"
+    ohos:background_element="$color:colorAppBackground"
+    ohos:orientation="vertical">
+
+    <!-- title -->
+    <DependentLayout
+        xmlns:ohos="http://schemas.huawei.com/res/ohos"
+        ohos:height="$float:titlePartHeight"
+        ohos:width="match_parent"
+        ohos:background_element="$color:colorAppBackground"
+        ohos:top_margin="150vp">
+
+        <Text
+            ohos:id="$+id:title_text"
+            ohos:height="match_parent"
+            ohos:width="match_content"
+            ohos:horizontal_center="true"
+            ohos:text="Example Selection"
+            ohos:text_alignment="vertical_center"
+            ohos:text_color="$color:colorAppbarTitle"
+            ohos:text_font="medium"
+            ohos:text_size="$float:titleTextSize"/>
+    </DependentLayout>
+
+    <DirectionalLayout
+        xmlns:ohos="http://schemas.huawei.com/res/ohos"
+        ohos:height="match_content"
+        ohos:width="250vp"
+        ohos:center_in_parent="true"
+        ohos:orientation="vertical">
+
+        <Button
+            ohos:id="$+id:list_alarm_button"
+            ohos:height="match_content"
+            ohos:width="match_parent"
+            ohos:background_element="$graphic:background_select_button"
+            ohos:bottom_margin="20vp"
+            ohos:bottom_padding="8vp"
+            ohos:center_in_parent="true"
+            ohos:text="List Alarm Example"
+            ohos:text_color="#FFFFFF"
+            ohos:text_size="16fp"
+            ohos:top_padding="8vp"/>
+
+        <Button
+            ohos:id="$+id:single_alarm_button"
+            ohos:height="match_content"
+            ohos:width="match_parent"
+            ohos:background_element="$graphic:background_select_button"
+            ohos:bottom_margin="20vp"
+            ohos:bottom_padding="8vp"
+            ohos:center_in_parent="true"
+            ohos:text="Single Alarm Example"
+            ohos:text_color="#FFFFFF"
+            ohos:text_size="16fp"
+            ohos:top_padding="8vp"/>
+
+        <Button
+            ohos:id="$+id:custom_operator_button"
+            ohos:height="match_content"
+            ohos:width="match_parent"
+            ohos:background_element="$graphic:background_select_button"
+            ohos:bottom_margin="20vp"
+            ohos:bottom_padding="8vp"
+            ohos:center_in_parent="true"
+            ohos:text="Custom UI Binding"
+            ohos:text_color="#FFFFFF"
+            ohos:text_size="16fp"
+            ohos:top_padding="8vp"/>
+
+        <Button
+            ohos:id="$+id:notes_button"
+            ohos:height="match_content"
+            ohos:width="match_parent"
+            ohos:background_element="$graphic:background_select_button"
+            ohos:bottom_margin="20vp"
+            ohos:bottom_padding="8vp"
+            ohos:center_in_parent="true"
+            ohos:text="Custom DataSource Binding"
+            ohos:text_color="#FFFFFF"
+            ohos:text_size="16fp"
+            ohos:top_padding="8vp"/>
+
+    </DirectionalLayout>
+
+</DependentLayout>

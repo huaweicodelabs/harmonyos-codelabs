@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DirectionalLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:height="match_parent"
+    ohos:width="match_parent"
+    ohos:orientation="vertical">
+
+    <Text
+        ohos:height="match_parent"
+        ohos:width="match_parent"
+        ohos:text="error happened~"
+        ohos:text_size="100vp"
+        />
+
+</DirectionalLayout>

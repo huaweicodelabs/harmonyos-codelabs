@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DirectionalLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:height="match_parent"
+    ohos:width="match_parent"
+    ohos:background_element="$color:colorAppBackground"
+    ohos:orientation="vertical">
+
+    <request-meta-data
+        class="com.huawei.metadatabindingdemo.alarm.metadata.ClockRowMetaData"
+        name="ClockMetaData"
+        schema="com.example.meta-data.alarm"/>
+
+    <!-- title -->
+    <DependentLayout
+        xmlns:ohos="http://schemas.huawei.com/res/ohos"
+        ohos:height="$float:titlePartHeight"
+        ohos:width="match_parent"
+        ohos:background_element="$color:colorAppBackground">
+
+        <DependentLayout
+            xmlns:ohos="http://schemas.huawei.com/res/ohos"
+            ohos:id="$+id:title_area_back_icon_hot_area"
+            ohos:height="$float:titlePartIconHotAreaHeight"
+            ohos:width="$float:titlePartIconHotAreaWidth"
+            ohos:align_parent_left="true"
+            ohos:center_in_parent="true"
+            ohos:left_margin="$float:titlePartIconHotAreaLeftMargin">
+
+            <Image
+                ohos:id="$+id:title_area_back_icon"
+                ohos:height="$float:titlePartIconHeight"
+                ohos:width="$float:titlePartIconWidth"
+                ohos:center_in_parent="true"
+                ohos:image_src="$graphic:icon_back"/>
+        </DependentLayout>
+
+        <Text
+            ohos:id="$+id:title_text"
+            ohos:height="match_parent"
+            ohos:width="match_content"
+            ohos:left_padding="$float:titleTextLeftPadding"
+            ohos:right_of="$id:title_area_back_icon_hot_area"
+            ohos:text="Alarm List"
+            ohos:text_alignment="vertical_center"
+            ohos:text_color="$color:colorAppbarTitle"
+            ohos:text_font="medium"
+            ohos:text_size="$float:titleTextSize"/>
+
+        <DependentLayout
+            xmlns:ohos="http://schemas.huawei.com/res/ohos"
+            ohos:id="$+id:title_area_add"
+            ohos:height="$float:titlePartIconHotAreaHeight"
+            ohos:width="$float:titlePartIconHotAreaWidth"
+            ohos:center_in_parent="true"
+            ohos:align_parent_right="true">
+
+            <Image
+                ohos:id="$+id:title_area_add_icon"
+                ohos:height="$float:titlePartIconHeight"
+                ohos:width="$float:titlePartIconWidth"
+                ohos:center_in_parent="true"
+                ohos:image_src="$graphic:icon_add"/>
+        </DependentLayout>
+    </DependentLayout>
+
+    <!-- list -->
+    <ListContainer
+        ohos:id="$+id:list_view"
+        ohos:height="match_content"
+        ohos:width="match_parent"
+        ohos:bottom_padding="18vp"
+        ohos:left_margin="18vp"
+        ohos:right_margin="18vp"
+        ohos:top_padding="18vp"/>
+</DirectionalLayout>

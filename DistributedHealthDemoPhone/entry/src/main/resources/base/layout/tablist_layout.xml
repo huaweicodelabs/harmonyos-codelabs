@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DirectionalLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:id="$+id:test0"
+    ohos:height="match_parent"
+    ohos:width="match_parent"
+    ohos:alignment="horizontal_center"
+    ohos:background_element="$media:city"
+    ohos:orientation="vertical">
+
+    <Button
+        ohos:id="$+id:button_syncPhoneData"
+        ohos:height="35vp"
+        ohos:width="200vp"
+        ohos:background_element="$graphic:step"
+        ohos:layout_alignment="horizontal_center"
+        ohos:text="同步手机数据"
+        ohos:text_color="#FFF7F7FA"
+        ohos:text_size="27fp"
+        ohos:top_margin="40vp"
+        ohos:top_padding="10px"
+        />
+
+    <DirectionalLayout
+        ohos:id="$+id:stepLayout"
+        ohos:height="240vp"
+        ohos:width="370vp"
+        ohos:alignment="horizontal_center"
+        ohos:background_element="$graphic:step"
+        ohos:top_margin="50vp">
+
+        <DirectionalLayout
+            ohos:height="match_content"
+            ohos:width="match_parent"
+            ohos:alignment="vertical_center"
+            ohos:orientation="horizontal">
+
+            <Text
+                ohos:id="$+id:otherStepTimeText"
+                ohos:height="match_content"
+                ohos:width="match_content"
+                ohos:left_margin="115vp"
+                ohos:text="同步时间 00:00"
+                ohos:text_alignment="center"
+                ohos:text_color="white"
+                ohos:text_size="20fp"/>
+        </DirectionalLayout>
+
+        <DirectionalLayout
+            ohos:height="match_content"
+            ohos:width="match_parent"
+            ohos:alignment="vertical_center"
+            ohos:orientation="horizontal">
+
+            <RoundProgressBar
+                ohos:id="$+id:otherStepData"
+                ohos:height="150vp"
+                ohos:width="150vp"
+                ohos:background_element="$graphic:circle_element"
+                ohos:margin="40px"
+                ohos:max_angle="360"
+                ohos:progress="0"
+                ohos:progress_color="#FFFAF7F5"
+                ohos:progress_hint_text="步数0步"
+                ohos:progress_width="20vp"
+                ohos:start_angle="0"/>
+
+            <RoundProgressBar
+                ohos:id="$+id:otherStepData1"
+                ohos:height="150vp"
+                ohos:width="150vp"
+                ohos:background_element="$graphic:circle_element"
+                ohos:margin="40px"
+                ohos:max_angle="360"
+                ohos:progress="0"
+                ohos:progress_color="#FFF5F5F5"
+                ohos:progress_hint_text="低强度"
+                ohos:progress_width="20vp"
+                ohos:start_angle="0"/>
+        </DirectionalLayout>
+
+        <DirectionalLayout
+            ohos:height="match_content"
+            ohos:width="match_content"
+            ohos:alignment="vertical_center"
+            ohos:orientation="horizontal">
+
+            <Text
+                ohos:id="$+id:otherStepDistances"
+                ohos:height="match_content"
+                ohos:width="match_content"
+                ohos:left_margin="40px"
+                ohos:text="距离0.00公里 |"
+                ohos:text_color="white"
+                ohos:text_size="15fp"/>
+
+            <Text
+                ohos:id="$+id:otherStepHeat"
+                ohos:height="match_content"
+                ohos:width="match_content"
+                ohos:left_margin="40px"
+                ohos:text="热量0.00千卡 |"
+                ohos:text_color="white"
+                ohos:text_size="15fp"/>
+
+            <Text
+                ohos:id="$+id:otherStepFloor"
+                ohos:height="match_content"
+                ohos:width="match_content"
+                ohos:left_margin="40px"
+                ohos:text="爬楼0层"
+                ohos:text_color="white"
+                ohos:text_size="15fp"/>
+        </DirectionalLayout>
+
+    </DirectionalLayout>
+
+    <DirectionalLayout
+        xmlns:ohos="http://schemas.huawei.com/res/ohos"
+        ohos:id="$+id:test10"
+        ohos:height="match_parent"
+        ohos:width="match_parent"
+        ohos:alignment="horizontal_center"
+        ohos:orientation="horizontal">
+
+        <DirectionalLayout
+            ohos:id="$+id:test3"
+            ohos:height="180vp"
+            ohos:layout_alignment="left"
+            ohos:width="175vp"
+            ohos:alignment="left"
+            ohos:background_element="$graphic:rate"
+            ohos:top_margin="80vp"
+            >
+            <DirectionalLayout
+                ohos:height="match_content"
+                ohos:width="match_parent"
+                ohos:alignment="vertical_center"
+                ohos:orientation="vertical">
+
+                <Text
+                    ohos:id="$+id:rateText"
+                    ohos:height="match_content"
+                    ohos:width="match_content"
+                    ohos:left_margin="10vp"
+                    ohos:text="心脏健康"
+                    ohos:text_color="#FF0C0C0C"
+                    ohos:text_size="20fp"/>
+
+                <Text
+                    ohos:id="$+id:otherRateTimeText"
+                    ohos:height="match_content"
+                    ohos:width="match_content"
+                    ohos:left_margin="10vp"
+                    ohos:text="00:00"
+                    ohos:text_color="white"
+                    ohos:text_size="20fp"/>
+            </DirectionalLayout>
+
+            <DirectionalLayout
+                ohos:height="match_parent"
+                ohos:width="match_parent"
+                ohos:alignment="vertical_center"
+                ohos:orientation="horizontal">
+
+                <Text
+                    ohos:id="$+id:otherRateData"
+                    ohos:height="match_content"
+                    ohos:width="match_content"
+                    ohos:text="0"
+                    ohos:text_color="#FF0C0C0C"
+                    ohos:text_size="30fp"
+                    ohos:top_margin="30vp"/>
+
+                <Text
+                    ohos:id="$+id:rateData5"
+                    ohos:height="match_content"
+                    ohos:width="match_content"
+                    ohos:text="次/分钟"
+                    ohos:text_color="#FFF8F8F8"
+                    ohos:text_size="20fp"
+                    ohos:top_margin="30vp"/>
+
+            </DirectionalLayout>
+        </DirectionalLayout>
+
+        <Component
+            ohos:height="match_content"
+            ohos:width="5vp"/>
+
+        <DirectionalLayout
+            ohos:id="$+id:test4"
+            ohos:height="180vp"
+            ohos:width="175vp"
+            ohos:layout_alignment="right"
+            ohos:background_element="$graphic:range"
+            ohos:top_margin="80vp"
+            >
+
+            <Text
+                ohos:id="$+id:rateTexts"
+                ohos:height="match_content"
+                ohos:width="match_content"
+                ohos:left_margin="10vp"
+                ohos:text="心率范围"
+                ohos:text_color="#FF0E0E0E"
+                ohos:text_size="20fp"/>
+
+            <DirectionalLayout
+                ohos:height="match_parent"
+                ohos:width="match_parent"
+                ohos:alignment="vertical_center"
+                ohos:orientation="horizontal">
+
+                <Text
+                    ohos:id="$+id:otherRateRangeData"
+                    ohos:height="match_content"
+                    ohos:width="match_content"
+                    ohos:text="0~0"
+                    ohos:text_color="#FF0E0E0E"
+                    ohos:text_size="30fp"
+                    ohos:top_margin="40vp"/>
+
+                <Text
+                    ohos:id="$+id:rateData7"
+                    ohos:height="match_content"
+                    ohos:width="match_content"
+                    ohos:text="次/分钟"
+                    ohos:text_color="#FFF8F8F8"
+                    ohos:text_size="20fp"
+                    ohos:top_margin="40vp"/>
+
+            </DirectionalLayout>
+
+        </DirectionalLayout>
+
+    </DirectionalLayout>
+
+
+</DirectionalLayout>

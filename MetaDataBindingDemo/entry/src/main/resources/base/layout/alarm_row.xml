@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DependentLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    xmlns:metaDataBinding="http://schemas.huawei.com/res/metaDatabinding"
+    ohos:height="match_parent"
+    ohos:width="match_parent"
+    ohos:background_element="$graphic:background_text_field"
+    ohos:bottom_margin="12vp"
+    ohos:orientation="vertical">
+
+    <using-meta-data
+        class="com.huawei.metadatabindingdemo.alarm.metadata.ClockRowMetaData"
+        name="ClockMetaData"
+        schema="com.example.meta-data.alarm"/>
+
+    <DependentLayout
+        xmlns:ohos="http://schemas.huawei.com/res/ohos"
+        ohos:id="$+id:double_line_text_area"
+        ohos:height="$float:singleCardViewHeight"
+        ohos:width="match_content"
+        ohos:left_margin="12vp">
+
+        <Text
+            ohos:id="$+id:timezone"
+            ohos:height="$float:doubleLineItemMainTextHeight"
+            ohos:width="match_content"
+            ohos:bottom_margin="$float:doubleLineItemMainTextBottomMargin"
+            ohos:text_alignment="left|bottom"
+            ohos:text_size="16fp"
+            ohos:top_margin="16vp"
+            metaDataBinding:text="*{ClockMetaData.getTimeZone(@{ClockMetaData.hour})}"/>
+
+        <Text
+            ohos:id="$+id:time"
+            ohos:height="$float:doubleLineItemMainTextHeight"
+            ohos:width="match_content"
+            ohos:bottom_margin="$float:doubleLineItemMainTextBottomMargin"
+            ohos:left_margin="8vp"
+            ohos:right_of="$id:timezone"
+            ohos:text_alignment="left|bottom"
+            ohos:text_size="18fp"
+            ohos:top_margin="16vp"
+            metaDataBinding:text="@{ClockMetaData.hour} + ':' + @{ClockMetaData.minutes}"/>
+
+        <Text
+            ohos:id="$+id:message"
+            ohos:height="$float:doubleLineItemSubTextHeight"
+            ohos:width="match_content"
+            ohos:below="$id:timezone"
+            ohos:bottom_margin="$float:doubleLineItemSubTextBottomMargin"
+            ohos:text_alignment="left|top"
+            ohos:text_size="$float:textSizeBody2"
+            ohos:top_margin="4vp"
+            metaDataBinding:text="*{ClockMetaData.toMessage(@{ClockMetaData.message},@{ClockMetaData.daysofweek})}"/>
+    </DependentLayout>
+
+    <DependentLayout
+        xmlns:ohos="http://schemas.huawei.com/res/ohos"
+        ohos:id="$+id:double_line_switch_hot_area"
+        ohos:height="$float:doubleLineItemRightIconHotAreaHeight"
+        ohos:width="$float:doubleLineItemRightIconHotAreaWidth"
+        ohos:align_parent_right="true"
+        ohos:center_in_parent="true"
+        ohos:right_margin="$float:doubleLineItemRightIconHotAreaRightMargin">
+
+        <Image
+            ohos:id="$+id:switch_enable_button"
+            ohos:height="match_content"
+            ohos:width="match_content"
+            ohos:center_in_parent="true"
+            ohos:image_src="$graphic:icon_switch_enable"
+            metaDataBinding:image_src="@{ClockMetaData.enabled} == 1 ? ${Media_icon_switch_enabled} : ${Media_icon_switch_disabled}"
+            metaDataBinding:onClick="#{ClockMetaData.enabled = (@{ClockMetaData.enabled} == 1 ? 0 : 1)}"/>
+    </DependentLayout>
+</DependentLayout>
