@@ -3,19 +3,15 @@
     "bundleName": "com.huawei.maildemo",
     "vendor": "huawei",
     "version": {
-      "code": 1,
-      "name": "1.0"
-    },
-    "apiVersion": {
-      "compatible": 4,
-      "target": 5,
-      "releaseType": "Release"
+      "code": 1000000,
+      "name": "1.0.0"
     }
   },
   "deviceConfig": {},
   "module": {
     "package": "com.huawei.maildemo",
     "name": ".MyApplication",
+    "mainAbility": "com.huawei.maildemo.MainAbility",
     "reqCapabilities": [
       "video_support"
     ],
@@ -26,7 +22,8 @@
     "distro": {
       "deliveryWithInstall": true,
       "moduleName": "entry",
-      "moduleType": "entry"
+      "moduleType": "entry",
+      "installationFree": false
     },
     "abilities": [
       {
@@ -42,7 +39,7 @@
         ],
         "orientation": "unspecified",
         "visible": true,
-        "formEnabled": false,
+        "formsEnabled": false,
         "name": "com.huawei.maildemo.MainAbility",
         "icon": "$media:icon",
         "description": "$string:mainability_description",

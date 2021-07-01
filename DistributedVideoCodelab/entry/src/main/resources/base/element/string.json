@@ -5,8 +5,8 @@
       "value": "video"
     },
     {
-      "name": "video_detail",
-      "value": "video detail"
+      "name": "simple_player",
+      "value": "SimplePlayer"
     },
     {
       "name": "mainability_description",

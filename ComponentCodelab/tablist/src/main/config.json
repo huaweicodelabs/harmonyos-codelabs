@@ -18,7 +18,8 @@
     "distro": {
       "deliveryWithInstall": true,
       "moduleName": "tablist",
-      "moduleType": "feature"
+      "moduleType": "feature",
+      "installationFree": false
     },
     "abilities": [
       {

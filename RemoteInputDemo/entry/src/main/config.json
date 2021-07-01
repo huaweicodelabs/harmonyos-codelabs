@@ -3,19 +3,15 @@
     "bundleName": "com.huawei.codelab",
     "vendor": "huawei",
     "version": {
-      "code": 1,
-      "name": "1.0"
-    },
-    "apiVersion": {
-      "compatible": 5,
-      "target": 5,
-      "releaseType": "Release"
+      "code": 1000000,
+      "name": "1.0.0"
     }
   },
   "deviceConfig": {},
   "module": {
     "package": "com.huawei.codelab",
     "name": ".MyApplication",
+    "mainAbility": "com.huawei.codelab.MainAbility",
     "deviceType": [
       "phone",
       "tv"
@@ -23,7 +19,8 @@
     "distro": {
       "deliveryWithInstall": true,
       "moduleName": "entry",
-      "moduleType": "entry"
+      "moduleType": "entry",
+      "installationFree": false
     },
     "abilities": [
       {

@@ -3,13 +3,8 @@
     "bundleName": "com.huawei.codelab",
     "vendor": "huawei",
     "version": {
-      "code": 1,
-      "name": "1.0"
-    },
-    "apiVersion": {
-      "compatible": 4,
-      "target": 5,
-      "releaseType": "Release"
+      "code": 1000000,
+      "name": "1.0.0"
     }
   },
   "deviceConfig": {},
@@ -20,13 +15,14 @@
       "video_support"
     ],
     "deviceType": [
-      "default",
+      "phone",
       "tv"
     ],
     "distro": {
       "deliveryWithInstall": true,
       "moduleName": "entry",
-      "moduleType": "entry"
+      "moduleType": "entry",
+      "installationFree": false
     },
     "abilities": [
       {
@@ -42,7 +38,7 @@
           }
         ],
         "orientation": "portrait",
-        "formEnabled": false,
+        "formsEnabled": false,
         "name": "com.huawei.codelab.NewsAbility",
         "icon": "$media:icon",
         "description": "$string:mainability_description",

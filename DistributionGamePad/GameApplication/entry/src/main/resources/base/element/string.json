@@ -23,6 +23,14 @@
     {
       "name": "gameoverability_description",
       "value": "Java_Phone_Empty Feature Ability"
+      },
+    {
+      "name": "entry",
+      "value": "entry"
+    },
+    {
+      "name": "entry_MainAbility",
+      "value": "GameApplication"
     }
   ]
 }
