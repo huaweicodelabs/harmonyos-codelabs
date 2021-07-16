@@ -45,7 +45,7 @@ The RemoteInputDemo application is to show cross-device inputmethod capability.Y
 
 ## Device Detection
 For the HarmonyOS devices (TV, Phone, tablet, etc..) to find each other:
-1. They need to be connected to __the same network__ (same Wifi/access point)
+1. The Bluetooth on both devices should be enabled
 2. They need to be [logged to the same Huawei ID](https://consumer.huawei.com/en/support/content/en-us00770240/)
 
 
