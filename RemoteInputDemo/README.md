@@ -54,11 +54,11 @@ For the HarmonyOS devices (TV, Phone, tablet, etc..) to find each other:
 These are the screens of a phone and a TV (simulated on a tablet).
 The device detection is called when the Text input field is focused and shows a dialog with nearby devices.
 
-![](https://im4.ezgif.com/tmp/ezgif-4-a8350f47888c.gif)
+![](https://i.imgur.com/dYDvDav.gif)
 
 
-![](https://im4.ezgif.com/tmp/ezgif-4-b94ec1483628.gif)
 
+![](https://i.imgur.com/R2EKr0k.gif)
 
 
 
