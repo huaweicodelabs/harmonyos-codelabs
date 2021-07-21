@@ -23,31 +23,11 @@ import java.util.List;
  * @since 2021-03-12
  */
 public class InputTipsResult {
-    private String count;
-
-    private String infocode;
-
     private List<TipsEntity> tips;
 
     private String status;
 
     private String info;
-
-    public String getCount() {
-        return count;
-    }
-
-    public void setCount(String count) {
-        this.count = count;
-    }
-
-    public String getInfocode() {
-        return infocode;
-    }
-
-    public void setInfocode(String infocode) {
-        this.infocode = infocode;
-    }
 
     public List<TipsEntity> getTips() {
         return tips;
@@ -80,8 +60,6 @@ public class InputTipsResult {
      * @since 2021-03-12
      */
     public static class TipsEntity<E> {
-        private String typecode;
-
         private E address;
 
         private E adcode;
@@ -90,24 +68,36 @@ public class InputTipsResult {
 
         private String location;
 
-        public String getTypecode() {
-            return typecode;
-        }
-
         public E getAddress() {
             return address;
+        }
+
+        public void setAddress(E address) {
+            this.address = address;
         }
 
         public E getAdcode() {
             return adcode;
         }
 
+        public void setAdcode(E adcode) {
+            this.adcode = adcode;
+        }
+
         public String getName() {
             return name;
         }
 
+        public void setName(String name) {
+            this.name = name;
+        }
+
         public String getLocation() {
             return location;
+        }
+
+        public void setLocation(String location) {
+            this.location = location;
         }
     }
 }

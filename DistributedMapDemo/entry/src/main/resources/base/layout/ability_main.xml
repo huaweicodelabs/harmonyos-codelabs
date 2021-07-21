@@ -9,7 +9,7 @@
         ohos:height="match_content"
         ohos:width="match_parent">
 
-        <com.huawei.codelab.map.NavMap
+        <com.dongyu.tinymap.TinyMap
             ohos:id="$+id:map"
             ohos:horizontal_center="true"
             ohos:height="match_parent"

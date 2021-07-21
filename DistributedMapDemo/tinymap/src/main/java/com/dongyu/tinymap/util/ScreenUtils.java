@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-package com.huawei.codelab.util;
+package com.dongyu.tinymap.util;
 
 import ohos.agp.utils.Point;
 import ohos.agp.window.service.Display;

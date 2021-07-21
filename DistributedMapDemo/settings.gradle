@@ -1,1 +1,1 @@
-include ':entry'
+include ':entry', ':tinymap'

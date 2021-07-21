@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-package com.huawei.codelab.map;
+package com.dongyu.tinymap;
 
 import ohos.agp.render.PixelMapHolder;
 import ohos.agp.utils.Point;
@@ -24,7 +24,7 @@ import ohos.media.image.PixelMap;
  *
  * @since 2021-03-12
  */
-public class MapTile extends PixelMapHolder {
+public class Tile extends PixelMapHolder {
     private Point originPoint = new Point(0, 0);
 
     private Point nowPoint = new Point(0, 0);
@@ -41,7 +41,7 @@ public class MapTile extends PixelMapHolder {
      * @param pointY pointY
      * @since 2021-03-12
      */
-    public MapTile(PixelMap pixelMap, float pointX, float pointY) {
+    public Tile(PixelMap pixelMap, float pointX, float pointY) {
         super(pixelMap);
         originPoint = new Point(pointX, pointY);
         nowPoint = new Point(pointX, pointY);

@@ -4,9 +4,21 @@ ohos {
     defaultConfig {
         compatibleSdkVersion 4
     }
+    signingConfigs {
+        debug {
+            storeFile file('D:/sign/lengxianglei/ide_acg_pk.p12')
+            storePassword '00000018FE915E012EF9E3073CF247314FAA52D1FAB3BF0979BEB2B0A14E018AA6B7FADC0ED7E8DF'
+            keyAlias 'ide_acg_pk'
+            keyPassword '00000018ED8CF1E10DAC04612FE80A4CCFDA6901389EF5BF43C6D27B226442E837C7314E077A4972'
+            signAlg 'SHA256withECDSA'
+            profile file('D:/sign/lengxianglei/cookbookDebug.p7b')
+            certpath file('D:/sign/lengxianglei/ide_acg.cer')
+        }
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar', '*.har'])
+    implementation project(":tinymap")
     implementation 'com.google.code.gson:gson:2.8.0'
 }

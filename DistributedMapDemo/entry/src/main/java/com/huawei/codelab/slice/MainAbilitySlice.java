@@ -18,14 +18,15 @@ package com.huawei.codelab.slice;
 import com.huawei.codelab.ResourceTable;
 import com.huawei.codelab.bean.InputTipsResult;
 import com.huawei.codelab.map.MapDataHelper;
-import com.huawei.codelab.map.MapElement;
 import com.huawei.codelab.map.MapManager;
-import com.huawei.codelab.map.NavMap;
 import com.huawei.codelab.provider.InputTipsProvider;
 import com.huawei.codelab.util.GsonUtils;
 import com.huawei.codelab.util.ImageUtils;
 import com.huawei.codelab.util.LogUtils;
 import com.huawei.codelab.util.PermissionsUtils;
+
+import com.dongyu.tinymap.Element;
+import com.dongyu.tinymap.TinyMap;
 
 import ohos.aafwk.ability.AbilitySlice;
 import ohos.aafwk.ability.IAbilityContinuation;
@@ -65,9 +66,9 @@ public class MainAbilitySlice extends AbilitySlice
 
     private DependentLayout routeTipsLayout;
 
-    private NavMap navMap;
+    private TinyMap tinyMap;
 
-    private List<MapElement> elements;
+    private List<Element> elements;
 
     private TextField startTextField;
 
@@ -116,8 +117,8 @@ public class MainAbilitySlice extends AbilitySlice
     }
 
     private void findComponentById() {
-        if (findComponentById(ResourceTable.Id_map) instanceof NavMap) {
-            navMap = (NavMap) findComponentById(ResourceTable.Id_map);
+        if (findComponentById(ResourceTable.Id_map) instanceof TinyMap) {
+            tinyMap = (TinyMap) findComponentById(ResourceTable.Id_map);
         }
 
         if (findComponentById(ResourceTable.Id_start_point_field) instanceof TextField) {
@@ -179,9 +180,9 @@ public class MainAbilitySlice extends AbilitySlice
 
         mapDataHelper.setDataCallBack(this);
 
-        mapManager.setNavListener(mapElement -> {
-            routeContent.setText(mapElement.getActionContent());
-            routeImage.setPixelMap(ImageUtils.getImageId(mapElement.getActionType()));
+        mapManager.setNavListener(element -> {
+            routeContent.setText(element.getActionContent());
+            routeImage.setPixelMap(ImageUtils.getImageId(element.getActionType()));
         });
 
         PermissionsUtils.getInstance().setRequestListener(permission -> {
@@ -216,8 +217,8 @@ public class MainAbilitySlice extends AbilitySlice
     }
 
     private void initView() {
-        mapDataHelper = new MapDataHelper(navMap, this);
-        mapManager = new MapManager(navMap, this);
+        mapDataHelper = new MapDataHelper(tinyMap, this);
+        mapManager = new MapManager(tinyMap, this);
 
         // 解决ListContainer和NavMap的Touch事件冲突
         listContainer.setTouchEventListener((component, touchEvent) -> true);
@@ -234,14 +235,14 @@ public class MainAbilitySlice extends AbilitySlice
             btnStartNav.setVisibility(Component.HIDE);
             selectPointLayout.setVisibility(Component.HIDE);
 
-            navMap.setStepPoint(stepPoint);
+            tinyMap.setStepPoint(stepPoint);
             mapManager.setStepPoint(stepPoint);
             Point mercatorPoint = elements.get(0).getMercatorPoint();
-            navMap.setCenterPoint(new Point(mercatorPoint.getPointX(), mercatorPoint.getPointY()));
+            tinyMap.setCenterPoint(new Point(mercatorPoint.getPointX(), mercatorPoint.getPointY()));
 
             // 将元素集合添加到navMap对象，并重新计算坐标
-            for (MapElement mapElement : elements) {
-                navMap.addElement(mapElement);
+            for (Element element : elements) {
+                tinyMap.addElement(element);
             }
 
             mapManager.startNav();
@@ -331,9 +332,9 @@ public class MainAbilitySlice extends AbilitySlice
 
     @Override
     public void setRouteView(String route) {
-        navMap.getMapElements().clear();
+        tinyMap.getMapElements().clear();
         navBottom.setVisibility(Component.VISIBLE);
-        navMap.setStepPoint(0);
+        tinyMap.setStepPoint(0);
         mapDataHelper.parseRoute(route);
     }
 
@@ -350,10 +351,10 @@ public class MainAbilitySlice extends AbilitySlice
 
     @Override
     public boolean onSaveData(IntentParams saveData) {
-        String elementsString = GsonUtils.objectToString(navMap.getMapElements());
+        String elementsString = GsonUtils.objectToString(tinyMap.getMapElements());
         saveData.setParam(ELEMENT_STRING, elementsString);
         saveData.setParam("stepPoint", mapManager.getStepPoint());
-        LogUtils.info(TAG, "onSaveData" + navMap.getMapElements().size());
+        LogUtils.info(TAG, "onSaveData" + tinyMap.getMapElements().size());
         return true;
     }
 
@@ -361,7 +362,7 @@ public class MainAbilitySlice extends AbilitySlice
     public boolean onRestoreData(IntentParams restoreData) {
         if (restoreData.getParam(ELEMENT_STRING) instanceof String) {
             String elementsString = (String) restoreData.getParam(ELEMENT_STRING);
-            elements = GsonUtils.jsonToList(elementsString, MapElement.class);
+            elements = GsonUtils.jsonToList(elementsString, Element.class);
         }
         stepPoint = (int) restoreData.getParam("stepPoint");
         LogUtils.info(TAG, "onRestoreData::elements::" + elements.size());

@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-package com.huawei.codelab.map;
+package com.dongyu.tinymap;
 
 import ohos.agp.utils.Point;
 
@@ -22,7 +22,7 @@ import ohos.agp.utils.Point;
  *
  * @since 2021-02-01
  */
-public class MapElement {
+public class Element {
     // 元素的墨卡托影坐标
     private Point mercatorPoint = new Point(0, 0);
 
@@ -45,7 +45,7 @@ public class MapElement {
      * @param mercatorY 墨卡托影y轴坐标
      * @since 2021-03-12
      */
-    public MapElement(float mercatorX, float mercatorY) {
+    public Element(float mercatorX, float mercatorY) {
         mercatorPoint = new Point(mercatorX, mercatorY);
     }
 
@@ -57,7 +57,7 @@ public class MapElement {
      * @param isImage 元素是否为图片
      * @since 2021-03-12
      */
-    public MapElement(float mercatorX, float mercatorY, boolean isImage) {
+    public Element(float mercatorX, float mercatorY, boolean isImage) {
         mercatorPoint = new Point(mercatorX, mercatorY);
         this.isImage = isImage;
     }

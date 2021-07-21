@@ -13,10 +13,10 @@
  * limitations under the License.
  */
 
-package com.huawei.codelab.map;
+package com.dongyu.tinymap;
 
-import com.huawei.codelab.util.ImageUtils;
-import com.huawei.codelab.util.ScreenUtils;
+import com.dongyu.tinymap.util.ImageUtils;
+import com.dongyu.tinymap.util.ScreenUtils;
 
 import ohos.agp.components.AttrSet;
 import ohos.agp.components.Component;
@@ -41,7 +41,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
  *
  * @since 2021-03-12
  */
-public class NavMap extends Component implements Component.DrawTask, Component.TouchEventListener {
+public class TinyMap extends Component implements Component.DrawTask, Component.TouchEventListener {
     private static final int TILE_LENGTH = 512;
 
     private static final int ROUTE_WIDTH = 20;
@@ -86,9 +86,9 @@ public class NavMap extends Component implements Component.DrawTask, Component.T
 
     private double mapComponentHeight;
 
-    private List<MapTile> mapTiles;
+    private List<Tile> tiles;
 
-    private List<MapElement> elements;
+    private List<Element> elements;
 
     private Paint paint;
 
@@ -109,7 +109,7 @@ public class NavMap extends Component implements Component.DrawTask, Component.T
      * @param attrSet AttrSet
      */
 
-    public NavMap(Context context, AttrSet attrSet) {
+    public TinyMap(Context context, AttrSet attrSet) {
         super(context, attrSet);
         initPaint();
     }
@@ -135,7 +135,7 @@ public class NavMap extends Component implements Component.DrawTask, Component.T
      *
      * @return 类型为List
      */
-    public List<MapElement> getMapElements() {
+    public List<Element> getMapElements() {
         return elements;
     }
 
@@ -156,21 +156,21 @@ public class NavMap extends Component implements Component.DrawTask, Component.T
     /**
      * 往地图中添加地图元素
      *
-     * @param mapElement 地图元素
+     * @param element 地图元素
      */
-    public void addElement(MapElement mapElement) {
+    public void addElement(Element element) {
         if (elements == null) {
             elements = new ArrayList<>(0);
         }
         double componentX =
-            (mapElement.getMercatorPoint().getPointX() - centerPoint.getPointX()) / tileRealLength * TILE_LENGTH
+            (element.getMercatorPoint().getPointX() - centerPoint.getPointX()) / tileRealLength * TILE_LENGTH
                 + mapComponentWidth / COMPONENT_HALF;
         double componentY =
-            (centerPoint.getPointY() - mapElement.getMercatorPoint().getPointY()) / tileRealLength * TILE_LENGTH
+            (centerPoint.getPointY() - element.getMercatorPoint().getPointY()) / tileRealLength * TILE_LENGTH
                 + mapComponentHeight / COMPONENT_HALF;
-        mapElement.setNowPoint(new Point((float) componentX, (float) componentY));
-        mapElement.setOriginPoint(new Point((float) componentX, (float) componentY));
-        elements.add(mapElement);
+        element.setNowPoint(new Point((float) componentX, (float) componentY));
+        element.setOriginPoint(new Point((float) componentX, (float) componentY));
+        elements.add(element);
         invalidate();
     }
 
@@ -180,13 +180,16 @@ public class NavMap extends Component implements Component.DrawTask, Component.T
      * @param isRefresh 是否为刷新
      */
     public void initMapCanvas(boolean isRefresh) {
-        // 在某个缩放级别下，瓦片的行数（列数）
+        // 在某个缩放级别下，瓦片的行数（列数）32500
         int rowCount = (int) Math.pow(COMPONENT_HALF, ZOOM);
         tileRealLength = OVER_LENGTH * COMPONENT_HALF / rowCount;
         mapComponentWidth = ScreenUtils.getScreenWidth(getContext());
         mapComponentHeight = ScreenUtils.getScreenHeight(getContext());
 
+        // 地图四边范围 坐标为摩卡托影坐标
+        // mapComponentWidth / COMPONENT_HALF_F / TILE_LENGTH * tileRealLength摩卡托影长度的一半
         double minX = centerPoint.getPointX() - mapComponentWidth / COMPONENT_HALF_F * tileRealLength / TILE_LENGTH;
+        // 切片范围 多少行多少列 到 多少行多少列
         colMin = (int) Math.floor((minX + OVER_LENGTH) / tileRealLength);
         double maxX = centerPoint.getPointX() + mapComponentWidth / COMPONENT_HALF_F * tileRealLength / TILE_LENGTH;
         colMax = Math.min((int) Math.floor((maxX + OVER_LENGTH) / tileRealLength), rowCount - 1);
@@ -208,10 +211,11 @@ public class NavMap extends Component implements Component.DrawTask, Component.T
      * @param isRefresh 是否为刷新
      */
     private void initTiles(boolean isRefresh) {
-        if (mapTiles == null || isRefresh) {
-            mapTiles = new CopyOnWriteArrayList<>();
+        Component component;
+        if (tiles == null || isRefresh) {
+            tiles = new CopyOnWriteArrayList<>();
         }
-        mapTiles.removeIf(mapTile -> !mapTile.isInBoundary(rowMin, rowMax, colMin, colMax));
+        tiles.removeIf(tile -> !tile.isInBoundary(rowMin, rowMax, colMin, colMax));
 
         getContext().getGlobalTaskDispatcher(TaskPriority.DEFAULT).asyncDispatch(this::setTiles);
     }
@@ -236,18 +240,18 @@ public class NavMap extends Component implements Component.DrawTask, Component.T
                     + mapComponentWidth / COMPONENT_HALF;
                 double componentY = (centerPoint.getPointY() - tileY) / tileRealLength * TILE_LENGTH
                     + mapComponentHeight / COMPONENT_HALF;
-                MapTile mapTile = new MapTile(pixelMap, (float) componentX, (float) componentY);
-                mapTile.setCol(col);
-                mapTile.setRow(row);
-                mapTiles.add(mapTile);
+                Tile tile = new Tile(pixelMap, (float) componentX, (float) componentY);
+                tile.setCol(col);
+                tile.setRow(row);
+                tiles.add(tile);
                 getContext().getUITaskDispatcher().asyncDispatch(this::invalidate);
             }
         }
     }
 
     private boolean hasThisTile(int row, int col) {
-        for (MapTile mapTile : mapTiles) {
-            if (mapTile.getRow() == row && mapTile.getCol() == col) {
+        for (Tile tile : tiles) {
+            if (tile.getRow() == row && tile.getCol() == col) {
                 return true;
             }
         }
@@ -281,15 +285,15 @@ public class NavMap extends Component implements Component.DrawTask, Component.T
     }
 
     private void drawTiles(Canvas canvas) {
-        for (MapTile mapTile : mapTiles) {
-            canvas.drawPixelMapHolder(mapTile, mapTile.getNowPointX(), mapTile.getNowPointY(), linePaint);
+        for (Tile tile : tiles) {
+            canvas.drawPixelMapHolder(tile, tile.getNowPointX(), tile.getNowPointY(), linePaint);
         }
     }
 
     private void drawRoutePath(Canvas canvas) {
         for (int i = 1; i < elements.size(); i++) {
-            MapElement mapElement = elements.get(i);
-            Point point = mapElement.getNowPoint();
+            Element element = elements.get(i);
+            Point point = element.getNowPoint();
             float pointX = point.getPointX();
             float pointY = point.getPointY();
             if (i == 1 || i == elements.size() - 1) {
@@ -315,7 +319,7 @@ public class NavMap extends Component implements Component.DrawTask, Component.T
     }
 
     private void drawImageElement(Canvas canvas) {
-        for (MapElement element : elements) {
+        for (Element element : elements) {
             if (element.isImage()) {
                 PixelMapHolder pmh = new PixelMapHolder(ImageUtils.getPixelMap(getContext(), element.getActionType()));
                 canvas.drawPixelMapHolder(pmh, element.getNowPointX() - LEFT_MARGIN,
@@ -337,13 +341,11 @@ public class NavMap extends Component implements Component.DrawTask, Component.T
 
         // move
         if (touchEvent.getAction() == TouchEvent.POINT_MOVE) {
-            for (MapTile mapTile : mapTiles) {
-                mapTile.setNowPointX(
-                    (point.getX() - component.getContentPositionX()) - touchedDownX + mapTile.getOriginX());
-                mapTile.setNowPointY(
-                    (point.getY() - component.getContentPositionY()) - touchedDownY + mapTile.getOriginY());
+            for (Tile tile : tiles) {
+                tile.setNowPointX((point.getX() - component.getContentPositionX()) - touchedDownX + tile.getOriginX());
+                tile.setNowPointY((point.getY() - component.getContentPositionY()) - touchedDownY + tile.getOriginY());
             }
-            for (MapElement element : elements) {
+            for (Element element : elements) {
                 element.setNowPointX(
                     (point.getX() - component.getContentPositionX()) - touchedDownX + element.getOriginX());
                 element.setNowPointY(
@@ -360,16 +362,14 @@ public class NavMap extends Component implements Component.DrawTask, Component.T
                 + (point.getY() - component.getContentPositionY() - touchedDownY) / TILE_LENGTH * tileRealLength);
             centerPoint = new Point(newCenterPointX, newCenterPointY);
 
-            for (MapTile mapTile : mapTiles) {
-                mapTile.setNowPointX(
-                    (point.getX() - component.getContentPositionX()) - touchedDownX + mapTile.getOriginX());
-                mapTile.setNowPointY(
-                    (point.getY() - component.getContentPositionY()) - touchedDownY + mapTile.getOriginY());
-                mapTile.setOriginX(mapTile.getNowPointX());
-                mapTile.setOriginY(mapTile.getNowPointY());
+            for (Tile tile : tiles) {
+                tile.setNowPointX((point.getX() - component.getContentPositionX()) - touchedDownX + tile.getOriginX());
+                tile.setNowPointY((point.getY() - component.getContentPositionY()) - touchedDownY + tile.getOriginY());
+                tile.setOriginX(tile.getNowPointX());
+                tile.setOriginY(tile.getNowPointY());
             }
 
-            for (MapElement element : elements) {
+            for (Element element : elements) {
                 element.setNowPointX(
                     (point.getX() - component.getContentPositionX()) - touchedDownX + element.getOriginX());
                 element.setNowPointY(

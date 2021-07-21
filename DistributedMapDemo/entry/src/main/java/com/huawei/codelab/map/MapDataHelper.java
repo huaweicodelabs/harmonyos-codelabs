@@ -23,6 +23,9 @@ import com.huawei.codelab.util.HttpUtils;
 import com.huawei.codelab.util.LogUtils;
 import com.huawei.codelab.util.MapUtils;
 
+import com.dongyu.tinymap.Element;
+import com.dongyu.tinymap.TinyMap;
+
 import ohos.agp.utils.Point;
 import ohos.app.Context;
 
@@ -38,7 +41,7 @@ public class MapDataHelper {
 
     private String location;
 
-    private NavMap navMap;
+    private TinyMap tinyMap;
 
     private Context context;
 
@@ -49,11 +52,11 @@ public class MapDataHelper {
     /**
      * 构造方法
      *
-     * @param navMap navMap
+     * @param tinyMap navMap
      * @param context context
      */
-    public MapDataHelper(NavMap navMap, Context context) {
-        this.navMap = navMap;
+    public MapDataHelper(TinyMap tinyMap, Context context) {
+        this.tinyMap = tinyMap;
         this.context = context;
     }
 
@@ -78,7 +81,7 @@ public class MapDataHelper {
             double locLongitude = loc.getLongitude();
             double locLatitude = loc.getLatitude();
             location = locLongitude + "," + locLatitude;
-            if (navMap.getMapElements() == null) {
+            if (tinyMap.getMapElements() == null) {
                 setMapCenter(locLongitude, locLatitude);
                 getRegionDetail();
             }
@@ -129,7 +132,7 @@ public class MapDataHelper {
      * @param result 高德地图路径规划api返回的结果
      */
     public void parseRoute(String result) {
-        navMap.getMapElements().clear();
+        tinyMap.getMapElements().clear();
         RouteResult routeResult = GsonUtils.jsonToBean(result, RouteResult.class);
         List<RouteResult.RouteEntity.PathsEntity> paths = routeResult.getRoute().getPaths();
         RouteResult.RouteEntity.PathsEntity pathsEntity = paths.get(0);
@@ -177,17 +180,17 @@ public class MapDataHelper {
     public void setMapCenter(double lon, double lat) {
         double[] mercators = MapUtils.lonLat2Mercator(lon, lat);
         Point centerPoint = new Point((float) mercators[0], (float) mercators[1]);
-        navMap.setCenterPoint(centerPoint);
-        MapElement peopleEle = new MapElement(centerPoint.getPointX(), centerPoint.getPointY(), true);
+        tinyMap.setCenterPoint(centerPoint);
+        Element peopleEle = new Element(centerPoint.getPointX(), centerPoint.getPointY(), true);
         peopleEle.setActionType(Const.ROUTE_PEOPLE);
-        navMap.addElement(peopleEle);
+        tinyMap.addElement(peopleEle);
     }
 
     private void addElementToMap(double[] coordinates, String actionType, String content, boolean isImage) {
-        MapElement mapElementEnd = new MapElement((float) coordinates[0], (float) coordinates[1], isImage);
-        mapElementEnd.setActionType(actionType);
-        mapElementEnd.setActionContent(content);
-        navMap.addElement(mapElementEnd);
+        Element elementEnd = new Element((float) coordinates[0], (float) coordinates[1], isImage);
+        elementEnd.setActionType(actionType);
+        elementEnd.setActionContent(content);
+        tinyMap.addElement(elementEnd);
     }
 
     /**

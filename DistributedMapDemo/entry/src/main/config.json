@@ -1,6 +1,6 @@
 {
   "app": {
-    "bundleName": "com.huawei.codelab",
+    "bundleName": "com.huawei.cookbook",
     "vendor": "huawei",
     "version": {
       "code": 1000000,
@@ -20,7 +20,7 @@
       "deliveryWithInstall": true,
       "moduleName": "entry",
       "moduleType": "entry",
-       "installationFree": false
+      "installationFree": false
     },
     "abilities": [
       {
@@ -40,7 +40,35 @@
         "description": "$string:mainability_description",
         "label": "$string:app_name",
         "type": "page",
-        "launchType": "standard"
+        "launchType": "standard",
+        "visible": true,
+        "formsEnabled": true,
+        "forms": [
+          {
+            "isDefault": true,
+            "scheduledUpdateTime": "10:30",
+            "defaultDimension": "2*4",
+            "name": "DateCard",
+            "description": "This is a form card",
+            "colorMode": "auto",
+            "type": "Java",
+            "supportDimensions": [
+              "2*2",
+              "2*4"
+            ],
+            "landscapeLayouts": [
+              "$layout:form_epidemic_card_2_2",
+              "$layout:form_epidemic_card_2_4"
+            ],
+            "portraitLayouts": [
+              "$layout:form_epidemic_card_2_2",
+              "$layout:form_epidemic_card_2_4"
+            ],
+            "updateEnabled": true,
+            "updateDuration": 1,
+            "formVisibleNotify": true
+          }
+        ]
       },
       {
         "name": "com.huawei.codelab.WatchService",

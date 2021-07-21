@@ -1,0 +1,23 @@
+{
+  "app": {
+    "bundleName": "com.huawei.cookbook",
+    "vendor": "dongyu",
+    "version": {
+      "code": 1000000,
+      "name": "1.0.0"
+    }
+  },
+  "deviceConfig": {
+  },
+  "module": {
+    "package": "com.dongyu.tinymap",
+    "deviceType": [
+      "phone"
+    ],
+    "distro": {
+      "deliveryWithInstall": true,
+      "moduleName": "tinymap",
+      "moduleType": "har"
+    }
+  }
+}
