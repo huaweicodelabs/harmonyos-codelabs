@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DirectionalLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:height="110vp"
+    ohos:width="match_parent"
+    ohos:orientation="vertical">
+
+    <DirectionalLayout
+        ohos:height="109.5vp"
+        ohos:width="match_parent"
+        ohos:orientation="horizontal"
+        ohos:padding="10vp">
+
+        <!--排名序号-->
+        <Text
+            ohos:id="$+id:item_movies_id"
+            ohos:height="match_content"
+            ohos:width="8vp"
+            ohos:layout_alignment="center"
+            ohos:left_margin="15vp"
+            ohos:right_margin="20vp"
+            ohos:text_alignment="center"
+            ohos:text_color="red"
+            ohos:text_size="18vp"
+            ohos:text_weight="30000"
+            />
+
+        <!--电影图片-->
+
+        <Image
+            ohos:id="$+id:item_movies_image"
+            ohos:height="110vp"
+            ohos:width="110vp"
+            ohos:clip_alignment="center"
+            ohos:layout_alignment="center"
+            ohos:scale_mode="stretch"
+            />
+        <!--中间的-->
+        <DirectionalLayout
+            ohos:height="match_parent"
+            ohos:width="150vp"
+            ohos:orientation="vertical">
+
+            <Text
+                ohos:id="$+id:item_movies_title"
+                ohos:height="match_content"
+                ohos:width="match_content"
+                ohos:left_margin="10vp"
+                ohos:text_size="18vp"
+                />
+
+            <DirectionalLayout
+                ohos:height="match_content"
+                ohos:width="match_content"
+                ohos:orientation="horizontal"
+                ohos:top_margin="5vp">
+
+                <Image
+                    ohos:height="12vp"
+                    ohos:width="12vp"
+                    ohos:background_element="$media:rating"
+                    ohos:left_margin="10vp"/>
+
+                <Image
+                    ohos:height="12vp"
+                    ohos:width="12vp"
+                    ohos:background_element="$media:rating"/>
+
+                <Image
+                    ohos:height="12vp"
+                    ohos:width="12vp"
+                    ohos:background_element="$media:rating"/>
+
+                <Image
+                    ohos:height="12vp"
+                    ohos:width="12vp"
+                    ohos:background_element="$media:rating"/>
+
+                <Image
+                    ohos:height="12vp"
+                    ohos:width="12vp"
+                    ohos:background_element="$media:rating1"/>
+
+                <Text
+                    ohos:id="$+id:item_movies_rating"
+                    ohos:height="match_content"
+                    ohos:width="200vp"
+                    ohos:left_margin="10vp"
+                    ohos:text_color="#FF9800"
+                    ohos:text_size="12vp"
+                    ohos:weight="3"
+                    />
+            </DirectionalLayout>
+
+            <Text
+                ohos:id="$+id:item_movies_type"
+                ohos:height="match_content"
+                ohos:width="match_content"
+                ohos:left_margin="10vp"
+                ohos:text_color="#FF81807E"
+                ohos:text_size="12vp"
+                ohos:weight="3"
+                />
+
+        </DirectionalLayout>
+
+        <!--想看-->
+        <DirectionalLayout
+            ohos:height="match_parent"
+            ohos:width="50vp"
+            ohos:left_margin="5vp"
+            ohos:orientation="vertical">
+
+            <Image
+                ohos:height="30vp"
+                ohos:width="30vp"
+                ohos:background_element="$media:like"/>
+
+            <Text
+                ohos:height="30vp"
+                ohos:width="30vp"
+                ohos:text="想看"
+                ohos:text_color="#FFF88B06"
+                ohos:text_size="13fp"/>
+        </DirectionalLayout>
+
+    </DirectionalLayout>
+
+    <!--分割线-->
+    <Component
+        ohos:height="0.5vp"
+        ohos:width="match_parent"
+        ohos:background_element="#EAEAEC"
+        />
+</DirectionalLayout>

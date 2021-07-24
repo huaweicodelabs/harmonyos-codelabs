@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DependentLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:id="$+id:parent_layout"
+    ohos:height="match_parent"
+    ohos:width="match_parent"
+    ohos:background_element="#445164">
+
+    <ScrollView
+        ohos:height="match_parent"
+        ohos:width="match_parent">
+
+        <DirectionalLayout
+            ohos:height="match_content"
+            ohos:width="match_parent"
+            ohos:bottom_padding="70vp"
+            ohos:left_margin="20vp"
+            ohos:orientation="vertical"
+            ohos:right_margin="20vp">
+
+            <!--电影-->
+            <Text
+                ohos:id="$+id:title_icon"
+                ohos:height="match_content"
+                ohos:width="match_content"
+                ohos:left_margin="130vp"
+                ohos:text="电影"
+                ohos:text_size="20fp"
+
+                ohos:weight="1"/>
+
+            <!--电影下方-->
+            <DirectionalLayout
+                ohos:height="match_content"
+                ohos:width="match_parent"
+                ohos:alignment="vertical_center"
+                ohos:orientation="horizontal"
+                ohos:top_padding="15vp">
+                <!--电影图片-->
+                <Image
+                    ohos:id="$+id:image_content"
+                    ohos:height="200vp"
+                    ohos:width="150vp"
+                    ohos:image_src="$media:movies_image11"
+                    ohos:scale_mode="stretch"
+                    />
+
+                <!--电影图片右边-->
+                <DirectionalLayout
+                    ohos:height="230vp"
+                    ohos:width="match_content"
+                    ohos:orientation="vertical"
+                    >
+
+                    <!--电影名字-->
+                    <Text
+                        ohos:id="$+id:title_text"
+                        ohos:height="match_content"
+                        ohos:width="140vp"
+                        ohos:left_margin="50vp"
+                        ohos:text_color="#000000"
+                        ohos:text_size="18fp"/>
+
+                    <!--电影类型-->
+                    <Text
+                        ohos:id="$+id:like_num"
+                        ohos:height="match_content"
+                        ohos:width="match_content"
+                        ohos:left_margin="20vp"
+                        ohos:text_color="#FFB4B7B3"
+                        ohos:text_size="15fp"
+                        ohos:top_margin="15vp"/>
+
+                    <!--主要演员-->
+                    <Text
+                        ohos:id="$+id:vip"
+                        ohos:height="match_content"
+                        ohos:width="match_content"
+                        ohos:left_margin="20vp"
+                        ohos:text="主演"
+                        ohos:text_color="#FFB4B7B3"
+                        ohos:text_size="15fp"
+                        ohos:top_margin="5vp"/>
+
+                    <!--演员表-->
+                    <ScrollView
+                        ohos:height="match_content"
+                        ohos:width="match_parent"
+                        ohos:left_margin="20vp"
+                        ohos:top_margin="5vp">
+                        <DirectionalLayout
+                            ohos:height="match_content"
+                            ohos:width="match_content"
+                            ohos:orientation="horizontal">
+
+                            <Image
+                                ohos:height="50vp"
+                                ohos:width="50vp"
+                                ohos:bottom_margin="5vp"
+                                ohos:image_src="$media:movies_image11"
+                                ohos:left_margin="1vp"
+                                ohos:top_margin="5vp"
+                                ohos:scale_mode="stretch"
+                                />
+
+                            <Image
+                                ohos:height="50vp"
+                                ohos:width="50vp"
+                                ohos:bottom_margin="5vp"
+                                ohos:image_src="$media:movies_image3"
+                                ohos:left_margin="1vp"
+                                ohos:top_margin="5vp"
+                                ohos:scale_mode="stretch"
+                                />
+
+                            <Image
+                                ohos:height="50vp"
+                                ohos:width="50vp"
+                                ohos:bottom_margin="5vp"
+                                ohos:image_src="$media:movies_image5"
+                                ohos:left_margin="1vp"
+                                ohos:top_margin="5vp"
+                                ohos:scale_mode="stretch"
+                                />
+
+                            <Image
+                                ohos:height="50vp"
+                                ohos:width="50vp"
+                                ohos:bottom_margin="5vp"
+                                ohos:image_src="$media:movies_image6"
+                                ohos:left_margin="1vp"
+                                ohos:top_margin="5vp"
+                                ohos:scale_mode="stretch"
+                                />
+                        </DirectionalLayout>
+                    </ScrollView>
+
+                    <!--想看-->
+                    <DirectionalLayout
+                        ohos:height="30vp"
+                        ohos:width="30vp"
+                        ohos:left_margin="10vp"
+                        ohos:orientation="horizontal"
+                        ohos:top_margin="55vp">
+
+                        <Image
+                            ohos:height="30vp"
+                            ohos:width="30vp"
+                            ohos:background_element="$media:like"/>
+
+                    </DirectionalLayout>
+
+                </DirectionalLayout>
+
+            </DirectionalLayout>
+
+            <!--评分-->
+            <DirectionalLayout
+                ohos:height="match_content"
+                ohos:width="match_content"
+                ohos:orientation="horizontal"
+                ohos:top_margin="5vp">
+
+                <Image
+                    ohos:height="20vp"
+                    ohos:width="20vp"
+                    ohos:background_element="$media:rating"
+                    ohos:left_margin="10vp"/>
+
+                <Image
+                    ohos:height="20vp"
+                    ohos:width="20vp"
+                    ohos:background_element="$media:rating"/>
+
+                <Image
+                    ohos:height="20vp"
+                    ohos:width="20vp"
+                    ohos:background_element="$media:rating"/>
+
+                <Image
+                    ohos:height="20vp"
+                    ohos:width="20vp"
+                    ohos:background_element="$media:rating"/>
+
+                <Image
+                    ohos:height="20vp"
+                    ohos:width="20vp"
+                    ohos:background_element="$media:rating1"/>
+
+                <Text
+                    ohos:id="$+id:read_num"
+                    ohos:height="match_content"
+                    ohos:width="200vp"
+                    ohos:left_margin="10vp"
+                    ohos:text_color="#FF9800"
+                    ohos:text_size="20vp"
+                    ohos:weight="3"
+                    />
+            </DirectionalLayout>
+
+            <!--剧情简介-->
+            <Text
+                ohos:id="$+id:title_content1"
+                ohos:height="match_content"
+                ohos:width="match_parent"
+                ohos:left_margin="15vp"
+                ohos:text="剧情简介"
+                ohos:text_alignment="horizontal_center"
+                ohos:text_color="#000000"
+                ohos:text_size="16vp"
+                ohos:top_margin="25vp"/>
+
+            <!--简介内容-->
+            <Text
+                ohos:id="$+id:title_content"
+                ohos:height="match_content"
+                ohos:width="match_parent"
+                ohos:background_element="#415165"
+                ohos:multiple_lines="true"
+                ohos:text=""
+                ohos:text_alignment="horizontal_center"
+                ohos:text_color="white"
+                ohos:text_size="16vp"
+                ohos:top_margin="5vp"/>
+
+            <Text
+                ohos:id="$+id:v_expansion"
+                ohos:height="match_content"
+                ohos:width="match_content"
+                ohos:background_element="$graphic:sel_text_touch"
+                ohos:text="全文"
+                ohos:top_margin="5vp"
+                ohos:padding="5vp"
+                ohos:left_margin="280vp"
+                ohos:text_color="#000000"
+                ohos:text_size="16vp"
+                ohos:element_end="$+id:title_content"
+                />
+
+            <!--剧照-->
+            <Text
+                ohos:id="$+id:movie_stills"
+                ohos:height="match_content"
+                ohos:width="match_parent"
+                ohos:left_margin="15vp"
+                ohos:text="剧照"
+                ohos:text_alignment="horizontal_center"
+                ohos:text_color="#000000"
+                ohos:text_size="16vp"
+                ohos:top_margin="25vp"/>
+
+            <ScrollView
+                ohos:height="match_content"
+                ohos:width="match_content">
+
+                <DirectionalLayout
+                    ohos:height="match_content"
+                    ohos:width="match_content"
+                    ohos:orientation="horizontal">
+
+                    <Image
+                        ohos:height="100vp"
+                        ohos:width="100vp"
+                        ohos:bottom_margin="10vp"
+                        ohos:image_src="$media:movies_image6"
+                        ohos:left_margin="1vp"
+                        ohos:top_margin="10vp"
+                        ohos:scale_mode="stretch"
+                        />
+
+                    <Image
+                        ohos:height="100vp"
+                        ohos:width="100vp"
+                        ohos:bottom_margin="10vp"
+                        ohos:image_src="$media:movies_image10"
+                        ohos:left_margin="1vp"
+                        ohos:top_margin="10vp"
+                        ohos:scale_mode="stretch"
+                        />
+
+                    <Image
+                        ohos:height="100vp"
+                        ohos:width="100vp"
+                        ohos:bottom_margin="10vp"
+                        ohos:image_src="$media:movies_image3"
+                        ohos:left_margin="1vp"
+                        ohos:top_margin="10vp"
+                        ohos:scale_mode="stretch"
+                        />
+
+                    <Image
+                        ohos:height="100vp"
+                        ohos:width="100vp"
+                        ohos:bottom_margin="10vp"
+                        ohos:image_src="$media:movies_image5"
+                        ohos:left_margin="1vp"
+                        ohos:top_margin="10vp"
+                        ohos:scale_mode="stretch"
+                        />
+                </DirectionalLayout>
+            </ScrollView>
+
+        </DirectionalLayout>
+
+    </ScrollView>
+
+</DependentLayout>

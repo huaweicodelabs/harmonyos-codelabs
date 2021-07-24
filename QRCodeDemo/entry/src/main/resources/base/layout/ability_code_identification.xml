@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DirectionalLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:height="match_parent"
+    ohos:width="match_parent"
+    ohos:orientation="vertical"
+    >
+
+    <Text
+        ohos:height="match_content"
+        ohos:width="match_content"
+        ohos:text_color="#000000"
+        ohos:text_size="20fp"
+        ohos:text_weight="700"
+        ohos:text="码识别"
+        ohos:margin="20vp"
+        />
+    <Image
+        ohos:id="$+id:showIdentifyImage"
+        ohos:height="match_parent"
+        ohos:width="match_parent"
+        ohos:weight="1"
+        ohos:scale_mode="stretch"
+        ohos:bottom_margin="40vp"
+        ohos:left_margin="40vp"
+        ohos:right_margin="40vp"
+        ohos:padding="20vp"
+        />
+
+    <Button
+        ohos:id="$+id:identifyQRCode"
+        ohos:height="match_content"
+        ohos:width="match_content"
+        ohos:layout_alignment="center"
+        ohos:padding="8vp"
+        ohos:text_size="20fp"
+        ohos:text_color="#ffffff"
+        ohos:text="识别图中二维码"
+        ohos:margin="20vp"
+        ohos:background_element="$graphic:background_button"
+        />
+</DirectionalLayout>

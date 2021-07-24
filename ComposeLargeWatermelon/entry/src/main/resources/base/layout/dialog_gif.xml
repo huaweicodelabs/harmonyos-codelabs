@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DirectionalLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:orientation="horizontal"
+    ohos:width="match_parent"
+    ohos:height="match_parent"
+    ohos:alignment="center"
+    ohos:background_element="$graphic:dialog_bg"
+    >
+    <!--com.huawei.codelab.gif为GifImage的包路径-->
+    <com.huawei.codelab.gif.GifImage
+        ohos:id="$+id:gifImage"
+        ohos:height="match_parent"
+        ohos:width="match_parent"
+        ohos:margin="10vp"
+        ohos:image_src="$media:firework"
+        ohos:layout_alignment="horizontal_center"
+        ohos:scale_mode="clip_center"
+        />
+</DirectionalLayout>

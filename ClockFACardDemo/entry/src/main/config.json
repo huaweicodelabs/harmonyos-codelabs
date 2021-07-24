@@ -31,7 +31,7 @@
         "reason": "keep service ability backgroud running",
         "usedScene": {
           "ability": [
-            ".StepSensorService"
+            ".TimerAbility"
           ],
           "when": "always"
         }

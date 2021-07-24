@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DirectionalLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:height="match_parent"
+    ohos:width="match_parent"
+    ohos:orientation="vertical">
+
+    <DirectionalLayout
+        ohos:height="200vp"
+        ohos:width="match_parent"
+        ohos:background_element="$media:bg"
+        ohos:scrollbar_background_color="#FF262525"
+        ohos:orientation="vertical">
+
+        <Text
+            ohos:height="50vp"
+            ohos:width="match_content"
+            ohos:text_size="25fp"
+            ohos:layout_alignment="center"
+            ohos:text_alignment="center"
+            ohos:text_color="#FF7E7A7A"
+            ohos:text="热门电影排行榜"/>
+
+        <Text
+            ohos:height="match_content"
+            ohos:width="match_content"
+            ohos:text_size="15fp"
+            ohos:layout_alignment="center"
+            ohos:multiple_lines="true"
+            ohos:max_text_lines="3"
+            ohos:text_color="#17A98E"
+            ohos:text="根据电影实时热度得出的综合排名"/>
+    </DirectionalLayout>
+
+    <Component
+        ohos:width="match_parent"
+        ohos:height="0.5vp"
+        ohos:background_element="#EAEAEC"
+        />
+
+    <ScrollView
+        ohos:height="match_parent"
+        ohos:width="match_parent">
+    <ListContainer
+        ohos:id="$+id:movies_container"
+        ohos:width="match_parent"
+        ohos:height="match_parent"/>
+    </ScrollView>
+
+</DirectionalLayout>

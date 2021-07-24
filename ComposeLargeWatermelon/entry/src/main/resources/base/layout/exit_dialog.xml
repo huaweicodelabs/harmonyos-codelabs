@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DirectionalLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:orientation="vertical"
+    ohos:width="match_parent"
+    ohos:height="match_parent"
+    ohos:background_element="$graphic:dialog_bg"
+    ohos:alignment="center"
+    >
+    <Text
+        ohos:width="match_content"
+        ohos:height="match_content"
+        ohos:text_alignment="center"
+        ohos:text="权限拒绝"
+        ohos:text_size="20fp"
+        ohos:text_color="#222222"
+        ohos:padding="30vp"
+        ohos:id="$+id:text"
+        />
+    <DirectionalLayout
+        ohos:width="match_content"
+        ohos:height="50vp"
+        ohos:orientation="horizontal"
+        >
+        <Text
+            ohos:width="match_content"
+            ohos:height="match_content"
+            ohos:text="3"
+            ohos:text_size="20fp"
+            ohos:text_color="#4CA0FF"
+            ohos:id="$+id:delay"
+            />
+        <Text
+            ohos:width="match_content"
+            ohos:height="match_content"
+            ohos:text="秒后退出应用"
+            ohos:left_margin="4vp"
+            ohos:text_size="20fp"
+            ohos:text_color="#666666"
+            />
+    </DirectionalLayout>
+</DirectionalLayout>

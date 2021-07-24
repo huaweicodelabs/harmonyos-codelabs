@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DirectionalLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:id="$+id:parent"
+    ohos:background_element="#739FCD"
+    ohos:height="match_parent"
+    ohos:width="match_parent"
+    ohos:orientation="vertical"
+    ohos:alignment="center"
+    >
+
+    <Text
+        ohos:id="$+id:lable"
+        ohos:height="match_content"
+        ohos:width="match_content"
+        ohos:text="设备不支持玩游戏"
+        ohos:text_size="20vp"
+        ohos:text_color="white"
+        ohos:text_alignment="center"
+        ohos:layout_alignment="center"
+        ohos:visibility="hide"
+        />
+
+    <Button
+        ohos:id="$+id:start"
+        ohos:height="match_content"
+        ohos:width="match_content"
+        ohos:text="开始游戏"
+        ohos:text_size="20vp"
+        ohos:text_font="sans-serif-condensed-medium"
+        ohos:text_color="white"
+        ohos:text_alignment="center"
+        ohos:layout_alignment="center"
+        ohos:background_element="$graphic:button_element"
+        ohos:padding="6vp"
+        ohos:visibility="hide"
+        />
+
+</DirectionalLayout>

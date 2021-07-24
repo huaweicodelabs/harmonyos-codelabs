@@ -63,6 +63,8 @@ import java.util.List;
 public class PictureGameAbilitySlice extends AbilitySlice {
     private static final String TAG = CommonData.TAG + PictureGameAbilitySlice.class.getSimpleName();
 
+    private static final int DIVIDED_NUM2 = 2;
+
     private static final int PERMISSION_CODE = 20201203;
 
     private static final int DELAY_TIME = 10;
@@ -452,10 +454,36 @@ public class PictureGameAbilitySlice extends AbilitySlice {
             imageIndexs[rand1] = imageIndexs[rand2];
             imageIndexs[rand2] = imageTemp;
         }
-        for (int i = 0; i < imageCount; i++) {
-            imagePositions[i].setPixelMap(images[imageIndexs[i]]);
+
+        if (inverseNumber(imageIndexs) % DIVIDED_NUM2 == 0) {
+            for (int i = 0; i < imageCount; i++) {
+                imagePositions[i].setPixelMap(images[imageIndexs[i]]);
+            }
+            LogUtil.info(TAG, "pictureRandom end");
+        } else {
+            LogUtil.info(TAG, "pictureRandom failed");
+            pictureRandom();
         }
-        LogUtil.info(TAG, "pictureRandom end");
+    }
+
+    /**
+     * 计算逆序数，保证游戏有解
+     *
+     * @param imageArray int[]
+     * @return int
+     */
+    private int inverseNumber(int[] imageArray) {
+        int count = 0;
+        for (int i = 0; i <= imageArray.length - 1; i++) {
+            for (int j = i + 1; j <= imageArray.length - 1; j++) {
+                int a = imageArray[i];
+                int b = imageArray[j];
+                if (a > b) {
+                    count++;
+                }
+            }
+        }
+        return count;
     }
 
     /**

@@ -1,0 +1,16 @@
+{
+    "data": {
+        "percent": 0,
+        "steps": 0
+    },
+    "actions": {
+        "routerEvent": {
+            "action": "router",
+            "bundleName": "com.huawei.cookbook",
+            "abilityName": "com.huawei.cookbook.MainAbility",
+            "params": {
+                "message":"steps"
+            }
+        }
+    }
+}

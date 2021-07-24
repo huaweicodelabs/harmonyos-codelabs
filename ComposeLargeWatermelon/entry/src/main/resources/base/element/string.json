@@ -1,0 +1,40 @@
+{
+  "string": [
+    {
+      "name": "app_name",
+      "value": "HarmonyOS合成"
+    },
+    {
+      "name": "mainability_description",
+      "value": "Java_Phone_Empty Feature Ability"
+    },
+    {
+      "name": "HelloWorld",
+      "value": "Hello World"
+    },
+    {
+      "name": "mainability2_description",
+      "value": "Java_Phone_Empty Feature Ability"
+    },
+    {
+      "name": "smartwatchcontroller_description",
+      "value": "Java_Phone_Empty Feature Ability"
+    },
+    {
+      "name": "smartwatchcontroller_HelloWorld",
+      "value": "Hello World"
+    },
+    {
+      "name": "smartwatchserviceability_description",
+      "value": "hap sample empty service"
+    },
+    {
+      "name": "datagifability_description",
+      "value": "hap sample empty provider"
+    },
+    {
+      "name": "serviceability_description",
+      "value": "hap sample empty service"
+    }
+  ]
+}
