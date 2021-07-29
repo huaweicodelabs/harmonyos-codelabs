@@ -1,0 +1,63 @@
+{
+  "app": {
+    "bundleName": "com.xwx.karaoke.harmony",
+    "vendor": "huawei",
+    "version": {
+      "code": 1,
+      "name": "1.0"
+    },
+    "apiVersion": {
+      "compatible": 5,
+      "target": 5
+    },
+    "type": "normal"
+  },
+  "deviceConfig": {},
+  "module": {
+    "package": "com.huawei.codelab",
+    "name": ".MyApplication",
+    "deviceType": [
+      "phone",
+      "wearable"
+    ],
+    "distro": {
+      "deliveryWithInstall": true,
+      "moduleName": "entry",
+      "moduleType": "entry"
+    },
+    "abilities": [
+      {
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home",
+              "action.smart"
+            ]
+          }
+        ],
+        "orientation": "unspecified",
+        "name": "com.huawei.codelab.MainAbility",
+        "icon": "$media:product6",
+        "description": "$string:mainability_description",
+        "label": "合成HarmonyOS",
+        "type": "page",
+        "launchType": "singleton"
+      },
+      {
+        "name": "com.huawei.codelab.ServiceAbility",
+        "icon": "$media:icon",
+        "description": "$string:serviceability_description",
+        "type": "service",
+        "visible": true
+      }
+    ],
+    "reqPermissions": [
+      {
+        "name": "ohos.permission.DISTRIBUTED_DATASYNC"
+      }
+    ]
+  }
+}

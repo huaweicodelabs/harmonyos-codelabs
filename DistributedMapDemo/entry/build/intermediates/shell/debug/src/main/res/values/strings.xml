@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<resources> 
-  <string name="app_name">DistributedMapDemo</string>
-  <string name="mainability_description">Java_Phone_Empty Feature Ability</string>
-  <string name="watchmainability_description">Java_Phone_Empty Feature Ability</string>
-  <string name="watchservice_description">hap sample empty service</string>
-</resources>

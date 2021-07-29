@@ -1,0 +1,20 @@
+{
+  "string": [
+    {
+      "name": "app_name",
+      "value": "CodecDemo"
+    },
+    {
+      "name": "app_entry",
+      "value": "entry"
+    },
+    {
+      "name": "mainability_description",
+      "value": "Java_Phone_Empty Feature Ability"
+    },
+    {
+      "name": "codecability_description",
+      "value": "Java_Phone_Empty Feature Ability"
+    }
+  ]
+}

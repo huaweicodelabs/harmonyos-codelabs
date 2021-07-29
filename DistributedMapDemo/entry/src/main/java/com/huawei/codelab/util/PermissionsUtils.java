@@ -88,7 +88,9 @@ public class PermissionsUtils {
         }
         for (int i = 0; i < grantResults.length; i++) {
             if (grantResults[i] == IBundleManager.PERMISSION_GRANTED) {
-                requestListener.permissionGranted(permissions[i]);
+                if (requestListener != null) {
+                    requestListener.permissionGranted(permissions[i]);
+                }
             } else {
                 LogUtils.info(TAG, "user deny permission:" + permissions[i]);
             }

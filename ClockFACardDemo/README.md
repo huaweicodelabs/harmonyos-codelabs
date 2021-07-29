@@ -1,6 +1,6 @@
 # ClockFACardDemo
 简介 
-• 本cookbook旨在使开发人员了解HarmonyOS中JAVA卡片的开发，包含卡片的创建、更新、删除功能，实现了时分秒，年月日，星期的实时刷新效果。
+• 本codelab旨在使开发人员了解HarmonyOS中JAVA卡片的开发，包含卡片的创建、更新、删除功能，实现了时分秒，年月日，星期的实时刷新效果。
 
 安装要求
 • 安装DevEco Studio
@@ -24,7 +24,7 @@
 请参阅LICENSE文件以获得更多信息。
 
 What is it?
-This cookbook is designed to enable developers to understand the development of Java cards in HarmonyOS, including the creation, update, and deletion of cards, and the real-time refresh effect of hour, second, year, month, day, and week.
+This codelab is designed to enable developers to understand the development of Java cards in HarmonyOS, including the creation, update, and deletion of cards, and the real-time refresh effect of hour, second, year, month, day, and week.
 
 Installation requirements
 • Install DevEco Studio

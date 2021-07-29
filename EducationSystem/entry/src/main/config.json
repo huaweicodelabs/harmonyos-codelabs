@@ -3,13 +3,8 @@
     "bundleName": "com.huawei.codelab",
     "vendor": "huawei",
     "version": {
-      "code": 1,
-      "name": "1.0"
-    },
-    "apiVersion": {
-      "compatible": 4,
-      "target": 5,
-      "releaseType": "Release"
+      "code": 1000000,
+      "name": "1.0.0"
     }
   },
   "deviceConfig": {},
@@ -24,7 +19,8 @@
     "distro": {
       "deliveryWithInstall": true,
       "moduleName": "entry",
-      "moduleType": "entry"
+      "moduleType": "entry",
+      "installationFree": false
     },
     "abilities": [
       {
@@ -67,7 +63,7 @@
       {
         "reason": "",
         "name": "ohos.permission.servicebus.ACCESS_SERVICE",
-        "used-scene": {
+        "usedScene": {
           "ability": [
             "MainAbility"
           ],
@@ -77,7 +73,7 @@
       {
         "reason": "多设备协同",
         "name": "ohos.permission.DISTRIBUTED_DATASYNC",
-        "used-scene": {
+        "usedScene": {
           "ability": [
             "MainAbility"
           ],

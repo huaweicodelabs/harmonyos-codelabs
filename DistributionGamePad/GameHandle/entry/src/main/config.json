@@ -3,26 +3,23 @@
     "bundleName": "com.huawei.codelab",
     "vendor": "huawei",
     "version": {
-      "code": 1,
-      "name": "1.0"
-    },
-    "apiVersion": {
-      "compatible": 4,
-      "target": 5,
-      "releaseType": "Release"
+      "code": 1000000,
+      "name": "1.0.0"
     }
   },
   "deviceConfig": {},
   "module": {
     "package": "com.huawei.codelab",
     "name": ".MyApplication",
+    "mainAbility": "com.huawei.codelab.MainAbility",
     "deviceType": [
       "phone"
     ],
     "distro": {
       "deliveryWithInstall": true,
       "moduleName": "entry",
-      "moduleType": "entry"
+      "moduleType": "entry",
+      "installationFree": false
     },
     "abilities": [
       {
@@ -40,7 +37,7 @@
         "name": "com.huawei.codelab.MainAbility",
         "icon": "$media:icon",
         "description": "$string:mainability_description",
-        "label": "Distributed Handle",
+        "label": "$string:distributed_handle",
         "type": "page",
         "launchType": "standard"
       },
@@ -58,7 +55,7 @@
         "name": "com.huawei.codelab.HandleAbility",
         "icon": "$media:icon",
         "description": "$string:handleability_description",
-        "label": "Distributed Handle",
+        "label": "$string:distributed_handle",
         "type": "page",
         "launchType": "standard"
       }

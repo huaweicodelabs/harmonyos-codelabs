@@ -22,6 +22,9 @@ import com.huawei.codelab.WatchService;
 import com.huawei.codelab.bean.InputTipsResult;
 import com.huawei.codelab.util.LogUtils;
 
+import com.dongyu.tinymap.Element;
+import com.dongyu.tinymap.TinyMap;
+
 import ohos.aafwk.ability.AbilitySlice;
 import ohos.aafwk.ability.IAbilityConnection;
 import ohos.aafwk.content.Intent;
@@ -53,9 +56,9 @@ public class MapManager {
 
     private int stepPoint = 0;
 
-    private MapElement nextElement;
+    private Element nextElement;
 
-    private NavMap navMap;
+    private TinyMap tinyMap;
 
     private AbilitySlice slice;
 
@@ -89,8 +92,8 @@ public class MapManager {
         @Override
         public void run() {
             // 将定位图标的下一个坐标点的坐标，赋值给当前定位图标
-            MapElement peopleElement = navMap.getMapElements().get(0);
-            nextElement = navMap.getMapElements().get(stepPoint + 1);
+            Element peopleElement = tinyMap.getMapElements().get(0);
+            nextElement = tinyMap.getMapElements().get(stepPoint + 1);
             peopleElement.setMercatorPoint(nextElement.getMercatorPoint());
             peopleElement.setNowPoint(nextElement.getNowPoint());
             peopleElement.setOriginPoint(nextElement.getOriginPoint());
@@ -103,9 +106,9 @@ public class MapManager {
             stepPoint++;
 
             // 将stepPoint传递给NavMap，绘制已经过的路径时也会用到stepPoint
-            navMap.setStepPoint(stepPoint);
+            tinyMap.setStepPoint(stepPoint);
             LogUtils.info(TAG, "run......" + stepPoint);
-            if (stepPoint >= navMap.getMapElements().size() - 1) {
+            if (stepPoint >= tinyMap.getMapElements().size() - 1) {
                 mapEventHandler.removeTask(task);
             }
         }
@@ -114,11 +117,11 @@ public class MapManager {
     /**
      * 构造方法
      *
-     * @param navMap navMap
+     * @param tinyMap navMap
      * @param slice slice
      */
-    public MapManager(NavMap navMap, AbilitySlice slice) {
-        this.navMap = navMap;
+    public MapManager(TinyMap tinyMap, AbilitySlice slice) {
+        this.tinyMap = tinyMap;
         this.slice = slice;
         mapEventHandler = new MapEventHandler(EventRunner.current());
     }
@@ -228,16 +231,19 @@ public class MapManager {
         requestRemote(Const.STOP_WATCH_ABILITY, "");
         mapEventHandler.removeTask(task);
         stepPoint = 0;
-        navMap.setStepPoint(0);
-        navMap.getMapElements().clear();
-        navMap.invalidate();
+        tinyMap.setStepPoint(0);
+        tinyMap.getMapElements().clear();
+        tinyMap.invalidate();
     }
 
     /**
      * 迁移
+     *
+     * @param deviceId selected deviceId
      */
-    public void translate() {
-        slice.continueAbility();
+    public void translate(String deviceId) {
+        slice.continueAbility(deviceId);
+        // 关闭WatchAbility
         requestRemote(Const.STOP_WATCH_ABILITY, "");
     }
 
@@ -245,8 +251,8 @@ public class MapManager {
      * 迁移完成后的回调
      */
     public void translateComplete() {
-        navMap.getMapElements().clear();
-        navMap.invalidate();
+        tinyMap.getMapElements().clear();
+        tinyMap.invalidate();
         mapEventHandler.removeTask(task);
     }
 
@@ -257,11 +263,11 @@ public class MapManager {
      */
     public interface NavListener {
         /**
-         * 监听回调
+         * 监听回调，将数据会调给MainAbilitySlice
          *
-         * @param mapElement MapElement
+         * @param element MapElement
          */
-        void onNavListener(MapElement mapElement);
+        void onNavListener(Element element);
     }
 
     /**
@@ -280,15 +286,16 @@ public class MapManager {
             if (event.eventId != 1) {
                 return;
             }
-            LogUtils.info(TAG, "processEvent invalidate");
             if (nextElement.getActionType() != null && !nextElement.getActionType().isEmpty()) {
+                // 将nextElement回调给MainAbilitySlice
                 navListener.onNavListener(nextElement);
             }
             if (proxy != null) {
+                // 将数据发送给WatchService
                 requestRemote(nextElement.getActionType() == null ? "" : nextElement.getActionType(),
                     nextElement.getActionContent() == null ? "" : nextElement.getActionContent());
             }
-            navMap.invalidate();
+            tinyMap.invalidate();
         }
     }
 }

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DirectionalLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:height="match_parent"
+    ohos:width="match_parent"
+    ohos:alignment="center"
+    ohos:background_element="#ffffff"
+    ohos:orientation="vertical">
+
+    <DirectionalLayout
+        ohos:orientation="vertical"
+        ohos:width="match_parent"
+        ohos:height="match_content"
+        ohos:left_margin="19vp"
+        ohos:right_margin="19vp"
+        ohos:alignment="center"
+        >
+        <Text
+            ohos:height="match_content"
+            ohos:width="match_content"
+            ohos:text_alignment="center"
+            ohos:multiple_lines="true"
+            ohos:text="来自远程合成设备小游戏权限请求，是否允许?"
+            ohos:text_size="16fp"
+            ohos:text_color="#222222"
+            ohos:id="$+id:text"
+            />
+
+
+        <Button
+            ohos:width="match_parent"
+            ohos:height="match_content"
+            ohos:text="允许"
+            ohos:text_size="20fp"
+            ohos:text_color="#FF3E7BDE"
+            ohos:id="$+id:yes_btn"
+            ohos:top_margin="15vp"
+            />
+        <Text
+            ohos:width="match_parent"
+            ohos:height="1px"
+            ohos:margin="10vp"
+            ohos:background_element="#eeeeee"
+            />
+        <Button
+            ohos:width="match_parent"
+            ohos:height="match_content"
+            ohos:text="不允许"
+            ohos:text_size="18fp"
+            ohos:text_color="#A09E9E"
+            ohos:id="$+id:no_btn"
+            />
+    </DirectionalLayout>
+
+</DirectionalLayout>

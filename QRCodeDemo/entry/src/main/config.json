@@ -1,0 +1,64 @@
+{
+  "app": {
+    "bundleName": "com.xwx.karaoke.harmony",
+    "vendor": "huawei",
+    "version": {
+      "code": 1000000,
+      "name": "1.0.0"
+    },
+    "apiVersion": {
+      "compatible": 5,
+      "target": 5
+    }
+  },
+  "deviceConfig": {},
+  "module": {
+    "package": "com.huawei.cookbook",
+    "name": ".MyApplication",
+    "deviceType": [
+      "phone",
+      "tablet"
+    ],
+    "distro": {
+      "deliveryWithInstall": true,
+      "moduleName": "entry",
+      "moduleType": "entry",
+      "installationFree": true
+    },
+    "reqPermissions": [
+      {
+        "name": "ohos.permission.CAMERA"
+      }
+    ],
+    "abilities": [
+      {
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ],
+        "orientation": "portrait",
+        "name": "com.huawei.cookbook.MainAbility",
+        "icon": "$media:icon",
+        "description": "$string:description",
+        "label": "$string:app_name",
+        "type": "page",
+        "launchType": "standard"
+      },
+      {
+        "orientation": "portrait",
+        "name": "com.huawei.cookbook.ScanAbility",
+        "icon": "$media:icon",
+        "description": "$string:description",
+        "label": "$string:app_name",
+        "type": "page",
+        "launchType": "standard"
+      }
+    ]
+  }
+}

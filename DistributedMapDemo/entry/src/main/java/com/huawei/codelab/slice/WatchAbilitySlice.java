@@ -55,12 +55,8 @@ public class WatchAbilitySlice extends AbilitySlice {
     }
 
     private void findComponentById() {
-        if (findComponentById(ResourceTable.Id_action_content) instanceof Text) {
-            contentComponent = (Text) findComponentById(ResourceTable.Id_action_content);
-        }
-        if (findComponentById(ResourceTable.Id_action_img) instanceof Image) {
-            actionImg = (Image) findComponentById(ResourceTable.Id_action_img);
-        }
+        contentComponent = (Text) findComponentById(ResourceTable.Id_action_content);
+        actionImg = (Image) findComponentById(ResourceTable.Id_action_img);
     }
 
     private void subscribe() {

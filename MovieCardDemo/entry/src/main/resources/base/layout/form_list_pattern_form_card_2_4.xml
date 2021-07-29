@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DependentLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:height="match_parent"
+    ohos:width="match_parent"
+    ohos:background_element="#FFEFF0"
+    ohos:remote="true">
+
+    <DependentLayout
+        ohos:height="40vp"
+        ohos:width="match_parent"
+        ohos:orientation="horizontal"
+        >
+
+        <Text
+            ohos:id="$+id:title"
+            ohos:height="match_parent"
+            ohos:width="100vp"
+            ohos:end_margin="12vp"
+            ohos:start_margin="44vp"
+            ohos:text="$string:title"
+            ohos:text_color="#E5000000"
+            ohos:text_size="16fp"
+            ohos:text_weight="500"
+            ohos:bottom_margin="5vp"
+            ohos:top_margin="10vp"/>
+
+        <Text
+            ohos:id="$+id:rankings"
+            ohos:height="match_parent"
+            ohos:width="100vp"
+            ohos:align_parent_end="true"
+            ohos:right_margin="35vp"
+            ohos:text="完整榜单"
+            ohos:text_color="#E5000000"
+            ohos:text_size="16fp"
+            ohos:text_alignment="center"
+            ohos:background_element="$graphic:background_button"
+            ohos:bottom_margin="5vp"
+            ohos:text_weight="500"
+            ohos:top_margin="10vp"/>
+    </DependentLayout>
+
+    <DirectionalLayout
+        ohos:id="$+id:card4_hints"
+        ohos:height="match_content"
+        ohos:width="match_parent"
+        ohos:center_in_parent="true"
+        ohos:visibility="visible">
+        <Text
+            ohos:height="match_content"
+            ohos:width="match_parent"
+            ohos:text_alignment="center"
+            ohos:text="请点击卡片获取数据...">
+        </Text>
+    </DirectionalLayout>
+
+    <DirectionalLayout
+        ohos:id="$+id:card4_content"
+        ohos:height="match_content"
+        ohos:width="match_parent"
+        ohos:align_parent_bottom="true"
+        ohos:bottom_margin="12vp"
+        ohos:end_margin="12vp"
+        ohos:orientation="horizontal"
+        ohos:start_margin="24vp"
+        ohos:top_margin="12vp"
+        ohos:visibility="invisible">
+
+        <DirectionalLayout
+            ohos:id="$+id:movie_top_2x4"
+            ohos:height="match_parent"
+            ohos:width="0vp"
+            ohos:orientation="vertical"
+            ohos:weight="4">
+
+            <DependentLayout
+                ohos:height="70vp"
+                ohos:width="130vp">
+                <Image
+                    ohos:id="$+id:movie_top_img_2x4"
+                    ohos:height="match_parent"
+                    ohos:width="match_parent"
+                    ohos:scale_mode="stretch"
+                    />
+            </DependentLayout>
+
+            <DirectionalLayout
+                ohos:height="match_content"
+                ohos:width="match_content"
+                ohos:layout_alignment="vertical_center"
+                ohos:left_margin="10vp"
+                ohos:orientation="vertical">
+
+                <Text
+                    ohos:id="$+id:movie_top_title_2x4"
+                    ohos:height="match_content"
+                    ohos:width="match_parent"
+                    ohos:text_color="#E5CB1414"
+                    ohos:text_size="14fp"
+                    ohos:text_weight="500"
+                    ohos:truncation_mode="ellipsis_at_end"/>
+
+                <Text
+                    ohos:id="$+id:movie_top_introduction_2x4"
+                    ohos:height="match_content"
+                    ohos:width="match_parent"
+                    ohos:text_color="#FFC47613"
+                    ohos:text_size="10fp"
+                    ohos:text_weight="400"
+                    ohos:top_margin="2vp"
+                    ohos:truncation_mode="ellipsis_at_end"/>
+            </DirectionalLayout>
+        </DirectionalLayout>
+
+        <Image
+            ohos:height="match_parent"
+            ohos:width="0vp"
+            ohos:image_src="$graphic:form_list_pattern_form_card_default_divide_line"
+            ohos:scale_mode="zoom_center"/>
+
+        <DirectionalLayout
+            ohos:id="$+id:movie_bottom_2x4"
+            ohos:height="match_parent"
+            ohos:width="0vp"
+            ohos:left_margin="5vp"
+            ohos:orientation="vertical"
+            ohos:weight="4">
+
+            <DependentLayout
+                ohos:height="70vp"
+                ohos:width="130vp"
+                >
+
+                <Image
+                    ohos:id="$+id:movie_bottom_img_2x4"
+                    ohos:height="match_parent"
+                    ohos:width="match_parent"
+                    ohos:scale_mode="stretch"
+                    />
+            </DependentLayout>
+
+            <DirectionalLayout
+                ohos:height="match_content"
+                ohos:width="match_content"
+                ohos:layout_alignment="vertical_center"
+                ohos:left_margin="10vp"
+                ohos:orientation="vertical">
+
+                <Text
+                    ohos:id="$+id:movie_bottom_title_2x4"
+                    ohos:height="match_content"
+                    ohos:width="match_parent"
+                    ohos:text_color="#E5000000"
+                    ohos:text_size="14fp"
+                    ohos:text_weight="500"
+                    ohos:truncation_mode="ellipsis_at_end"/>
+
+                <Text
+                    ohos:id="$+id:movie_bottom_introduction_2x4"
+                    ohos:height="match_content"
+                    ohos:width="match_parent"
+                    ohos:text_color="#99000000"
+                    ohos:text_size="10fp"
+                    ohos:text_weight="400"
+                    ohos:top_margin="2vp"
+                    ohos:truncation_mode="ellipsis_at_end"/>
+            </DirectionalLayout>
+        </DirectionalLayout>
+    </DirectionalLayout>
+</DependentLayout>

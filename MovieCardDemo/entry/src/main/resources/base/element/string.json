@@ -1,0 +1,32 @@
+{
+  "string": [
+    {
+      "name": "app_name",
+      "value": "MovieCardDemo"
+    },
+    {
+      "name": "mainability_description",
+      "value": "Java_Phone_Empty Feature Ability"
+    },
+    {
+      "name": "HelloWorld",
+      "value": "Hello World"
+    },
+    {
+      "name": "title",
+      "value": "电影卡片"
+    },
+    {
+      "name": "moviesdetailability_description",
+      "value": "Java_Empty Ability"
+    },
+    {
+      "name": "moviesdetailability_HelloWorld",
+      "value": "Hello World"
+    },
+    {
+      "name": "entry_MoviesDetailAbility",
+      "value": "电影详情"
+    }
+  ]
+}

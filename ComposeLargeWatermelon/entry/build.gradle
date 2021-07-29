@@ -1,0 +1,53 @@
+/*
+ * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+apply plugin: 'com.huawei.ohos.hap'
+apply plugin: 'com.huawei.ohos.decctest'
+ohos {
+    signingConfigs {
+        debug {
+            storeFile file('D:\\证书\\ide_acg_pk.p12')
+            storePassword '0000001861589C0C0FA67E58013A648F89C1A4B4EAFA0853BD711FA6AF2ABC4A0EC0C35E41EEBBF9'
+            keyAlias = 'ide_acg_pk'
+            keyPassword '00000018C1B253B9A7F967965176C7FB444EF451340B59747DF2A7AB3934FB6B653D4C0B4680BF71'
+            signAlg = 'SHA256withECDSA'
+            profile file('D:\\证书\\cookbookDebug.p7b')
+            certpath file('D:\\证书\\ide_acg.cer')
+        }
+    }
+    compileSdkVersion 5
+    defaultConfig {
+        compatibleSdkVersion 4
+    }
+    buildTypes {
+        release {
+            proguardOpt {
+                proguardEnabled false
+
+                rulesFiles 'proguard-rules.pro'
+            }
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar', '*.har'])
+    testImplementation 'junit:junit:4.12'
+    ohosTestImplementation 'decc.testkit:harmonyjunitrunner:0.3'
+}
+decc {
+    supportType = ['html', 'xml']
+}

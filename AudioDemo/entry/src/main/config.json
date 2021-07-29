@@ -3,13 +3,8 @@
     "bundleName": "com.huawei.cookbook",
     "vendor": "huawei",
     "version": {
-      "code": 1,
-      "name": "1.0"
-    },
-    "apiVersion": {
-      "compatible": 5,
-      "target": 5,
-      "releaseType": "Release"
+      "code": 1000000,
+      "name": "1.0.0"
     }
   },
   "deviceConfig": {},
@@ -22,7 +17,8 @@
     "distro": {
       "deliveryWithInstall": true,
       "moduleName": "entry",
-      "moduleType": "entry"
+      "moduleType": "entry",
+      "installationFree": false
     },
     "abilities": [
       {
@@ -46,6 +42,7 @@
         "description": "$string:mainability_description",
         "label": "$string:app_name",
         "type": "page",
+        "formsEnabled": true,
         "launchType": "standard"
       }
     ],

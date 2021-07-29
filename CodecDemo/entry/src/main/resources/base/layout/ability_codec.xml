@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DependentLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    xmlns:app="http://schemas.huawei.com/apk/res/ohos"
+    ohos:id="$+id:prent_layout"
+    ohos:height="match_parent"
+    ohos:width="match_parent"
+    ohos:alignment="center"
+    ohos:background_element="#000000">
+
+    <com.huawei.codecdemo.camera.view.CameraView
+        ohos:id="$+id:cameraview"
+        ohos:height="300vp"
+        ohos:width="match_parent"
+        app:front_camera="true"/>
+
+    <SurfaceProvider
+        ohos:id="$+id:remote_player"
+        ohos:height="300vp"
+        ohos:width="match_parent"
+        ohos:below="$id:cameraview"
+        ohos:top_margin="5vp"/>
+
+    <DependentLayout
+        ohos:height="match_content"
+        ohos:width="match_parent"
+        ohos:align_parent_bottom="true"
+        ohos:bottom_margin="15vp">
+
+        <Text
+            ohos:id="$+id:mirror_text"
+            ohos:height="match_content"
+            ohos:width="match_content"
+            ohos:left_margin="10vp"
+            ohos:text="自拍镜像："
+            ohos:text_color="#ffffff"
+            ohos:text_size="14vp"
+            ohos:vertical_center="true"/>
+
+        <Switch
+            ohos:id="$+id:mirror_switch"
+            ohos:height="20vp"
+            ohos:width="40vp"
+            ohos:right_of="$id:mirror_text"
+            ohos:text_state_off="off"
+            ohos:text_state_on="on"
+            ohos:thumb_element="$graphic:thumb"
+            ohos:track_element="$graphic:track"
+            ohos:vertical_center="true"/>
+
+        <com.huawei.codecdemo.camera.view.CaptureButton
+            ohos:id="$+id:button_capture"
+            ohos:height="50vp"
+            ohos:width="50vp"
+            ohos:background_element="$graphic:shape_take_picture_bac"
+            ohos:center_in_parent="true"
+            ohos:layout_alignment="horizontal_center"/>
+
+        <Image
+            ohos:id="$+id:image_camera_switch"
+            ohos:height="40vp"
+            ohos:width="40vp"
+            ohos:image_src="$media:ic_camera_switch"
+            ohos:left_margin="70vp"
+            ohos:right_of="$id:button_capture"
+            ohos:scale_mode="stretch"
+            ohos:vertical_center="true"/>
+
+    </DependentLayout>
+
+</DependentLayout>

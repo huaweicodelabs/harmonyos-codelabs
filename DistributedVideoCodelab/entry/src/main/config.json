@@ -3,13 +3,8 @@
     "bundleName": "com.huawei.cookbook",
     "vendor": "huawei",
     "version": {
-      "code": 1,
-      "name": "1.0"
-    },
-    "apiVersion": {
-      "compatible": 4,
-      "target": 4,
-      "releaseType": "Release"
+      "code": 1000000,
+      "name": "1.0.0"
     }
   },
   "deviceConfig": {},
@@ -25,7 +20,8 @@
     "distro": {
       "deliveryWithInstall": true,
       "moduleName": "entry",
-      "moduleType": "entry"
+      "moduleType": "entry",
+      "installationFree": false
     },
     "abilities": [
       {
@@ -40,7 +36,6 @@
           }
         ],
         "orientation": "portrait",
-        "formEnabled": false,
         "name": "ohos.codelabs.distributedvideo.MainAbility",
         "icon": "$media:icon",
         "description": "$string:mainability_description",
@@ -53,12 +48,12 @@
         "configChanges": [
           "orientation"
         ],
-        "formEnabled": false,
         "name": ".PlayerAbility",
         "icon": "$media:icon",
         "description": "$string:videodetailabilityslice_description",
-        "label": "$string:video_detail",
+        "label": "$string:simple_player",
         "type": "page",
+        "formsEnabled": true,
         "launchType": "standard"
       },
       {

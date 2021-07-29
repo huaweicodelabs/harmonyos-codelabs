@@ -9,7 +9,7 @@
         ohos:height="match_content"
         ohos:width="match_parent">
 
-        <com.huawei.codelab.map.NavMap
+        <com.dongyu.tinymap.TinyMap
             ohos:id="$+id:map"
             ohos:horizontal_center="true"
             ohos:height="match_parent"
@@ -30,7 +30,7 @@
                 ohos:width="match_parent">
 
                 <TextField
-                    ohos:text="我的位置"
+                    ohos:text=""
                     ohos:hint="输入起点"
                     ohos:bubble_width="0"
                     ohos:bubble_height="0"
