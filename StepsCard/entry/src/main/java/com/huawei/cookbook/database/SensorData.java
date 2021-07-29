@@ -42,7 +42,7 @@ public class SensorData extends OrmObject {
      *
      * @param date date
      * @param stepsValue stepsValue
-     * @param realValue
+     * @param realValue real stepsValue
      */
     public SensorData(String date, int stepsValue, int realValue) {
         this.date = date;

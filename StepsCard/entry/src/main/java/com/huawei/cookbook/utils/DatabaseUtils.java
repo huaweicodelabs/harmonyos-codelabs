@@ -98,12 +98,21 @@ public class DatabaseUtils {
     public static SensorData getRealSensorData(float value, OrmContext connect, String now, String yestday) {
         OrmPredicates ormPredicates = new OrmPredicates(SensorData.class);
         ormPredicates.equalTo(DATA_FILED_DATE, yestday);
-        List<SensorData> datas = connect.query(ormPredicates);
+        SensorData yesterdayData = getSensorData(connect, yestday);
+        SensorData todayData = getSensorData(connect, now);
         SensorData sensorData = null;
-        if (datas.size() > 0) {
-            sensorData = new SensorData(now, (int) (value - datas.get(0).getRealValue()), (int) value);
+        if (yesterdayData != null) {
+            if (todayData != null) {
+                sensorData = new SensorData(now, (int) (value - todayData.getRealValue()), (int) value);
+            } else {
+                sensorData = new SensorData(now, (int) (value - yesterdayData.getRealValue()), (int) value);
+            }
         } else {
-            sensorData = new SensorData(now, (int) value, (int) value);
+            if (todayData != null) {
+                sensorData = new SensorData(now, (int) (value - todayData.getRealValue()), (int) value);
+            } else {
+                sensorData = new SensorData(now, 0, (int) value);
+            }
         }
         return sensorData;
     }
@@ -135,8 +144,6 @@ public class DatabaseUtils {
     public static List<ChartPoint> getLastFourDaysValue(OrmContext connect) {
         List<ChartPoint> results = new ArrayList<>(SHOW_DAYS);
         OrmPredicates ormPredicates = connect.where(SensorData.class);
-
-        List<SensorData> datas1 = connect.query(ormPredicates);
         for (int i = SHOW_DAYS; i > 0; i--) {
             ormPredicates.clear();
             ormPredicates.equalTo(DATA_FILED_DATE, DateUtils.getDate(i));

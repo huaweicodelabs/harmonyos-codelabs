@@ -70,8 +70,8 @@ public class StepSensorService extends Ability {
             public void onSensorDataModified(CategoryMotionData categoryMotionData) {
                 float[] values = categoryMotionData.getValues();
                 handleSensorData(values[0]);
-                // 设置通知
-                notice(values[0]);
+                // 设置前台service通知
+                notice();
             }
 
             @Override
@@ -89,16 +89,19 @@ public class StepSensorService extends Ability {
     }
 
     // 前台service
-    private void notice(float stepValue) {
+    private void notice() {
         // 创建通知
         NotificationRequest request = new NotificationRequest(NOTICE_ID);
         request.setAlertOneTime(true);
         NotificationRequest.NotificationNormalContent content = new NotificationRequest.NotificationNormalContent();
         SensorData sensorData = DatabaseUtils.getSensorData(connect, DateUtils.getDate(0));
+        int stepValue = 0;
         if (sensorData != null) {
-            content.setText("今天走了" + sensorData.getStepsValue() + "步");
+            stepValue = sensorData.getStepsValue();
         }
-        NotificationRequest.NotificationContent notificationContent = new NotificationRequest.NotificationContent(content);
+        content.setText("今天走了" + stepValue + "步");
+        NotificationRequest.NotificationContent notificationContent
+                = new NotificationRequest.NotificationContent(content);
         request.setContent(notificationContent);
         // 绑定通知
         keepBackgroundRunning(NOTICE_ID, request);
@@ -113,18 +116,17 @@ public class StepSensorService extends Ability {
         SensorData realSensorData =
                 DatabaseUtils.getRealSensorData(value, connect,
                         DateUtils.getDate(0), DateUtils.getDate(1));
-        float realValue = realSensorData.getStepsValue();
-        String stringValue = String.valueOf((int) realValue);
+        float stepsValue = realSensorData.getStepsValue();
+        String stringValue = String.valueOf((int) stepsValue);
         myHandler.postTask(new Runnable() {
             @Override
             public void run() {
                 // 存储数据
-                DatabaseUtils.insertValues(realValue, value, connect);
+                DatabaseUtils.insertValues(stepsValue, value, connect);
                 // 更新页面
                 MainAbilitySlice.updatePage(stringValue);
                 // 更新卡片
                 updateForms(stringValue);
-
             }
         });
     }
