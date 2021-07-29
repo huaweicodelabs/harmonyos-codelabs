@@ -22,15 +22,9 @@ package com.huawei.codelab.map;
  */
 public class Const {
     /**
-     * 接口的调用凭证，需要开发者自己申请
+     * 高德地图接口的调用凭证，需要开发者自己申请
      */
     public static final String MAP_KEY = "fdec31f36248c7aa50dd2d252cc773e2";
-
-    /**
-     * 高德地图导航瓦片url
-     */
-    public static final String TILE_URL =
-        "https://webrd02.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=2&style=8&x=%d&y=%d&z=%d";
 
     /**
      * 高德地图输入提示api接口

@@ -238,9 +238,12 @@ public class MapManager {
 
     /**
      * 迁移
+     *
+     * @param deviceId selected deviceId
      */
-    public void translate() {
-        slice.continueAbility();
+    public void translate(String deviceId) {
+        slice.continueAbility(deviceId);
+        // 关闭WatchAbility
         requestRemote(Const.STOP_WATCH_ABILITY, "");
     }
 
@@ -260,7 +263,7 @@ public class MapManager {
      */
     public interface NavListener {
         /**
-         * 监听回调
+         * 监听回调，将数据会调给MainAbilitySlice
          *
          * @param element MapElement
          */
@@ -283,11 +286,12 @@ public class MapManager {
             if (event.eventId != 1) {
                 return;
             }
-            LogUtils.info(TAG, "processEvent invalidate");
             if (nextElement.getActionType() != null && !nextElement.getActionType().isEmpty()) {
+                // 将nextElement回调给MainAbilitySlice
                 navListener.onNavListener(nextElement);
             }
             if (proxy != null) {
+                // 将数据发送给WatchService
                 requestRemote(nextElement.getActionType() == null ? "" : nextElement.getActionType(),
                     nextElement.getActionContent() == null ? "" : nextElement.getActionContent());
             }

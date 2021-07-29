@@ -21,15 +21,20 @@ import com.huawei.codelab.map.MapDataHelper;
 import com.huawei.codelab.map.MapManager;
 import com.huawei.codelab.provider.InputTipsProvider;
 import com.huawei.codelab.util.GsonUtils;
-import com.huawei.codelab.util.ImageUtils;
 import com.huawei.codelab.util.LogUtils;
 import com.huawei.codelab.util.PermissionsUtils;
 
 import com.dongyu.tinymap.Element;
 import com.dongyu.tinymap.TinyMap;
+import com.dongyu.tinymap.util.ImageUtils;
 
 import ohos.aafwk.ability.AbilitySlice;
 import ohos.aafwk.ability.IAbilityContinuation;
+import ohos.aafwk.ability.continuation.DeviceConnectState;
+import ohos.aafwk.ability.continuation.ExtraParams;
+import ohos.aafwk.ability.continuation.IContinuationDeviceCallback;
+import ohos.aafwk.ability.continuation.IContinuationRegisterManager;
+import ohos.aafwk.ability.continuation.RequestCallback;
 import ohos.aafwk.content.Intent;
 import ohos.aafwk.content.IntentParams;
 import ohos.agp.components.Button;
@@ -106,6 +111,39 @@ public class MainAbilitySlice extends AbilitySlice
 
     private int stepPoint = 0;
 
+    // 注册流转任务管理服务后返回的Ability token
+    private int abilityToken;
+
+    // 用户在设备列表中选择设备后返回的设备ID
+    private String selectDeviceId;
+
+    // 获取流转任务管理服务管理类
+    private IContinuationRegisterManager continuationRegisterManager;
+
+    // 设置流转任务管理服务设备状态变更的回调
+    private IContinuationDeviceCallback callback = new IContinuationDeviceCallback() {
+        @Override
+        public void onDeviceConnectDone(String deviceId, String deviceType) {
+            // 在用户选择设备后设置设备ID
+            selectDeviceId = deviceId;
+            LogUtils.info(TAG, "onDeviceConnectDone:");
+            translate();
+        }
+
+        @Override
+        public void onDeviceDisconnectDone(String deviceId) {
+            LogUtils.info(TAG, "onDeviceDisconnectDone:" + deviceId);
+        }
+    };
+
+    // 设置注册流转任务管理服务回调
+    private RequestCallback requestCallback = new RequestCallback() {
+        @Override
+        public void onResult(int result) {
+            abilityToken = result;
+        }
+    };
+
     @Override
     public void onStart(Intent intent) {
         super.onStart(intent);
@@ -117,57 +155,19 @@ public class MainAbilitySlice extends AbilitySlice
     }
 
     private void findComponentById() {
-        if (findComponentById(ResourceTable.Id_map) instanceof TinyMap) {
-            tinyMap = (TinyMap) findComponentById(ResourceTable.Id_map);
-        }
-
-        if (findComponentById(ResourceTable.Id_start_point_field) instanceof TextField) {
-            startTextField = (TextField) findComponentById(ResourceTable.Id_start_point_field);
-        }
-
-        if (findComponentById(ResourceTable.Id_end_point_field) instanceof TextField) {
-            endTextField = (TextField) findComponentById(ResourceTable.Id_end_point_field);
-        }
-
-        if (findComponentById(ResourceTable.Id_route_content) instanceof Text) {
-            routeContent = (Text) findComponentById(ResourceTable.Id_route_content);
-        }
-
-        if (findComponentById(ResourceTable.Id_route_tips) instanceof DependentLayout) {
-            routeTipsLayout = (DependentLayout) findComponentById(ResourceTable.Id_route_tips);
-        }
-
-        if (findComponentById(ResourceTable.Id_route_img) instanceof Image) {
-            routeImage = (Image) findComponentById(ResourceTable.Id_route_img);
-        }
-
-        if (findComponentById(ResourceTable.Id_list_input_tips) instanceof ListContainer) {
-            listContainer = (ListContainer) findComponentById(ResourceTable.Id_list_input_tips);
-        }
-
-        if (findComponentById(ResourceTable.Id_layout_input_tips) instanceof DependentLayout) {
-            inputTipsLayout = (DependentLayout) findComponentById(ResourceTable.Id_layout_input_tips);
-        }
-
-        if (findComponentById(ResourceTable.Id_select_point) instanceof DirectionalLayout) {
-            selectPointLayout = (DirectionalLayout) findComponentById(ResourceTable.Id_select_point);
-        }
-
-        if (findComponentById(ResourceTable.Id_nav_bottom) instanceof DirectionalLayout) {
-            navBottom = (DirectionalLayout) findComponentById(ResourceTable.Id_nav_bottom);
-        }
-
-        if (findComponentById(ResourceTable.Id_start_nav) instanceof Button) {
-            btnStartNav = (Button) findComponentById(ResourceTable.Id_start_nav);
-        }
-
-        if (findComponentById(ResourceTable.Id_end_nav) instanceof Button) {
-            btnEndNav = (Button) findComponentById(ResourceTable.Id_end_nav);
-        }
-
-        if (findComponentById(ResourceTable.Id_nav_translate) instanceof Button) {
-            navTranslate = (Button) findComponentById(ResourceTable.Id_nav_translate);
-        }
+        tinyMap = (TinyMap) findComponentById(ResourceTable.Id_map);
+        startTextField = (TextField) findComponentById(ResourceTable.Id_start_point_field);
+        endTextField = (TextField) findComponentById(ResourceTable.Id_end_point_field);
+        routeContent = (Text) findComponentById(ResourceTable.Id_route_content);
+        routeTipsLayout = (DependentLayout) findComponentById(ResourceTable.Id_route_tips);
+        routeImage = (Image) findComponentById(ResourceTable.Id_route_img);
+        listContainer = (ListContainer) findComponentById(ResourceTable.Id_list_input_tips);
+        inputTipsLayout = (DependentLayout) findComponentById(ResourceTable.Id_layout_input_tips);
+        selectPointLayout = (DirectionalLayout) findComponentById(ResourceTable.Id_select_point);
+        navBottom = (DirectionalLayout) findComponentById(ResourceTable.Id_nav_bottom);
+        btnStartNav = (Button) findComponentById(ResourceTable.Id_start_nav);
+        btnEndNav = (Button) findComponentById(ResourceTable.Id_end_nav);
+        navTranslate = (Button) findComponentById(ResourceTable.Id_nav_translate);
     }
 
     private void setListener() {
@@ -187,7 +187,11 @@ public class MainAbilitySlice extends AbilitySlice
 
         PermissionsUtils.getInstance().setRequestListener(permission -> {
             if (permission.equals(SystemPermission.LOCATION)) {
-                mapDataHelper.getMyLocation();
+                mapDataHelper.getMyLocation(startTextField);
+                initContinuationRegisterManager();
+            }
+            if (permission.equals(SystemPermission.DISTRIBUTED_DATASYNC)) {
+                initContinuationRegisterManager();
             }
         });
 
@@ -224,7 +228,11 @@ public class MainAbilitySlice extends AbilitySlice
         listContainer.setTouchEventListener((component, touchEvent) -> true);
 
         if (verifySelfPermission(SystemPermission.LOCATION) == IBundleManager.PERMISSION_GRANTED) {
-            mapDataHelper.getMyLocation();
+            mapDataHelper.getMyLocation(startTextField);
+        }
+
+        if (verifySelfPermission(SystemPermission.DISTRIBUTED_DATASYNC) == IBundleManager.PERMISSION_GRANTED) {
+            initContinuationRegisterManager();
         }
 
         if (elements != null) {
@@ -245,7 +253,10 @@ public class MainAbilitySlice extends AbilitySlice
                 tinyMap.addElement(element);
             }
 
-            mapManager.startNav();
+            // 到达终点
+            if (stepPoint < elements.size() - 1) {
+                mapManager.startNav();
+            }
         }
     }
 
@@ -276,13 +287,44 @@ public class MainAbilitySlice extends AbilitySlice
         }
     }
 
+    private void initContinuationRegisterManager() {
+        continuationRegisterManager = getContinuationRegisterManager();
+        // 增加过滤条件
+        ExtraParams params = new ExtraParams();
+        String[] devTypes = new String[] {ExtraParams.DEVICETYPE_SMART_PAD, ExtraParams.DEVICETYPE_SMART_PHONE,
+            ExtraParams.DEVICETYPE_SMART_WATCH};
+        params.setDevType(devTypes);
+        // 注册流转任务管理服务
+        continuationRegisterManager.register(getBundleName(), params, callback, requestCallback);
+    }
+
+    private void translate() {
+        getUITaskDispatcher().asyncDispatch(() -> {
+            if (continuationRegisterManager != null) {
+                continuationRegisterManager.updateConnectStatus(abilityToken, selectDeviceId,
+                    DeviceConnectState.IDLE.getState(), null);
+                if (selectDeviceId != null) {
+                    LogUtils.info(TAG, "translate:" + abilityToken);
+                    // 用户点击后发起迁移流程
+                    mapManager.translate(selectDeviceId);
+                }
+            }
+        });
+    }
+
     @Override
     public void onClick(Component component) {
         switch (component.getId()) {
             // 迁移
             case ResourceTable.Id_nav_translate:
-                mapManager.translate();
-                setTranslateView();
+                // 设置过滤设备类型
+                ExtraParams params = new ExtraParams();
+                String[] devTypes = new String[] {ExtraParams.DEVICETYPE_SMART_PAD, ExtraParams.DEVICETYPE_SMART_PHONE,
+                    ExtraParams.DEVICETYPE_SMART_WATCH};
+                params.setDevType(devTypes);
+
+                // 显示选择设备列表
+                continuationRegisterManager.showDeviceList(abilityToken, params, null);
                 break;
 
             // 开始导航
@@ -299,10 +341,6 @@ public class MainAbilitySlice extends AbilitySlice
             default:
                 break;
         }
-    }
-
-    private void setTranslateView() {
-        navTranslate.setVisibility(Component.HIDE);
     }
 
     private void setStartNavView() {
@@ -331,11 +369,8 @@ public class MainAbilitySlice extends AbilitySlice
     }
 
     @Override
-    public void setRouteView(String route) {
-        tinyMap.getMapElements().clear();
+    public void setBottomView() {
         navBottom.setVisibility(Component.VISIBLE);
-        tinyMap.setStepPoint(0);
-        mapDataHelper.parseRoute(route);
     }
 
     @Override
@@ -372,7 +407,8 @@ public class MainAbilitySlice extends AbilitySlice
     @Override
     public void onCompleteContinuation(int result) {
         mapManager.translateComplete();
+        navTranslate.setVisibility(Component.HIDE);
         routeTipsLayout.setVisibility(Component.HIDE);
-        LogUtils.info(TAG, "onCompleteContinuation");
+        LogUtils.info(TAG, "onCompleteContinuation result:" + result);
     }
 }

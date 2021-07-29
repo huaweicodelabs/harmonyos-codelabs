@@ -18,31 +18,12 @@ package com.huawei.codelab.util;
 import com.huawei.codelab.ResourceTable;
 import com.huawei.codelab.map.Const;
 
-import ohos.app.Context;
-import ohos.global.resource.NotExistException;
-import ohos.media.image.ImageSource;
-import ohos.media.image.PixelMap;
-import ohos.media.image.common.Size;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
-import java.net.URLConnection;
-
 /**
  * MapHelper
  *
  * @since 2021-02-01
  */
 public class ImageUtils {
-    private static final String TAG = ImageUtils.class.getName();
-
-    private static final int TILE_LENGTH = 513;
-
-    private static final int TIME_OUT = 5 * 1000;
-
-    private static final int IMAGE_WIDTH_HEIGHT = 80;
-
     private ImageUtils() {
     }
 
@@ -83,69 +64,5 @@ public class ImageUtils {
                 break;
         }
         return imageId;
-    }
-
-    /**
-     * getPixelMap
-     *
-     * @param context context
-     * @param actionType actionType
-     * @return PixelMap
-     */
-    public static PixelMap getPixelMap(Context context, String actionType) {
-        InputStream drawableInputStream = null;
-        PixelMap pixelMap = null;
-        try {
-            drawableInputStream = context.getResourceManager().getResource(ImageUtils.getImageId(actionType));
-            ImageSource imageSource = ImageSource.create(drawableInputStream, new ImageSource.SourceOptions());
-            ImageSource.DecodingOptions options = new ImageSource.DecodingOptions();
-            options.desiredSize = new Size(IMAGE_WIDTH_HEIGHT, IMAGE_WIDTH_HEIGHT);
-            pixelMap = imageSource.createPixelmap(options);
-            return pixelMap;
-        } catch (IOException | NotExistException exception) {
-            LogUtils.info(TAG, "getPixelMap:" + exception.getMessage());
-        } finally {
-            if (drawableInputStream != null) {
-                try {
-                    drawableInputStream.close();
-                } catch (IOException e) {
-                    LogUtils.info(TAG, "getPixelMap:" + e.getMessage());
-                }
-            }
-        }
-        return pixelMap;
-    }
-
-    /**
-     * 从网络获取地图瓦片数据
-     *
-     * @param urlString urlString
-     * @return PixelMap
-     */
-    public static PixelMap getMapPixelMap(String urlString) {
-        InputStream is = null;
-        PixelMap pixelMap = null;
-        try {
-            URL url = new URL(urlString);
-            URLConnection con = url.openConnection();
-            con.setConnectTimeout(TIME_OUT);
-            is = con.getInputStream();
-            ImageSource source = ImageSource.create(is, new ImageSource.SourceOptions());
-            ImageSource.DecodingOptions options = new ImageSource.DecodingOptions();
-            options.desiredSize = new Size(TILE_LENGTH, TILE_LENGTH);
-            pixelMap = source.createPixelmap(options);
-            return pixelMap;
-        } catch (IOException exception) {
-            LogUtils.info(TAG, "getImagePixelMap:" + exception.getMessage());
-        } finally {
-            if (is != null) {
-                try {
-                    is.close();
-                } catch (IOException e) {
-                    LogUtils.info(TAG, "getImagePixelMap:" + e.getMessage());
-                }
-            }
-        }
-        return pixelMap;
     }
 }

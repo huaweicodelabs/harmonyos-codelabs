@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-package com.dongyu.tinymap;
+package com.dongyu.tinymap.util;
 
 /**
  * 地图导航常量封装
@@ -21,33 +21,6 @@ package com.dongyu.tinymap;
  * @since 2021-03-12
  */
 public class Const {
-    /**
-     * 接口的调用凭证，需要开发者自己申请
-     */
-    public static final String MAP_KEY = "fdec31f36248c7aa50dd2d252cc773e2";
-
-    /**
-     * 高德地图导航瓦片url
-     */
-    public static final String TILE_URL =
-        "https://webrd02.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=2&style=8&x=%d&y=%d&z=%d";
-
-    /**
-     * 高德地图输入提示api接口
-     */
-    public static final String INPUT_TIPS_URL =
-        "https://restapi.amap.com/v3/assistant/inputtips?keywords=%s&key=%s&location=%s&city=%s";
-
-    /**
-     * 高德地图路径导航api接口
-     */
-    public static final String ROUTE_URL =
-        "https://restapi.amap.com/v3/direction/driving?extensions=all&strategy=5&origin=%s&destination=%s&key=%s";
-
-    /**
-     * 高德地图逆地理编码api接口
-     */
-    public static final String REGION_DETAIL_URL = "https://restapi.amap.com/v3/geocode/regeo?location=%s&key=%s";
 
     /**
      * 导航开始标识
@@ -63,11 +36,6 @@ public class Const {
      * 当前位置标识
      */
     public static final String ROUTE_PEOPLE = "route_people";
-
-    /**
-     * 关闭WatchAbility标识
-     */
-    public static final String STOP_WATCH_ABILITY = "stop_watch_ability";
 
     /**
      * 右转标识

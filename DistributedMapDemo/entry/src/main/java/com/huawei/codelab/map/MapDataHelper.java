@@ -26,6 +26,7 @@ import com.huawei.codelab.util.MapUtils;
 import com.dongyu.tinymap.Element;
 import com.dongyu.tinymap.TinyMap;
 
+import ohos.agp.components.TextField;
 import ohos.agp.utils.Point;
 import ohos.app.Context;
 
@@ -75,27 +76,33 @@ public class MapDataHelper {
 
     /**
      * 获取本机位置信息
+     *
+     * @param startLocationText start location Component
      */
-    public void getMyLocation() {
+    public void getMyLocation(TextField startLocationText) {
         new LocationHelper().getMyLocation(context, loc -> {
             double locLongitude = loc.getLongitude();
             double locLatitude = loc.getLatitude();
             location = locLongitude + "," + locLatitude;
             if (tinyMap.getMapElements() == null) {
                 setMapCenter(locLongitude, locLatitude);
-                getRegionDetail();
+                getRegionDetail(startLocationText);
             }
         });
     }
 
     /**
      * 调用高德地图逆地理编码api，获取城市编码
+     *
+     * @param startLocationText start location Component
      */
-    private void getRegionDetail() {
+    private void getRegionDetail(TextField startLocationText) {
         String url = String.format(Const.REGION_DETAIL_URL, location, Const.MAP_KEY);
         HttpUtils.getInstance(context).get(url, result -> {
             RegionDetailResult regionDetailResult = GsonUtils.jsonToBean(result, RegionDetailResult.class);
             localCityCode = regionDetailResult.getRegeocode().getAddressComponent().getCitycode();
+            startLocationText.setText("我的位置");
+            LogUtils.info(TAG, "localCityCode:" + localCityCode);
         });
     }
 
@@ -123,7 +130,12 @@ public class MapDataHelper {
      */
     public void getRouteResult(String endLocation) {
         String url = String.format(Const.ROUTE_URL, location, endLocation, Const.MAP_KEY);
-        HttpUtils.getInstance(context).get(url, result -> dataCallBack.setRouteView(result));
+        HttpUtils.getInstance(context).get(url, result -> {
+            dataCallBack.setBottomView();
+            tinyMap.setStepPoint(0);
+            tinyMap.getMapElements().clear();
+            parseRoute(result);
+        });
     }
 
     /**
@@ -132,7 +144,6 @@ public class MapDataHelper {
      * @param result 高德地图路径规划api返回的结果
      */
     public void parseRoute(String result) {
-        tinyMap.getMapElements().clear();
         RouteResult routeResult = GsonUtils.jsonToBean(result, RouteResult.class);
         List<RouteResult.RouteEntity.PathsEntity> paths = routeResult.getRoute().getPaths();
         RouteResult.RouteEntity.PathsEntity pathsEntity = paths.get(0);
@@ -207,10 +218,8 @@ public class MapDataHelper {
         void setInputTipsView(List<InputTipsResult.TipsEntity> tips);
 
         /**
-         * 设置导航路径视图
-         *
-         * @param route route
+         * 设置底部视图
          */
-        void setRouteView(String route);
+        void setBottomView();
     }
 }

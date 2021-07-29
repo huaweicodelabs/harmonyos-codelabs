@@ -42,6 +42,13 @@ import java.util.concurrent.CopyOnWriteArrayList;
  * @since 2021-03-12
  */
 public class TinyMap extends Component implements Component.DrawTask, Component.TouchEventListener {
+    /**
+     * 高德地图瓦片url，地图底图源
+     */
+    public static final String TILE_URL =
+        "https://webrd02.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=2&style=8&x=%d&y=%d&z=%d";
+
+    // 切片图片长度
     private static final int TILE_LENGTH = 512;
 
     private static final int ROUTE_WIDTH = 20;
@@ -66,8 +73,10 @@ public class TinyMap extends Component implements Component.DrawTask, Component.
     // 高德地图的缩放级别， 取值范围3~18
     private static final int ZOOM = 15;
 
+    // 某ZOOM下单个切片在X坐标（Y坐标）上所代表地图距离的长度
     private double tileRealLength;
 
+    // 组件中央坐标
     private Point centerPoint;
 
     private int rowMin;
@@ -211,7 +220,6 @@ public class TinyMap extends Component implements Component.DrawTask, Component.
      * @param isRefresh 是否为刷新
      */
     private void initTiles(boolean isRefresh) {
-        Component component;
         if (tiles == null || isRefresh) {
             tiles = new CopyOnWriteArrayList<>();
         }
@@ -223,7 +231,7 @@ public class TinyMap extends Component implements Component.DrawTask, Component.
     private void setTiles() {
         for (int row = rowMin; row <= rowMax; row++) {
             for (int col = colMin; col <= colMax; col++) {
-                String urlString = String.format(Const.TILE_URL, col, row, ZOOM);
+                String urlString = String.format(TILE_URL, col, row, ZOOM);
 
                 if (hasThisTile(row, col)) {
                     continue;
