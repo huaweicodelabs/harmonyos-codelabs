@@ -105,5 +105,9 @@ public class SelectDeviceDialog {
      */
     public void show() {
         commonDialog.show();
+
+        // Call this to prevent the dialog from being draggable on wearables which causes the UI to be unresponsive
+        // setSwipeToDismiss should to be called after calling the display method ".show()"
+        commonDialog.setSwipeToDismiss(false);
     }
 }
