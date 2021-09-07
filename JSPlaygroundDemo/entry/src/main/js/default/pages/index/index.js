@@ -24,24 +24,26 @@ export default {
     data: {
         title: "",
         eventList: [
-                "拿/获取",
-                "约会/安排",
-                "电子邮件",
-                "清除",
-                "购买"],
-        initialIndex: 0
+            "拿快递",
+            "购买礼物",
+            "约会/安排",
+            "回复邮件",
+            "运动健身",
+            "足球比赛",
+            "看书学习"],
+        initialIndex: 0,
+        taskList: []
     },
     onInit() {
-        this.title = this.$t('strings.world');
         this.$set('taskList', []);
     },
     onShow() {
-        for (var index = 0; index < this.eventList.length; index++) {
+        for (let index = 0; index < this.eventList.length; index++) {
             const element = {};
             element.id = 'id-' + index;
             element.event = this.eventList[index];
             element.time = this.getRandomTime();
-            var completeState = this.getRandom(100) % 2;
+            let completeState = this.getRandom(100) % 2;
             element.checkBtn = BUTTON_STATE_IMAGE[completeState];
             element.color = TEXT_COLOR[completeState];
             element.showTag = TAG_STATE[completeState];
@@ -59,7 +61,7 @@ export default {
         });
     },
     completeEvent(e) {
-        for (var i of this.taskList) {
+        for (let i of this.taskList) {
             if (i.id == e) {
                 if (i.checkBtn == "/common/done.png") {
                     i.checkBtn = "/common/checkbutton.png";
@@ -77,15 +79,15 @@ export default {
         }
     },
     getRandomTime() {
-        var hour = this.getRandom(24);
-        var minute = this.getRandom(60);
+        let hour = this.getRandom(24);
+        let minute = this.getRandom(60);
         if (minute < 10) {
             minute = '0' + minute;
         }
         return hour + ':' + minute;
     },
     getRandom(range) {
-        var num = Math.random();
+        let num = Math.random();
         num = num * range;
         num = Math.floor(num);
         return num;

@@ -16,17 +16,6 @@
 apply plugin: 'com.huawei.ohos.hap'
 apply plugin: 'com.huawei.ohos.decctest'
 ohos {
-    signingConfigs {
-        debug {
-            storeFile file('D:\\证书\\ide_acg_pk.p12')
-            storePassword '0000001861589C0C0FA67E58013A648F89C1A4B4EAFA0853BD711FA6AF2ABC4A0EC0C35E41EEBBF9'
-            keyAlias = 'ide_acg_pk'
-            keyPassword '00000018C1B253B9A7F967965176C7FB444EF451340B59747DF2A7AB3934FB6B653D4C0B4680BF71'
-            signAlg = 'SHA256withECDSA'
-            profile file('D:\\证书\\cookbookDebug.p7b')
-            certpath file('D:\\证书\\ide_acg.cer')
-        }
-    }
     compileSdkVersion 5
     defaultConfig {
         compatibleSdkVersion 4

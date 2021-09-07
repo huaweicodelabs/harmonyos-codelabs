@@ -131,10 +131,15 @@ public class MapDataHelper {
     public void getRouteResult(String endLocation) {
         String url = String.format(Const.ROUTE_URL, location, endLocation, Const.MAP_KEY);
         HttpUtils.getInstance(context).get(url, result -> {
-            dataCallBack.setBottomView();
-            tinyMap.setStepPoint(0);
-            tinyMap.getMapElements().clear();
-            parseRoute(result);
+            if (tinyMap.getMapElements() != null) {
+                tinyMap.setStepPoint(0);
+                tinyMap.getMapElements().clear();
+                parseRoute(result);
+            }
+
+            if (tinyMap.getMapElements() != null && tinyMap.getMapElements().size() > 1) {
+                dataCallBack.setBottomView();
+            }
         });
     }
 
@@ -144,41 +149,45 @@ public class MapDataHelper {
      * @param result 高德地图路径规划api返回的结果
      */
     public void parseRoute(String result) {
-        RouteResult routeResult = GsonUtils.jsonToBean(result, RouteResult.class);
-        List<RouteResult.RouteEntity.PathsEntity> paths = routeResult.getRoute().getPaths();
-        RouteResult.RouteEntity.PathsEntity pathsEntity = paths.get(0);
-        List<RouteResult.RouteEntity.PathsEntity.StepsEntity> steps = pathsEntity.getSteps();
-        for (int i = 0; i < steps.size(); i++) {
-            RouteResult.RouteEntity.PathsEntity.StepsEntity stepsEntity = steps.get(i);
-            Object action = stepsEntity.getAction();
-            String instruction = stepsEntity.getInstruction();
-            String polyLine = stepsEntity.getPolyline();
-            String[] points = polyLine.split(";");
-            for (int j = 0; j < points.length; j++) {
-                String[] pointCoordinates = points[j].split(",");
-                double[] coordinates = MapUtils.lonLat2Mercator(Double.parseDouble(pointCoordinates[0]),
-                    Double.parseDouble(pointCoordinates[1]));
+        try {
+            RouteResult routeResult = GsonUtils.jsonToBean(result, RouteResult.class);
+            List<RouteResult.RouteEntity.PathsEntity> paths = routeResult.getRoute().getPaths();
+            RouteResult.RouteEntity.PathsEntity pathsEntity = paths.get(0);
+            List<RouteResult.RouteEntity.PathsEntity.StepsEntity> steps = pathsEntity.getSteps();
+            for (int i = 0; i < steps.size(); i++) {
+                RouteResult.RouteEntity.PathsEntity.StepsEntity stepsEntity = steps.get(i);
+                Object action = stepsEntity.getAction();
+                String instruction = stepsEntity.getInstruction();
+                String polyLine = stepsEntity.getPolyline();
+                String[] points = polyLine.split(";");
+                for (int j = 0; j < points.length; j++) {
+                    String[] pointCoordinates = points[j].split(",");
+                    double[] coordinates = MapUtils.lonLat2Mercator(Double.parseDouble(pointCoordinates[0]),
+                            Double.parseDouble(pointCoordinates[1]));
 
-                if (i == 0 && j == 0) {
-                    // 添加定位图标元素
-                    addElementToMap(coordinates, Const.ROUTE_PEOPLE, "", true);
+                    if (i == 0 && j == 0) {
+                        // 添加定位图标元素
+                        addElementToMap(coordinates, Const.ROUTE_PEOPLE, "", true);
 
-                    // 添加起点位置元素
-                    addElementToMap(coordinates, Const.ROUTE_START, "", true);
-                }
+                        // 添加起点位置元素
+                        addElementToMap(coordinates, Const.ROUTE_START, "", true);
+                    }
 
-                if (j == 0) {
-                    // 添加每一个step第一个元素，用于显示导航时提示信息
-                    addElementToMap(coordinates, action.toString(), action.toString(), false);
-                } else {
-                    addElementToMap(coordinates, action.toString(), instruction, false);
-                }
+                    if (j == 0) {
+                        // 添加每一个step第一个元素，用于显示导航时提示信息
+                        addElementToMap(coordinates, action.toString(), action.toString(), false);
+                    } else {
+                        addElementToMap(coordinates, action.toString(), instruction, false);
+                    }
 
-                // 添加终点位置元素
-                if (i == steps.size() - 1 && j == points.length - 1) {
-                    addElementToMap(coordinates, Const.ROUTE_END, "到达终点", true);
+                    // 添加终点位置元素
+                    if (i == steps.size() - 1 && j == points.length - 1) {
+                        addElementToMap(coordinates, Const.ROUTE_END, "到达终点", true);
+                    }
                 }
             }
+        }catch (Exception exception){
+            LogUtils.info(TAG,"parse route exception");
         }
     }
 

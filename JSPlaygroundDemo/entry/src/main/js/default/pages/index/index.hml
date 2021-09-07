@@ -12,9 +12,6 @@
  -->
 
 <div class="container">
-    <text class="title">
-        {{ $t('strings.hello') }}  {{title}}
-    </text>
     <list class="tag-list" initialindex="{{initialIndex}}">
         <list-item for="{{taskList}}" class="todo-list-item" focusable="false">
             <div class="todo-item flex-row" onclick="completeEvent({{$item.id}})">

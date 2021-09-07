@@ -80,7 +80,7 @@
               "$layout:form_image_with_info_date_card_2_4"
             ],
             "updateEnabled": true,
-            "updateDuration": 30,
+            "updateDuration": 1,
             "formVisibleNotify": true,
             "metaData": {
               "customizeData": [
