@@ -1,0 +1,88 @@
+<!--
+ Copyright (c) 2021 Huawei Device Co., Ltd.
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+     http://www.apache.org/licenses/LICENSE-2.0
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ -->
+
+<div class="doc-page">
+    <div class="btn-div">
+        <button type="capsule" value="AlertDialog" class="btn" onclick="showAlert"></button>
+        <button type="capsule" value="ConfirmDialog" class="btn" onclick="showConfirm"></button>
+        <button type="capsule" value="LoadingDialog" class="btn" onclick="showLoading"></button>
+        <button type="capsule" value="PromptDialog" class="btn" onclick="showPrompt"></button>
+        <button type="capsule" value="ProgressDialog" class="btn" onclick="showProgress"></button>
+    </div>
+
+    <dialog id="alertDialog" class="alert-dialog">
+        <div class="dialog-div">
+            <div class="alert-inner-txt">
+                <text class="txt">AlertDialog</text>
+            </div>
+            <div class="alert-inner-btn">
+                <button type="capsule" value="Confirm" onclick="confirmClick('alertDialog')" style="width : 80%;">
+                </button>
+            </div>
+        </div>
+    </dialog>
+
+    <dialog id="confirmDialog" class="dialog-main">
+        <div class="dialog-div">
+            <div class="inner-txt">
+                <text class="txt">ConfirmDialog</text>
+            </div>
+            <div class="inner-btn">
+                <button type="capsule" value="Cancel" style="width : 40%; margin-right : 10px;"
+                        class="btn-txt" onclick="cancelClick('confirmDialog')">
+                </button>
+                <button type="capsule" value="Confirm" style="width : 40%;" class="btn-txt"
+                        onclick="confirmClick('confirmDialog')">
+                </button>
+            </div>
+        </div>
+    </dialog>
+
+    <dialog id="loadingDialog" style="width : 120px; height : 120px; margin-bottom : 40%;">
+        <div class="dialog-div">
+            <image class="loading-img img-rotate" id="loading-img" src="/common/images/loading.svg"
+                   style="height : 60px; width : 60px;"></image>
+            <text style="font-size : 16px; color : #999999;">loading...</text>
+        </div>
+    </dialog>
+
+    <dialog id="promptDialog" class="dialog-main">
+        <div class="dialog-div">
+            <div class="inner-txt">
+                <text class="txt">PromptDialog</text>
+            </div>
+            <input type="password" placeholder="please enter password" style="margin-left : 20px; margin-right : 20px;">
+            </input>
+            <div class="inner-btn">
+                <button type="capsule" value="Cancel" style="width : 40%; margin-right : 10px;"
+                        class="btn-txt" onclick="cancelClick('promptDialog')">
+                </button>
+                <button type="capsule" value="Confirm" style="width : 40%;" class="btn-txt"
+                        onclick="confirmClick('promptDialog')">
+                </button>
+            </div>
+        </div>
+    </dialog>
+
+    <dialog id="progressDialog" style="width : 80%; height : 200px; margin-bottom : 40%;" oncancel="onCancel">
+        <div style="flex-direction : column; align-items : center;">
+            <text style="font-size : 25px; color : black; font-weight : bold;">Downloading...</text>
+            <div style="width : 80%; margin-top : 40px; margin-bottom : 10px;">
+                <progress class="min-progress" style="height : 10px;" type="horizontal" percent="{{ percent }}"
+                          secondarypercent="50"></progress>
+            </div>
+            <text style="font-size : 18px; color : #666666;">Image {{ percent / 10 }} of 10</text>
+        </div>
+    </dialog>
+
+</div>

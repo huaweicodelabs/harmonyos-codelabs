@@ -1,0 +1,25 @@
+<element name='comp1' src='../../common/first/second.hml'></element>
+<element name='comp2' src='../../common/second/second.hml'></element>
+<element name='comp3' src='../../common/third/second.hml'></element>
+<element name='comp4' src='../../common/fourth/second.hml'></element>
+<element name='comp5' src='../../common/fifth/second.hml'></element>
+
+<div class="container">
+    <comp1 style="display : {{ display1 }}"></comp1>
+    <comp2 style="display : {{ display2 }}"></comp2>
+    <comp3 style="display : {{ display3 }}"></comp3>
+    <comp4 style="display : {{ display4 }}"></comp4>
+    <comp5 style="display : {{ display5 }}"></comp5>
+    <toolbar style="position : fixed; bottom : 0px;">
+        <toolbar-item style="font-weight : {{ fontWeight0 }};" icon="{{ imgGr }}" value='Option 1' onclick="change">
+        </toolbar-item>
+        <toolbar-item style="font-weight : {{ fontWeight1 }};" icon="{{ imgDu }}" value='Option 2' onclick="change">
+        </toolbar-item>
+        <toolbar-item style="font-weight : {{ fontWeight2 }};" icon="{{ imgGu }}" value='Option 3' onclick="change">
+        </toolbar-item>
+        <toolbar-item style="font-weight : {{ fontWeight3 }};" icon="{{ imgWz }}" value='Option 4' onclick="change">
+        </toolbar-item>
+        <toolbar-item style="font-weight : {{ fontWeight4 }};" icon="{{ imgXx }}" value='Option 5' onclick="change">
+        </toolbar-item>
+    </toolbar>
+</div>

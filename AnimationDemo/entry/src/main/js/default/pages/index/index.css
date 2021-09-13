@@ -1,0 +1,117 @@
+/*
+ * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Licensed under the Apache License,Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+.container {
+    background-color: #F8FCF5;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.img {
+    margin-top: 10px;
+    height: 100px;
+    width: 100px;
+    animation-timing-function: ease;
+    animation-duration: 2s;
+    animation-delay: 0s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+}
+
+.text {
+    font-size: 20px;
+}
+
+.img-translate {
+    animation-name: translateAnim;
+}
+
+.img-rotate {
+    animation-name: rotateAnim;
+}
+
+.img-rotateY {
+    animation-name: rotateYAnim;
+}
+
+.img-scale {
+    animation-name: scaleAnim;
+}
+
+.img-mixes {
+    animation-name: mixesAnim;
+}
+
+.img-opacity {
+    animation-name: opacityAnim;
+}
+
+/*从-100px平移到100px*/
+@keyframes translateAnim {
+    from {
+        transform: translate(-100px);
+    }
+
+    to {
+        transform: translate(100px);
+    }
+}
+
+/*从0°旋转到360°*/
+@keyframes rotateAnim {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/*沿Y轴旋转，从0°旋转到360°*/
+@keyframes rotateYAnim {
+    from {
+        transform: rotateY(0deg);
+    }
+
+    to {
+        transform: rotateY(360deg);
+    }
+}
+
+/*从0倍缩放到1.2倍大小*/
+@keyframes scaleAnim {
+    from {
+        transform: scale(0);
+    }
+
+    to {
+        transform: scale(1.2);
+    }
+}
+
+/*不透明度值从0变化到1*/
+@keyframes opacityAnim {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+

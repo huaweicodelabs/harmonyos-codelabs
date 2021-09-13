@@ -1,0 +1,8 @@
+<div class="container">
+    <text class="avgText" maxlength="20">自定义星级打分</text>
+    <rating onchange="rateBlue" class="rateBlue" rating="3"></rating>
+    <rating onchange="rateRed" class="rateRed" rating="2.5"></rating>
+    <rating onchange="rateGreen" class="rateGreen" rating="1.5"></rating>
+    <text class="avgText" maxlength="20">平均分等级</text>
+    <rating class="rate" indicator="true" stepsize="0.1" rating="{{ avg }}"></rating>
+</div>

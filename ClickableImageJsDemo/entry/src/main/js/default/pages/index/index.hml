@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="container-son-div">
+        <div class="line-div">
+            <div class="line-div-son margin-top-20" >
+                <image ref="imageNormal"  class="{{imageNormal.classType}}"  src="{{imageNormal.src}}"  ontouchstart="changeShadow(true)"  ontouchend="changeShadow(false)"  />
+            </div>
+            <div class="line-div-son text-div">
+                <text class="font-size-20" >{{imageNormal.title}}</text>
+            </div>
+        </div>
+        <div class="line-div">
+            <div class="line-div-son margin-top-30">
+                <image ref="imageSelect"  class="img-normal" src="{{imageSelect.src}}"  onclick="changeHookState" />
+            </div>
+            <div class="line-div-son text-div">
+                <text class="font-size-20" >{{imageSelect.title}}</text>
+            </div>
+        </div>
+    </div>
+    <div class="container-son-div">
+        <div class="line-div">
+            <div class="line-div-son margin-top-20" >
+                <image-animator ref="frameContainerPhone" class="animator" images="{{frameContainerPhone.frames}}" iteration="1" duration="{{frameContainerPhone.durationTime}}" onclick="handleStartFrameContainerPhone" />
+            </div>
+            <div class="line-div-son text-div">
+                <text class="font-size-20" >{{frameContainerPhone.title}}</text>
+            </div>
+        </div>
+        <div class="line-div">
+            <div class="line-div-son margin-top-20">
+                <image-animator  ref="frameContainerState" class="animator" images="{{frameContainerState.frames}}" iteration="1" duration="{{frameContainerState.durationTime}}" onclick="handleStartFrameContainerState" />
+            </div>
+            <div class="line-div-son text-div">
+                <text class="font-size-20" >{{frameContainerState.title}}</text>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="video-block">
+        <video id="video"
+               class="video"
+               src="{{url}}"
+               autoplay="{{ autoplay }}"
+               poster="{{posterUrl}}"
+               controls="{{ controlShow }}"
+               loop="{{ loop }}"
+               starttime="{{startTime}}}"
+               speed="{{speed}}"
+               onprepared="prepared"
+               onstart="start"
+               onpause="pause"
+               onfinish="finish"
+               onseeked="seeked"
+               ontimeupdate="timeupdate"
+               onfullscreenchange="fullscreenchange"
+               onlongpress="longPressFullscreenchange"
+               on:click="hideControls" >
+        </video>
+    </div>
+
+
+    <dialog id="confirmDialog" class="dialog-main">
+        <div class="dialog-div">
+            <div class="inner-txt">
+                <text class="txt">视频播放完成，是否重新播放？</text>
+            </div>
+            <div class="inner-btn">
+                <button type="capsule" value="取消" onclick="cancel" class="btn-txt"></button>
+                <button type="capsule" value="确定" onclick="confirm" class="btn-txt"></button>
+            </div>
+        </div>
+    </dialog>
+</div>

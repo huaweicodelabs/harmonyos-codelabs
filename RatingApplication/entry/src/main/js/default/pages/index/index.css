@@ -1,0 +1,53 @@
+/* 页面整体纵向布局 */
+.container {
+    flex-direction: column;/*    justify-content: center;*/
+    align-items: center;
+    padding-top: 30px;
+
+}
+
+/* 平均分等级样式 */
+
+.rate {
+    width: 200px;
+    height: 45px;
+    margin-top: 20px;
+}
+
+/* 字体样式 */
+
+.avgText {
+    text-align: center;
+    font-size: 20px;
+    width: 200px;
+    color: #5A554D;
+    margin-top: 80px;
+    font-weight: 900
+}
+
+/*自定义星级布局 */
+
+.rateRed {
+    star-background: url("/common/asserts/zdy1.png");
+    star-foreground: url("/common/asserts/zdy2.png");
+    star-secondary: url("/common/asserts/zdy3.png");
+    width: 200px;
+    height: 45px;
+}
+
+.rateBlue {
+    star-background: url("/common/asserts/zdy1.png");
+    star-foreground: url("/common/asserts/zdy2.png");
+    star-secondary: url("/common/asserts/zdy3.png");
+    width: 200px;
+    height: 45px;
+    margin-top: 10px;
+}
+
+.rateGreen {
+    star-background: url("/common/asserts/zdy1.png");
+    star-foreground: url("/common/asserts/zdy2.png");
+    star-secondary: url("/common/asserts/zdy3.png");
+    width: 200px;
+    height: 45px;
+}

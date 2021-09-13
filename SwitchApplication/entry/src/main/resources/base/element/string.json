@@ -1,0 +1,12 @@
+{
+  "string": [
+    {
+      "name": "entry_MainAbility",
+      "value": "switch_chart"
+    },
+    {
+      "name": "mainability_description",
+      "value": "JS_Empty Ability"
+    }
+  ]
+}

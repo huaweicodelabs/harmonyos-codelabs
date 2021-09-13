@@ -1,0 +1,49 @@
+@import '../../common/css/style.css';
+.container {
+    flex-direction: column;
+    align-items: center;
+}
+
+.container-son-div{
+    width: 100%;
+    height: 200px;
+}
+.line-div{
+    flex-direction: column;
+    width: 50%;
+    height: 180px;
+}
+.line-div-son{
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+.text-div{
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.img-normal{
+    width:80px;
+    height:80px
+}
+
+.main-img-unTouch{
+    width: 100px;
+    height: 100px;
+    border:0px solid #777676;
+}
+
+.main-img-touch{
+    width: 110px;
+    height: 110px;
+    border:4px solid #777676;
+}
+
+.animator {
+    width: 100px;
+    height: 100px;
+}

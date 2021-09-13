@@ -1,0 +1,15 @@
+<div class="container">
+    <div class="image-block">
+        <image id="image" src="{{imgUrl}}" style="transform: scale({{imageSize}}); animation-duration: {{animationDuration}};"/>
+    </div>
+    <div class="slider-block">
+        <text>
+            速度：{{speed}}
+        </text>
+        <slider class="slider" min="{{minSpeed}}" max="{{maxSpeed}}" value="{{speed}}" onchange="changeValue"></slider>
+        <text>
+            缩放比例：{{imageSize}}
+        </text>
+        <slider class="slider" min="{{minSize}}" max="{{maxSize}}" value="{{size}}" onchange="changeSize"></slider>
+    </div>
+</div>

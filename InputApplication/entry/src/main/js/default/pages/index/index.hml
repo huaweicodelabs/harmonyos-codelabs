@@ -1,0 +1,66 @@
+<div class="container">
+    <div class="input-form">
+        <text class="form-text">input 表单</text>
+    </div>
+    <div class="row">
+        <label class="label">用户名：</label>
+        <div class="input-block">
+            <input id="username" class="input" type="text" maxlength="10" placeholder="请输入内容用户名" headericon="{{require}}" onchange="change" ontranslate="translate"/>
+        </div>
+    </div>
+    <div class="row">
+        <label class="label">请设置密码：</label>
+        <div class="input-block">
+            <input id="password" class="input" type="password" maxlength="10" placeholder="请输入密码" headericon="{{require}}" onchange="change"/>
+        </div>
+    </div>
+    <div class="row">
+        <label class="label">请确认密码：</label>
+        <div class="input-block">
+            <input id="password2"class="input" type="password" maxlength="10" placeholder="请再次确认密码" headericon="{{require}}" onchange="change"/>
+        </div>
+    </div>
+    <div class="row">
+        <label class="label">电子邮箱：</label>
+        <div class="input-block">
+            <input id="email" class="input" type="email" maxlength="20" placeholder="请输入电子邮箱" headericon="{{require}}" onchange="change" onshare="share"/>
+        </div>
+    </div>
+    <div class="row">
+        <label class="label">出生日期：</label>
+        <div class="input-block">
+            <input id="date" class="input" type="date" maxlength="20" placeholder="请选输入生年月" onchange="change" onsearch="search"/>
+        </div>
+    </div>
+    <div class="row">
+        <label class="label">身高（cm）：</label>
+        <div class="input-block">
+            <input id="height" class="input" type="number" maxlength="3" placeholder="请选输入身高" onchange="change" menuoptions="{{list}}" onoptionselect="optionselect"/>
+        </div>
+    </div>
+    <div class="row">
+        <label class="label">性别：</label>
+        <div class="input-block">
+            <input name="radio" type="radio" checked='true' value="0"></input>
+            <text class="sex">男</text>
+            <input name="radio" type="radio" value="1">女</input>
+            <text class="sex">女</text>
+        </div>
+    </div>
+    <div class="row">
+        <label class="label">爱好：</label>
+        <div class="input-block">
+            <input onchange="checkboxOnChange" checked="false" type="checkbox" value="0"></input>
+            <text class="favorite">游泳</text>
+            <input onchange="checkboxOnChange" checked="false" type="checkbox" value="1"></input>
+            <text class="favorite">健身</text>
+            <input onchange="checkboxOnChange" checked="false" type="checkbox" value="2"></input>
+            <text class="favorite">足球</text>
+            <input onchange="checkboxOnChange" checked="false" type="checkbox" value="3"></input>
+            <text class="favorite">篮球</text>
+        </div>
+    </div>
+
+    <input class="button" type="button" value="提交" onclick="buttonClick" />
+
+</div>

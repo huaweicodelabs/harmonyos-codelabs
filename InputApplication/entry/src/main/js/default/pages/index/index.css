@@ -1,0 +1,45 @@
+.container {
+    flex-direction: column;
+    align-items: center;
+}
+.input-form {
+    width: 100%;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.form-text {
+    font-size: 20px;
+}
+.row {
+    width: 98%;
+    margin-top: 5px;
+    flex-direction: row;
+}
+.label {
+    font-size: 13px;
+    width: 120px;
+    text-align: right;
+}
+.input-block {
+    width: 100%;
+}
+.input {
+    width: 90%;
+    font-size: 12px;
+}
+.password-tip {
+    font-size: 10px;
+}
+.sex {
+    font-size: 10px;
+    margin-right: 10px;
+}
+.favorite {
+    font-size: 10px;
+}
+.button {
+    margin-top: 70px;
+    width: 150px;
+    background-color: #17A98E;
+}
