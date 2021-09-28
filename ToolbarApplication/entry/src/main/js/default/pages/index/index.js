@@ -10,7 +10,6 @@ export default {
         display3: 'none',
         display4: 'none',
         display5: 'none',
-        display6: 'none',
         imgGr: 'common/Icon/1.png',
         imgDu: 'common/Icon/2.png',
         imgGu: 'common/Icon/3.png',
@@ -41,7 +40,6 @@ export default {
         this.display3 = 'none';
         this.display4 = 'none';
         this.display5 = 'none';
-        this.display6 = 'none';
     },
     function2() {
         this.fontWeight0 = 'normal';
@@ -54,8 +52,6 @@ export default {
         this.display3 = 'none';
         this.display4 = 'none';
         this.display5 = 'none';
-        this.display6 = 'none';
-
     },
     function3() {
         this.fontWeight0 = 'normal';
@@ -68,8 +64,6 @@ export default {
         this.display3 = 'flex';
         this.display4 = 'none';
         this.display5 = 'none';
-        this.display6 = 'none';
-
     },
     function4() {
         this.fontWeight0 = 'normal';
@@ -82,8 +76,6 @@ export default {
         this.display3 = 'none';
         this.display4 = 'flex';
         this.display5 = 'none';
-        this.display6 = 'none';
-
     },
     function5() {
         this.fontWeight0 = 'normal';
@@ -96,6 +88,5 @@ export default {
         this.display3 = 'none';
         this.display4 = 'none';
         this.display5 = 'flex';
-        this.display6 = 'none';
     }
 };
