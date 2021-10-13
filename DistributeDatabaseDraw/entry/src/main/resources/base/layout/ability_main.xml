@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ Copyright (c) 2021 Huawei Device Co., Ltd.
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ -->
+<DirectionalLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:background_element="#FFFFFDFD"
+    ohos:height="match_content"
+    ohos:orientation="vertical"
+    ohos:width="match_content">
+    <DependentLayout
+        ohos:background_element="#FFFFFF"
+        ohos:height="50vp"
+        ohos:left_padding="15vp"
+        ohos:right_padding="15vp"
+        ohos:orientation="horizontal"
+        ohos:alignment="horizontal_center"
+        ohos:width="match_content">
+
+        <Image
+            ohos:align_parent_right="true"
+            ohos:height="match_content"
+            ohos:id="$+id:transform"
+            ohos:image_src="$media:icon_transform"
+            ohos:vertical_center="true"
+            ohos:text_alignment="center"
+            ohos:width="match_content" />
+
+        <Button
+            ohos:width="match_content"
+            ohos:height="match_content"
+            ohos:text_size="18fp"
+            ohos:id="$+id:back"
+            ohos:text="$string:back"
+            ohos:vertical_center="true"
+            ohos:text_alignment="center"
+            ohos:horizontal_center="true"
+            />
+
+        <Text
+            ohos:align_parent_left="true"
+            ohos:height="match_content"
+            ohos:id="$+id:title"
+            ohos:text="$string:title"
+            ohos:text_color="#222222"
+            ohos:text_size="18fp"
+            ohos:vertical_center="true"
+            ohos:width="match_content" />
+
+    </DependentLayout>
+
+    <DependentLayout
+        ohos:background_element="#eeeeee"
+        ohos:height="match_content"
+        ohos:id="$+id:canvas"
+        ohos:width="match_content">
+
+
+    </DependentLayout>
+</DirectionalLayout>

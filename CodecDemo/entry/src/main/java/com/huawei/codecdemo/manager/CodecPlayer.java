@@ -26,14 +26,14 @@ import ohos.agp.graphics.Surface;
 import ohos.media.common.Format;
 
 /**
- * CodecPlayer 编解码播放器
+ * CodecPlayer
  *
  * @since 2021-04-09
  */
 public class CodecPlayer implements CameraStateListener {
     private CodecEncoder videoEncoder;
     private CodecDecoder videoDecoder;
-    private Surface surface;
+    private final Surface surface;
 
     /**
      * CodecPlayer
@@ -58,7 +58,7 @@ public class CodecPlayer implements CameraStateListener {
         fmt.putIntValue(Format.BITRATE_MODE, CodecConst.CODEC_BITRATE_MODE);
         initEncoder(fmt);
         initDecoder(fmt);
-        if(controller.isCapturing()){
+        if (controller.isCapturing()) {
             controller.capture();
         }
     }
@@ -92,7 +92,7 @@ public class CodecPlayer implements CameraStateListener {
     }
 
     /**
-     * 停止播放
+     * stop
      */
     public void stop() {
         if (videoEncoder != null) {

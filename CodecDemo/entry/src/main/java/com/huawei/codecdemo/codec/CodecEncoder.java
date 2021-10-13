@@ -26,7 +26,6 @@ import ohos.media.common.BufferInfo;
 import ohos.media.common.Format;
 import ohos.media.muxer.Muxer;
 
-import java.io.File;
 import java.nio.ByteBuffer;
 import java.util.Date;
 
@@ -44,18 +43,12 @@ public class CodecEncoder {
     private boolean isOpen = false;
     private CodecListener codecListener;
     private Codec encoder;
-    private EventHandler encoderHandler;
+    private final EventHandler encoderHandler;
     private Muxer muxer;
-    private File encodeFile;
-    private int trackIndex;
-    private boolean isSaveFile = false;
+    private final boolean isSaveFile = false;
 
     private CodecEncoder(Builder builder) {
         initEncoder(builder.format);
-        if (builder.filePath != null) {
-            isSaveFile = true;
-            initMuxer(builder.format, builder.filePath);
-        }
         encoderHandler = new MyEventHandler(EventRunner.create(CodecEncoder.class.getSimpleName()));
     }
 
@@ -121,7 +114,7 @@ public class CodecEncoder {
                         }
                         if (isSaveFile) {
                             bufferInfo.timeStamp = new Date().getTime() * NUMBER_INT_1000;
-                            boolean isSuccess = muxer.writeBuffer(trackIndex, byteBuffer, bufferInfo);
+                            boolean isSuccess = muxer.writeBuffer(0, byteBuffer, bufferInfo);
                             LogUtil.info(TAG, "muxer.writeBuffer " + bufferInfo.size + ", result: " + isSuccess);
                         }
                     }
@@ -133,15 +126,8 @@ public class CodecEncoder {
                 });
     }
 
-    private void initMuxer(Format fmt, String filePath) {
-        encodeFile = new File(filePath);
-        muxer = new Muxer(encodeFile.getPath(), Muxer.MediaFileFormat.FORMAT_MPEG4);
-        trackIndex = muxer.appendTrack(fmt);
-        muxer.start();
-    }
-
     /**
-     * 设置编码监听回调
+     * setEncodeListener
      *
      * @param listener listener
      */
@@ -150,7 +136,7 @@ public class CodecEncoder {
     }
 
     /**
-     * 启动编码器
+     * openEncoder
      */
     public void openEncoder() {
         if (!isOpen) {
@@ -161,7 +147,7 @@ public class CodecEncoder {
     }
 
     /**
-     * 开始编码
+     * startEncode
      *
      * @param bytes bytes
      */
@@ -173,7 +159,7 @@ public class CodecEncoder {
     }
 
     /**
-     * 停止编码
+     * stopEncode
      */
     public void stopEncode() {
         if (isOpen) {
@@ -182,7 +168,7 @@ public class CodecEncoder {
     }
 
     /**
-     * 编码器是否启动
+     * isOpen
      *
      * @return boolean isOpen
      */
@@ -197,7 +183,6 @@ public class CodecEncoder {
      */
     public static class Builder {
         private Format format;
-        private String filePath;
 
         /**
          * constructor of Builder
@@ -213,17 +198,6 @@ public class CodecEncoder {
          */
         public Builder setFormat(Format format) {
             this.format = format;
-            return this;
-        }
-
-        /**
-         * setSaveFilePath of Builder
-         *
-         * @param path path
-         * @return builder
-         */
-        public Builder setSaveFilePath(String path) {
-            this.filePath = filePath;
             return this;
         }
 

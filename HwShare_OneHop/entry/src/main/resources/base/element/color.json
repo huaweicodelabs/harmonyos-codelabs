@@ -1,0 +1,28 @@
+{
+  "color":[
+    {
+      "name":"text_color_primary",
+      "value":"#E6000000"
+    },
+    {
+      "name":"color_primary",
+      "value":"#000000"
+    },
+    {
+      "name": "color_secondary",
+      "value": "#99000000"
+    },
+    {
+      "name": "color_tertiary",
+      "value": "#66000000"
+    },
+    {
+      "name": "color_toast_bg",
+      "value": "#f2d9d9d9"
+    },
+    {
+      "name": "color_half_modal_bg",
+      "value": "#f7f7f7"
+    }
+  ]
+}

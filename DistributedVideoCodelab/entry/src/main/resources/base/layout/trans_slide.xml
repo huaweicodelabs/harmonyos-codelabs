@@ -11,7 +11,7 @@
         ohos:height="match_content"
         ohos:width="match_parent"
         ohos:layout_alignment="horizontal_center"
-        ohos:text="Harmony devices"
+        ohos:text="$string:device_list_title"
         ohos:text_color="#000000"
         ohos:text_size="18vp"/>
 

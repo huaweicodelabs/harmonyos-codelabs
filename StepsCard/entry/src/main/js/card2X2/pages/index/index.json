@@ -4,6 +4,12 @@
         "steps": 0
     },
     "actions": {
+        "routerEvent1": {
+            "action": "router",
+            "bundleName": "com.huawei.cookbook",
+            "abilityName": "com.huawei.cookbook.StepFormAbility"
+
+        },
         "routerEvent": {
             "action": "router",
             "bundleName": "com.huawei.cookbook",
@@ -12,6 +18,7 @@
                 "message":"steps"
             }
         }
+
     }
 }
 

@@ -21,7 +21,7 @@ import ohos.aafwk.ability.Ability;
 import ohos.aafwk.content.Intent;
 
 /**
- * 播放影片入口
+ * MoviePlayAbility
  *
  * @since 2021-03-05
  */

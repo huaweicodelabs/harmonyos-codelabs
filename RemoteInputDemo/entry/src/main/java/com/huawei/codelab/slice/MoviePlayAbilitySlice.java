@@ -35,7 +35,7 @@ import ohos.media.player.Player;
 import java.io.IOException;
 
 /**
- * 视频播放界面
+ * MoviePlayAbilitySlice
  *
  * @since 2021-03-05
  */
@@ -43,14 +43,12 @@ public class MoviePlayAbilitySlice extends AbilitySlice {
     private static final String TAG = "MoviePlayAbilitySlice";
     private static final String MOVIE_URL = "entry/resources/base/media/gubeishuizhen.mp4";
 
-    private Surface surface;
-
     private Player player;
 
-    private SurfaceOps.Callback mSurfaceCallback = new SurfaceOps.Callback() {
+    private final SurfaceOps.Callback mSurfaceCallback = new SurfaceOps.Callback() {
         @Override
         public void surfaceCreated(SurfaceOps surfaceOps) {
-            surface = surfaceOps.getSurface();
+            Surface surface = surfaceOps.getSurface();
             player.setVideoSurface(surface);
             player.prepare();
             player.play();

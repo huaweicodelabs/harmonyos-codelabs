@@ -62,7 +62,7 @@ public class DeviceSelectDialog extends CommonDialog {
         void onYesClick(DeviceInfo deviceInfo);
     }
 
-    private Context mContext;
+    private final Context mContext;
     private OnclickListener mOnclickListener;
 
     /**

@@ -38,7 +38,7 @@ public class MainAbility extends Ability implements IAbilityContinuation {
 
     private static final String DEVICE_TYPE_WATCH = "109";
 
-    private String[] requestPermissions = {SystemPermission.DISTRIBUTED_DATASYNC, SystemPermission.LOCATION};
+    private final String[] requestPermissions = {SystemPermission.DISTRIBUTED_DATASYNC, SystemPermission.LOCATION};
 
     @Override
     public void onStart(Intent intent) {

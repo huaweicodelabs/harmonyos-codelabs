@@ -18,15 +18,15 @@ package ohos.codelabs.distributedvideo.data;
 /**
  * VideoList object
  *
- * @since 2020-12-04
+ * @since 2021-09-07
  *
  */
 public class VideoListMo {
-    private int sourceId;
+    private final int sourceId;
 
-    private String name;
+    private final String name;
 
-    private String description;
+    private final String description;
 
     /**
      * VideoListMo
@@ -45,23 +45,11 @@ public class VideoListMo {
         return sourceId;
     }
 
-    public void setSourceId(int sourceId) {
-        this.sourceId = sourceId;
-    }
-
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getDescription() {
         return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 }

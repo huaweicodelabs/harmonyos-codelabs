@@ -43,29 +43,28 @@ public class GestureDetector {
      */
     public interface OnGestureListener {
         /**
-         * 开始滚动时回调
+         * onTouchBegin
          *
-         * @param windowX 手指移动时x位置
-         * @param windowY 手指移动时y位置
-         * @return is deliver
+         * @param windowX windowX
+         * @param windowY windowY
          */
-        boolean onTouchBegin(float windowX, float windowY);
+        void onTouchBegin(float windowX, float windowY);
 
         /**
-         * 发生滚动时回调
+         * onTouchMoving
          *
-         * @param direction 移动方向 0：横向 1：纵向
-         * @param windowX 手指移动时x位置
-         * @param windowY 手指移动时y位置
-         * @param distance 移动距离
+         * @param direction direction
+         * @param windowX windowX
+         * @param windowY windowY
+         * @param distance distance
          * @return is deliver
          */
         boolean onTouchMoving(int direction, float windowX, float windowY, float distance);
 
         /**
-         * 结束滚动时回调
+         * onTouchCancel
          *
-         * @param direction 移动方向 0：横向 1：纵向
+         * @param direction direction
          * @return is deliver
          */
         boolean onTouchCancel(int direction);

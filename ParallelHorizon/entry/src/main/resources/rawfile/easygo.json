@@ -1,0 +1,27 @@
+{
+  "easyGoVersion": "1.0",
+  "client": "com.huawei.codelab",
+  "logicEntities": [
+    {
+      "head": {
+        "function": "magicwindow",
+        "required": "true"
+      },
+      "body": {
+        "mode": "1",
+        "abilityPairs": [
+          {
+            "from": "com.huawei.codelab.MainAbility",
+            "to": "com.huawei.codelab.RightAbility"
+          }
+        ],
+
+        "UX": {
+          "isDraggable": "true",
+          "supportRotationUxCompat": "true",
+          "supportDraggingToFullScreen": "ALL"
+        }
+      }
+    }
+  ]
+}

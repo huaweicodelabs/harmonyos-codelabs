@@ -17,12 +17,24 @@
       "value": "Java_Phone_Empty Feature Ability"
     },
     {
-      "name": "carmainability_description",
-      "value": "Java_Phone_Empty Feature Ability"
+      "name": "hint_start_point",
+      "value": "输入起点"
     },
     {
-      "name": "reason_description",
-      "value": "need request location permission"
+      "name": "hint_end_point",
+      "value": "输入终点"
+    },
+    {
+      "name": "translate",
+      "value": "迁移"
+    },
+    {
+      "name": "end_nav",
+      "value": "结束导航"
+    },
+    {
+      "name": "start_nav",
+      "value": "开始导航"
     }
   ]
 }

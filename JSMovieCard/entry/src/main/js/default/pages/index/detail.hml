@@ -1,0 +1,43 @@
+<div class="container">
+    <text class="title">{{ title }}</text>
+    <div class="centerAre">
+        <image src="{{ imgUrl }}" class="movieImg"></image>
+        <div class="centerRight">
+            <text class="movieName">{{ movieName }}</text>
+            <div class="movieType">
+                <text class="rightText">{{ movieType }}</text>
+                <text class="rightText">{{ type }}</text>
+            </div>
+            <div class="actor">
+                <text class="actorText">{{ actors }}</text>
+                <list class="actorsImg">
+                    <list-item for="{{ actorsImg }}">
+                        <image src="{{ $item }}" class="actors"></image>
+                    </list-item>
+                </list>
+            </div>
+            <image src="../../common/images/like.png" class="likeImg"></image>
+        </div>
+    </div>
+    <div class="rate">
+        <image src="../../common/images/rating.png" class="rateImg"></image>
+        <image src="../../common/images/rating.png" class="rateImg"></image>
+        <image src="../../common/images/rating.png" class="rateImg"></image>
+        <image src="../../common/images/rating.png" class="rateImg"></image>
+        <image src="../../common/images/rating1.png" class="rateImg"></image>
+        <text class="rating">{{ rating }}</text>
+    </div>
+    <div class="story">
+        <text class="storyTitle">{{ storyTitle }}</text>
+        <text class="storyContent" style="max-lines : {{ maxLinesL }};">{{ introduction }}</text>
+        <button class="express" show="{{ isShow }}" onclick="showContent"> {{ expressText }}</button>
+    </div>
+    <div class="stills">
+        <text class="stillsTitle">{{ stillsTitle }}</text>
+        <list class="stillsImg">
+            <list-item for="{{ actorsImg }}">
+                <image src="{{ $item }}" class="stillsImgList"></image>
+            </list-item>
+        </list>
+    </div>
+</div>

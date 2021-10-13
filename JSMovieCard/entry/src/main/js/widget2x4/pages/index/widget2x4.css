@@ -1,0 +1,81 @@
+.card_root_layout {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background-color: #6999FC;
+}
+
+.title {
+    flex-direction: row;
+    height: 40px;
+}
+
+.titleText {
+    font-size: 16px;
+    font-weight: 500;
+    color: #E5000000;
+    margin-bottom: 5px;
+
+}
+
+#titleText {
+    margin-left: 50px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+#fullText {
+    width: 50px;
+    margin-left: 125px;
+    margin-top: 5px;
+    background-color: #E3E7F9;
+    text-color: black;
+    background-color: silver;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.movies {
+    margin-left: 20px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    flex-direction: row;
+}
+
+.leftMovie {
+    flex-direction: column;
+    width: 150px;
+}
+
+.image {
+    height: 70px;
+    width: 130px;
+    object-fit: cover;
+}
+
+.movieName {
+    margin-top: 5px;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.movieDesc {
+    width: 100px;
+    margin-top: 5px;
+    font-size: 10px;
+    font-weight: 400;
+    max-lines: 1;
+    text-overflow: ellipsis;
+}
+
+.init {
+    align-items: center;
+    justify-content: center;
+}
+
+.initText {
+    font-size: 18px;
+    color: #FFFFFF;
+}

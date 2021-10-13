@@ -1,0 +1,36 @@
+{
+  "string": [
+    {
+      "name": "app_name",
+      "value": "DistributeDatabaseDraw"
+    },
+    {
+      "name": "mainability_description",
+      "value": "Java_Phone_Empty Feature Ability"
+    },
+    {
+      "name": "HelloWorld",
+      "value": "Hello World"
+    },
+    {
+      "name": "back",
+      "value":"撤回"
+    },
+    {
+      "name": "title",
+      "value":"本地绘图"
+    },
+    {
+      "name": "shareDevice",
+      "value":"选择共享设备"
+    },
+    {
+      "name": "cancels",
+      "value":"取消"
+    },
+    {
+      "name": "yes",
+      "value":"确定"
+    }
+  ]
+}

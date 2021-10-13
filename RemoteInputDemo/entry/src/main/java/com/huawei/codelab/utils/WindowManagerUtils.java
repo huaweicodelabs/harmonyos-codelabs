@@ -19,7 +19,7 @@ import ohos.agp.components.Component;
 import ohos.agp.window.service.WindowManager;
 
 /**
- * 窗口管理工具
+ * WindowManagerUtils
  *
  * @since 2021-02-25
  */

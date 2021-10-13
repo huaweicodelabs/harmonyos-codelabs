@@ -24,7 +24,7 @@ public class Const {
     /**
      * 高德地图接口的调用凭证，需要开发者自己申请
      */
-    public static final String MAP_KEY = "fdec31f36248c7aa50dd2d252cc773e2";
+    public static final String MAP_KEY = "";
 
     /**
      * 高德地图输入提示api接口

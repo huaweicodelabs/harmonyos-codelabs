@@ -38,7 +38,7 @@ public interface CameraStateListener {
     void onCameraReleased();
 
     /**
-     * onCameraConfigured
+     * onGetFrameResult
      *
      * @param frame frame
      */

@@ -28,7 +28,7 @@ import ohos.rpc.IRemoteObject;
 import java.util.Map;
 
 /**
- * 远程管理类实现
+ * ConnectManagerIml
  *
  * @since 2021-02-25
  */
@@ -51,13 +51,12 @@ public class ConnectManagerIml implements ConnectManager {
     private static final String TAG = ConnectManagerIml.class.getName();
 
     private static ConnectManager instance;
-    private IAbilityConnection conn;
     private MyRemoteProxy proxy;
 
     /**
-     * 获取管理类实例
+     * ConnectManager
      *
-     * @return 管理类实例
+     * @return getInstance
      */
     public static synchronized ConnectManager getInstance() {
         if (instance == null) {
@@ -67,10 +66,10 @@ public class ConnectManagerIml implements ConnectManager {
     }
 
     /**
-     * 连接远程PA
+     * connectPa
      *
-     * @param context 上下文
-     * @param deviceId 设备id
+     * @param context context
+     * @param deviceId deviceId
      */
     @Override
     public void connectPa(Context context, String deviceId) {
@@ -83,7 +82,7 @@ public class ConnectManagerIml implements ConnectManager {
                     .withFlags(Intent.FLAG_ABILITYSLICE_MULTI_DEVICE)
                     .build();
             connectPaIntent.setOperation(operation);
-            conn = new IAbilityConnection() {
+            IAbilityConnection conn = new IAbilityConnection() {
                 @Override
                 public void onAbilityConnectDone(ElementName elementName, IRemoteObject remote, int resultCode) {
                     LogUtils.info(TAG, "===connectRemoteAbility done");

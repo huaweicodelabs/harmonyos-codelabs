@@ -8,7 +8,7 @@
     <Text
         ohos:height="50vp"
         ohos:width="match_parent"
-        ohos:text="请选择需要添加的附件"
+        ohos:text="$string:text_select_attachment"
         ohos:text_alignment="center"
         ohos:text_size="16fp"/>
 

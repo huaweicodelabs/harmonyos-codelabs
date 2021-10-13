@@ -17,7 +17,6 @@ package com.huawei.codelab.slice;
 
 import com.huawei.codelab.ResourceTable;
 import com.huawei.codelab.callback.MainCallBack;
-import com.huawei.codelab.component.SelectDeviceDialog;
 import com.huawei.codelab.constants.EventConstants;
 import com.huawei.codelab.data.ComponentPointData;
 import com.huawei.codelab.data.ComponentPointDataMgr;
@@ -25,9 +24,15 @@ import com.huawei.codelab.proxy.ConnectManagerIml;
 import com.huawei.codelab.utils.AbilityMgr;
 import com.huawei.codelab.utils.LogUtils;
 import com.huawei.codelab.utils.MovieSearchUtils;
+import com.huawei.codelab.utils.PermissionBridge;
 import com.huawei.codelab.utils.WindowManagerUtils;
 
 import ohos.aafwk.ability.AbilitySlice;
+import ohos.aafwk.ability.continuation.DeviceConnectState;
+import ohos.aafwk.ability.continuation.ExtraParams;
+import ohos.aafwk.ability.continuation.IContinuationDeviceCallback;
+import ohos.aafwk.ability.continuation.IContinuationRegisterManager;
+import ohos.aafwk.ability.continuation.RequestCallback;
 import ohos.aafwk.content.Intent;
 import ohos.agp.components.Button;
 import ohos.agp.components.Component;
@@ -52,11 +57,11 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
- * 模拟TV端交互界面
+ * MainAbilitySlice
  *
  * @since 2021-02-26
  */
-public class MainAbilitySlice extends AbilitySlice {
+public class MainAbilitySlice extends AbilitySlice implements PermissionBridge.OnPermissionStateListener {
     private static final String ABILITY_NAME = "com.huawei.codelab.RemoteInputAbility";
     private static final String MOVIE_PLAY_ABILITY = "com.huawei.codelab.MoviePlayAbility";
     private static final String MAIN_ABILITY = "com.huawei.codelab.MainAbility";
@@ -71,18 +76,52 @@ public class MainAbilitySlice extends AbilitySlice {
     private DirectionalLayout keyBoardLayout;
     private TableLayout movieTableLayout;
     private Size size;
-    private AbilityMgr abilityMgr = new AbilityMgr(this);
+    private final AbilityMgr abilityMgr = new AbilityMgr(this);
 
     // 搜索的到的影片
-    private List<ComponentPointData> movieSearchList = new ArrayList<>(LIST_INIT_SIZE);
+    private final List<ComponentPointData> movieSearchList = new ArrayList<>(LIST_INIT_SIZE);
 
     // 当前焦点所在位置
     private ComponentPointData componentPointDataNow;
+
+    // 注册流转任务管理服务后返回的Ability token
+    private int abilityToken;
+
+    // 用户在设备列表中选择设备后返回的设备ID
+    private String selectDeviceId;
+
+    // 获取流转任务管理服务管理类
+    private IContinuationRegisterManager continuationRegisterManager;
+
+    // 设置监听FA流转管理服务设备状态变更的回调
+    private final IContinuationDeviceCallback callback = new IContinuationDeviceCallback() {
+        @Override
+        public void onDeviceConnectDone(String deviceId, String s1) {
+            selectDeviceId = deviceId;
+            abilityMgr.openRemoteAbility(selectDeviceId, getBundleName(), ABILITY_NAME);
+            getUITaskDispatcher().asyncDispatch(() -> continuationRegisterManager.updateConnectStatus(abilityToken, selectDeviceId,
+                    DeviceConnectState.IDLE.getState(), null));
+        }
+
+        @Override
+        public void onDeviceDisconnectDone(String deviceId) {
+        }
+    };
+
+    // 设置注册FA流转管理服务服务回调
+    private final RequestCallback requestCallback = new RequestCallback() {
+        @Override
+        public void onResult(int result) {
+            abilityToken = result;
+        }
+    };
 
     @Override
     public void onStart(Intent intent) {
         super.onStart(intent);
         super.setUIContent(ResourceTable.Layout_ability_main);
+
+        new PermissionBridge().setOnPermissionStateListener(this);
 
         // 全屏设置
         WindowManagerUtils.setWindows();
@@ -100,17 +139,29 @@ public class MainAbilitySlice extends AbilitySlice {
         subscribe();
     }
 
+    private void registerTransService() {
+        continuationRegisterManager = getContinuationRegisterManager();
+
+        // 增加过滤条件
+        ExtraParams params = new ExtraParams();
+        String[] devTypes = new String[]{ExtraParams.DEVICETYPE_SMART_PAD, ExtraParams.DEVICETYPE_SMART_PHONE};
+        params.setDevType(devTypes);
+
+        // 注册FA流转管理服务
+        continuationRegisterManager.register(getBundleName(), params, callback, requestCallback);
+    }
+
     private void initMovieTableComponent(TableLayout tableLayout) {
         int index = 0;
         while (index < tableLayout.getChildCount()) {
             DirectionalLayout childLayout = null;
             if (tableLayout.getComponentAt(index) instanceof DirectionalLayout) {
-                childLayout = (DirectionalLayout)tableLayout.getComponentAt(index);
+                childLayout = (DirectionalLayout) tableLayout.getComponentAt(index);
             }
             ComponentPointData componentPointData = new ComponentPointData();
             Component component = null;
             int indexMovie = 0;
-            while (indexMovie < childLayout.getChildCount()) {
+            while (childLayout != null && indexMovie < childLayout.getChildCount()) {
                 Component comChild = childLayout.getComponentAt(indexMovie);
                 indexMovie++;
                 if (comChild instanceof Text) {
@@ -121,7 +172,7 @@ public class MainAbilitySlice extends AbilitySlice {
                 component = findComponentById(comChild.getId());
             }
 
-            if (component != null) {
+            if (componentPointData != null && component != null) {
                 componentPointData.setComponentId(component.getId());
             }
             ComponentPointDataMgr.getComponentPointDataMgrs().add(componentPointData);
@@ -134,12 +185,12 @@ public class MainAbilitySlice extends AbilitySlice {
         while (index < directionalLayout.getChildCount()) {
             DirectionalLayout childLayout = null;
             if (directionalLayout.getComponentAt(index) instanceof DirectionalLayout) {
-                childLayout = (DirectionalLayout)directionalLayout.getComponentAt(index);
+                childLayout = (DirectionalLayout) directionalLayout.getComponentAt(index);
             }
             int indexButton = 0;
-            while (indexButton < childLayout.getChildCount()) {
+            while (childLayout != null && indexButton < childLayout.getChildCount()) {
                 if (childLayout.getComponentAt(indexButton) instanceof Button) {
-                    Button button = (Button)childLayout.getComponentAt(indexButton);
+                    Button button = (Button) childLayout.getComponentAt(indexButton);
                     buttonInit(button);
                     indexButton++;
                 }
@@ -150,7 +201,7 @@ public class MainAbilitySlice extends AbilitySlice {
 
     private void initComponent() {
         if (findComponentById(ResourceTable.Id_scrollview) instanceof ScrollView) {
-            scrollView = (ScrollView)findComponentById(ResourceTable.Id_scrollview);
+            scrollView = (ScrollView) findComponentById(ResourceTable.Id_scrollview);
         }
 
         if (findComponentById(ResourceTable.Id_TV_input) instanceof TextField) {
@@ -166,12 +217,7 @@ public class MainAbilitySlice extends AbilitySlice {
             ComponentPointDataMgr.getComponentPointDataMgrs().add(componentPointDataNow);
 
             // 点击事件触发设备选取弹框
-            tvTextInput.setClickedListener(new Component.ClickedListener() {
-                @Override
-                public void onClick(Component component) {
-                    showDevicesDialog();
-                }
-            });
+            tvTextInput.setClickedListener(component -> showDevicesDialog());
         }
 
         if (findComponentById(ResourceTable.Id_keyBoardComponent) instanceof DirectionalLayout) {
@@ -186,6 +232,14 @@ public class MainAbilitySlice extends AbilitySlice {
             Image image = (Image) findComponentById(ResourceTable.Id_image_ten);
             size = image.getPixelMap().getImageInfo().size;
         }
+    }
+
+    private void showDevicesDialog() {
+        ExtraParams extraParams = new ExtraParams();
+        extraParams.setDevType(new String[]{ExtraParams.DEVICETYPE_SMART_TV,
+            ExtraParams.DEVICETYPE_SMART_PHONE});
+        extraParams.setDescription("远程遥控器");
+        continuationRegisterManager.showDeviceList(abilityToken, extraParams, result -> LogUtils.info(TAG, "show devices success"));
     }
 
     private void buttonInit(Button button) {
@@ -212,14 +266,18 @@ public class MainAbilitySlice extends AbilitySlice {
         super.onForeground(intent);
     }
 
-    private void showDevicesDialog() {
-        new SelectDeviceDialog(getContext(), deviceInfo -> {
-            abilityMgr.openRemoteAbility(deviceInfo.getDeviceId(), getBundleName(), ABILITY_NAME);
-        }).show();
+    @Override
+    public void onPermissionGranted() {
+        registerTransService();
+    }
+
+    @Override
+    public void onPermissionDenied() {
+        terminate();
     }
 
     /**
-     * 公共事件订阅处理
+     * MyCommonEventSubscriber
      *
      * @since 2020-12-03
      */
@@ -236,12 +294,7 @@ public class MainAbilitySlice extends AbilitySlice {
             if (requestType == ConnectManagerIml.REQUEST_SEND_DATA) {
                 tvTextInput.setText(inputString);
             } else if (requestType == ConnectManagerIml.REQUEST_SEND_SEARCH) {
-                /**
-                 * 如果当前选中的是文本框则搜索影片
-                 * 如果当前选中的是影片则播放影片
-                 * X轴坐标为0当前选中文本框
-                 * X轴大于1当前选中影片
-                 */
+                // 如果当前选中的是文本框则搜索影片;如果当前选中的是影片则播放影片;X轴坐标为0当前选中文本框;X轴大于1当前选中影片
                 if (componentPointDataNow.getPointX() == 0) {
                     // 调用大屏的搜索方法
                     searchMovies(tvTextInput.getText());
@@ -259,22 +312,21 @@ public class MainAbilitySlice extends AbilitySlice {
     }
 
     /**
-     * 回主页面
-     *
+     * goBack
      */
     public void goBack() {
         clearLastBackg();
         scrollView.scrollTo(0, 0);
-        componentPointDataNow = ComponentPointDataMgr.getMoviePoint(0, 1).get();
+        componentPointDataNow = ComponentPointDataMgr.getMoviePoint(0, 1).orElse(null);
         findComponentById(ResourceTable.Id_TV_input).requestFocus();
         abilityMgr.returnMainAbility(getBundleName(), MAIN_ABILITY);
     }
 
     /**
-     * 焦点移动
+     * move
      *
-     * @param pointX X轴坐标
-     * @param pointY Y轴坐标
+     * @param pointX pointX
+     * @param pointY pointY
      */
     public void move(int pointX, int pointY) {
         MOVE_LOCK.lock();
@@ -319,7 +371,7 @@ public class MainAbilitySlice extends AbilitySlice {
     private void clearLastBackg() {
         Component component = null;
         if (findComponentById(componentPointDataNow.getComponentId()) instanceof TextField) {
-            TextField textField = (TextField)findComponentById(componentPointDataNow.getComponentId());
+            TextField textField = (TextField) findComponentById(componentPointDataNow.getComponentId());
             textField.clearFocus();
         } else {
             component = findComponentById(componentPointDataNow.getComponentId());

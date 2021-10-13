@@ -25,8 +25,6 @@ import java.util.List;
 public class InputTipsResult {
     private List<TipsEntity> tips;
 
-    private String status;
-
     private String info;
 
     public List<TipsEntity> getTips() {
@@ -35,14 +33,6 @@ public class InputTipsResult {
 
     public void setTips(List<TipsEntity> tips) {
         this.tips = tips;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 
     public String getInfo() {

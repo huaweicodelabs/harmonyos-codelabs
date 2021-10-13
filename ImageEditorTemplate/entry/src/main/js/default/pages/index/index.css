@@ -1,0 +1,214 @@
+/*
+ * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+.container {
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    background-color: #000000;
+}
+/* 顶部显示 */
+.container-top {
+    position: absolute;
+    margin-top: 20px;
+}
+.container-appBar-left {
+    margin-left: 30px;
+    width: 86px;
+}
+.container-image-left {
+    height: 24px;
+    width: 24px;
+}
+.container-txt {
+    font-size: 16px;
+    margin-left: 16px;
+    color: #ffffff;
+}
+.container-appBar-right {
+    margin-left: 90px;
+}
+.container-image-right {
+    height: 24px;
+    width: 24px;
+    margin-left: 20px;
+}
+/* 弹窗退出应用 */
+.dialog-main {
+    width: 80%;
+    height: 16%;
+    margin-bottom: 30px;
+}
+.dialog-div {
+    flex-direction: column;
+    align-items: center;
+}
+.inner-txt {
+    flex-direction: column;
+    align-items: center;
+    margin-top: 16px;
+}
+.txt {
+    font-size: 16px;
+}
+.inner-btn {
+    height: 60px;
+    justify-content: space-around;
+    align-items: center;
+}
+.btn-cancel {
+    margin-left: 10px;
+}
+.btn-stop {
+    margin-left: 50px;
+}
+/* 裁剪部分 */
+#crop_image_content {
+    position: absolute;
+    text-align: center;
+    margin-top: 130px;
+}
+#cropBox {
+    position: absolute;
+}
+#crop_image_content #canvasOne {
+    position: absolute;
+    height: 300px;
+    width: 300px;
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-bottom: 40px;
+}
+/* 裁剪框 */
+#crop_image_content #mainBox {
+    border: 3px solid white;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.minBox {
+    position: absolute;
+    height: 15px;
+    width: 3px;
+    background-color: #FF0000;
+}
+.left-up-top {
+    top: -3px;
+    left: -3px;
+    height: 3px;
+    width: 15px;
+}
+.left-up {
+    top: -3px;
+    left: -3px;
+}
+.right-up-top {
+    right: -3px;
+    top: -3px;
+    height: 3px;
+    width: 15px;
+}
+.right-up {
+    right: -3px;
+    top: -3px;
+}
+.left-down-bot {
+    bottom: -3px;
+    left: -3px;
+    height: 3px;
+    width: 15px;
+}
+.left-down {
+    bottom: -3px;
+    left: -3px;
+}
+.right-down-bot {
+    right: -3px;
+    bottom: -3px;
+    height: 3px;
+    width: 15px;
+}
+.right-down {
+    bottom: -3px;
+    right: -3px;
+}
+/* 裁剪比例 */
+.container-bottom-first {
+    flex-direction: column;
+    position: absolute;
+    margin-top: 210px;
+}
+.container-bottom-one-first {
+    flex-direction: row;
+    margin-left: 50px;
+    margin-top: 240px;
+}
+.container-bottom-image {
+    height: 30px;
+    width: 30px;
+    margin-left: 49px;
+}
+.container-bottom-two-first {
+    flex-direction: column;
+    position: relative;
+    margin-left: 168px;
+    margin-top: 38px;
+}
+.container-bottom-three-first {
+    flex-direction: row;
+    margin-top: 22px;
+    margin-left: 80px;
+}
+.container-bottom-four-first {
+    flex-direction: row;
+    position: relative;
+    margin-top: 0px;
+    margin-left: 80px;
+}
+/* 调节比例 */
+.container-bottom-second {
+    flex-direction: column;
+    position: absolute;
+    margin-top: 450px;
+}
+.container-bottom-two-second {
+    flex-direction: row;
+    margin-top: 30px;
+}
+.container-bottom-three-second {
+    flex-direction: row;
+}
+.luminanceTxt {
+    font-size: 14px;
+    margin-left: 60px;
+}
+.contrastTxt {
+    font-size: 14px;
+    margin-left: 76px;
+}
+.saturationTxt {
+    font-size: 14px;
+    margin-left: 68px;
+}
+.container-bottom-four-second {
+    margin-top: 20px;
+    flex-direction: row;
+    margin-left: 80px;
+}
+.container-bottom-five-second {
+    flex-direction: row;
+    margin-left: 80px;
+    color: #2788B9;
+}

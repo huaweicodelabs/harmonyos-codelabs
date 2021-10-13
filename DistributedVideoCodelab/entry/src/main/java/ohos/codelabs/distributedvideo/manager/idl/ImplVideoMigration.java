@@ -21,7 +21,7 @@ import ohos.rpc.RemoteException;
 /**
  * the main page
  *
- * @since 2020-12-04
+ * @since 2021-09-07
  *
  */
 
@@ -49,7 +49,7 @@ public interface ImplVideoMigration extends IRemoteBroker {
     /**
      * flyOut
      *
-     * @return rturn the status code
+     * @return return the status code
      * @throws RemoteException RemoteException
      */
     int flyOut() throws RemoteException;

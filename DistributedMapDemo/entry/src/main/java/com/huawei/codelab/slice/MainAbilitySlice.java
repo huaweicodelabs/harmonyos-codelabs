@@ -22,6 +22,7 @@ import com.huawei.codelab.map.MapManager;
 import com.huawei.codelab.provider.InputTipsProvider;
 import com.huawei.codelab.util.GsonUtils;
 import com.huawei.codelab.util.LogUtils;
+import com.huawei.codelab.util.MapUtils;
 import com.huawei.codelab.util.PermissionsUtils;
 
 import com.dongyu.tinymap.Element;
@@ -45,9 +46,7 @@ import ohos.agp.components.Image;
 import ohos.agp.components.ListContainer;
 import ohos.agp.components.Text;
 import ohos.agp.components.TextField;
-import ohos.agp.utils.LayoutAlignment;
 import ohos.agp.utils.Point;
-import ohos.agp.window.dialog.ToastDialog;
 import ohos.bundle.IBundleManager;
 import ohos.security.SystemPermission;
 
@@ -68,6 +67,8 @@ public class MainAbilitySlice extends AbilitySlice
     private static final int INPUT_START = 1;
 
     private static final int INPUT_END = 2;
+
+    private final List<InputTipsResult.TipsEntity> tips = new ArrayList<>(0);
 
     private int inputType;
 
@@ -99,8 +100,6 @@ public class MainAbilitySlice extends AbilitySlice
 
     private boolean isSetInputText = false;
 
-    private List<InputTipsResult.TipsEntity> tips = new ArrayList<>(0);
-
     private InputTipsProvider inputTipsProvider;
 
     private Text routeContent;
@@ -123,7 +122,7 @@ public class MainAbilitySlice extends AbilitySlice
     private IContinuationRegisterManager continuationRegisterManager;
 
     // 设置流转任务管理服务设备状态变更的回调
-    private IContinuationDeviceCallback callback = new IContinuationDeviceCallback() {
+    private final IContinuationDeviceCallback callback = new IContinuationDeviceCallback() {
         @Override
         public void onDeviceConnectDone(String deviceId, String deviceType) {
             // 在用户选择设备后设置设备ID
@@ -139,7 +138,7 @@ public class MainAbilitySlice extends AbilitySlice
     };
 
     // 设置注册流转任务管理服务回调
-    private RequestCallback requestCallback = new RequestCallback() {
+    private final RequestCallback requestCallback = new RequestCallback() {
         @Override
         public void onResult(int result) {
             abilityToken = result;
@@ -301,21 +300,21 @@ public class MainAbilitySlice extends AbilitySlice
     }
 
     private void translate() {
-      try {
-          getUITaskDispatcher().asyncDispatch(() -> {
-              if (continuationRegisterManager != null) {
-                  continuationRegisterManager.updateConnectStatus(abilityToken, selectDeviceId,
-                          DeviceConnectState.IDLE.getState(), null);
-                  if (selectDeviceId != null) {
-                      LogUtils.info(TAG, "translate:" + abilityToken);
-                      // 用户点击后发起迁移流程
-                      mapManager.translate(selectDeviceId);
-                  }
-              }
-          });
-      }catch (Exception exception){
-          LogUtils.info(TAG, "translate exception");
-      }
+        try {
+            getUITaskDispatcher().asyncDispatch(() -> {
+                if (continuationRegisterManager != null) {
+                    continuationRegisterManager.updateConnectStatus(abilityToken, selectDeviceId,
+                            DeviceConnectState.IDLE.getState(), null);
+                    if (selectDeviceId != null) {
+                        LogUtils.info(TAG, "translate:" + abilityToken);
+                        // 用户点击后发起迁移流程
+                        mapManager.translate(selectDeviceId);
+                    }
+                }
+            });
+        } catch (Exception exception) {
+            LogUtils.info(TAG, "translate exception");
+        }
     }
 
     @Override
@@ -325,13 +324,9 @@ public class MainAbilitySlice extends AbilitySlice
             case ResourceTable.Id_nav_translate:
                 if (tinyMap.getMapElements() != null && !tinyMap.getMapElements().isEmpty()) {
                     String elementStr = GsonUtils.objectToString(tinyMap.getMapElements());
-                    // 跨端迁移的数据大小限制200KB以内，即onSaveData只能传递200KB以内的数据。
+                    // 目前跨端迁移的数据大小限制200KB以内，即onSaveData只能传递200KB以内的数据。
                     if (elementStr.length() >= 200 * 1024 / 2) {
-                        ToastDialog toastDialog = new ToastDialog(MainAbilitySlice.this);
-                        toastDialog.setAutoClosable(false);
-                        toastDialog.setContentText("您输入的距离太远，请重新输入");
-                        toastDialog.setAlignment(LayoutAlignment.CENTER);
-                        toastDialog.show();
+                        MapUtils.showToast(MainAbilitySlice.this, "您输入的距离太远，请重新输入");
                         return;
                     }
                 }
@@ -425,8 +420,12 @@ public class MainAbilitySlice extends AbilitySlice
 
     @Override
     public void onCompleteContinuation(int result) {
-        mapManager.translateComplete();
-        terminateAbility();
+        if (result == 0) { // 迁移成功
+            mapManager.translateComplete();
+            terminateAbility();
+        } else { //迁移失败
+            MapUtils.showToast(this, "迁移失败，请稍后重试");
+        }
         LogUtils.info(TAG, "onCompleteContinuation result:" + result);
     }
 }

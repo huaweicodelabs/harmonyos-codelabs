@@ -90,7 +90,7 @@ public class MailDataBean {
 
     private String getStringParam(IntentParams intentParams, String key) {
         Object value = intentParams.getParam(key);
-        if ((value != null) && (value instanceof String)) {
+        if ((value instanceof String)) {
             return (String) value;
         }
         return "";

@@ -17,17 +17,15 @@ package ohos.codelabs.distributedvideo.util;
 
 import ohos.agp.utils.Point;
 import ohos.agp.window.service.Display;
-import ohos.agp.window.service.DisplayAttributes;
 import ohos.agp.window.service.DisplayManager;
 import ohos.app.Context;
-import ohos.global.configuration.DeviceCapability;
 
 import java.util.Optional;
 
 /**
  * ScreenUtils
  *
- * @since 2020-12-04
+ * @since 2021-09-07
  */
 public class ScreenUtils {
     private ScreenUtils() {
@@ -43,13 +41,11 @@ public class ScreenUtils {
         DisplayManager displayManager = DisplayManager.getInstance();
         Optional<Display> optDisplay = displayManager.getDefaultDisplay(context);
         Point point = new Point(0, 0);
-        if (!optDisplay.isPresent()) {
-            return (int) point.position[1];
-        } else {
+        if (optDisplay.isPresent()) {
             Display display = optDisplay.get();
             display.getSize(point);
-            return (int) point.position[1];
         }
+        return (int) point.position[1];
     }
 
     /**
@@ -62,60 +58,10 @@ public class ScreenUtils {
         DisplayManager displayManager = DisplayManager.getInstance();
         Optional<Display> optDisplay = displayManager.getDefaultDisplay(context);
         Point point = new Point(0, 0);
-        if (!optDisplay.isPresent()) {
-            return (int) point.position[0];
-        } else {
+        if (optDisplay.isPresent()) {
             Display display = optDisplay.get();
             display.getSize(point);
-            return (int) point.position[0];
         }
-    }
-
-    /**
-     * vp转像素
-     *
-     * @param context context
-     * @param vp vp
-     * @return px
-     */
-    public static int vp2px(Context context, float vp) {
-        DisplayAttributes attributes = DisplayManager.getInstance().getDefaultDisplay(context).get().getAttributes();
-        return (int) (vp * attributes.densityPixels);
-    }
-
-    /**
-     * 像素转vp
-     *
-     * @param context context
-     * @param px px
-     * @return vp
-     */
-    public static int px2vp(Context context, float px) {
-        DisplayAttributes attributes = DisplayManager.getInstance().getDefaultDisplay(context).get().getAttributes();
-        return (int) (px / attributes.densityPixels);
-    }
-
-    /**
-     * dp2px
-     *
-     * @param context context
-     * @param size size
-     * @return int
-     */
-    public static int dp2px(Context context, int size) {
-        int density = context.getResourceManager().getDeviceCapability().screenDensity / DeviceCapability.SCREEN_MDPI;
-        return size * density;
-    }
-
-    /**
-     * px2dip
-     *
-     * @param context context
-     * @param size size
-     * @return int
-     */
-    public static int px2dip(Context context, int size) {
-        int density = context.getResourceManager().getDeviceCapability().screenDensity / DeviceCapability.SCREEN_MDPI;
-        return size / density;
+        return (int) point.position[0];
     }
 }

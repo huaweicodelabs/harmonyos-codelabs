@@ -15,21 +15,26 @@
 
 package com.huawei.codelab;
 
+import static com.huawei.codelab.utils.PermissionBridge.EVENT_PERMISSION_DENIED;
+import static com.huawei.codelab.utils.PermissionBridge.EVENT_PERMISSION_GRANTED;
+import static ohos.bundle.IBundleManager.PERMISSION_GRANTED;
 import static ohos.security.SystemPermission.DISTRIBUTED_DATASYNC;
 
 import com.huawei.codelab.slice.MainAbilitySlice;
+import com.huawei.codelab.utils.PermissionBridge;
 
 import ohos.aafwk.ability.Ability;
 import ohos.aafwk.content.Intent;
 import ohos.agp.window.service.WindowManager;
-import ohos.bundle.IBundleManager;
 
 /**
- * ability主入口
+ * MainAbility
  *
  * @since 2021-02-26
  */
 public class MainAbility extends Ability {
+    private static final int PERMISSION_REQUEST_CODE = 0;
+
     @Override
     public void onStart(Intent intent) {
         // 禁止软件盘弹出
@@ -38,13 +43,31 @@ public class MainAbility extends Ability {
         super.onStart(intent);
         super.setMainRoute(MainAbilitySlice.class.getName());
 
-        if (verifySelfPermission(DISTRIBUTED_DATASYNC) != IBundleManager.PERMISSION_GRANTED) {
-            // 没有权限
-            if (canRequestPermission(DISTRIBUTED_DATASYNC)) {
-                // 弹框
-                requestPermissionsFromUser(
-                        new String[]{DISTRIBUTED_DATASYNC}, 0);
+        reqPermission();
+    }
+
+    private void reqPermission() {
+        String permission = DISTRIBUTED_DATASYNC;
+
+        if (verifySelfPermission(permission) == PERMISSION_GRANTED) {
+            PermissionBridge.getHandler().sendEvent(EVENT_PERMISSION_GRANTED);
+        } else {
+            requestPermissionsFromUser(new String[]{permission}, PERMISSION_REQUEST_CODE);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsFromUserResult(int requestCode, String[] permissions, int[] grantResults) {
+        if (requestCode != PERMISSION_REQUEST_CODE) {
+            return;
+        }
+        for (int grantResult : grantResults) {
+            if (grantResult != PERMISSION_GRANTED) {
+                PermissionBridge.getHandler().sendEvent(EVENT_PERMISSION_DENIED);
+                terminateAbility();
+                return;
             }
         }
+        PermissionBridge.getHandler().sendEvent(EVENT_PERMISSION_GRANTED);
     }
 }

@@ -50,12 +50,11 @@ import java.util.concurrent.TimeUnit;
 /**
  * the main page
  *
- * @since 2020-12-04
+ * @since 2021-09-07
  */
 public class MainAbilitySlice extends AbilitySlice {
     private static final String TAG = MainAbility.class.getSimpleName();
     private static final String INTENT_STARTTIME_PARAM = "intetn_starttime_param";
-    private CommonProvider<VideoListMo> commonProvider;
     private AdvertisementProvider<Component> advertisementProvider;
     private PageSlider advPageSlider;
     private ScheduledExecutorService scheduledExecutor;
@@ -98,7 +97,7 @@ public class MainAbilitySlice extends AbilitySlice {
         fb.setWeight(Font.BOLD);
         Font newFont = fb.build();
         playTitle.setFont(newFont);
-        commonProvider = new CommonProvider<VideoListMo>(
+        CommonProvider<VideoListMo> commonProvider = new CommonProvider<VideoListMo>(
                 MediaUtil.getPlayListMos(),
                 getContext(),
                 ResourceTable.Layout_recommend_gv_item) {
@@ -127,23 +126,22 @@ public class MainAbilitySlice extends AbilitySlice {
         } else {
             LogUtil.debug(TAG, "initAdvertisement failed, advertisement_viewpager is not PageSlider");
         }
-        PageSliderIndicator advIndicator = null;
         if (findComponentById(ResourceTable.Id_video_advertisement_indicator) instanceof PageSliderIndicator) {
-            advIndicator = (PageSliderIndicator) findComponentById(
+            PageSliderIndicator advIndicator = (PageSliderIndicator) findComponentById(
                     ResourceTable.Id_video_advertisement_indicator);
+            advIndicator.setItemOffset(VideoTabStyle.INDICATOR_OFFSET);
+            ShapeElement normalDrawable = new ShapeElement();
+            normalDrawable.setRgbColor(RgbColor.fromRgbaInt(Color.WHITE.getValue()));
+            normalDrawable.setAlpha(VideoTabStyle.INDICATOR_NORMA_ALPHA);
+            normalDrawable.setShape(ShapeElement.OVAL);
+            normalDrawable.setBounds(0, 0, VideoTabStyle.INDICATOR_BONDS, VideoTabStyle.INDICATOR_BONDS);
+            ShapeElement selectedDrawable = new ShapeElement();
+            selectedDrawable.setRgbColor(RgbColor.fromRgbaInt(Color.WHITE.getValue()));
+            selectedDrawable.setShape(ShapeElement.OVAL);
+            selectedDrawable.setBounds(0, 0, VideoTabStyle.INDICATOR_BONDS, VideoTabStyle.INDICATOR_BONDS);
+            advIndicator.setItemElement(normalDrawable, selectedDrawable);
+            advIndicator.setViewPager((PageSlider) advViewPager);
         }
-        advIndicator.setItemOffset(VideoTabStyle.INDICATOR_OFFSET);
-        ShapeElement normalDrawable = new ShapeElement();
-        normalDrawable.setRgbColor(RgbColor.fromRgbaInt(Color.WHITE.getValue()));
-        normalDrawable.setAlpha(VideoTabStyle.INDICATOR_NORMA_ALPHA);
-        normalDrawable.setShape(ShapeElement.OVAL);
-        normalDrawable.setBounds(0, 0, VideoTabStyle.INDICATOR_BONDS, VideoTabStyle.INDICATOR_BONDS);
-        ShapeElement selectedDrawable = new ShapeElement();
-        selectedDrawable.setRgbColor(RgbColor.fromRgbaInt(Color.WHITE.getValue()));
-        selectedDrawable.setShape(ShapeElement.OVAL);
-        selectedDrawable.setBounds(0, 0, VideoTabStyle.INDICATOR_BONDS, VideoTabStyle.INDICATOR_BONDS);
-        advIndicator.setItemElement(normalDrawable, selectedDrawable);
-        advIndicator.setViewPager((PageSlider) advViewPager);
     }
 
     private void startFa() {

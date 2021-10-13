@@ -71,13 +71,6 @@ public interface CameraListener {
     List<Size> getResolutions();
 
     /**
-     * getCaptureMode
-     *
-     * @return CaptureMode
-     */
-    CaptureMode getCaptureMode();
-
-    /**
      * isRecording
      *
      * @return isRecording

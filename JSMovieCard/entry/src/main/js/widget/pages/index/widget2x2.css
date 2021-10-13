@@ -1,0 +1,71 @@
+.grid_pattern_layout {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background-color:#6999FC;
+}
+
+.title {
+    justify-content: center;
+    margin-top: 10px;
+    margin-left: 12px;
+
+}
+
+.titleText {
+    font-size: 16px;
+    color: #E5000000;
+    font-weight: 500;
+}
+
+.movieList {
+    flex-direction: column;
+    margin-bottom: 12px;
+    margin-left: 12px;
+}
+
+.movieInfo {
+    flex-direction: column;
+    height: 48px;
+    margin-top: 15px;
+}
+
+.movieName {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.movieDesc {
+    font-size: 10px;
+    font-weight: 400;
+    margin-top: 10px;
+    max-lines: 1;
+    text-overflow: ellipsis;
+}
+
+#topName {
+    color: #E5CB1414;
+}
+
+#topDesc {
+    color: #ECECEC;
+}
+
+#bottomName {
+    color: #E5000000;
+}
+
+#bottomDesc {
+    color: #99000000;
+}
+
+.init {
+    align-items: center;
+    justify-content: center;
+}
+.initText{
+    font-size: 18px;
+    color: #FFFFFF;
+}

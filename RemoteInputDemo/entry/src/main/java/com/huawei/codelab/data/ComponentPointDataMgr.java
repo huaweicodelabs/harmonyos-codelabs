@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * 影片静态信息类
+ * ComponentPointDataMgr
  *
  * @since 2021-02-26
  */
@@ -31,7 +31,7 @@ public class ComponentPointDataMgr {
     private static final int POINT_THREE = 3;
     private static final int POINT_FOUR = 4;
     private static final int POINT_FIVE = 5;
-    private static List<ComponentPointData> componentPointDataMgrs = new ArrayList<>(LIST_INIT_SIZE);
+    private static final List<ComponentPointData> componentPointDataMgrs = new ArrayList<>(LIST_INIT_SIZE);
 
     static {
         componentPointDataMgrs.add(new ComponentPointData("无线耳机", "WXEJ", POINT_ONE, POINT_ONE));
@@ -54,11 +54,11 @@ public class ComponentPointDataMgr {
     }
 
     /**
-     * 获取移动影片
+     * getMoviePoint
      *
-     * @param pointX x位置
-     * @param pointY Y位置
-     * @return 影片位置信息
+     * @param pointX pointX
+     * @param pointY pointY
+     * @return position
      */
     public static Optional<ComponentPointData> getMoviePoint(int pointX, int pointY) {
         for (ComponentPointData componentPointData : componentPointDataMgrs) {
@@ -66,14 +66,14 @@ public class ComponentPointDataMgr {
                 return Optional.of(componentPointData);
             }
         }
-        return Optional.ofNullable(null);
+        return Optional.empty();
     }
 
     /**
-     * 获取当前聚焦影片位置
+     * getConstantMovie
      *
-     * @param name 影片名
-     * @return 影片位置信息
+     * @param name name
+     * @return position
      */
     public static Optional<ComponentPointData> getConstantMovie(String name) {
         for (ComponentPointData componentPointData : componentPointDataMgrs) {
@@ -81,6 +81,6 @@ public class ComponentPointDataMgr {
                 return Optional.of(componentPointData);
             }
         }
-        return Optional.ofNullable(null);
+        return Optional.empty();
     }
 }

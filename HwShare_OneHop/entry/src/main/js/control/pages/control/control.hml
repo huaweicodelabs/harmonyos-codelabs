@@ -1,0 +1,101 @@
+<!--/*
+ * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */-->
+<element name="titleBar" src="../../../share/component/titleBar/titleBar.hml"></element>
+<element name="deviceInfoCard" src="../../../share/component/deviceInfoCard/deviceInfoCard.hml"></element>
+<element name="stateCard" src="../../../share/component/stateCard/stateCard.hml"></element>
+<div class="container" onclick="commonClick">
+
+    <titleBar product-id="{{ productId }}"
+              mac-address="{{macAddress}}"
+              show-obj="{{ isFullScreen }}"
+              onback-clicked="backClicked"></titleBar>
+    <deviceInfoCard is-full-screen="{{ isFullScreen }} "
+                    product-id="{{ productId }}"></deviceInfoCard>
+    <div class="card-common padding-lr text-center connect-status"
+         style="justify-content : space-between;">
+        <text class="title font-65ST">
+            {{ deviceInfo.switchDesc }}
+        </text>
+        <div show="{{ deviceInfo.isCharging }}" class="flex-column text-center">
+            <text class="font-65ST charing">{{ deviceInfo.battValue }}</text>
+            <text class="font-13" style="color : #358CFD; margin-top : 3px;">充电中</text>
+        </div>
+        <image show="{{isConnecting == false}}" class="shutdown-img" onclick="powerOnClick" src="{{ deviceInfo.switchImg }}"></image>
+        <progress show="{{isConnecting}}" class="progressStyle" type="circular" clockwise="true" ></progress>
+    </div>
+
+    <div show="{{ isFullScreen == false }}" class="text-center more" onclick="getMoreClick" style="margin-top : 32px;">
+        <text class="color-blue" style="font-size : 18px;">查看更多</text>
+    </div>
+
+    <div show="{{ isFullScreen }}" style="margin-top : 16px;">
+        <list class="features-list">
+            <list-item type="feature" for="{{ features }}" clickeffect="false">
+                <div onclick="controClick({{ $idx }})"
+                     class="{{ $item.flag ? 'unOnline' : 'online' }} common-div-effect {{
+                             $idx % 2 === 0 ? 'common-margin-right' : 'common-margin-left' }}"
+                     style="justify-content : space-between">
+                    <div style="flex-direction : column; margin-left : 16px; justify-content : center;">
+                        <text class="font-34" style="text-align : left; height : 30px;">{{ $item.name }}</text>
+                        <text show="{{ $item.value != '' }}" class="color-gray font-26"
+                              style="height : 25px; padding-top : 3px; color : #358CFD; text-align : left;">{{
+                            $item.value }}</text>
+                    </div>
+                    <div class="text-center" style="margin-right : 16px;">
+                        <image style="height : 30px; width : 30px;" src="{{ $item.icon }}"></image>
+                    </div>
+                </div>
+
+            </list-item>
+        </list>
+    </div>
+
+    <div show="{{ isFullScreen }}" class="desc padding-lr text-center connect-status" onclick="toDesc"
+         style="justify-content : space-between;">
+        <text class="title font-65ST">
+            使用说明
+        </text>
+        <image class="desc-img" src="/common/img/base/ic_auto.webp"></image>
+    </div>
+
+    <menu id="menu_opts" onselected="modeMenuSelected" type="click">
+        <option for="{{ uiMode }}" value="{{ $idx }}" selected="false" action="popup">{{ $item }}</option>
+    </menu>
+
+    <menu id="menu_gear" onselected="gearMenuSelected" type="click">
+        <option for="{{ uiGear }}" value="{{ $idx }}" selected="false" action="popup">{{ $item }}</option>
+    </menu>
+
+    <menu id="menu_time" onselected="timeMenuSelected" type="click">
+        <option for="{{ uiTime }}" value="{{ $idx }}" selected="false" action="popup">{{ $item }}</option>
+    </menu>
+
+    <menu id="menu_loop" onselected="loopMenuSelected" type="click">
+        <option for="{{ uiNumTimes }}" value="{{ $idx }}" selected="false" action="popup">{{ $item }}</option>
+    </menu>
+
+    <dialog id="deviceCommonDialog" oncancel="cancel">
+        <div class="dialogContainer">
+            <text class="fontTitle">{{dialogInfo.dialogTitile}}</text>
+            <text class="fontContent" style="margin-top:29px">{{dialogInfo.dialogContentText}}</text>
+            <div class="text-center  deviceDialogButton">
+                <button if="{{dialogInfo.cacelValue!= ''}}" onclick="cancelClick" class="confirm-button-base" value="{{dialogInfo.cacelValue}}"></button>
+                <divider if="{{dialogInfo.cacelValue!= '' && dialogInfo.endValue!= ''}}" class="divider-vertical" vertical="true"></divider>
+                <button if="{{dialogInfo.endValue!= ''}}" onclick="endClick" class="confirm-button-base " value="{{dialogInfo.endValue}}"></button>
+            </div>
+        </div>
+    </dialog>
+
+</div>

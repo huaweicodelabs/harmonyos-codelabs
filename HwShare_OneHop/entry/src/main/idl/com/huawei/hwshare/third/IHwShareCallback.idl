@@ -1,0 +1,10 @@
+// IHwShareCallback.idl
+
+// Declare any non-default types here with sequenceable or interface statements
+
+interface com.huawei.hwshare.third.IHwShareCallback {
+    /*
+     * Example of a service method that uses some parameters
+     */
+    [oneway] void notifyState([in] int state);
+}

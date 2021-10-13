@@ -1,0 +1,101 @@
+{
+  "strings": {
+    "custom_FA_name": "XXX harmony connect FA",
+    "public_privacy_statement": "User Agreement and Privacy Statement",
+    "public_agree": "Agree with",
+    "public_login_hint": "Login and authentication is required for next step",
+    "public_version": "Version",
+    "public_login_btn_text": "Login via Huawei ID",
+    "public_network_error": "Network error. Try again later.",
+    "public_system_error": "System error. Please try again.",
+    "public_pair_hint": "Pairing…",
+    "public_cancel": "Cancel",
+    "public_re_connect": "Reconnect",
+    "public_pair_hint_title": "Try the following:",
+    "public_connect_timeout": "Connection timed out",
+    "public_connect_timeout_hint_1": "{number}. Make sure the device is plugged in.",
+    "public_connect_timeout_hint_2": "{number}. Check that you followed the instructions properly.",
+    "public_view_more": "View more",
+    "control_device_chargingInfo": "XXX",
+    "control_Instructions": "Instructions for use",
+    "control_BLE_PROMPT": "Bluetooth is not turned on, please turn on Bluetooth"
+  },
+  "resources": {
+    "25BN": {
+      "device_name": "device name",
+      "device_image": "/common/img/customised/25BN/device.png",
+      "pair_hint_image": "/common/img/customised/25BN/pair_hint.png",
+      "measure_hint": "Hold your posture",
+      "pair_hint_text": [
+        "1. Pair hint 1",
+        "2. Pair hint 2",
+        "3. Pair hint 3",
+        "4. Pair hint 4"
+      ],
+      "features": [
+        {
+          "name": "function one",
+          "value": "",
+          "icon": "/common/img/base/ic_auto.webp",
+          "flag": false
+        },
+        {
+          "name": "function two",
+          "value": "",
+          "icon": "/common/img/base/ic_auto.webp",
+          "flag": false
+        },
+        {
+          "name": "function three",
+          "value": "",
+          "icon": "/common/img/base/ic_auto.webp",
+          "flag": true
+        },
+        {
+          "name": "function four",
+          "value": "",
+          "icon": "/common/img/base/ic_auto.webp",
+          "flag": false
+        }
+      ],
+      "dialogInfo": [
+        {
+          "dialogTitle": "",
+          "dialogContentText": "",
+          "value": "",
+          "cancelValue": "",
+          "endValue": ""
+        }
+      ],
+      "dialogContent": {
+        "disconnect": {
+          "dialogTitle": "Bluetooth",
+          "dialogContentText": "Bluetooth is disconnected, do you want to reconnect",
+          "value": "",
+          "cancelValue": "no",
+          "endValue": "yes"
+        },
+        "reconnect": {
+          "dialogTitle": "Bluetooth",
+          "dialogContentText": "No device found, do you want to rescan",
+          "value": "",
+          "cancelValue": "no",
+          "endValue": "yes"
+        },
+        "close": {
+          "dialogTitle": "Bluetooth",
+          "dialogContentText": "Bluetooth is not turned on, please turn on Bluetooth",
+          "value": "",
+          "cancelValue": "knew it",
+          "endValue": ""
+        }
+      },
+      "deviceInfo": {
+        "switchDesc": "Unopened",
+        "batt_value": "",
+        "isCharging": false,
+        "switchImg": "/common/img/base/ic_power_off.webp"
+      }
+    }
+  }
+}

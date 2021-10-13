@@ -17,7 +17,6 @@ package com.huawei.cookbook.utils;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
 /**
  * 日期计算
@@ -36,19 +35,6 @@ public class DateUtils {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.DATE, -days);
-        String formatDate = simpleDateFormat.format(calendar.getTime());
-        return formatDate;
-    }
-
-    /**
-     * 获取指定格式的日期字符串
-     *
-     * @param format 格式
-     * @param date 日期
-     * @return 指定格式的日期字符串
-     */
-    public static String getDateString(String format, Date date) {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format);
-        return simpleDateFormat.format(date);
+        return simpleDateFormat.format(calendar.getTime());
     }
 }

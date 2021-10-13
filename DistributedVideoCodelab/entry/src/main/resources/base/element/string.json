@@ -15,6 +15,62 @@
     {
       "name": "videodetailabilityslice_description",
       "value": "hap sample empty service"
+    },
+    {
+      "name": "pause",
+      "value": "暂停"
+    },
+    {
+      "name": "play",
+      "value": "播放"
+    },
+    {
+      "name": "stop",
+      "value": "停止"
+    },
+    {
+      "name": "forward",
+      "value": "前进"
+    },
+    {
+      "name": "backward",
+      "value": "后退"
+    },
+    {
+      "name": "voice_up",
+      "value": "音量+"
+    },
+    {
+      "name": "voice_down",
+      "value": "音量-"
+    },
+    {
+      "name": "progress_adjust",
+      "value": "进度调节:"
+    },
+    {
+      "name": "voice_adjust",
+      "value": "音量调节:"
+    },
+    {
+      "name": "current_time",
+      "value": "00:00:00"
+    },
+    {
+      "name": "end_time",
+      "value": "00:00:00"
+    },
+    {
+      "name": "device_list_title",
+      "value": "Harmony devices"
+    },
+    {
+      "name": "list_title",
+      "value": "Coming soon"
+    },
+    {
+      "name": "ghost",
+      "value": "Ghost"
     }
   ]
 }

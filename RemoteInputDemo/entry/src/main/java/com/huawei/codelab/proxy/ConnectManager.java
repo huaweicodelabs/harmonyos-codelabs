@@ -20,24 +20,24 @@ import ohos.app.Context;
 import java.util.Map;
 
 /**
- * 远程连接管理类接口
+ * ConnectManager
  *
  * @since 2021-02-25
  */
 public interface ConnectManager {
     /**
-     * 连接远程PA
+     * connectPa
      *
-     * @param context 上下文
-     * @param deviceId 设备id
+     * @param context context
+     * @param deviceId deviceId
      */
     void connectPa(Context context, String deviceId);
 
     /**
-     * 发送指令
+     * sendRequest
      *
-     * @param requestType 指令类型
-     * @param params 指令参数
+     * @param requestType requestType
+     * @param params params
      */
     void sendRequest(int requestType, Map<String, String> params);
 }

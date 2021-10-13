@@ -28,13 +28,12 @@ import ohos.app.Context;
 import java.util.Optional;
 
 /**
- * CameraView 视频采集格式是NV21，（属于YUV420）
+ * CameraView NV21，（YUV420）
  *
  * @since 2021-04-09
  */
 public class CameraView extends SurfaceProvider implements SurfaceOps.Callback {
-    private static final String TAG = CameraView.class.getName();
-    private CameraListener cameraController;
+    private final CameraListener cameraController;
 
     /**
      * CameraView
@@ -100,7 +99,7 @@ public class CameraView extends SurfaceProvider implements SurfaceOps.Callback {
     }
 
     /**
-     * 获取控制器
+     * get Controller
      *
      * @return ICamera
      */

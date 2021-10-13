@@ -25,8 +25,6 @@ import java.util.List;
 public class RouteResult {
     private RouteEntity route;
 
-    private String status;
-
     private String info;
 
     public RouteEntity getRoute() {
@@ -35,14 +33,6 @@ public class RouteResult {
 
     public void setRoute(RouteEntity route) {
         this.route = route;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 
     public String getInfo() {
@@ -58,7 +48,7 @@ public class RouteResult {
      *
      * @since 2021-03-12
      */
-    public class RouteEntity {
+    public static class RouteEntity {
         private List<PathsEntity> paths;
 
         public List<PathsEntity> getPaths() {

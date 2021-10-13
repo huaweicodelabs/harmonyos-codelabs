@@ -46,7 +46,7 @@ public class MainAbility extends Ability {
 
     private void requestCameraPermission() {
         List<String> permissions =
-                new LinkedList<>(Arrays.asList(SystemPermission.CAMERA, SystemPermission.MICROPHONE));
+                new LinkedList<>(Arrays.asList(SystemPermission.CAMERA));
         permissions.removeIf(permission ->
                 verifySelfPermission(permission) == PERMISSION_GRANTED || !canRequestPermission(permission));
         if (!permissions.isEmpty()) {

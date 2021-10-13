@@ -27,7 +27,7 @@ import ohos.codelabs.distributedvideo.util.ScreenUtils;
 /**
  * Toast
  *
- * @since 2020-12-04
+ * @since 2021-09-07
  */
 public class Toast {
     private static final int TEXT_SIZE = 40;

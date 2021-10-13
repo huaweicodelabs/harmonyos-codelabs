@@ -16,7 +16,7 @@
 package com.huawei.codecdemo.media;
 
 import com.huawei.codecdemo.media.constant.MediaConst;
-import com.huawei.codecdemo.media.constant.MediaStatu;
+import com.huawei.codecdemo.media.constant.MediaStatus;
 import com.huawei.codecdemo.utils.ScreenUtils;
 
 import ohos.agp.graphics.Surface;
@@ -33,17 +33,17 @@ import ohos.media.recorder.Recorder;
 import java.util.Optional;
 
 /**
- * VideoRecorder 视频收录器
+ * VideoRecorder
  *
  * @since 2021-04-09
  */
 public class VideoRecorder {
-    private Recorder recorder;
-    private EventHandler videoRecorderHandler;
-    private MediaStatu recordStatu = MediaStatu.IDEL;
-    private VideoProperty.Builder videoPropertyBuilder;
-    private AudioProperty.Builder audioPropertyBuilder;
-    private StorageProperty.Builder storagePropertyBuilder;
+    private final Recorder recorder;
+    private final EventHandler videoRecorderHandler;
+    private MediaStatus recordStatus = MediaStatus.IDEL;
+    private final VideoProperty.Builder videoPropertyBuilder;
+    private final AudioProperty.Builder audioPropertyBuilder;
+    private final StorageProperty.Builder storagePropertyBuilder;
 
     private VideoRecorder(Builder builder) {
         videoRecorderHandler = new EventHandler(EventRunner.create(VideoRecorder.class.getSimpleName()));
@@ -76,11 +76,11 @@ public class VideoRecorder {
     }
 
     private void initStorageProperty(Builder builder) {
-        storagePropertyBuilder.setRecorderPath(builder.savefilePath);
+        storagePropertyBuilder.setRecorderPath(builder.saveFilePath);
     }
 
     /**
-     * 初始化录像器
+     * initRecorder
      */
     private void initRecorder() {
         Source source = new Source();
@@ -94,48 +94,26 @@ public class VideoRecorder {
     }
 
     /**
-     * 录像器准备
+     * prepare
      */
     public void prepare() {
-        if (recordStatu == MediaStatu.IDEL) {
+        if (recordStatus == MediaStatus.IDEL) {
             if (recorder.prepare()) {
-                recordStatu = MediaStatu.PREPARED;
+                recordStatus = MediaStatus.PREPARED;
             }
         }
     }
 
     /**
-     * 录像器启动
+     * start
      */
     public void start() {
-        if (recordStatu != MediaStatu.IDEL && recordStatu != MediaStatu.START) {
+        if (recordStatus != MediaStatus.IDEL && recordStatus != MediaStatus.START) {
             videoRecorderHandler.postTask(() -> {
                 if (recorder.start()) {
-                    recordStatu = MediaStatu.START;
+                    recordStatus = MediaStatus.START;
                 }
             });
-        }
-    }
-
-    /**
-     * pause
-     */
-    public void pause() {
-        if (recordStatu == MediaStatu.START) {
-            if (recorder.pause()) {
-                recordStatu = MediaStatu.PAUSE;
-            }
-        }
-    }
-
-    /**
-     * resume
-     */
-    public void resume() {
-        if (recordStatu == MediaStatu.PAUSE) {
-            if (recorder.resume()) {
-                recordStatu = MediaStatu.START;
-            }
         }
     }
 
@@ -143,10 +121,10 @@ public class VideoRecorder {
      * stop
      */
     public void stop() {
-        if (recordStatu != MediaStatu.IDEL) {
+        if (recordStatus != MediaStatus.IDEL) {
             videoRecorderHandler.postTask(() -> {
                 if (recorder.stop()) {
-                    recordStatu = MediaStatu.STOP;
+                    recordStatus = MediaStatus.STOP;
                 }
             });
         }
@@ -159,7 +137,7 @@ public class VideoRecorder {
      */
     public void reset(Builder builder) {
         if (recorder.reset()) {
-            recordStatu = MediaStatu.IDEL;
+            recordStatus = MediaStatus.IDEL;
         }
         init(builder);
         prepare();
@@ -170,21 +148,21 @@ public class VideoRecorder {
      */
     public void release() {
         if (recorder.release()) {
-            recordStatu = MediaStatu.IDEL;
+            recordStatus = MediaStatus.IDEL;
         }
     }
 
     /**
-     * 获取视频收录器状态
+     * getStatus
      *
-     * @return MediaStatu MediaStatu
+     * @return MediaStatus
      */
-    public MediaStatu getStatu() {
-        return recordStatu;
+    public MediaStatus getStatus() {
+        return recordStatus;
     }
 
     /**
-     * 获取视频收录器surface
+     * getRecordSurface
      *
      * @return Surface
      */
@@ -196,29 +174,17 @@ public class VideoRecorder {
     }
 
     /**
-     * 获取视频收录器监听回调
-     *
-     * @param listener IRecorderListener
-     */
-    public void setVideoRecorderListener(Recorder.IRecorderListener listener) {
-        if (recorder != null) {
-            recorder.registerRecorderListener(listener);
-        }
-    }
-
-    /**
      * Builder
      *
      * @since 2020-12-04
      */
     public static class Builder {
-        private Context context;
-        private String savefilePath;
+        private String saveFilePath;
         private Size resolution;
         private int degrees;
-        private int fps = MediaConst.RECORDER_FPS;
-        private int frameRate = MediaConst.RECORDER_FRAME_RATE;
-        private int bitRate = MediaConst.RECORDER_BIT_RATE;
+        private final int fps = MediaConst.RECORDER_FPS;
+        private final int frameRate = MediaConst.RECORDER_FRAME_RATE;
+        private final int bitRate = MediaConst.RECORDER_BIT_RATE;
 
         /**
          * constructor of Builder
@@ -226,7 +192,6 @@ public class VideoRecorder {
          * @param context context
          */
         public Builder(Context context) {
-            this.context = context;
             resolution = new Size(ScreenUtils.getScreenWidth(context), ScreenUtils.getScreenHeight(context));
         }
 
@@ -234,66 +199,27 @@ public class VideoRecorder {
          * setSaveFilePath of Builder
          *
          * @param filePath filePath
-         * @return builder
          */
-        public Builder setSaveFilePath(String filePath) {
-            this.savefilePath = filePath;
-            return this;
+        public void setSaveFilePath(String filePath) {
+            this.saveFilePath = filePath;
         }
 
         /**
          * setStartMillisecond of Builder
          *
          * @param resolution resolution
-         * @return builder
          */
-        public Builder setResolution(Size resolution) {
+        public void setResolution(Size resolution) {
             this.resolution = resolution;
-            return this;
         }
 
         /**
          * setDegree of Builder
          *
          * @param degrees degrees
-         * @return Builder
          */
-        public Builder setDegrees(int degrees) {
+        public void setDegrees(int degrees) {
             this.degrees = degrees;
-            return this;
-        }
-
-        /**
-         * setFps of Builder
-         *
-         * @param fps fps
-         * @return Builder
-         */
-        public Builder setFps(int fps) {
-            this.fps = fps;
-            return this;
-        }
-
-        /**
-         * setFrameRate of Builder
-         *
-         * @param frameRate frameRate
-         * @return Builder
-         */
-        public Builder setFrameRate(int frameRate) {
-            this.frameRate = frameRate;
-            return this;
-        }
-
-        /**
-         * setBitRate of Builder
-         *
-         * @param bitRate bitRate
-         * @return Builder
-         */
-        public Builder setBitRate(int bitRate) {
-            this.bitRate = bitRate;
-            return this;
         }
 
         /**

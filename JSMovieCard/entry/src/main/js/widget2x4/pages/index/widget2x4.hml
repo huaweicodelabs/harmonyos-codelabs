@@ -1,0 +1,24 @@
+<div class="card_root_layout">
+    <div class="card_root_layout" show="{{ isShow }}">
+        <div class="title" onclick="mainRouter">
+            <text class="titleText" id="titleText">{{ title }}</text>
+            <text class="titleText" id="fullText">{{ fullText }}</text>
+        </div>
+        <div class="movies">
+            <div class="leftMovie" onclick="leftRouter">
+                <image src="{{ topMovieImgUrl }}" class="image"></image>
+                <text class="movieName">{{ topMovieName }}</text>
+                <text class="movieDesc">{{ topMovieDesc }}</text>
+            </div>
+            <div class="leftMovie" onclick="rightRouter">
+                <image src="{{ bottomMovieImgUrl }}" class="image"></image>
+                <text class="movieName">{{ bottomMovieName }}</text>
+                <text class="movieDesc">{{ bottomMovieDesc }}</text>
+            </div>
+        </div>
+    </div>
+
+    <div show="{{ initShow }}" class="init" onclick="mainRouter">
+        <text class="initText">{{ initData }} </text>
+    </div>
+</div>

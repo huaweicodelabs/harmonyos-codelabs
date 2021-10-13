@@ -139,13 +139,11 @@ public class PlayerGestureView extends DirectionalLayout implements ImplPlayModu
     @Override
     public void bind(ImplPlayer implPlayer) {
         this.player = implPlayer;
-        this.player.addPlayerStatuCallback(statu -> {
-            mContext.getUITaskDispatcher().asyncDispatch(() -> {
-                if (statu == PlayerStatu.STOP || statu == PlayerStatu.COMPLETE) {
-                    hide();
-                }
-            });
-        });
+        this.player.addPlayerStatuCallback(status -> mContext.getUITaskDispatcher().asyncDispatch(() -> {
+            if (status == PlayerStatu.STOP || status == PlayerStatu.COMPLETE) {
+                hide();
+            }
+        }));
     }
 
     @Override
@@ -153,13 +151,12 @@ public class PlayerGestureView extends DirectionalLayout implements ImplPlayModu
     }
 
     @Override
-    public boolean onTouchBegin(float focusX, float focusY) {
+    public void onTouchBegin(float focusX, float focusY) {
         if (player != null) {
             currentPercent = 0;
             currentMoveType = MOVING_TYPE_INIT;
             beginPosition = player.getCurrentPosition();
         }
-        return true;
     }
 
     @Override

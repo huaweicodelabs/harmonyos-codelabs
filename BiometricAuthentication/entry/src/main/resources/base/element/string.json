@@ -1,0 +1,36 @@
+{
+  "string": [
+    {
+      "name": "app_name",
+      "value": "biometricAuthentication"
+    },
+    {
+      "name": "mainability_description",
+      "value": "hap sample empty page"
+    },
+    {
+      "name": "authafterability_description",
+      "value": "hap sample empty page"
+    },
+    {
+      "name": "opencamera_description",
+      "value": "Java_Phone_Empty Feature Ability"
+    },
+    {
+      "name": "entry",
+      "value": "entry"
+    },
+    {
+      "name": "text_font",
+      "value": "serif"
+    },
+    {
+      "name": "start_facial_recognition",
+      "value": "开始人脸识别"
+    },
+    {
+      "name": "disabling_facial_recognition",
+      "value": "取消人脸识别"
+    }
+  ]
+}

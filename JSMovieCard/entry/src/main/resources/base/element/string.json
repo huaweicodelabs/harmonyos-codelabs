@@ -1,0 +1,24 @@
+{
+  "string": [
+    {
+      "name": "entry_MainAbility",
+      "value": "JS Movie Service Widget"
+    },
+    {
+      "name": "mainability_description",
+      "value": "JS_Empty Ability"
+    },
+    {
+      "name": "movieDetail_description",
+      "value": "JS_Empty Ability"
+    },
+    {
+      "name": "entry_MovieDetail",
+      "value": "entry_MovieDetail"
+    },
+    {
+      "name": "serviceability_description",
+      "value": "hap sample empty service"
+    }
+  ]
+}

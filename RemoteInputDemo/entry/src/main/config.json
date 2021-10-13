@@ -13,8 +13,7 @@
     "name": ".MyApplication",
     "mainAbility": "com.huawei.codelab.MainAbility",
     "deviceType": [
-      "phone",
-      "tv"
+      "phone"
     ],
     "distro": {
       "deliveryWithInstall": true,

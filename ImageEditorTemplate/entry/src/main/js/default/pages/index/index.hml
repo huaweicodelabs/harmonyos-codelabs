@@ -1,0 +1,139 @@
+<!--/*
+ * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */-->
+
+<div class="container">
+
+    <!-- 顶部 -->
+    <div class="container-top">
+        <div class="container-appBar-left">
+            <image src="common/images/back.svg" class="container-image-left" onclick="showDialog"></image>
+            <text class="container-txt">{{ titleAppBar }}</text>
+        </div>
+        <div class="container-appBar-right">
+            <image src="common/images/rewind.svg" class="container-image-right" onclick="rewind"></image>
+            <image src="common/images/advance.svg" class="container-image-right" onclick="advance"></image>
+            <image src="common/images/save.svg" class="container-image-right" onclick="save"></image>
+        </div>
+    </div>
+
+<!-- 裁剪区 -->
+    <div id="crop_image_content">
+    <!-- 裁剪部分 -->
+        <div id="cropBox">
+            <canvas id="canvasOne"></canvas>
+        <!-- 裁剪框 -->
+            <div id="mainBox"
+                 style="width : {{ cropWidth }}; height : {{ cropHeight }}; top : {{ cropTop }}; left : {{ cropLeft }}"
+                 show="{{ showFlag1 }}">
+                <div id="left-up-top" class="minBox left-up-top"></div>
+                <div id="left-up" class="minBox left-up"></div>
+                <div id="right-up-top" class="minBox right-up-top"></div>
+                <div id="right-up" class="minBox right-up"></div>
+                <div id="left-down-bot" class="minBox left-down-bot"></div>
+                <div id="left-down" class="minBox left-down"></div>
+                <div id="right-down-bot" class="minBox right-down-bot"></div>
+                <div id="right-down" class="minBox right-down"></div>
+            </div>
+        </div>
+    </div>
+
+<!-- 裁剪比例 -->
+    <div class="container-bottom-first" show="{{ showFlag1 }}">
+        <div class="container-bottom-one-first">
+            <!-- 原图 -->
+            <image src="{{ conBotFirImgSrc }}" style="width : 30px; height : 30px;" onclick="conBotFirImage"></image>
+            <!-- 1:1 -->
+            <image src="{{ conBotSecImgSrc }}" class="container-bottom-image" onclick="conBotSecImage"></image>
+            <!-- 16:9 -->
+            <image src="{{ conBotThrImgSrc }}" class="container-bottom-image" onclick="conBotThrImage"></image>
+            <!-- 9:16 -->
+            <image src="{{ conBotFouImgSrc }}" class="container-bottom-image" onclick="conBotFouImage"></image>
+        </div>
+        <div class="container-bottom-two-first">
+            <!-- 画幅 -->
+            <image src="{{ picFraImgSrc }}" style="width : 24px; height : 24px;"></image>
+            <text style="font-size : 14px; color : #2788B9;">{{ picFrame }}</text>
+        </div>
+        <div class="container-bottom-three-first">
+            <!-- 裁剪 -->
+            <image src="common/images/cut_blue.svg" style="width : 24px; height : 24px;"></image>
+            <!-- 调节 -->
+            <image src="common/images/adjust_white.svg" style="width : 24px; height : 24px; margin-left : 148px;"
+                   onclick="showAdjustPage"></image>
+        </div>
+        <div class="container-bottom-four-first">
+            <!-- 裁剪 -->
+            <text style="font-size : 16px; color : #2788B9;">{{ cropping }}</text>
+            <!-- 调节 -->
+            <text style="font-size : 16px; color : #FFFFFF; margin-left : 138px;" onclick="showAdjustPage">{{ adjust }}</text>
+        </div>
+    </div>
+
+<!-- 调节区域 -->
+    <div class="container-bottom-second" show="{{ showFlag2 }}">
+        <slider min="1" max="10" value="{{ brightnessValue }}" onchange="setBrightnessValue" show="{{ showBrightness }}"
+                style="color : #808080;"/>
+        <slider min="1" max="10" value="{{ contrastValue }}" onchange="setContrastValue" show="{{ showContrast }}"
+                style="color : #808080;"/>
+        <slider min="1" max="10" value="{{ saturationValue }}" onchange="setSaturationValue" show="{{ showSaturation }}"
+                style="color : #808080;"/>
+        <div class="container-bottom-two-second">
+            <!-- 亮度 -->
+            <image src="{{ luminanceImgSrc }}"
+                   style="width : 24px; height : 24px; margin-left : 60px;"
+                   onclick="luminanceAdj"></image>
+            <!-- 对比度 -->
+            <image src="{{ contrastImgSrc }}"
+                   style="width : 24px; height : 24px; margin-left : 86px;"
+                   onclick="contrastAdj"></image>
+            <!-- 饱和度 -->
+            <image src="{{ saturationImgSrc }}" style="width : 24px; height : 24px; margin-left : 86px;"
+                   onclick="saturationAdj"></image>
+        </div>
+        <div class="container-bottom-three-second">
+            <!-- 亮度 -->
+            <text class="luminanceTxt" style="color : {{ luminanceColor }};" onclick="luminanceAdj">{{ luminance }}</text>
+            <!-- 对比度 -->
+            <text class="contrastTxt" style="color : {{ contrastColor }};" onclick="contrastAdj">{{ contrast }}</text>
+            <!-- 饱和度 -->
+            <text class="saturationTxt" style="color : {{ saturationColor }};" onclick="saturationAdj">{{ saturation}}</text>
+        </div>
+        <div class="container-bottom-four-second">
+            <!-- 裁剪 -->
+            <image src="common/images/cut_white.svg" style="width : 24px; height : 24px;" onclick="showCropPage"/>
+            <!-- 裁剪 -->
+            <image src="common/images/adjust_blue.svg" style="width : 24px; height : 24px; margin-left : 148px;"/>
+        </div>
+        <div class="container-bottom-five-second">
+            <!-- 裁剪 -->
+            <text style="font-size : 16px; color : #FFFFFF;" onclick="showCropPage">{{ cropping }}</text>
+            <!-- 裁剪 -->
+            <text style="font-size : 16px; color : #2788B9; margin-left : 138px;">{{ adjust }}</text>
+        </div>
+    </div>
+
+<!-- 退出弹窗 -->
+    <dialog id="simpleDialog" class="dialog-main" oncancel="cancelDialog">
+        <div class="dialog-div">
+            <div class="inner-txt">
+                <text class="txt">{{ title }}</text>
+            </div>
+            <div class="inner-btn">
+                <button type="text" value="取消" onclick="cancelSchedule" class="btn-cancel"></button>
+                <button type="text" value="放弃" onclick="setSchedule" class="btn-stop"></button>
+            </div>
+        </div>
+    </dialog>
+</div>

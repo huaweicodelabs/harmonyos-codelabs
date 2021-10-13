@@ -22,7 +22,7 @@ import ohos.codelabs.distributedvideo.slice.SimplePlayerAbilitySlice;
 /**
  * the main page
  *
- * @since 2020-12-04
+ * @since 2021-09-07
  *
  */
 public class PlayerAbility extends Ability {

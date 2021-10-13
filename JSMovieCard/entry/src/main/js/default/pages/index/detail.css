@@ -1,0 +1,164 @@
+.container {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #445164;
+    padding-bottom: 70px;
+
+}
+
+.title {
+    font-size: 20px;
+    justify-content: center;
+}
+
+.centerAre {
+    flex-direction: row;
+    margin-top: 15px;
+}
+
+.centerLeft {
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 10px;
+}
+
+.movieImg {
+    height: 200px;
+    width: 260px;
+    margin-top: 10px;
+    margin-left: 20px;
+    object-fit: fill;
+    border-radius: 20px
+}
+
+.centerRight {
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 15px;
+}
+
+.movieName {
+    width: 140px;
+    margin-left: 50px;
+    color: #000000;
+    font-size: 18px;
+}
+
+.rightText {
+    font-size: 15px;
+    margin-top: 15px;
+
+    color: #FFB4B7B3;
+}
+
+.actorText {
+    font-size: 15px;
+    color: #FFB4B7B3;
+}
+
+.actor {
+    margin-top: 5px;
+    flex-direction: column;
+}
+
+.actorsImg {
+    width: 180px;
+    height: 60px;
+    margin-top: 5px;
+    object-fit: cover;
+    flex-direction: row
+}
+
+.actors {
+    width: 60px;
+    height: 60px;
+}
+
+.likeImg {
+    margin-left: 4px;
+    margin-top: 45px;
+    width: 30px;
+    height: 30px;
+    object-fit: fill;
+}
+
+.rate {
+    margin-top: 15px;
+    flex-direction: row;
+    margin-left: 20px;
+}
+
+.rateImg {
+    width: 20px;
+    height: 20px;
+}
+
+.rating {
+    width: 200px;
+    font-size: 20px;
+    margin-left: 10px;
+    font-weight: 300;
+    color: #FF9800;
+}
+
+.story {
+    flex-direction: column;
+}
+
+.storyTitle {
+    margin-left: 150px;
+    color: #000000;
+    font-size: 16px;
+    margin-top: 25px;
+    justify-content: center;
+}
+
+.storyContent {
+    background-color: #415165;
+    color: white;
+    color: #000000;;
+    font-size: 16px;
+    margin-top: 5px;
+
+    text-overflow: ellipsis;
+    margin-left: 10px;
+}
+
+.express {
+    background-color: #f9efff;
+    radius: 10px;
+    margin-left: 280px;
+    margin-top: 5px;
+    font-size: 16px;
+    padding: 5px;
+    text-color: #000000;
+}
+
+.stills {
+    flex-direction: column;
+}
+
+.stillsTitle {
+    margin-left: 160px;
+    font-size: 16px;
+    margin-top: 25px;
+    color: #000000;
+}
+
+.stillsImg {
+    margin-left: 20px;
+    margin-right: 20px;
+    height: 100px;
+    margin-top: 10px;
+    object-fit: cover;
+    flex-direction: row
+}
+
+.stillsImgList {
+    width: 100px;
+    height: 100px;
+    margin-top: 10px;
+    margin-left: 1px;
+    margin-bottom: 10px;
+}

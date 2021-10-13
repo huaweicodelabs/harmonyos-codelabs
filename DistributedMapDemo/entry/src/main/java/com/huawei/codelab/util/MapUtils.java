@@ -15,6 +15,14 @@
 
 package com.huawei.codelab.util;
 
+import com.huawei.codelab.ResourceTable;
+import ohos.agp.components.DirectionalLayout;
+import ohos.agp.components.LayoutScatter;
+import ohos.agp.components.Text;
+import ohos.agp.utils.LayoutAlignment;
+import ohos.agp.window.dialog.ToastDialog;
+import ohos.app.Context;
+
 /**
  * 地图工具类
  *
@@ -49,5 +57,25 @@ public class MapUtils {
         mercators[0] = mercatorX;
         mercators[1] = mercatorY;
         return mercators;
+    }
+
+    /**
+     * Latitude and longitude Mercator to Mercator
+     *
+     * @param context Context
+     * @param content toast content
+     */
+    public static void showToast(Context context, String content) {
+        DirectionalLayout toastLayout = (DirectionalLayout) LayoutScatter.getInstance(context)
+                .parse(ResourceTable.Layout_layout_toast, null, false);
+
+        Text msgToast = (Text) toastLayout.findComponentById(ResourceTable.Id_msg_toast);
+        msgToast.setText(content);
+
+        new ToastDialog(context)
+                .setContentCustomComponent(toastLayout)
+                .setSize(DirectionalLayout.LayoutConfig.MATCH_CONTENT, DirectionalLayout.LayoutConfig.MATCH_CONTENT)
+                .setAlignment(LayoutAlignment.CENTER)
+                .show();
     }
 }

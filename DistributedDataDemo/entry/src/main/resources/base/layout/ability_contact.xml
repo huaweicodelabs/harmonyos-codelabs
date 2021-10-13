@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DirectionalLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:height="match_parent"
+    ohos:width="match_parent"
+    ohos:orientation="vertical">
+
+  <DependentLayout
+      ohos:width="match_parent"
+      ohos:height="60vp"
+      >
+    <Text
+        ohos:height="match_content"
+        ohos:width="match_content"
+        ohos:text="$string:information_management"
+        ohos:text_color="#222222"
+        ohos:text_size="22fp"
+        ohos:center_in_parent="true"
+        />
+
+    <Button
+        ohos:id="$+id:addContact"
+        ohos:height="match_content"
+        ohos:width="match_content"
+        ohos:text="$string:add"
+        ohos:text_color="#a0a0a0"
+        ohos:text_size="18fp"
+        ohos:align_parent_right="true"
+        ohos:vertical_center="true"
+        ohos:right_margin="16vp"
+        />
+
+    <Button
+        ohos:id="$+id:sync"
+        ohos:height="match_content"
+        ohos:width="match_content"
+        ohos:text="$string:sync"
+        ohos:text_color="#a0a0a0"
+        ohos:text_size="18fp"
+        ohos:align_parent_left="true"
+        ohos:vertical_center="true"
+        ohos:left_margin="16vp"
+        />
+  </DependentLayout>
+  <Component
+      ohos:height="1vp"
+      ohos:width="match_parent"
+      ohos:background_element="#eeeeee"
+      />
+  <DirectionalLayout
+      ohos:width="match_parent"
+      ohos:height="40vp"
+      ohos:orientation="horizontal"
+      >
+    <Text
+        ohos:width="match_parent"
+        ohos:height="match_content"
+        ohos:id="$+id:name"
+        ohos:text="$string:name"
+        ohos:text_color="#222222"
+        ohos:text_size="16fp"
+        ohos:weight="10"
+        ohos:text_alignment="center"
+        ohos:layout_alignment="center"
+        />
+
+    <Text
+        ohos:width="match_parent"
+        ohos:height="match_content"
+        ohos:id="$+id:phone"
+        ohos:text="$string:phone"
+        ohos:text_color="#555555"
+        ohos:text_size="16fp"
+        ohos:weight="10"
+        ohos:text_alignment="center"
+        ohos:layout_alignment="center"
+        />
+    <Text
+        ohos:width="match_parent"
+        ohos:height="40vp"
+        ohos:weight="7"
+        ohos:left_margin="20vp"
+        >
+    </Text>
+  </DirectionalLayout>
+  <ListContainer
+      ohos:id="$+id:listContainer"
+      ohos:width="match_parent"
+      ohos:height="match_parent"
+      ohos:orientation="vertical"
+      />
+
+</DirectionalLayout>

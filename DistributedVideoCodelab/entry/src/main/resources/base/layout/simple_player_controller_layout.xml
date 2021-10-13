@@ -73,7 +73,7 @@
                 ohos:height="match_content"
                 ohos:width="match_content"
                 ohos:right_margin="5vp"
-                ohos:text="00:00:00"
+                ohos:text="$string:current_time"
                 ohos:text_color="#ffffff"
                 ohos:text_size="12vp"/>
 
@@ -91,7 +91,7 @@
                 ohos:height="match_content"
                 ohos:width="match_content"
                 ohos:right_margin="5vp"
-                ohos:text="00:00:00"
+                ohos:text="$string:end_time"
                 ohos:text_color="#ffffff"
                 ohos:text_size="12vp"/>
 

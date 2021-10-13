@@ -18,7 +18,7 @@ package ohos.codelabs.distributedvideo.player.constant;
 /**
  * ControlCode enum
  *
- * @since 2020-12-04
+ * @since 2021-09-07
  *
  */
 public enum ControlCode {
@@ -76,7 +76,7 @@ public enum ControlCode {
      */
     VOLUME_SET(1009);
 
-    private int code;
+    private final int code;
 
     ControlCode(int value) {
         this.code = value;

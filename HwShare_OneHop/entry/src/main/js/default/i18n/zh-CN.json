@@ -1,0 +1,109 @@
+{
+  "strings": {
+    "custom_FA_name": "XXX 鸿蒙智联 FA",
+    "public_privacy_statement": "用户协议与隐私声明。",
+    "public_agree": "同意",
+    "public_login_hint": "继续使用需要登录并授权",
+    "public_version": "版本",
+    "public_login_btn_text": "华为账号快捷登录",
+    "public_network_error": "网络错误，请稍后重试",
+    "public_system_error": "系统错误，请稍后重试",
+    "public_pair_hint": "设备配对中....",
+    "public_cancel": "取消",
+    "public_re_connect": "重新连接",
+    "public_pair_hint_title": "请尝试以下操作并重新配对",
+    "public_connect_timeout": "连接超时",
+    "public_connect_timeout_hint_1": "{number}. 确认设备已接通电源",
+    "public_connect_timeout_hint_2": "{number}. 确认已按指示完成操作",
+    "public_logged_out": "登录状态异常，请重新登录",
+    "public_view_more": "查看更多",
+    "control_device_chargingInfo": "XXX",
+    "control_Instructions": "使用说明",
+    "control_BLE_PROMPT": "蓝牙未打开，请开启蓝牙"
+  },
+  "resources": {
+    "25BN": {
+      "device_name": "设备名称",
+      "device_image": "/common/img/customised/25BN/device.png",
+      "measure_hint": "保持正确佩戴姿势",
+      "pair_hint_image": "/common/img/customised/25BN/pair_hint.png",
+      "pair_hint_text": [
+        "1. 配对指引 1",
+        "2. 配对指引 2",
+        "3. 配对指引 3",
+        "4. 配对指引 4"
+      ],
+      "menu_options": [
+        {
+          "id": 0,
+          "label": "User guide",
+          "uri": "pages/guide/guide"
+        }
+      ],
+      "features": [
+        {
+          "name": "功能1",
+          "value": "",
+          "icon": "/common/img/base/ic_auto.webp",
+          "flag": false
+        },
+        {
+          "name": "功能2",
+          "value": "",
+          "icon": "/common/img/base/ic_auto.webp",
+          "flag": false
+        },
+        {
+          "name": "功能3",
+          "value": "",
+          "icon": "/common/img/base/ic_auto.webp",
+          "flag": true
+        },
+        {
+          "name": "功能4",
+          "value": "",
+          "icon": "/common/img/base/ic_auto.webp",
+          "flag": false
+        }
+      ],
+      "dialogInfo": [
+        {
+          "dialogTitle": "",
+          "dialogContentText": "",
+          "value": "",
+          "cancelValue": "",
+          "endValue": ""
+        }
+      ],
+      "dialogContent": {
+        "disconnect": {
+          "dialogTitle": "蓝牙",
+          "dialogContentText": "蓝牙已断开，是否重新连接",
+          "value": "",
+          "cancelValue": "否",
+          "endValue": "是"
+        },
+        "reconnect": {
+          "dialogTitle": "蓝牙",
+          "dialogContentText": "未发现设备，是否重新扫描",
+          "value": "",
+          "cancelValue": "否",
+          "endValue": "是"
+        },
+        "close": {
+          "dialogTitle": "蓝牙",
+          "dialogContentText": "蓝牙未打开，请开启蓝牙",
+          "value": "",
+          "cancelValue": "知道了",
+          "endValue": ""
+        }
+      },
+      "deviceInfo": {
+        "switchDesc": "未开启",
+        "batt_value": "",
+        "isCharging": false,
+        "switchImg": "/common/img/base/ic_power_off.webp"
+      }
+    }
+  }
+}

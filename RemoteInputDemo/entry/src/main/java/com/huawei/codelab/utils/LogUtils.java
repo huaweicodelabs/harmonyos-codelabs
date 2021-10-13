@@ -19,7 +19,7 @@ import ohos.hiviewdfx.HiLog;
 import ohos.hiviewdfx.HiLogLabel;
 
 /**
- * 日志工具类
+ * LogUtils
  *
  * @since 2021-02-25
  */
@@ -34,40 +34,20 @@ public class LogUtils {
     }
 
     /**
-     * 打印调试日志
+     * info
      *
-     * @param tag 日志标签
-     * @param msg 日志信息
-     */
-    public static void debug(String tag, String msg) {
-        HiLog.debug(LABEL_LOG, LOG_FORMAT, tag, msg);
-    }
-
-    /**
-     * 打印信息日志
-     *
-     * @param tag 日志标签
-     * @param msg 日志信息
+     * @param tag tag
+     * @param msg msg
      */
     public static void info(String tag, String msg) {
         HiLog.info(LABEL_LOG, LOG_FORMAT, tag, msg);
     }
 
     /**
-     * 打印警告日志
+     * error
      *
-     * @param tag 日志标签
-     * @param msg 日志信息
-     */
-    public static void warn(String tag, String msg) {
-        HiLog.warn(LABEL_LOG, LOG_FORMAT, tag, msg);
-    }
-
-    /**
-     * 打印错误日志
-     *
-     * @param tag 日志标签
-     * @param msg 日志信息
+     * @param tag tag
+     * @param msg msg
      */
     public static void error(String tag, String msg) {
         HiLog.error(LABEL_LOG, LOG_FORMAT, tag, msg);

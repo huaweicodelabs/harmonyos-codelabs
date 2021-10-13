@@ -1,9 +1,9 @@
 apply plugin: 'com.huawei.ohos.hap'
 apply plugin: 'com.huawei.ohos.decctest'
 ohos {
-    compileSdkVersion 4
+    compileSdkVersion 5
     defaultConfig {
-        compatibleSdkVersion 4
+        compatibleSdkVersion 5
     }
 }
 
@@ -13,5 +13,5 @@ dependencies {
     ohosTestImplementation 'com.huawei.ohos.testkit:runner:1.0.0.100'
 }
 decc {
-    supportType = ['html','xml']
+    supportType = ['html', 'xml']
 }

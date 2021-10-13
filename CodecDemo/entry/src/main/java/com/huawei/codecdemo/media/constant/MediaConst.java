@@ -22,16 +22,6 @@ package com.huawei.codecdemo.media.constant;
  */
 public class MediaConst {
     /**
-     * VOICE FILE PREFIX
-     */
-    public static final String VOICE_FILE_MUSIC = "MUSIC_";
-
-    /**
-     * VOICE FILE TYPE
-     */
-    public static final String VOICE_FILE_TYPE_MP3 = ".mp3";
-
-    /**
      * recorder fps
      */
     public static final int RECORDER_FPS = 30;
@@ -45,16 +35,6 @@ public class MediaConst {
      * recorder frame rate
      */
     public static final int RECORDER_FRAME_RATE = 25;
-
-    /**
-     * BUFFERSIZE
-     */
-    public static final int BUFFERSIZE = 1024;
-
-    /**
-     * SAMPLE RATE
-     */
-    public static final int SAMPLE_RATE = 44100;
 
     private MediaConst() {
     }

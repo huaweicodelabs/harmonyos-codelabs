@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="top">
+        <text class="title">{{ title }}</text>
+        <text class="titleDes">{{ titleDesc }}</text>
+    </div>
+    <list class="bottom">
+        <list-item class="listItem" for="{{ movie in movieList }}" onclick="jump2Detail({{ movie.sort }})">
+            <div class="items">
+                <text class="movieIndex">{{ movie.sort }}</text>
+                <image src="{{ movie.imgUrl }}" class="movieImg"></image>
+                <div class="movieInfo">
+                    <text class="movieName">{{ movie.title }}</text>
+                    <div class="rate">
+                        <image src="../../common/images/rating.png" class="rateImage"></image>
+                        <image src="../../common/images/rating.png" class="rateImage"></image>
+                        <image src="../../common/images/rating.png" class="rateImage"></image>
+                        <image src="../../common/images/rating.png" class="rateImage"></image>
+                        <image src="../../common/images/rating1.png" class="rateImage"></image>
+                        <text class="rateText">{{ movie.rating }}</text>
+                    </div>
+                    <text class="genre">{{ movie.type }}</text>
+                </div>
+                <div class="like">
+                    <image src="../../common/images/like.png" class="likeImg"></image>
+                    <text class="likeText">{{ likeText }}</text>
+                </div>
+            </div>
+        </list-item>
+    </list>
+</div>

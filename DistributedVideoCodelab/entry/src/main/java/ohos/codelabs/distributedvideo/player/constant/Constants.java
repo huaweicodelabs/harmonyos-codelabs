@@ -104,15 +104,6 @@ public class Constants {
     /**
      * INTENT PLAYURL PARAM
      */
-    public static final String INTENT_PLAYURL_PARAM = "intetn_playurl_param";
-    /**
-     * INTENT PLAYSTATU PARAM
-     */
-    public static final String INTENT_PLAYSTATU_PARAM = "intetn_playstatu_param";
-    /**
-     * INTENT LANDSCREEN REQUEST CODE
-     */
-    public static final int INTENT_LANDSCREEN_REQUEST_CODE = 1001;
 
     private Constants() {
     }

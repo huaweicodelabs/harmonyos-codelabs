@@ -15,33 +15,20 @@
 
 package com.huawei.codecdemo.camera.view;
 
-import com.huawei.codecdemo.utils.LogUtil;
-
-import ohos.agp.colors.RgbColor;
 import ohos.agp.components.AttrSet;
 import ohos.agp.components.Button;
 import ohos.agp.components.Component;
 import ohos.agp.components.Component.TouchEventListener;
-import ohos.agp.components.element.ShapeElement;
 import ohos.app.Context;
-import ohos.app.dispatcher.task.TaskPriority;
 import ohos.multimodalinput.event.TouchEvent;
 
 /**
- * CaptureButton 采集按钮
+ * CaptureButton
  *
  * @since 2021-04-09
  */
 public class CaptureButton extends Button implements TouchEventListener {
-    private static final String TAG = CaptureButton.class.getSimpleName();
-
     private static final float NUMBER_FLOAT_POINT_8 = 0.8f;
-    private static final float NUMBER_FLOAT_POINT_4 = 0.4f;
-    private static final int NUMBER_INT_2 = 2;
-    private static final int NUMBER_INT_255 = 255;
-
-    private Context context;
-    private float currentCorner;
 
     /**
      * CaptureButton
@@ -71,13 +58,7 @@ public class CaptureButton extends Button implements TouchEventListener {
      */
     public CaptureButton(Context context, AttrSet attrSet, String styleName) {
         super(context, attrSet, styleName);
-        this.context = context;
-        initView();
         initListener();
-    }
-
-    private void initView() {
-        currentCorner = (float) getHeight() / NUMBER_INT_2;
     }
 
     private void initListener() {
@@ -99,53 +80,4 @@ public class CaptureButton extends Button implements TouchEventListener {
         return true;
     }
 
-    /**
-     * captrue样式切换，圆形转矩形
-     */
-    public void capture2Rect() {
-        context.getGlobalTaskDispatcher(TaskPriority.DEFAULT).asyncDispatch(() -> {
-            int temp = getHeight() / NUMBER_INT_2;
-            ShapeElement rectElement = new ShapeElement();
-            rectElement.setRgbColor(new RgbColor(NUMBER_INT_255, 0, 0));
-            while (currentCorner >= 0) {
-                context.getUITaskDispatcher().syncDispatch(() -> {
-                    rectElement.setCornerRadius(currentCorner);
-                    setBackground(rectElement);
-                    setScaleX(1 - (NUMBER_FLOAT_POINT_4 - NUMBER_FLOAT_POINT_4 / temp * currentCorner));
-                    setScaleY(1 - (NUMBER_FLOAT_POINT_4 - NUMBER_FLOAT_POINT_4 / temp * currentCorner));
-                });
-                try {
-                    Thread.sleep(1);
-                } catch (InterruptedException e) {
-                    LogUtil.error(TAG, "capture2Rect failed,exception is " + e.getMessage());
-                }
-                currentCorner--;
-            }
-        });
-    }
-
-    /**
-     * captrue样式切换，矩形转圆形
-     */
-    public void capture2round() {
-        context.getGlobalTaskDispatcher(TaskPriority.DEFAULT).asyncDispatch(() -> {
-            int temp = getHeight() / NUMBER_INT_2;
-            ShapeElement roundElement = new ShapeElement();
-            roundElement.setRgbColor(new RgbColor(NUMBER_INT_255, NUMBER_INT_255, NUMBER_INT_255));
-            while (currentCorner <= (float) temp) {
-                context.getUITaskDispatcher().syncDispatch(() -> {
-                    roundElement.setCornerRadius(currentCorner);
-                    setBackground(roundElement);
-                    setScaleX(1 - (NUMBER_FLOAT_POINT_4 - NUMBER_FLOAT_POINT_4 / temp * currentCorner));
-                    setScaleY(1 - (NUMBER_FLOAT_POINT_4 - NUMBER_FLOAT_POINT_4 / temp * currentCorner));
-                });
-                try {
-                    Thread.sleep(1);
-                } catch (InterruptedException e) {
-                    LogUtil.error(TAG, "InterruptedException is " + e.getMessage());
-                }
-                currentCorner++;
-            }
-        });
-    }
 }

@@ -1,0 +1,56 @@
+{
+  "app": {
+    "bundleName": "com.huawei.cookbooks",
+    "vendor": "huawei",
+    "version": {
+      "code": 1000000,
+      "name": "1.0.0"
+    }
+  },
+  "deviceConfig": {},
+  "module": {
+    "package": "com.huawei.cookbooks",
+    "name": ".MyApplication",
+    "deviceType": [
+      "default"
+    ],
+    "distro": {
+      "deliveryWithInstall": true,
+      "moduleName": "entry",
+      "moduleType": "entry",
+      "installationFree": false
+    },
+    "reqPermissions": [
+      {
+        "reason": "$string:permission_distributed",
+        "name": "ohos.permission.DISTRIBUTED_DATASYNC",
+        "usedScene":
+        {
+          "ability": ["com.huawei.cookbooks.MainAbility"],
+          "when": "always"
+        }
+      }
+    ],
+    "abilities": [
+      {
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ],
+        "orientation": "portrait",
+        "name": "com.huawei.cookbooks.MainAbility",
+        "icon": "$media:icon",
+        "description": "$string:mainability_description",
+        "label": "$string:app_name",
+        "type": "page",
+        "launchType": "standard"
+      }
+    ]
+  }
+}

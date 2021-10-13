@@ -25,10 +25,10 @@ import java.util.List;
  * Advertising display adapter
  *
  * @param <T> type
- * @since 2020-12-04
+ * @since 2021-09-07
  */
 public class AdvertisementProvider<T extends Component> extends PageSliderProvider {
-    private List<T> componentList;
+    private final List<T> componentList;
 
     /**
      * constructor

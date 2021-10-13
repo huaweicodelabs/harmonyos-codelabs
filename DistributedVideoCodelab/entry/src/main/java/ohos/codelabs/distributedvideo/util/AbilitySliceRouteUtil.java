@@ -28,7 +28,7 @@ import java.util.List;
 public class AbilitySliceRouteUtil {
     private static AbilitySliceRouteUtil instance;
 
-    private List<AbilitySlice> routes;
+    private final List<AbilitySlice> routes;
 
     private AbilitySliceRouteUtil() {
         routes = new ArrayList<>(0);
@@ -66,25 +66,6 @@ public class AbilitySliceRouteUtil {
                 routes.remove(routes.get(i));
                 break;
             }
-        }
-    }
-
-    /**
-     * back to AbilitySlice which name is sliceName
-     *
-     * @param sliceName sliceName
-     */
-    public void backTo(String sliceName) {
-        List<AbilitySlice> slices = new ArrayList<>(0);
-        for (int i = routes.size() - 1; i >= 0; i--) {
-            if (routes.get(i).getClass().getName().equals(sliceName)) {
-                break;
-            } else {
-                slices.add(routes.get(i));
-            }
-        }
-        if (slices.size() > 0) {
-            terminateSlices(slices);
         }
     }
 

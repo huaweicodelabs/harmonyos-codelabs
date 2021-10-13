@@ -1,23 +1,23 @@
 <div class="card_root_layout" on:click="routerEvent">
     <div class="div_basic_container">
     <!-- 左侧布局 -->
-        <div class="left_items">
+        <div class="left_items" @click="routerEvent1" >
             <div class="left_items_top">
-                <text class="text">今天走了</text>
+                <text class="text">{{$t('strings.today')}}</text>
                 <image src="common/step2.png" id="stepImg"></image>
             </div>
             <div class="left_items_center">
                 <text id="stepValue" class="text">{{ mileage }}</text>
-                <text id="stepDesc" class="text">米</text>
+                <text id="stepDesc" class="text">{{$t('strings.unit')}}</text>
             </div>
             <div class="left_items_bootom">
                 <text id="stepValue" class="text">{{ steps }}</text>
-                <text id="stepDesc" class="text">步</text>
+                <text id="stepDesc" class="text">{{$t('strings.step')}}</text>
             </div>
         </div>
 
         <!-- 右侧布局 -->
-        <div class="right_items">
+        <div class="right_items" @click="routerEvent">
             <!-- 进度条部分 -->
             <div class="progress">
                 <!-- 进度值 -->

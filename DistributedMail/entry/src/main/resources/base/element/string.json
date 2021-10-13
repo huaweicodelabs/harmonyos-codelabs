@@ -19,6 +19,54 @@
     {
       "name": "studyability_description",
       "value": "hap sample empty page"
+    },
+    {
+      "name": "migration_to",
+      "value": "迁移到其他设备"
+    },
+    {
+      "name": "text_cancel",
+      "value": "取消"
+    },
+    {
+      "name": "text_confirm",
+      "value": "确定"
+    },
+    {
+      "name": "text_select_attachment",
+      "value": "请选择需要添加的附件"
+    },
+    {
+      "name": "text_message",
+      "value": "邮件正文"
+    },
+    {
+      "name": "text_title",
+      "value": "主题"
+    },
+    {
+      "name": "text_cc",
+      "value": "抄送"
+    },
+    {
+      "name": "text_to",
+      "value": "收件人"
+    },
+    {
+      "name": "text_reply",
+      "value": "邮件回复"
+    },
+    {
+      "name": "text_attachment",
+      "value": "附件"
+    },
+    {
+      "name": "text_send",
+      "value": "发送"
+    },
+    {
+      "name": "text_reply_title",
+      "value": "回复：HarmonyOS 2.0 Codelab体验"
     }
   ]
 }

@@ -74,7 +74,7 @@ public class DatabaseUtils {
         SensorData sensorData = new SensorData(now, (int) value, (int) realValue);
         // 查询今天是否有数据
         SensorData todayData = getSensorData(connect, now);
-        boolean isInsert = false;
+        boolean isInsert;
         if (todayData == null) {
             isInsert = connect.insert(sensorData);
         } else {
@@ -100,7 +100,7 @@ public class DatabaseUtils {
         ormPredicates.equalTo(DATA_FILED_DATE, yestday);
         SensorData yesterdayData = getSensorData(connect, yestday);
         SensorData todayData = getSensorData(connect, now);
-        SensorData sensorData = null;
+        SensorData sensorData;
         if (yesterdayData != null) {
             if (todayData != null) {
                 sensorData = new SensorData(now, (int) (value - todayData.getRealValue()), (int) value);
@@ -144,9 +144,9 @@ public class DatabaseUtils {
     public static List<ChartPoint> getLastFourDaysValue(OrmContext connect) {
         List<ChartPoint> results = new ArrayList<>(SHOW_DAYS);
         OrmPredicates ormPredicates = connect.where(SensorData.class);
-        for (int i = SHOW_DAYS; i > 0; i--) {
+        for (int index = SHOW_DAYS; index > 0; index--) {
             ormPredicates.clear();
-            ormPredicates.equalTo(DATA_FILED_DATE, DateUtils.getDate(i));
+            ormPredicates.equalTo(DATA_FILED_DATE, DateUtils.getDate(index));
             List<SensorData> datas = connect.query(ormPredicates);
             if (datas.size() == 0) {
                 results.add(ChartDataUtils.getChartPoint(0));

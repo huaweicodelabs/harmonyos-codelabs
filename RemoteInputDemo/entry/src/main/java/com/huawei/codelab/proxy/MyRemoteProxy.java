@@ -26,7 +26,7 @@ import ohos.rpc.RemoteException;
 import java.util.Map;
 
 /**
- * 远程连接代理类
+ * MyRemoteProxy
  *
  * @since 2021-02-25
  */
@@ -40,7 +40,7 @@ public class MyRemoteProxy implements IRemoteBroker {
     private final IRemoteObject remote;
 
     /**
-     * 构造函数
+     * constructor
      *
      * @param remote remote
      */
@@ -54,17 +54,16 @@ public class MyRemoteProxy implements IRemoteBroker {
     }
 
     /**
-     * 发送数据到远端
+     * send data to remote
      *
-     * @param requestType 请求类型
-     * @param paramMap 参数
-     * @return 返回
+     * @param requestType requestType
+     * @param paramMap paramMap
      */
-    public int senDataToRemote(int requestType, Map paramMap) {
+    public void senDataToRemote(int requestType, Map<?,?> paramMap) {
         MessageParcel data = MessageParcel.obtain();
         MessageParcel reply = MessageParcel.obtain();
         MessageOption option = new MessageOption(MessageOption.TF_SYNC);
-        int ec = 1;
+        int ec;
 
         try {
             if (paramMap.get("inputString") instanceof String) {
@@ -87,10 +86,8 @@ public class MyRemoteProxy implements IRemoteBroker {
         } catch (RemoteException e) {
             LogUtils.error(TAG, "RemoteException:");
         } finally {
-            ec = ERR_OK;
             data.reclaim();
             reply.reclaim();
         }
-        return ec;
     }
 }

@@ -1,0 +1,68 @@
+{
+  "string": [
+    {
+      "name": "app_name",
+      "value": "DBDemo"
+    },
+    {
+      "name": "mainability_description",
+      "value": "Java_Phone_Empty Feature Ability"
+    },
+    {
+      "name": "information_management",
+      "value": "信息管理"
+    },
+    {
+      "name": "permission_distributed",
+      "value": "多设备协同"
+    },
+    {
+      "name": "add",
+      "value": "添加"
+    },
+    {
+      "name": "sync",
+      "value": "同步"
+    },
+    {
+      "name": "name",
+      "value": "姓名"
+    },
+    {
+      "name": "phone",
+      "value": "手机号码"
+    },
+    {
+      "name": "edit",
+      "value": "编辑"
+    },
+    {
+      "name": "delete",
+      "value": "删除"
+    },
+    {
+      "name": "add_information",
+      "value": "添加信息"
+    },
+    {
+      "name": "dialog_name",
+      "value": "姓名:"
+    },
+    {
+      "name": "input_name",
+      "value": "输入姓名"
+    },
+    {
+      "name": "dialog_phone",
+      "value": "手机号码:"
+    },
+    {
+      "name": "input_phone",
+      "value": "输入手机号"
+    },
+    {
+      "name": "confirm",
+      "value": "确认"
+    }
+  ]
+}

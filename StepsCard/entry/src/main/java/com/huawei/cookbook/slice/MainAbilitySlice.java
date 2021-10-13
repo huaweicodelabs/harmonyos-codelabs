@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.huawei.cookbook.slice;
 
 import com.huawei.cookbook.ResourceTable;
@@ -40,8 +41,7 @@ public class MainAbilitySlice extends AbilitySlice implements PermissionBridge.O
     private Text step;
     private ProgressBar progressBar;
     private int value;
-    private DatabaseHelper helper = new DatabaseHelper(this);
-    private OrmContext connect;
+    private final DatabaseHelper helper = new DatabaseHelper(this);
 
     @Override
     public void onStart(Intent intent) {
@@ -54,7 +54,7 @@ public class MainAbilitySlice extends AbilitySlice implements PermissionBridge.O
 
     private void intComponet() {
         step = (Text) findComponentById(ResourceTable.Id_step);
-        connect = helper.getOrmContext("FormDatabase", "FormDatabase.db", FormDatabase.class);
+        OrmContext connect = helper.getOrmContext("FormDatabase", "FormDatabase.db", FormDatabase.class);
         SensorData sensorData = DatabaseUtils.getSensorData(connect, DateUtils.getDate(0));
         if (sensorData != null) {
             value = sensorData.getStepsValue();
@@ -86,18 +86,18 @@ public class MainAbilitySlice extends AbilitySlice implements PermissionBridge.O
         startAbility(intentService);
     }
 
-    private void showTips(Context context, String message) {
+    private void showTips(Context context) {
         getUITaskDispatcher().asyncDispatch(() -> {
             ToastDialog toastDialog = new ToastDialog(context);
             toastDialog.setAutoClosable(false);
-            toastDialog.setContentText(message);
+            toastDialog.setContentText("=======No permission");
             toastDialog.show();
         });
     }
 
     @Override
     public void onPermissionDenied() {
-        showTips(MainAbilitySlice.this, "=======No permission");
+        showTips(MainAbilitySlice.this);
     }
 
     /**

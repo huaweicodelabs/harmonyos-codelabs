@@ -30,7 +30,7 @@
                 ohos:bubble_height="10vp"
                 ohos:layout_alignment="horizontal_center"
                 ohos:text_size="15fp"
-                ohos:hint="搜索"
+                ohos:hint="$string:search"
                 ohos:width="match_parent" />
 
         </DirectionalLayout>
@@ -57,7 +57,7 @@
                     ohos:top_margin="10vp"
                     ohos:left_margin="15vp"
                     ohos:text_size="15fp"
-                    ohos:text="清空"
+                    ohos:text="$string:clear"
                     ohos:background_element="$graphic:background_button"/>
 
                 <Button
@@ -69,7 +69,7 @@
                     ohos:id="$+id:del"
                     ohos:padding="6vp"
                     ohos:text_size="15fp"
-                    ohos:text="删除"
+                    ohos:text="$string:delete"
                     ohos:background_element="$graphic:background_button"/>
 
             </DirectionalLayout>
@@ -89,7 +89,7 @@
                     ohos:id="$+id:button_A"
                     ohos:padding="6vp"
                     ohos:text_size="15fp"
-                    ohos:text="A"
+                    ohos:text="$string:A"
                     ohos:background_element="$graphic:background_button"/>
 
                 <Button
@@ -100,7 +100,7 @@
                     ohos:id="$+id:button_B"
                     ohos:padding="6vp"
                     ohos:text_size="15fp"
-                    ohos:text="B"
+                    ohos:text="$string:B"
                     ohos:background_element="$graphic:background_button"/>
 
                 <Button
@@ -111,7 +111,7 @@
                     ohos:id="$+id:button_C"
                     ohos:padding="6vp"
                     ohos:text_size="15fp"
-                    ohos:text="C"
+                    ohos:text="$string:C"
                     ohos:background_element="$graphic:background_button"/>
 
                 <Button
@@ -122,7 +122,7 @@
                     ohos:id="$+id:button_D"
                     ohos:padding="6vp"
                     ohos:text_size="15fp"
-                    ohos:text="D"
+                    ohos:text="$string:D"
                     ohos:background_element="$graphic:background_button"/>
 
                 <Button
@@ -133,7 +133,7 @@
                     ohos:id="$+id:button_E"
                     ohos:padding="6vp"
                     ohos:text_size="15fp"
-                    ohos:text="E"
+                    ohos:text="$string:E"
                     ohos:background_element="$graphic:background_button"/>
 
                 <Button
@@ -145,7 +145,7 @@
                     ohos:id="$+id:button_F"
                     ohos:padding="6vp"
                     ohos:text_size="15fp"
-                    ohos:text="F"
+                    ohos:text="$string:F"
                     ohos:background_element="$graphic:background_button"/>
 
             </DirectionalLayout>
@@ -165,7 +165,7 @@
                     ohos:id="$+id:button_G"
                     ohos:padding="6vp"
                     ohos:text_size="15fp"
-                    ohos:text="G"
+                    ohos:text="$string:G"
                     ohos:background_element="$graphic:background_button"/>
 
                 <Button
@@ -176,7 +176,7 @@
                     ohos:id="$+id:button_H"
                     ohos:padding="6vp"
                     ohos:text_size="15fp"
-                    ohos:text="H"
+                    ohos:text="$string:H"
                     ohos:background_element="$graphic:background_button"/>
 
                 <Button
@@ -187,7 +187,7 @@
                     ohos:id="$+id:button_I"
                     ohos:padding="6vp"
                     ohos:text_size="15fp"
-                    ohos:text="I"
+                    ohos:text="$string:I"
                     ohos:background_element="$graphic:background_button"/>
 
                 <Button
@@ -198,7 +198,7 @@
                     ohos:id="$+id:button_J"
                     ohos:padding="6vp"
                     ohos:text_size="15fp"
-                    ohos:text="J"
+                    ohos:text="$string:J"
                     ohos:background_element="$graphic:background_button"/>
 
                 <Button
@@ -209,7 +209,7 @@
                     ohos:id="$+id:button_K"
                     ohos:padding="6vp"
                     ohos:text_size="15fp"
-                    ohos:text="K"
+                    ohos:text="$string:K"
                     ohos:background_element="$graphic:background_button"/>
 
                 <Button
@@ -221,7 +221,7 @@
                     ohos:id="$+id:button_L"
                     ohos:padding="6vp"
                     ohos:text_size="15fp"
-                    ohos:text="L"
+                    ohos:text="$string:L"
                     ohos:background_element="$graphic:background_button"/>
 
             </DirectionalLayout>
@@ -241,7 +241,7 @@
                     ohos:id="$+id:button_M"
                     ohos:padding="6vp"
                     ohos:text_size="15fp"
-                    ohos:text="M"
+                    ohos:text="$string:M"
                     ohos:background_element="$graphic:background_button"/>
 
                 <Button
@@ -252,7 +252,7 @@
                     ohos:id="$+id:button_N"
                     ohos:padding="6vp"
                     ohos:text_size="15fp"
-                    ohos:text="N"
+                    ohos:text="$string:N"
                     ohos:background_element="$graphic:background_button"/>
 
                 <Button
@@ -263,7 +263,7 @@
                     ohos:id="$+id:button_O"
                     ohos:padding="6vp"
                     ohos:text_size="15fp"
-                    ohos:text="O"
+                    ohos:text="$string:O"
                     ohos:background_element="$graphic:background_button"/>
 
                 <Button
@@ -274,7 +274,7 @@
                     ohos:id="$+id:button_P"
                     ohos:padding="6vp"
                     ohos:text_size="15fp"
-                    ohos:text="P"
+                    ohos:text="$string:P"
                     ohos:background_element="$graphic:background_button"/>
 
                 <Button
@@ -285,7 +285,7 @@
                     ohos:id="$+id:button_Q"
                     ohos:padding="6vp"
                     ohos:text_size="15fp"
-                    ohos:text="Q"
+                    ohos:text="$string:Q"
                     ohos:background_element="$graphic:background_button"/>
 
                 <Button
@@ -297,7 +297,7 @@
                     ohos:id="$+id:button_R"
                     ohos:padding="6vp"
                     ohos:text_size="15fp"
-                    ohos:text="R"
+                    ohos:text="$string:R"
                     ohos:background_element="$graphic:background_button"/>
 
             </DirectionalLayout>
@@ -317,7 +317,7 @@
                     ohos:id="$+id:button_S"
                     ohos:padding="6vp"
                     ohos:text_size="15fp"
-                    ohos:text="S"
+                    ohos:text="$string:S"
                     ohos:background_element="$graphic:background_button"/>
 
                 <Button
@@ -328,7 +328,7 @@
                     ohos:id="$+id:button_T"
                     ohos:padding="6vp"
                     ohos:text_size="15fp"
-                    ohos:text="T"
+                    ohos:text="$string:T"
                     ohos:background_element="$graphic:background_button"/>
 
                 <Button
@@ -339,7 +339,7 @@
                     ohos:id="$+id:button_U"
                     ohos:padding="6vp"
                     ohos:text_size="15fp"
-                    ohos:text="U"
+                    ohos:text="$string:U"
                     ohos:background_element="$graphic:background_button"/>
 
                 <Button
@@ -350,7 +350,7 @@
                     ohos:id="$+id:button_V"
                     ohos:padding="6vp"
                     ohos:text_size="15fp"
-                    ohos:text="V"
+                    ohos:text="$string:V"
                     ohos:background_element="$graphic:background_button"/>
 
                 <Button
@@ -361,7 +361,7 @@
                     ohos:id="$+id:button_W"
                     ohos:padding="6vp"
                     ohos:text_size="15fp"
-                    ohos:text="W"
+                    ohos:text="$string:W"
                     ohos:background_element="$graphic:background_button"/>
 
                 <Button
@@ -373,7 +373,7 @@
                     ohos:id="$+id:button_X"
                     ohos:padding="6vp"
                     ohos:text_size="15fp"
-                    ohos:text="X"
+                    ohos:text="$string:X"
                     ohos:background_element="$graphic:background_button"/>
 
             </DirectionalLayout>
@@ -393,7 +393,7 @@
                     ohos:id="$+id:button_Y"
                     ohos:padding="6vp"
                     ohos:text_size="15fp"
-                    ohos:text="Y"
+                    ohos:text="$string:Y"
                     ohos:background_element="$graphic:background_button"/>
 
                 <Button
@@ -404,7 +404,7 @@
                     ohos:id="$+id:button_Z"
                     ohos:padding="6vp"
                     ohos:text_size="15fp"
-                    ohos:text="Z"
+                    ohos:text="$string:Z"
                     ohos:background_element="$graphic:background_button"/>
 
                 <Button
@@ -415,7 +415,7 @@
                     ohos:id="$+id:button_0"
                     ohos:padding="6vp"
                     ohos:text_size="15fp"
-                    ohos:text="0"
+                    ohos:text="$string:zero"
                     ohos:background_element="$graphic:background_button"/>
 
                 <Button
@@ -426,7 +426,7 @@
                     ohos:id="$+id:button_1"
                     ohos:padding="6vp"
                     ohos:text_size="15fp"
-                    ohos:text="1"
+                    ohos:text="$string:one"
                     ohos:background_element="$graphic:background_button"/>
 
                 <Button
@@ -437,7 +437,7 @@
                     ohos:id="$+id:button_2"
                     ohos:padding="6vp"
                     ohos:text_size="15fp"
-                    ohos:text="2"
+                    ohos:text="$string:two"
                     ohos:background_element="$graphic:background_button"/>
 
                 <Button
@@ -449,7 +449,7 @@
                     ohos:id="$+id:button_3"
                     ohos:padding="6vp"
                     ohos:text_size="15fp"
-                    ohos:text="3"
+                    ohos:text="$string:three"
                     ohos:background_element="$graphic:background_button"/>
 
             </DirectionalLayout>
@@ -470,7 +470,7 @@
                     ohos:id="$+id:button_4"
                     ohos:padding="6vp"
                     ohos:text_size="15fp"
-                    ohos:text="4"
+                    ohos:text="$string:four"
                     ohos:background_element="$graphic:background_button"/>
 
                 <Button
@@ -481,7 +481,7 @@
                     ohos:id="$+id:button_5"
                     ohos:padding="6vp"
                     ohos:text_size="15fp"
-                    ohos:text="5"
+                    ohos:text="$string:five"
                     ohos:background_element="$graphic:background_button"/>
 
                 <Button
@@ -492,7 +492,7 @@
                     ohos:id="$+id:button_6"
                     ohos:padding="6vp"
                     ohos:text_size="15fp"
-                    ohos:text="6"
+                    ohos:text="$string:six"
                     ohos:background_element="$graphic:background_button"/>
 
                 <Button
@@ -503,7 +503,7 @@
                     ohos:id="$+id:button_7"
                     ohos:padding="6vp"
                     ohos:text_size="15fp"
-                    ohos:text="7"
+                    ohos:text="$string:seven"
                     ohos:background_element="$graphic:background_button"/>
 
                 <Button
@@ -514,7 +514,7 @@
                     ohos:id="$+id:button_8"
                     ohos:padding="6vp"
                     ohos:text_size="15fp"
-                    ohos:text="8"
+                    ohos:text="$string:eight"
                     ohos:background_element="$graphic:background_button"/>
 
                 <Button
@@ -526,7 +526,7 @@
                     ohos:id="$+id:button_9"
                     ohos:padding="6vp"
                     ohos:text_size="15fp"
-                    ohos:text="9"
+                    ohos:text="$string:nine"
                     ohos:background_element="$graphic:background_button"/>
 
             </DirectionalLayout>
@@ -566,7 +566,7 @@
                     ohos:height="match_content"
                     ohos:width="match_content"
                     ohos:id="$+id:text_one"
-                    ohos:text="无线耳机"
+                    ohos:text="$string:wireless_ear"
                     ohos:text_size="15fp"
                     ohos:text_color="yellow"
                     ohos:layout_alignment="horizontal_center"/>
@@ -592,7 +592,7 @@
                     ohos:height="match_content"
                     ohos:width="match_content"
                     ohos:id="$+id:text_two"
-                    ohos:text="智能眼镜"
+                    ohos:text="$string:smart_glasses"
                     ohos:text_size="15fp"
                     ohos:text_color="yellow"
                     ohos:layout_alignment="center"/>
@@ -617,7 +617,7 @@
                     ohos:height="match_content"
                     ohos:width="match_content"
                     ohos:id="$+id:text_three"
-                    ohos:text="音响"
+                    ohos:text="$string:acoustics"
                     ohos:text_size="15fp"
                     ohos:text_color="yellow"
                     ohos:layout_alignment="horizontal_center"/>
@@ -643,7 +643,7 @@
                     ohos:height="match_content"
                     ohos:width="match_content"
                     ohos:id="$+id:text_fou"
-                    ohos:text="旗舰店"
+                    ohos:text="$string:flagship_store"
                     ohos:text_size="15fp"
                     ohos:text_color="yellow"
                     ohos:layout_alignment="center"/>
@@ -668,7 +668,7 @@
                     ohos:height="match_content"
                     ohos:width="match_content"
                     ohos:id="$+id:text_five"
-                    ohos:text="胡杨树"
+                    ohos:text="$string:tree"
                     ohos:text_size="15fp"
                     ohos:text_color="yellow"
                     ohos:layout_alignment="horizontal_center"/>
@@ -694,7 +694,7 @@
                     ohos:height="match_content"
                     ohos:width="match_content"
                     ohos:id="$+id:text_six"
-                    ohos:text="沙漠"
+                    ohos:text="$string:desert"
                     ohos:text_size="15fp"
                     ohos:text_color="yellow"
                     ohos:layout_alignment="center"/>
@@ -719,7 +719,7 @@
                     ohos:height="match_content"
                     ohos:width="match_content"
                     ohos:id="$+id:text_seven"
-                    ohos:text="WATCHFIT"
+                    ohos:text="$string:watch_fit"
                     ohos:text_size="15fp"
                     ohos:text_color="yellow"
                     ohos:layout_alignment="horizontal_center"/>
@@ -745,7 +745,7 @@
                     ohos:height="match_content"
                     ohos:width="match_content"
                     ohos:id="$+id:text_eight"
-                    ohos:text="WATCHGT2"
+                    ohos:text="$string:watch_git"
                     ohos:text_size="15fp"
                     ohos:text_color="yellow"
                     ohos:layout_alignment="center"/>
@@ -770,7 +770,7 @@
                     ohos:height="match_content"
                     ohos:width="match_content"
                     ohos:id="$+id:text_nine"
-                    ohos:text="WATCHGT2PRO"
+                    ohos:text="$string:watch_gt_pro"
                     ohos:text_size="15fp"
                     ohos:text_color="yellow"
                     ohos:layout_alignment="horizontal_center"/>
@@ -796,7 +796,7 @@
                     ohos:height="match_content"
                     ohos:width="match_content"
                     ohos:id="$+id:text_ten"
-                    ohos:text="星空蓝"
+                    ohos:text="$string:starry_blue"
                     ohos:text_size="15fp"
                     ohos:text_color="yellow"
                     ohos:layout_alignment="center"/>

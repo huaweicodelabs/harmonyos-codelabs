@@ -1,0 +1,51 @@
+<!--/*
+ * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */-->
+<div class="dialog-container" show="{{showObj}}">
+    <image class="cp-logo" style="margin-top: 48px;" src="/common/img/customised/logo_full.png"> </image>
+    <text class="fa-name" style="margin-top: 48px;">
+        {{ $t('strings.custom_FA_name') }}
+    </text>
+    <text class="version" style="margin-top: 4px;">
+        {{$t('strings.public_version')}}
+    </text>
+    <text class="version" style="margin-top: 2px;">
+        {{version}}
+    </text>
+    <text class="auth-hint" style="margin-top: 56px;">
+        {{ $t('strings.public_login_hint') }}
+    </text>
+
+    <button class="button {{checked? 'check' : 'uncheck'}}"
+            icon="/common/img/base/ic_public_hw_logo.png"
+            placement="start"
+            value="{{ $t('strings.public_login_btn_text') }}"
+            style="margin-top: 8px;"
+            disabled="{{!checked}}"
+            onclick="login">
+    </button>
+    <button class="button" value="{{$t('strings.public_cancel')}}" style="margin-top: 16px;" onclick="exit">
+    </button>
+    <div class="flex-row center">
+        <input type="checkbox" @change="onCheckboxChange"></input>
+        <text onclick="openUrl">
+            <span class="auth-hint">
+                {{ $t('strings.public_agree', {statement: ''}) }}
+            </span>
+            <span class="privacy">
+                {{ $t('strings.public_privacy_statement') }}
+            </span>
+        </text>
+    </div>
+</div>

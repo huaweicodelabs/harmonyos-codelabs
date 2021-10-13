@@ -35,9 +35,9 @@ public class CommonUtils {
     }
 
     /**
-     * 通过资源ID获取颜色
+     * getColor
      *
-     * @param context comtext
+     * @param context context
      * @param resourceId id
      * @return int
      */

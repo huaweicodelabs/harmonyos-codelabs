@@ -1,0 +1,70 @@
+{
+  "app": {
+    "bundleName": "com.huawei.cookbook",
+    "vendor": "huawei",
+    "version": {
+      "code": 1000000,
+      "name": "1.0.0"
+    }
+  },
+  "deviceConfig": {},
+  "module": {
+    "package": "com.huawei.cookbook",
+    "name": ".MyApplication",
+    "mainAbility": "com.huawei.cookbook.MainAbility",
+    "reqCapabilities": [
+      "video_support"
+    ],
+    "deviceType": [
+      "phone"
+    ],
+    "reqPermissions": [
+      {
+        "name": "ohos.permission.ACCESS_BIOMETRIC"
+      },
+      {
+        "name": "ohos.permission.CAMERA"
+      },
+      {
+        "name": "ohos.permission.WRITE_USER_STORAGE"
+      }
+    ],
+    "distro": {
+      "deliveryWithInstall": true,
+      "moduleName": "entry",
+      "moduleType": "entry",
+      "installationFree": false
+    },
+    "abilities": [
+      {
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ],
+        "orientation": "portrait",
+        "formsEnabled": false,
+        "name": "com.huawei.cookbook.MainAbility",
+        "icon": "$media:icon",
+        "description": "$string:mainability_description",
+        "label": "$string:app_name",
+        "type": "page",
+        "launchType": "standard"
+      },
+      {
+        "orientation": "unspecified",
+        "name": "com.huawei.cookbook.OpenCamera",
+        "icon": "$media:icon",
+        "description": "$string:opencamera_description",
+        "label": "$string:entry",
+        "type": "page",
+        "launchType": "standard"
+      }
+    ]
+  }
+}

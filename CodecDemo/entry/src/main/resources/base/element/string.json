@@ -15,6 +15,22 @@
     {
       "name": "codecability_description",
       "value": "Java_Phone_Empty Feature Ability"
+    },
+    {
+      "name": "self_mirror",
+      "value": "自拍镜像："
+    },
+    {
+      "name": "switch_on",
+      "value": "on"
+    },
+    {
+      "name": "switch_off",
+      "value": "off"
+    },
+    {
+      "name": "start_camera",
+      "value": "调起摄像头编解码"
     }
   ]
 }

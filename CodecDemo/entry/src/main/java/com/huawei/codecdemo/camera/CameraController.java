@@ -22,7 +22,7 @@ import com.huawei.codecdemo.camera.constant.CameraType;
 import com.huawei.codecdemo.camera.constant.CaptureMode;
 import com.huawei.codecdemo.camera.utils.Nv21Handler;
 import com.huawei.codecdemo.media.VideoRecorder;
-import com.huawei.codecdemo.media.constant.MediaStatu;
+import com.huawei.codecdemo.media.constant.MediaStatus;
 import com.huawei.codecdemo.utils.LogUtil;
 
 import ohos.agp.components.surfaceprovider.SurfaceProvider;
@@ -62,16 +62,15 @@ public class CameraController implements CameraListener {
     private static final int NUMBER_INT_2 = 2;
     private static final int NUMBER_INT_3 = 3;
     private static final int NUMBER_INT_5 = 5;
-    private static final int NUMBER_INT_10 = 10;
     private static final int NUMBER_INT_90 = 90;
     private static final int NUMBER_INT_270 = 270;
-    private Context context;
-    private CameraAbility cameraSupportor;
+    private final Context context;
+    private CameraAbility cameraSupporter;
     private Camera cameraDevice;
     private CameraConfig.Builder cameraConfigBuilder;
     private FrameConfig.Builder frameConfigBuilder;
     private ImageReceiver imageReceiver;
-    private EventHandler eventHandler;
+    private final EventHandler eventHandler;
 
     private boolean isCameraCreated;
     private boolean isPrepared;
@@ -92,7 +91,7 @@ public class CameraController implements CameraListener {
     /**
      * CameraListenerController
      *
-     * @param context       context
+     * @param context context
      * @param isFrontCamera isFrontCamera
      */
     public CameraController(Context context, boolean isFrontCamera) {
@@ -116,8 +115,8 @@ public class CameraController implements CameraListener {
         CameraKit camerakit = CameraKit.getInstance(context.getApplicationContext());
         if (camerakit != null && camerakit.getCameraIds().length > cameraType) {
             String cameraId = camerakit.getCameraIds()[cameraType];
-            cameraSupportor = camerakit.getCameraAbility(cameraId);
-            CameraStateCallback cameraStateCallback = new MyCameraStatuCallback();
+            cameraSupporter = camerakit.getCameraAbility(cameraId);
+            CameraStateCallback cameraStateCallback = new MyCameraStatusCallback();
             camerakit.createCamera(cameraId, cameraStateCallback, eventHandler);
             captureInit();
         }
@@ -171,12 +170,12 @@ public class CameraController implements CameraListener {
             LogUtil.info(TAG, "takePictureInit pictureSizes :" + Arrays.toString(resolutions.toArray()));
             double baseResolution =
                     (double) Math.max(previewHeight, previewWidth) / Math.min(previewHeight, previewWidth);
-            double minDefference = baseResolution;
+            double minDeference = baseResolution;
             for (Size resolution : resolutions) {
                 double resolutionTemp = (double) resolution.width / resolution.height;
                 double difference = Math.abs(baseResolution - resolutionTemp);
-                if (difference < minDefference) {
-                    minDefference = difference;
+                if (difference < minDeference) {
+                    minDeference = difference;
                     resoluteX = resolution.width;
                     resoluteY = resolution.height;
                 }
@@ -185,11 +184,11 @@ public class CameraController implements CameraListener {
     }
 
     /**
-     * MyCameraStatuCallback
+     * MyCameraStatusCallback
      *
      * @since 2020-04-09
      */
-    private class MyCameraStatuCallback extends CameraStateCallback {
+    private class MyCameraStatusCallback extends CameraStateCallback {
         @Override
         public void onCreated(Camera camera) {
             super.onCreated(camera);
@@ -262,7 +261,7 @@ public class CameraController implements CameraListener {
     private class MyImageArrivalListener implements ImageReceiver.IImageArrivalListener {
         private static final int BUFFER_NUM = 5;
 
-        private List<byte[]> buffers = new ArrayList<>(NUMBER_INT_5);
+        private final List<byte[]> buffers = new ArrayList<>(NUMBER_INT_5);
 
         private int index;
 
@@ -328,7 +327,7 @@ public class CameraController implements CameraListener {
         }
     }
 
-    private void takeMultiPhoto(int size) {
+    private void takeMultiPhoto() {
         frameConfigBuilder = cameraDevice.getFrameConfigBuilder(Camera.FrameConfigType.FRAME_CONFIG_PICTURE);
         if (isMirror) {
             frameConfigBuilder.setParameter(ParameterKey.IMAGE_MIRROR, true);
@@ -352,8 +351,8 @@ public class CameraController implements CameraListener {
     }
 
     private void startRecord() {
-        if (!isRecording() && videoRecorder.getStatu() != MediaStatu.IDEL) {
-            if (videoRecorder.getStatu() == MediaStatu.STOP) {
+        if (!isRecording() && videoRecorder.getStatus() != MediaStatus.IDEL) {
+            if (videoRecorder.getStatus() == MediaStatus.STOP) {
                 recorderInit();
             }
             Optional<Surface> optional = videoRecorder.getRecordSurface();
@@ -393,7 +392,7 @@ public class CameraController implements CameraListener {
                     takeSinglePhoto();
                     break;
                 case MULTI_SHOT:
-                    takeMultiPhoto(NUMBER_INT_10);
+                    takeMultiPhoto();
                     break;
                 case VIDEO_RECORD:
                     startRecord();
@@ -437,11 +436,6 @@ public class CameraController implements CameraListener {
     }
 
     @Override
-    public CaptureMode getCaptureMode() {
-        return captureMode;
-    }
-
-    @Override
     public Size getResolution() {
         return new Size(resoluteX, resoluteY);
     }
@@ -449,8 +443,8 @@ public class CameraController implements CameraListener {
     @Override
     public List<Size> getResolutions() {
         List<Size> sizes = null;
-        if (cameraSupportor != null) {
-            sizes = cameraSupportor.getSupportedSizes(SurfaceOps.class);
+        if (cameraSupporter != null) {
+            sizes = cameraSupporter.getSupportedSizes(SurfaceOps.class);
         }
         return sizes;
     }

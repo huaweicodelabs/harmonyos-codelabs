@@ -1,0 +1,31 @@
+<!--/*
+ * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */-->
+<div class="color-picker-dialog" >
+<!--    <div class="mark" @click="colorPickerDialogHide"></div>-->
+    <div class="dialog-main flex-column" style="width:{{dialogWidth}}; height: {{dialogHeight}};">
+        <div class="dialog-title">
+            <text class="txt">{{title}}</text>
+        </div>
+        <div class="dialog-content" ref="container" style="height: {{canvasHeight}};">
+            <canvas ref="canvas" id="canvas" @touchmove="getCanvasTouchMove" @touchstart="getCanvasTouchEnd" style="width: {{canvasWidth}}px; height: {{canvasHeight}}px;"></canvas>
+            <div class="pointStle" ref="point" id="point" @touchmove="getPointTouchMove" style="width: {{pointWidth}}px;border-radius: {{pointWidth/2}}px; height: {{pointHeight}}px; left: {{pointLeft}};top:{{pointTop}}"></div>
+        </div>
+        <div class="dialog-btn">
+            <button type="text" show="{{showCancelButton}}" value="{{cancelButtonText}}" onclick="cancelClose" class="btn-txt"></button>
+            <div class="line" show="{{showCancelButton&&showConfirmButton}}"></div>
+            <button type="text" show="{{showConfirmButton}}" value="{{confirmButtonText}}" onclick="submitColor" class="btn-txt"></button>
+        </div>
+    </div>
+</div>

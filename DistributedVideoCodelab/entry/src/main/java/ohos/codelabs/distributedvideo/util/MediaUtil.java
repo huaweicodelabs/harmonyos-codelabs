@@ -25,23 +25,23 @@ import java.util.List;
 /**
  * Media util
  *
- * @since 2020-12-04
+ * @since 2021-09-07
  */
 public class MediaUtil {
-    private static List<AdvertisementMo> videoAdvertisementMos = new ArrayList<>(0);
-    private static List<VideoListMo> playListMos = new ArrayList<>(0);
+    private static final List<AdvertisementMo> ADVERTISEMENT_MOS = new ArrayList<>(0);
+    private static final List<VideoListMo> VIDEO_LIST_MO_LIST = new ArrayList<>(0);
 
     private MediaUtil() {
     }
 
     static {
-        videoAdvertisementMos.add(new AdvertisementMo(ResourceTable.Media_video_ad0, "green"));
-        videoAdvertisementMos.add(new AdvertisementMo(ResourceTable.Media_video_ad2, "yellow"));
-        videoAdvertisementMos.add(new AdvertisementMo(ResourceTable.Media_video_ad3, "red"));
-        playListMos.add(new VideoListMo(ResourceTable.Media_video_list0,
+        ADVERTISEMENT_MOS.add(new AdvertisementMo(ResourceTable.Media_video_ad0, "green"));
+        ADVERTISEMENT_MOS.add(new AdvertisementMo(ResourceTable.Media_video_ad2, "yellow"));
+        ADVERTISEMENT_MOS.add(new AdvertisementMo(ResourceTable.Media_video_ad3, "red"));
+        VIDEO_LIST_MO_LIST.add(new VideoListMo(ResourceTable.Media_video_list0,
                 "landscape", "waterfall"));
-        playListMos.add(new VideoListMo(ResourceTable.Media_video_list2, "child", "cute"));
-        playListMos.add(new VideoListMo(ResourceTable.Media_video_list1, "show", "drone"));
+        VIDEO_LIST_MO_LIST.add(new VideoListMo(ResourceTable.Media_video_list2, "child", "cute"));
+        VIDEO_LIST_MO_LIST.add(new VideoListMo(ResourceTable.Media_video_list1, "show", "drone"));
     }
 
     /**
@@ -50,7 +50,7 @@ public class MediaUtil {
      * @return advertisementMos
      */
     public static List<AdvertisementMo> getVideoAdvertisementInfo() {
-        return videoAdvertisementMos;
+        return ADVERTISEMENT_MOS;
     }
 
     /**
@@ -59,6 +59,6 @@ public class MediaUtil {
      * @return VideoListMo
      */
     public static List<VideoListMo> getPlayListMos() {
-        return playListMos;
+        return VIDEO_LIST_MO_LIST;
     }
 }

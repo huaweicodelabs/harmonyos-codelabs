@@ -16,7 +16,7 @@
 			ohos:bottom_margin="14vp"
 			ohos:text_alignment="left"
 			ohos:align_parent_bottom="true"
-			ohos:text="Ghost"
+			ohos:text="$string:ghost"
 			ohos:width="match_parent"
 			ohos:height="match_content" />
 </DependentLayout>

@@ -37,22 +37,26 @@ public class PermissionBridge {
 
     private static OnPermissionStateListener onPermissionStateListener;
 
-    private static EventHandler handler = new EventHandler(EventRunner.current()) {
-        @Override
-        protected void processEvent(InnerEvent event) {
-            switch (event.eventId) {
-                case EVENT_PERMISSION_GRANTED:
-                    onPermissionStateListener.onPermissionGranted();
-                    break;
-                case EVENT_PERMISSION_DENIED:
-                    onPermissionStateListener.onPermissionDenied();
-                    break;
-                default:
-                    LogUtils.info(TAG, "EventHandler Undefined Event");
-                    break;
+    private static final EventHandler HANDLER;
+
+    static {
+        HANDLER = new EventHandler(EventRunner.current()) {
+            @Override
+            protected void processEvent(InnerEvent event) {
+                switch (event.eventId) {
+                    case EVENT_PERMISSION_GRANTED:
+                        onPermissionStateListener.onPermissionGranted();
+                        break;
+                    case EVENT_PERMISSION_DENIED:
+                        onPermissionStateListener.onPermissionDenied();
+                        break;
+                    default:
+                        LogUtils.info(TAG, "EventHandler Undefined Event");
+                        break;
+                }
             }
-        }
-    };
+        };
+    }
 
     /**
      * setOnPermissionStateListener
@@ -84,6 +88,6 @@ public class PermissionBridge {
      * @return EventHandler
      */
     public static EventHandler getHandler() {
-        return handler;
+        return HANDLER;
     }
 }

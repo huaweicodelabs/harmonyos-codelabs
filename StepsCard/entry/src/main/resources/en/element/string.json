@@ -1,0 +1,24 @@
+{
+  "string": [
+    {
+      "name": "app_name",
+      "value": "steps service widget"
+    },
+    {
+      "name": "mainability_description",
+      "value": "Java_Phone_Empty Feature Ability"
+    },
+    {
+      "name": "HelloWorld",
+      "value": "Hello World"
+    },
+    {
+      "name": "stepsensorservice_description",
+      "value": "hap sample empty service"
+    },
+    {
+      "name": "stepformability_description",
+      "value": "Java_Phone_Empty Feature Ability"
+    }
+  ]
+}

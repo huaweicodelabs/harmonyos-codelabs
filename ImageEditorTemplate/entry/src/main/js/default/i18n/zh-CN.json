@@ -1,0 +1,20 @@
+{
+  "strings": {
+    "title": "是否放弃当前修改?",
+    "titleAppBar": "编辑",
+    "picFrame": "画幅",
+    "cropping": "裁剪",
+    "adjust": "调节",
+    "luminance": "亮度",
+    "contrast": "对比度",
+    "saturation": "饱和度",
+    "picFraImgSrc": "common/images/picture_frame_white_blue.svg",
+    "conBotFirImgSrc": "common/images/picture_frame_white.svg",
+    "conBotSecImgSrc": "common/images/proportions_1-1_white.png",
+    "conBotThrImgSrc": "common/images/proportions_16-9_white.png",
+    "conBotFouImgSrc": "common/images/proportions_9-16_white.png",
+    "luminanceImgSrc": "common/images/luminance_white.svg",
+    "contrastImgSrc": "common/images/contrast_white.svg",
+    "saturationImgSrc": "common/images/saturation_white.svg"
+  }
+}

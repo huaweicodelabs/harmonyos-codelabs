@@ -40,11 +40,11 @@ import java.util.List;
 public class MapDataHelper {
     private static final String TAG = MapDataHelper.class.getName();
 
+    private final TinyMap tinyMap;
+
+    private final Context context;
+
     private String location;
-
-    private TinyMap tinyMap;
-
-    private Context context;
 
     private DataCallBack dataCallBack;
 

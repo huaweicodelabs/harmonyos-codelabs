@@ -16,7 +16,7 @@
 package com.huawei.codelab.data;
 
 /**
- * 影片实体
+ * ComponentPointData
  *
  * @since 2021-03-03
  */

@@ -29,7 +29,6 @@ import ohos.agp.components.Image;
 import ohos.agp.components.Switch;
 import ohos.agp.components.surfaceprovider.SurfaceProvider;
 import ohos.agp.graphics.SurfaceOps;
-import ohos.app.dispatcher.task.TaskPriority;
 
 import java.util.Optional;
 
@@ -39,7 +38,6 @@ import java.util.Optional;
  * @since 2021-04-09
  */
 public class CodecAbilitySlice extends AbilitySlice {
-    private static final int NUMBER_INT_1000 = 1000;
     private CameraListener cameraController;
     private CodecPlayer codecPlayer;
     private CaptureButton captureButton;
@@ -104,9 +102,7 @@ public class CodecAbilitySlice extends AbilitySlice {
             });
         }
         if (captureButton != null) {
-            captureButton.setClickedListener(component -> {
-                captureToggle();
-            });
+            captureButton.setClickedListener(component -> captureToggle());
         }
     }
 

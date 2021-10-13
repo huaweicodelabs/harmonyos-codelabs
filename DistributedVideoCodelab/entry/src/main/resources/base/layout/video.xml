@@ -41,10 +41,10 @@
             ohos:orientation="horizontal">
             <Text
                 ohos:id="$+id:video_play_title"
-                ohos:text="Coming soon"
+                ohos:text="$string:list_title"
                 ohos:text_size="16fp"
                 ohos:text_color="#ff000000"
-                ohos:text_alignment="4"
+                ohos:text_alignment="horizontal_center"
                 ohos:layout_alignment="vertical_center"
                 ohos:width="match_content"
                 ohos:height="match_content" />

@@ -45,6 +45,8 @@ import ohos.app.Context;
 import ohos.data.resultset.ResultSet;
 import ohos.distributedschedule.interwork.DeviceInfo;
 import ohos.distributedschedule.interwork.DeviceManager;
+import ohos.global.resource.NotExistException;
+import ohos.global.resource.WrongTypeException;
 import ohos.media.image.ImageSource;
 import ohos.media.photokit.metadata.AVStorage;
 import ohos.utils.net.Uri;
@@ -69,9 +71,8 @@ public class MailEditSlice extends AbilitySlice implements IAbilityContinuation 
     private static final String TAG = MailEditSlice.class.getSimpleName();
     private static final int CACHE_SIZE = 8 * 1024;
     private static final int IO_END_LEN = -1;
-    private static final int TIPS_DURATION_TIME = 50;
+    private static final int TIPS_DURATION_TIME = 5;
 
-    private ComponentContainer rootLayout;
     private TextField receiver;
     private TextField cc;
     private TextField title;
@@ -79,18 +80,20 @@ public class MailEditSlice extends AbilitySlice implements IAbilityContinuation 
     private MailDataBean cachedMailData;
     private Image doConnectImg;
 
-    private List<String> mDialogDataList = new ArrayList<>();
+    private final List<String> mDialogDataList = new ArrayList<>();
     private ListComponentAdapter mRecycleItemProvider;
     private CommonDialog fileDialog;
-    private ListContainer mAttachmentContainer;
-    private List<String> mAttachmentDataList = new ArrayList<>();
+    private final List<String> mAttachmentDataList = new ArrayList<>();
     private ListComponentAdapter mAttachmentProvider;
+
+    private Boolean picIsClicked=false;
 
     @Override
     public void onStart(Intent intent) {
         super.onStart(intent);
         LogUtil.info(TAG, "is onStart begin");
         Component view = LayoutScatter.getInstance(this).parse(ResourceTable.Layout_moudle_mail_edit, null, false);
+        ComponentContainer rootLayout;
         if (!(view instanceof ComponentContainer)) {
             rootLayout = new DirectionalLayout(this);
         } else {
@@ -129,7 +132,7 @@ public class MailEditSlice extends AbilitySlice implements IAbilityContinuation 
     }
 
     private void setAttachmentProvider(Component rootView) {
-        mAttachmentContainer = (ListContainer) rootView.findComponentById(ResourceTable.Id_attachment_list);
+        ListContainer mAttachmentContainer = (ListContainer) rootView.findComponentById(ResourceTable.Id_attachment_list);
         mAttachmentProvider =
             new ListComponentAdapter<String>(
                     getContext(), mAttachmentDataList, ResourceTable.Layout_attachment_item_horizontal) {
@@ -163,7 +166,12 @@ public class MailEditSlice extends AbilitySlice implements IAbilityContinuation 
         if (cachedMailData == null) {
             receiver.setText("user1;user2");
             cc.setText("user3");
-            title.setText("RE：HarmonyOS 2.0 Codelab体验");
+            ohos.global.resource.ResourceManager resManager = this.getResourceManager();
+            try {
+                title.setText(resManager.getElement(ResourceTable.String_text_reply_title).getString());
+            } catch (IOException | NotExistException | WrongTypeException e) {
+                e.printStackTrace();
+            }
         } else {
             receiver.setText(cachedMailData.getReceiver());
             cc.setText(cachedMailData.getCc());
@@ -193,7 +201,7 @@ public class MailEditSlice extends AbilitySlice implements IAbilityContinuation 
                             LogUtil.info(TAG, "continue button click");
                             try {
                                 // 开始任务迁移
-                                continueAbility();
+                                continueAbility(deviceInfo.getDeviceId());
                                 LogUtil.info(TAG, "continue button click end");
                             } catch (IllegalStateException | UnsupportedOperationException e) {
                                 WidgetHelper.showTips(this, ResourceTable.String_tips_mail_continue_failed);
@@ -207,20 +215,29 @@ public class MailEditSlice extends AbilitySlice implements IAbilityContinuation 
         rootView.findComponentById(ResourceTable.Id_open_dir)
             .setClickedListener(
                 c -> {
+                    if (picIsClicked) {
+                        //WidgetHelper.showTips(this, "请勿连续点击！", TIPS_DURATION_TIME);
+                        return;
+                    }
+                    if (mAttachmentDataList.size() > 4) {
+                        WidgetHelper.showTips(this, "最多支持5个附件哦！", TIPS_DURATION_TIME);
+                        return;
+                    }
+
                     // 防止多次点击一直弹窗
                     if (fileDialog != null && fileDialog.isShowing()) {
                         return;
                     }
-
+                    picIsClicked=true;
                     // 先获取文件并上传到共享库distributedir
                     if (mDialogDataList.size() < 1) {
-                        mDialogDataList.clear();
                         // 获取设备的分布式文件
                         List<String> tempListRemotes = DeviceUtils.getFile(this);
                         mDialogDataList.addAll(tempListRemotes);
                     }
                     // 弹窗
                     showDialog(getContext());
+
                 });
     }
 
@@ -282,6 +299,7 @@ public class MailEditSlice extends AbilitySlice implements IAbilityContinuation 
                     mAttachmentDataList.add(mDialogDataList.get(i));
                     mAttachmentProvider.notifyDataChanged();
                     fileDialog.destroy();
+                    picIsClicked= false;
                 }
             });
     }

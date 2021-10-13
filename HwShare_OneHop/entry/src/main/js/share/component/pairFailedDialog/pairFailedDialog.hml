@@ -1,0 +1,44 @@
+<!--/*
+ * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */-->
+<div class="dialog-container" show="{{showObj}}">
+    <image class="pair-hint-image" src="{{deviceResource.pair_hint_image}}">
+    </image>
+    <text class="pair-dialog-title">
+        {{ $t('strings.public_pair_hint_title') }}
+    </text>
+    <div class="dialog-container" for = "{{ deviceResource.pair_hint_text }}">
+        <text class="pair-dialog-hint">{{$item}}</text>
+    </div>
+
+    <div class="bottom-button-wrapper">
+        <text class="button-connect" onclick="exit">{{ $t('strings.public_cancel') }}</text>
+        <text class="split-line">|</text>
+        <text class="button-connect" onclick="reConnect">{{ $t('strings.public_re_connect') }}</text>
+    </div>
+
+    <dialog id = "dialog-repair-failed" style="margin-bottom : 0px;">
+        <div class="dialog-timeout">
+            <text class="pair-dialog-title">{{
+                $t('strings.public_connect_timeout')
+                }}</text>
+            <text class="pair-dialog-hint">{{ $t('strings.public_connect_timeout_hint_1', {number: '1'}) }}</text>
+            <text class="pair-dialog-hint">{{ $t('strings.public_connect_timeout_hint_2', {number: '2'}) }}</text>
+            <div>
+                <text class="button-connect" style="margin-top : 24px;" onclick="confirm">{{ $t('strings.public_got_it') }}
+                </text>
+            </div>
+        </div>
+    </dialog>
+</div>

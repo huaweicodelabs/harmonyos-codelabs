@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DirectionalLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:width="match_parent"
+    ohos:height="match_content"
+    ohos:orientation="vertical"
+    >
+
+    <Text
+        ohos:id="$+id:title"
+        ohos:width="match_content"
+        ohos:height="match_content"
+        ohos:text="$string:add_information"
+        ohos:text_color="#111111"
+        ohos:text_size="18fp"
+        ohos:layout_alignment="center"
+        ohos:top_margin="30vp"
+        ohos:bottom_margin="30vp"
+        />
+    <DirectionalLayout
+        ohos:width="match_parent"
+        ohos:height="40vp"
+        ohos:orientation="horizontal"
+        ohos:left_margin="19vp"
+        ohos:right_margin="19vp"
+        >
+
+        <Text
+            ohos:width="match_parent"
+            ohos:height="match_content"
+            ohos:text="$string:dialog_name"
+            ohos:text_color="#222222"
+            ohos:text_size="16fp"
+            ohos:weight="1"
+            ohos:layout_alignment="vertical_center|left"
+            />
+
+        <TextField
+            ohos:width="match_parent"
+            ohos:height="match_parent"
+            ohos:id="$+id:name"
+            ohos:text_color="#555555"
+            ohos:text_size="16fp"
+            ohos:weight="3"
+            ohos:hint="$string:input_name"
+            ohos:background_element="$graphic:background_input"
+            ohos:text_alignment="vertical_center|left"
+            ohos:left_padding="10vp"
+            ohos:layout_alignment="center"
+            />
+    </DirectionalLayout>
+
+    <DirectionalLayout
+        ohos:width="match_parent"
+        ohos:height="40vp"
+        ohos:orientation="horizontal"
+        ohos:left_margin="19vp"
+        ohos:right_margin="19vp"
+        ohos:top_margin="16vp"
+        >
+
+        <Text
+            ohos:width="match_parent"
+            ohos:height="match_content"
+            ohos:text="$string:dialog_phone"
+            ohos:text_color="#222222"
+            ohos:text_size="16fp"
+            ohos:weight="1"
+            ohos:layout_alignment="vertical_center|left"
+            />
+
+        <TextField
+            ohos:width="match_parent"
+            ohos:height="match_parent"
+            ohos:id="$+id:phone"
+            ohos:text_color="#555555"
+            ohos:text_size="16fp"
+            ohos:weight="3"
+            ohos:hint="$string:input_phone"
+            ohos:background_element="$graphic:background_input"
+            ohos:text_alignment="vertical_center|left"
+            ohos:left_padding="10vp"
+            ohos:layout_alignment="center"
+            ohos:text_input_type="pattern_number"
+            />
+    </DirectionalLayout>
+
+    <Button
+        ohos:id="$+id:confirm"
+        ohos:width="match_parent"
+        ohos:height="match_content"
+        ohos:text="$string:confirm"
+        ohos:text_color="#ffffff"
+        ohos:text_size="16fp"
+        ohos:layout_alignment="center"
+        ohos:left_margin="30vp"
+        ohos:right_margin="30vp"
+        ohos:top_margin="40vp"
+        ohos:bottom_margin="40vp"
+        ohos:bottom_padding="10vp"
+        ohos:top_padding="10vp"
+        ohos:background_element="$graphic:background_button"
+        />
+</DirectionalLayout>

@@ -20,14 +20,13 @@ import ohos.agp.components.Component;
 import ohos.agp.components.ComponentContainer;
 import ohos.app.Context;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * CommonAdapter
  *
  * @param <T> type
- * @since 2020-12-04
+ * @since 2021-09-07
  */
 public abstract class CommonProvider<T> extends BaseItemProvider {
     /**
@@ -42,16 +41,6 @@ public abstract class CommonProvider<T> extends BaseItemProvider {
      * the resource id
      */
     protected int layoutId;
-
-    /**
-     * constructor of CommonAdapter
-     *
-     * @param context context
-     * @param layoutId id
-     */
-    public CommonProvider(Context context, final int layoutId) {
-        this(new ArrayList<T>(0), context, layoutId);
-    }
 
     /**
      * constructor of CommonAdapter
@@ -89,7 +78,7 @@ public abstract class CommonProvider<T> extends BaseItemProvider {
 
     @Override
     public Component getComponent(int position, Component component, ComponentContainer parent) {
-        ViewProvider holder = ViewProvider.get(context, component, parent, layoutId, position);
+        ViewProvider holder = ViewProvider.get(context, component, layoutId, position);
 
         convert(holder, getItem(position), position);
         return holder.getComponentView();

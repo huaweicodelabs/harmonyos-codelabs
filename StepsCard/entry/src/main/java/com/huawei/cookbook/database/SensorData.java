@@ -34,20 +34,21 @@ public class SensorData extends OrmObject {
     // 实际步数
     private int realValue;
 
-    public SensorData() {
-    }
-
     /**
      * parametric construction
      *
-     * @param date date
+     * @param date       date
      * @param stepsValue stepsValue
-     * @param realValue real stepsValue
+     * @param realValue  real stepsValue
      */
     public SensorData(String date, int stepsValue, int realValue) {
         this.date = date;
         this.stepsValue = stepsValue;
         this.realValue = realValue;
+    }
+
+    public SensorData() {
+        super();
     }
 
     public String getDate() {

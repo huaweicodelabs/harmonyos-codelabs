@@ -22,21 +22,6 @@ package com.huawei.codecdemo.camera.constant;
  */
 public class CameraConst {
     /**
-     * codec color model
-     */
-    public static final int CODEC_COLOR_MODEL = 21;
-
-    /**
-     * codec frame interval
-     */
-    public static final int CODEC_FRAME_INTERVAL = 1;
-
-    /**
-     * codec bitrate mode
-     */
-    public static final int CODEC_BITRATE_MODE = 1;
-
-    /**
      * image capacity
      */
     public static final int IMAGE_RCV_CAPACITY = 4;

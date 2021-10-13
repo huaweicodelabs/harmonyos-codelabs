@@ -16,13 +16,13 @@
 package com.huawei.codelab.utils;
 
 /**
- * 影片搜索工具类
+ * MovieSearchUtils
  *
  * @since 2021-02-26
  */
 public class MovieSearchUtils {
     /**
-     * 构造函数
+     * Constructor
      *
      * @since 2020-12-03
      */
@@ -30,11 +30,11 @@ public class MovieSearchUtils {
     }
 
     /**
-     * 是否包含当前影片
+     * isContainMovie
      *
-     * @param movieName 影片名称
-     * @param searchName 搜索内容
-     * @return 布尔值
+     * @param movieName movieName
+     * @param searchName searchName
+     * @return boolean
      * @since 2020-12-03
      */
     public static boolean isContainMovie(String movieName, String searchName) {

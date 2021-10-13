@@ -18,7 +18,7 @@ package ohos.codelabs.distributedvideo.data;
 /**
  * Video Component style
  *
- * @since 2020-12-04
+ * @since 2021-09-07
  */
 public class VideoTabStyle {
     /**

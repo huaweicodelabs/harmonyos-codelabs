@@ -30,7 +30,7 @@ public enum CameraType {
      */
     FRONT(1);
 
-    private int type;
+    private final int type;
 
     CameraType(int type) {
         this.type = type;

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ Copyright (c) 2020 Huawei Device Co., Ltd.
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ -->
+<DirectionalLayout xmlns:ohos="http://schemas.huawei.com/res/ohos"
+                   ohos:height="match_parent"
+                   ohos:width="match_parent">
+
+    <DependentLayout
+        ohos:id="$+id:root_container"
+        ohos:height="match_parent"
+        ohos:width="match_parent">
+
+        <DirectionalLayout
+            ohos:id="$+id:surface_container"
+            ohos:height="match_parent"
+            ohos:width="match_parent" />
+        <DirectionalLayout
+            ohos:width="match_parent"
+            ohos:height="match_content"
+            ohos:align_parent_bottom="$+id:root_container"
+            ohos:bottom_margin="30vp"
+            ohos:orientation="horizontal">
+
+            <Image
+                ohos:id="$+id:exit"
+                ohos:height="170px"
+                ohos:width="match_parent"
+                ohos:weight="1"
+                ohos:enabled="false"
+                ohos:layout_alignment="vertical_center"
+                ohos:scale_mode="center"
+                ohos:image_src="$media:ic_camera_back" />
+
+            <Image
+                ohos:id="$+id:tack_picture_btn"
+                ohos:height="170px"
+                ohos:width="match_parent"
+                ohos:weight="1"
+                ohos:enabled="false"
+                ohos:layout_alignment="vertical_center"
+                ohos:scale_mode="center"
+                ohos:image_src="$media:ic_camera_photo" />
+
+            <Image
+                ohos:id="$+id:switch_camera_btn"
+                ohos:height="170px"
+                ohos:width="match_parent"
+                ohos:weight="1"
+                ohos:enabled="false"
+                ohos:layout_alignment="vertical_center"
+                ohos:scale_mode="zoom_center"
+                ohos:image_src="$media:ic_camera_switch" />
+        </DirectionalLayout>
+    </DependentLayout>
+</DirectionalLayout>

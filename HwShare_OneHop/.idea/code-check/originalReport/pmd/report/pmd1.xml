@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pmd xmlns="http://pmd.sourceforge.net/report/2.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://pmd.sourceforge.net/report/2.0.0 http://pmd.sourceforge.net/report_2_0_0.xsd"
+    version="6.9.0" timestamp="2021-10-11T11:25:01.453">
+<error filename="D:\workspace\HwShare_OneHop\entry\src\main\java\com\huawei\cookbook\CommonOperatorAbility.java" msg="Error while parsing D:\workspace\HwShare_OneHop\entry\src\main\java\com\huawei\cookbook\CommonOperatorAbility.java">
+<![CDATA[net.sourceforge.pmd.PMDException: Error while parsing D:\workspace\HwShare_OneHop\entry\src\main\java\com\huawei\cookbook\CommonOperatorAbility.java
+	at net.sourceforge.pmd.SourceCodeProcessor.processSourceCode(SourceCodeProcessor.java:99)
+	at net.sourceforge.pmd.SourceCodeProcessor.processSourceCode(SourceCodeProcessor.java:51)
+	at net.sourceforge.pmd.processor.PmdRunnable.call(PmdRunnable.java:78)
+	at net.sourceforge.pmd.processor.PmdRunnable.call(PmdRunnable.java:24)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Caused by: net.sourceforge.pmd.lang.java.ast.ParseException: Encountered " "}" "} "" at line 325, column 13.
+Was expecting one of:
+    ";" ...
+    "++" ...
+    "--" ...
+    
+	at net.sourceforge.pmd.lang.java.ast.JavaParser.generateParseException(JavaParser.java:11936)
+	at net.sourceforge.pmd.lang.java.ast.JavaParser.jj_consume_token(JavaParser.java:11820)
+	at net.sourceforge.pmd.lang.java.ast.JavaParser.Statement(JavaParser.java:4820)
+	at net.sourceforge.pmd.lang.java.ast.JavaParser.BlockStatement(JavaParser.java:4973)
+	at net.sourceforge.pmd.lang.java.ast.JavaParser.Block(JavaParser.java:4931)
+	at net.sourceforge.pmd.lang.java.ast.JavaParser.Statement(JavaParser.java:4790)
+	at net.sourceforge.pmd.lang.java.ast.JavaParser.IfStatement(JavaParser.java:5314)
+	at net.sourceforge.pmd.lang.java.ast.JavaParser.Statement(JavaParser.java:4826)
+	at net.sourceforge.pmd.lang.java.ast.JavaParser.BlockStatement(JavaParser.java:4973)
+	at net.sourceforge.pmd.lang.java.ast.JavaParser.Block(JavaParser.java:4931)
+	at net.sourceforge.pmd.lang.java.ast.JavaParser.Statement(JavaParser.java:4790)
+	at net.sourceforge.pmd.lang.java.ast.JavaParser.IfStatement(JavaParser.java:5314)
+	at net.sourceforge.pmd.lang.java.ast.JavaParser.Statement(JavaParser.java:4826)
+	at net.sourceforge.pmd.lang.java.ast.JavaParser.BlockStatement(JavaParser.java:4973)
+	at net.sourceforge.pmd.lang.java.ast.JavaParser.Block(JavaParser.java:4931)
+	at net.sourceforge.pmd.lang.java.ast.JavaParser.MethodDeclaration(JavaParser.java:1615)
+	at net.sourceforge.pmd.lang.java.ast.JavaParser.ClassOrInterfaceBodyDeclaration(JavaParser.java:1239)
+	at net.sourceforge.pmd.lang.java.ast.JavaParser.ClassOrInterfaceBody(JavaParser.java:1194)
+	at net.sourceforge.pmd.lang.java.ast.JavaParser.ClassOrInterfaceDeclaration(JavaParser.java:650)
+	at net.sourceforge.pmd.lang.java.ast.JavaParser.TypeDeclaration(JavaParser.java:539)
+	at net.sourceforge.pmd.lang.java.ast.JavaParser.CompilationUnit(JavaParser.java:276)
+	at net.sourceforge.pmd.lang.java.AbstractJavaParser.parse(AbstractJavaParser.java:59)
+	at net.sourceforge.pmd.SourceCodeProcessor.parse(SourceCodeProcessor.java:111)
+	at net.sourceforge.pmd.SourceCodeProcessor.processSource(SourceCodeProcessor.java:175)
+	at net.sourceforge.pmd.SourceCodeProcessor.processSourceCode(SourceCodeProcessor.java:96)
+	... 9 more
+]]>
+</error>
+</pmd>

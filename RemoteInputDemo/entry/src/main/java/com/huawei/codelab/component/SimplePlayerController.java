@@ -25,24 +25,24 @@ import ohos.app.Context;
 import ohos.media.player.Player;
 
 /**
- * 简易视频播放功能
+ * SimplePlayerController
  *
  * @since 2021-03-08
  */
 public class SimplePlayerController extends ComponentContainer {
-    private Player controllerPlayer;
-    private Context mContext;
+    private final Player controllerPlayer;
+    private final Context mainContext;
     private Image playToggle;
 
     /**
-     * 构造函数
+     * Constructor
      *
-     * @param context 上下文
-     * @param player 播放器实例
+     * @param context context
+     * @param player player
      */
     public SimplePlayerController(Context context, Player player) {
         super(context);
-        mContext = context;
+        mainContext = context;
         controllerPlayer = player;
         initView();
         initListener();
@@ -50,7 +50,7 @@ public class SimplePlayerController extends ComponentContainer {
 
     private void initView() {
         Component playerController =
-                LayoutScatter.getInstance(mContext)
+                LayoutScatter.getInstance(mainContext)
                         .parse(ResourceTable.Layout_simple_player_controller_layout, null, false);
         addComponent(playerController);
         if (findComponentById(ResourceTable.Id_play_controller) instanceof Image) {

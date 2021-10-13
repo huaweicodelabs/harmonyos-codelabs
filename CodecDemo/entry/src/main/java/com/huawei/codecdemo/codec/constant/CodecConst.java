@@ -22,21 +22,6 @@ package com.huawei.codecdemo.codec.constant;
  */
 public class CodecConst {
     /**
-     * recorder bit rate
-     */
-    public static final int RECORDER_BIT_RATE = 10000000;
-
-    /**
-     * recorder fps
-     */
-    public static final int RECORDER_FPS = 30;
-
-    /**
-     * recorder frame rate
-     */
-    public static final int RECORDER_FRAME_RATE = 25;
-
-    /**
      * codec color model
      */
     public static final int CODEC_COLOR_MODEL = 21;

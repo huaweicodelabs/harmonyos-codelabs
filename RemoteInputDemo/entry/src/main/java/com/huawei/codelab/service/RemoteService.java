@@ -32,13 +32,13 @@ import ohos.rpc.RemoteException;
 import ohos.rpc.RemoteObject;
 
 /**
- * 远端服务
+ * RemoteService
  *
  * @since 2021-02-25
  */
 public class RemoteService extends Ability {
     private static final String TAG = RemoteService.class.getSimpleName();
-    private MyRemote remote = new MyRemote();
+    private final MyRemote remote = new MyRemote();
 
     @Override
     public void onStart(Intent intent) {
@@ -74,7 +74,7 @@ public class RemoteService extends Ability {
     }
 
     /**
-     * 远端请求处理
+     * RemoteObject
      *
      * @since 2021-02-25
      */

@@ -1,0 +1,228 @@
+/*
+ * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+.container {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-color: aquamarine;
+}
+
+.div-permit {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.div-text {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.div-center {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.div-button {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.text-button {
+    background-color: #5959f1;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 16px;
+    width: 80px;
+    height: 40px;
+    border-radius: 8px;
+}
+
+.text-end0 {
+    color: #212121;
+    text-align: center;
+    font-size: 16px;
+}
+
+.text-end1 {
+    color: #333840;
+    text-align: center;
+    font-size: 16px;
+    margin-left: 2px;
+    margin-right: 2px;
+}
+
+.text-end2 {
+    color: #212121;
+    text-align: center;
+    font-size: 16px;
+}
+
+.text-title {
+    color: #222222;
+    font-size: 22px;
+    align-items: center;
+    align-content: center;
+    margin: 20px;
+}
+
+.text-allow {
+    color: #3E7BDE;
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+.text-reject {
+    color: #212121;
+    font-size: 18px;
+    margin-left: 10px;
+}
+
+.div-image {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+    height: 100%;
+}
+
+.product0 {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+}
+
+.product1 {
+    width: 60px;
+    height: 60px;
+    position: absolute;
+}
+
+.product2 {
+    width: 70px;
+    height: 70px;
+    position: absolute;
+}
+
+.product3 {
+    width: 80px;
+    height: 80px;
+    position: absolute;
+}
+
+.product4 {
+    width: 90px;
+    height: 90px;
+    position: absolute;
+}
+
+.product5 {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+}
+
+.product6 {
+    width: 110px;
+    height: 110px;
+    position: absolute;
+}
+
+.canvas {
+    width: 100%;
+    height: 100%;
+    background-color: #ffff00;
+}
+
+
+.select-device-dialog {
+    width: 90%;
+    height: 33%;
+}
+
+.select-device-wrapper {
+    margin: 5%;
+    width: 90%;
+    height: 90%;
+    flex-direction: column;
+}
+
+.select-device-title {
+    width: 100%;
+    height: 20%;
+    text-align: left;
+    font-size: 20px;
+}
+
+.select-device-list {
+    width: 100%;
+    height: 60%;
+    text-align: left;
+    font-size: 15px;
+}
+
+.select-device-item {
+    width: 100%;
+    height: 33%;
+}
+
+.select-device-item-left {
+    width: 100%;
+    height: 100%;
+    text-align: left;
+    font-size: 16px;
+}
+
+
+@media screen and (device-type: tablet) and (orientation: landscape) {
+    .title {
+        font-size: 100px;
+    }
+}
+
+@media screen and (device-type: wearable) {
+    .title {
+        font-size: 28px;
+        color: #FFFFFF;
+    }
+}
+
+@media screen and (device-type: tv) {
+    .container {
+        background-image: url("/common/images/Wallpaper.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    .title {
+        font-size: 100px;
+        color: #FFFFFF;
+    }
+}
+
+@media screen and (device-type: phone) and (orientation: landscape) {
+    .title {
+        font-size: 60px;
+    }
+}

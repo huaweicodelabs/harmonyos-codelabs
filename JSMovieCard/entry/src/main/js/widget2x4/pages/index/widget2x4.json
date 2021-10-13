@@ -1,0 +1,38 @@
+{
+  "data": {
+    "initData": "请点击卡片获取数据",
+    "initShow": true,
+    "isShow": false,
+    "topIndex": "",
+    "topMovieName": "",
+    "topMovieDesc": "",
+    "topMovieImgUrl": "",
+    "bottomIndex": "",
+    "bottomMovieName": "",
+    "bottomMovieDesc": "",
+    "bottomMovieImgUrl": "",
+    "title": "电影卡片",
+    "fullText": "更多"
+  },
+  "actions": {
+    "mainRouter": {
+      "action": "router",
+      "abilityName": "com.huawei.cookbook.MainAbility"
+    },
+    "leftRouter": {
+      "action": "router",
+      "abilityName": "com.huawei.cookbook.MovieDetail",
+      "params": {
+        "index": "{{topIndex}}"
+      }
+    },
+    "rightRouter": {
+      "action": "router",
+      "abilityName": "com.huawei.cookbook.MovieDetail",
+      "params": {
+        "index": "{{bottomIndex}}"
+      }
+    }
+  }
+}
+

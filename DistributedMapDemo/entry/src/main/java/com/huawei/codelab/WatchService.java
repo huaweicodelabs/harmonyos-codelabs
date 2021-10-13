@@ -33,7 +33,7 @@ import ohos.rpc.RemoteException;
 public class WatchService extends Ability {
     private static final String TAG = WatchService.class.getSimpleName();
 
-    private WatchRemote watchRemote = new WatchRemote("WatchRemote");
+    private final WatchRemote watchRemote = new WatchRemote("WatchRemote");
 
     @Override
     public void onStart(Intent intent) {
@@ -79,7 +79,7 @@ public class WatchService extends Ability {
         }
 
         @Override
-        public void action(String actionType, String actionContent) throws RemoteException {
+        public void action(String actionType, String actionContent) {
             LogUtils.info(TAG, "WatchService::action");
             sendEvent(actionType, actionContent);
         }

@@ -23,17 +23,17 @@ import ohos.data.distributed.common.KvManagerConfig;
 import ohos.data.distributed.common.KvManagerFactory;
 
 /**
- * Ability启动管理类
+ * AbilityMgr
  *
  * @since 2021-02-26
  */
 public class AbilityMgr {
-    private AbilitySlice abilitySlice;
+    private final AbilitySlice abilitySlice;
 
     /**
-     * 构造函数
+     * Constructor
      *
-     * @param abilitySlice abilitySlice实例
+     * @param abilitySlice abilitySlice
      * @since 2021-02-25
      */
     public AbilityMgr(AbilitySlice abilitySlice) {
@@ -42,10 +42,10 @@ public class AbilityMgr {
     }
 
     /**
-     * 返回主界面
+     * returnMainAbility
      *
-     * @param bundleName bundle名称
-     * @param abilityName ability名称
+     * @param bundleName bundleName
+     * @param abilityName abilityName
      * @since 2021-02-25
      */
     public void returnMainAbility(String bundleName, String abilityName) {
@@ -60,11 +60,11 @@ public class AbilityMgr {
     }
 
     /**
-     * 启动远程ability
+     * openRemoteAbility
      *
-     * @param deviceId 设备id
-     * @param bundleName bundle名称
-     * @param abilityName ability名称
+     * @param deviceId deviceId
+     * @param bundleName bundleName
+     * @param abilityName abilityName
      * @since 2021-02-25
      */
     public void openRemoteAbility(String deviceId, String bundleName, String abilityName) {
@@ -84,10 +84,10 @@ public class AbilityMgr {
     }
 
     /**
-     * 播放影片
+     * playMovie
      *
-     * @param bundleName bundle名称
-     * @param abilityName ability名称
+     * @param bundleName bundleName
+     * @param abilityName abilityName
      * @since 2021-02-25
      */
     public void playMovie(String bundleName, String abilityName) {

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ Copyright (c) 2021 Huawei Device Co., Ltd.
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ -->
+<DirectionalLayout
+        xmlns:ohos="http://schemas.huawei.com/res/ohos"
+        ohos:width="match_parent"
+        ohos:height="300vp"
+        ohos:orientation="vertical">
+
+    <DirectionalLayout
+            ohos:width="match_parent"
+            ohos:height="match_parent"
+            ohos:orientation="vertical"
+            ohos:left_margin="20vp"
+            ohos:right_margin="20vp"
+            ohos:bottom_margin="10vp"
+            ohos:background_element="$graphic:background_white_radius_10">
+
+        <Text
+                ohos:text_color="#000000"
+                ohos:text="$string:shareDevice"
+                ohos:height="50vp"
+                ohos:width="match_parent"
+                ohos:text_size="16fp"
+                ohos:left_padding="20vp"
+                ohos:text_alignment="vertical_center"/>
+
+        <ListContainer
+                ohos:weight="1"
+                ohos:id="$+id:list_container_device"
+                ohos:height="0vp"
+                ohos:width="match_parent"/>
+
+        <DirectionalLayout
+                ohos:width="match_parent"
+                ohos:height="50vp"
+                ohos:orientation="horizontal">
+
+            <Text
+                    ohos:id="$+id:operate_no"
+                    ohos:text_color="#1e90ff"
+                    ohos:width="0vp"
+                    ohos:weight="1"
+                    ohos:height="match_parent"
+                    ohos:text="$string:cancels"
+                    ohos:text_alignment="center"
+                    ohos:text_size="17fp"/>
+
+            <Component
+                    ohos:width="1vp"
+                    ohos:height="25vp"
+                    ohos:background_element="#cccccc"
+                    ohos:layout_alignment="vertical_center"/>
+
+            <Text
+                    ohos:id="$+id:operate_yes"
+                    ohos:text_color="#1e90ff"
+                    ohos:width="0vp"
+                    ohos:weight="1"
+                    ohos:height="match_parent"
+                    ohos:text="$string:yes"
+                    ohos:text_alignment="center"
+                    ohos:text_size="17fp"/>
+        </DirectionalLayout>
+    </DirectionalLayout>
+</DirectionalLayout>

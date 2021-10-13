@@ -30,17 +30,9 @@ import java.util.Locale;
  * chart date utls
  */
 public class ChartDataUtils {
-    private static final String BLUE_COLOR = "#0D9FFB";
-    private static final String WHITE_COLOR = "#FFFFFF";
-    private static final String GREEN_COLOR = "#41BA41";
     private static final String GRAY_COLOR = "#CDCACA";
     private static final String ORANGE_COLOR = "#FF9C28";
-    private static final int PAGE_WIDTH = 360;
-    private static final int IMG_WIDTH = 28;
-    private static final double CARD_WIDTH_PERCENT = 0.6;
     private static final int DIMENSION_2X4 = 3;
-    private static final String SHOW = "flex";
-    private static final String HIDE = "none";
     private static final int TARGET_STEPS = 1000;
     private static final int PROGRESS_PERCENT = 100;
     private static final int POINT_SIZE = 5;
@@ -97,7 +89,7 @@ public class ChartDataUtils {
     public static ChartPoint getChartPoint(int value) {
         ChartPoint chartPoint = new ChartPoint();
         // 点的数值,超过1000只显示1000的高度
-        chartPoint.setValue(value >= TARGET_STEPS ? TARGET_STEPS : value);
+        chartPoint.setValue(Math.min(TARGET_STEPS, value));
         // 点的描述
         chartPoint.setDescription(value + "");
         // 点的描述显示位置，此处设置为点的上面
@@ -128,7 +120,7 @@ public class ChartDataUtils {
      */
     public static ZSONObject getZsonObject(String value, int dimension, OrmContext connect) {
         ZSONObject result = new ZSONObject();
-        int round = 0;
+        int round;
         if (Double.parseDouble(value) >= TARGET_STEPS) {
             round = PERCENT_100;
         } else {

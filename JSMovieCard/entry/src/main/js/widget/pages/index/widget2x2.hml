@@ -1,0 +1,20 @@
+<div class="grid_pattern_layout" onclick="routers">
+    <div class="grid_pattern_layout" show="{{ isShow }}">
+        <div class="title">
+            <text class="titleText">{{ title }}</text>
+        </div>
+        <div class="movieList">
+            <div class="movieInfo" onclick="jumpAction1">
+                <text class="movieName" id="topName">{{ topMovieName }}</text>
+                <text class="movieDesc" id="topDesc">{{ topMovieDesc }}</text>
+            </div>
+            <div class="movieInfo" onclick="jumpAction2">
+                <text class="movieName" id="bottomName">{{ bottomMovieName }}</text>
+                <text class="movieDesc" id="bottomDesc">{{ bottomMovieDesc }}</text>
+            </div>
+        </div>
+    </div>
+    <div show="{{ initShow }}" class="init">
+        <text class="initText">{{ initData }}</text>
+    </div>
+</div>

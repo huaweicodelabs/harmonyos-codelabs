@@ -70,14 +70,6 @@ public class PointStyle {
         /**
          * 圆形
          */
-        CIRCLE,
-        /**
-         * 方形
-         */
-        SQUARE,
-        /**
-         * 三角形
-         */
-        TRIANGLE
+        CIRCLE
     }
 }

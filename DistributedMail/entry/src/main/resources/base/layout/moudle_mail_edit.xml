@@ -18,9 +18,9 @@
                 ohos:id="$+id:call_test"
                 ohos:height="match_content"
                 ohos:width="match_content"
-                ohos:horizontal_center="1"
+                ohos:horizontal_center="true"
                 ohos:multiple_lines="false"
-                ohos:text="邮件回复"
+                ohos:text="$string:text_reply"
                 ohos:text_color="#ff000000"
                 ohos:text_size="24fp"
                 ohos:top_margin="3vp"/>
@@ -29,8 +29,8 @@
                 ohos:id="$+id:mail_edit_continue"
                 ohos:height="50vp"
                 ohos:width="50vp"
-                ohos:align_parent_bottom="1"
-                ohos:align_parent_right="1"
+                ohos:align_parent_bottom="true"
+                ohos:align_parent_right="true"
                 ohos:image_src="$media:icon_qianyi"
                 ohos:padding="10vp"
                 ohos:right_margin="10vp"
@@ -47,7 +47,6 @@
             <DirectionalLayout
                 ohos:height="50vp"
                 ohos:width="match_parent"
-                ohos:layout_alignment="16"
                 ohos:orientation="horizontal">
 
                 <Text
@@ -55,8 +54,8 @@
                     ohos:width="100vp"
                     ohos:layout_alignment="vertical_center"
                     ohos:left_padding="20vp"
-                    ohos:text="收件人"
-                    ohos:text_alignment="64"
+                    ohos:text="$string:text_to"
+                    ohos:text_alignment="vertical_center"
                     ohos:text_color="#ff000000"
                     ohos:text_size="18fp"/>
 
@@ -64,10 +63,10 @@
                     ohos:id="$+id:mail_edit_receiver"
                     ohos:height="match_parent"
                     ohos:width="match_parent"
-                    ohos:hint="收件人"
+                    ohos:hint="$string:text_to"
                     ohos:layout_alignment="vertical_center"
                     ohos:multiple_lines="false"
-                    ohos:text_alignment="64"
+                    ohos:text_alignment="vertical_center"
                     ohos:text_color="#99000000"
                     ohos:text_cursor_visible="true"
                     ohos:text_size="14fp"/>
@@ -76,16 +75,16 @@
             <DirectionalLayout
                 ohos:height="50vp"
                 ohos:width="match_parent"
-                ohos:layout_alignment="16"
-                ohos:orientation="0">
+                ohos:layout_alignment="vertical_center"
+                ohos:orientation="horizontal">
 
                 <Text
                     ohos:height="-2"
                     ohos:width="100vp"
                     ohos:layout_alignment="vertical_center"
                     ohos:left_padding="20vp"
-                    ohos:text="抄送"
-                    ohos:text_alignment="64"
+                    ohos:text="$string:text_cc"
+                    ohos:text_alignment="vertical_center"
                     ohos:text_color="#ff000000"
                     ohos:text_size="18fp"/>
 
@@ -93,10 +92,10 @@
                     ohos:id="$+id:mail_edit_cc"
                     ohos:height="match_parent"
                     ohos:width="match_parent"
-                    ohos:hint="抄送"
+                    ohos:hint="$string:text_cc"
                     ohos:layout_alignment="vertical_center"
                     ohos:multiple_lines="false"
-                    ohos:text_alignment="64"
+                    ohos:text_alignment="vertical_center"
                     ohos:text_color="#99000000"
                     ohos:text_size="14fp"/>
             </DirectionalLayout>
@@ -116,8 +115,8 @@
                         ohos:width="100vp"
                         ohos:layout_alignment="vertical_center"
                         ohos:left_padding="20vp"
-                        ohos:text="主题"
-                        ohos:text_alignment="64"
+                        ohos:text="$string:text_title"
+                        ohos:text_alignment="vertical_center"
                         ohos:text_color="#ff000000"
                         ohos:text_size="18fp"/>
 
@@ -125,10 +124,10 @@
                         ohos:id="$+id:mail_edit_title"
                         ohos:height="match_parent"
                         ohos:width="match_parent"
-                        ohos:hint="主题"
+                        ohos:hint="$string:text_title"
                         ohos:layout_alignment="vertical_center"
                         ohos:multiple_lines="false"
-                        ohos:text_alignment="64"
+                        ohos:text_alignment="vertical_center"
                         ohos:text_color="#99000000"
                         ohos:text_size="14fp"/>
                 </DirectionalLayout>
@@ -149,16 +148,14 @@
                 ohos:bottom_margin="70vp"
                 ohos:orientation="vertical">
 
-
                 <TextField
                     ohos:id="$+id:mail_edit_content"
                     ohos:height="0vp"
                     ohos:width="match_parent"
-                    ohos:hint="邮件正文"
+                    ohos:hint="$string:text_message"
                     ohos:left_padding="20vp"
                     ohos:multiple_lines="true"
                     ohos:right_padding="20vp"
-                    ohos:text_alignment="36"
                     ohos:text_color="#99000000"
                     ohos:text_cursor_visible="true"
                     ohos:text_size="14fp"
@@ -173,11 +170,10 @@
 
                     <Text
                         ohos:height="30vp"
-                        ohos:width="100vp"
+                        ohos:width="180vp"
                         ohos:layout_alignment="vertical_center"
                         ohos:left_padding="20vp"
-                        ohos:text="附件"
-                        ohos:text_alignment="64"
+                        ohos:text="$string:text_attachment"
                         ohos:text_size="18fp"/>
 
                     <ListContainer
@@ -196,7 +192,7 @@
         ohos:width="match_parent"
         ohos:background_element="#236ea1"
         ohos:layout_alignment="bottom"
-        ohos:text="发送"
+        ohos:text="$string:text_send"
         ohos:text_alignment="center"
         ohos:text_color="#ffffff"
         ohos:text_size="18fp"

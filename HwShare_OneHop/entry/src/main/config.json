@@ -1,0 +1,126 @@
+{
+  "app": {
+    "bundleName": "com.huawei.cookbook",
+    "vendor": "huawei",
+    "version": {
+      "code": 2000000,
+      "name": "2.0.0"
+    }
+  },
+  "deviceConfig": {
+    "default": {
+      "allowComponentsProxy": true,
+      "network": {
+        "cleartextTraffic": true
+      }
+    }
+  },
+  "module": {
+    "package": "com.huawei.cookbook",
+    "name": ".MyApplication",
+    "colorMode": "light",
+    "mainAbility": "com.huawei.cookbook.MainAbility",
+    "deviceType": [
+      "phone"
+    ],
+    "distro": {
+      "deliveryWithInstall": true,
+      "moduleName": "entry",
+      "moduleType": "entry",
+      "installationFree": false
+    },
+    "reqPermissions": [
+      {
+        "name": "ohos.permission.INTERNET"
+      },
+      {
+        "name": "ohos.permission.USE_BLUETOOTH"
+      },
+      {
+        "name": "ohos.permission.LOCATION",
+        "reason": "for ble scan device",
+        "usedScene": {
+          "when": "always"
+        }
+      },
+      {
+        "name": "ohos.permission.DISCOVER_BLUETOOTH"
+      },
+      {
+        "name": "ohos.permission.GET_BUNDLE_INFO"
+      },
+      {
+        "name": "ohos.permission.GET_NETWORK_INFO"
+      },
+      {
+        "name": "ohos.permission.GET_WIFI_INFO"
+      }
+    ],
+    "metaData": {
+      "customizeData": [
+        {
+          "name": "com.huawei.hms.client.appid",
+          "value": "104526177"
+        },
+        {
+          "name": "hwc-theme",
+          "value": "androidhwext:style/Theme.Emui.Translucent.NoTitleBar"
+        }
+      ]
+    },
+    "abilities": [
+      {
+        "name": "com.huawei.cookbook.ControlAbility",
+        "icon": "$media:icon",
+        "description": "$string:mainability_description",
+        "label": "$string:entry_MainAbility",
+        "type": "page",
+        "launchType": "singleton",
+        "visible": true,
+        "mission": "com.huawei.cookbook.full"
+      },
+      {
+        "name": "com.huawei.cookbook.MainAbility",
+        "icon": "$media:icon",
+        "description": "$string:emptyability_description",
+        "label": "$string:entry_EmptyAbility",
+        "type": "page",
+        "launchType": "singleton",
+        "mission": "com.huawei.cookbook",
+        "visible": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      }
+    ],
+    "js": [
+      {
+        "name": "default",
+        "window": {
+          "designWidth": 720,
+          "autoDesignWidth": true
+        },
+        "pages": [
+          "pages/index/index"
+        ]
+      },
+      {
+        "pages": [
+          "pages/control/control"
+        ],
+        "name": "control",
+        "window": {
+          "designWidth": 720,
+          "autoDesignWidth": true
+        }
+      }
+    ]
+  }
+}

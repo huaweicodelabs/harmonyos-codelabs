@@ -34,9 +34,9 @@ import java.util.Optional;
  * @since 2021-03-12
  */
 public class InputTipsProvider extends BaseItemProvider {
-    private List<InputTipsResult.TipsEntity> list;
+    private final List<InputTipsResult.TipsEntity> list;
 
-    private Context context;
+    private final Context context;
 
     /**
      * InputTipsProvider

@@ -18,13 +18,13 @@ package ohos.codelabs.distributedvideo.data;
 /**
  * AdvertisementMo object
  *
- * @since 2020-12-04
+ * @since 2021-09-07
  *
  */
 public class AdvertisementMo {
-    private int sourceId;
+    private final int sourceId;
 
-    private String description;
+    private final String description;
 
     /**
      * constructor
@@ -41,15 +41,7 @@ public class AdvertisementMo {
         return sourceId;
     }
 
-    public void setSourceId(int sourceId) {
-        this.sourceId = sourceId;
-    }
-
     public String getDescription() {
         return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 }

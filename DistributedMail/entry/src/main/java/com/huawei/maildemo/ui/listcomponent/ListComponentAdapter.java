@@ -31,9 +31,9 @@ import java.util.List;
  */
 public abstract class ListComponentAdapter<T> extends BaseItemProvider {
     LayoutScatter layoutScatter;
-    private Context mContext;
-    private List<T> mListBeans;
-    private int mXmlId;
+    private final Context mContext;
+    private final List<T> mListBeans;
+    private final int mXmlId;
 
     /**
      * ListComponentAdapter

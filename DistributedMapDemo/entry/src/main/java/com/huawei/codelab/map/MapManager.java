@@ -51,17 +51,17 @@ public class MapManager {
 
     private static final int STEP_DELAY_TIME = 800;
 
-    private IMapIdlInterface proxy;
+    private final TinyMap tinyMap;
 
-    private MapEventHandler mapEventHandler;
+    private final AbilitySlice slice;
+
+    private final MapEventHandler mapEventHandler;
+
+    private IMapIdlInterface proxy;
 
     private int stepPoint = 0;
 
     private Element nextElement;
-
-    private TinyMap tinyMap;
-
-    private AbilitySlice slice;
 
     private NavListener navListener;
 
@@ -70,7 +70,7 @@ public class MapManager {
      *
      * @since 2021-03-12
      */
-    private IAbilityConnection conn = new IAbilityConnection() {
+    private final IAbilityConnection conn = new IAbilityConnection() {
         @Override
         public void onAbilityConnectDone(ElementName element, IRemoteObject remote, int resultCode) {
             LogUtils.info(TAG, "onAbilityConnectDone......");
@@ -89,7 +89,7 @@ public class MapManager {
      *
      * @since 2021-03-12
      */
-    private Runnable task = new Runnable() {
+    private final Runnable task = new Runnable() {
         @Override
         public void run() {
             if (tinyMap.getMapElements() == null || tinyMap.getMapElements().size() <= 1) {
@@ -139,8 +139,7 @@ public class MapManager {
 
         List<InputTipsResult.TipsEntity> newList = new ArrayList<>();
 
-        for (int i = 0; i < tips.size(); i++) {
-            InputTipsResult.TipsEntity tipsEntity = tips.get(i);
+        for (InputTipsResult.TipsEntity tipsEntity : tips) {
             if (tipsEntity.getLocation() != null && !(tipsEntity.getLocation()).isEmpty()) {
                 newList.add(tipsEntity);
             }
@@ -301,14 +300,15 @@ public class MapManager {
             if (event.eventId != 1) {
                 return;
             }
-            if (nextElement.getActionType() != null && !nextElement.getActionType().isEmpty()) {
+            if (nextElement.getActionType() != null && !nextElement.getActionType().isEmpty()
+                    && !nextElement.getActionContent().equals("[]")) {
                 // 将nextElement回调给MainAbilitySlice
                 navListener.onNavListener(nextElement);
             }
             if (proxy != null) {
                 // 将数据发送给WatchService
                 requestRemote(nextElement.getActionType() == null ? "" : nextElement.getActionType(),
-                    nextElement.getActionContent() == null ? "" : nextElement.getActionContent());
+                        nextElement.getActionContent() == null ? "" : nextElement.getActionContent());
             }
             tinyMap.invalidate();
         }

@@ -42,7 +42,7 @@ public class StepFormAbility extends Ability {
     private static final String EMPTY_STRING = "";
     private static final int INVALID_FORM_ID = -1;
     private static final int DEFAULT_DIMENSION_2X2 = 2;
-    private DatabaseHelper helper = new DatabaseHelper(this);
+    private final DatabaseHelper helper = new DatabaseHelper(this);
     private OrmContext connect;
 
     @Override
@@ -79,7 +79,7 @@ public class StepFormAbility extends Ability {
         DatabaseUtils.insertForm(form, connect);
         // 获取当天的步数
         SensorData sensorData = DatabaseUtils.getSensorData(connect, DateUtils.getDate(0));
-        String stepValue = "";
+        String stepValue;
         if (sensorData != null) {
             stepValue = sensorData.getStepsValue() + "";
         } else {

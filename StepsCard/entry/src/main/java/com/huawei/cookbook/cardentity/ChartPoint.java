@@ -79,14 +79,6 @@ public class ChartPoint {
      */
     public enum TextLocation {
         /**
-         * 底部
-         */
-        bottom,
-        /**
-         * 不显示
-         */
-        none,
-        /**
          * 顶部
          */
         top

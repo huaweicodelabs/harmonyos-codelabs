@@ -1,0 +1,445 @@
+{
+  "taskId" : "1633922697465",
+  "language" : [ "JAVA" ],
+  "projectRoot" : "D:\\workspace\\HwShare_OneHop",
+  "sourceFiles" : [ "entry\\src\\main\\java\\com\\huawei\\cookbook\\CommonOperatorAbility.java" ],
+  "fileSuffixes" : {
+    "pmd" : [ "java" ],
+    "checkstylechecker" : [ "java" ],
+    "fixbotengine-java" : [ "java" ],
+    "codemars" : [ "hh", "c++", "C", "vue", "js", "h++", "py", "jsx", "java", "xml", "html", "inc", "htm", "cc", "mm", "cpp", "cxx", "inl", "h", "go", "hpp", "hxx", "cp", "tpp", "txx", "properties" ],
+    "fixbotengine-cxx" : [ "cc", "hh", "mm", "cpp", "cxx", "c++", "c", "inl", "h", "hpp", "hxx", "h++", "cp", "inc" ],
+    "cmetrics" : [ "cc", "mm", "hh", "cpp", "cxx", "c++", "c", "inl", "h", "go", "js", "hpp", "hxx", "h++", "py", "cp", "java", "lua", "asm", "inc" ],
+    "flake8" : [ "py" ],
+    "eslint" : [ "ux", "vue", "js", "jsx" ],
+    "clangtidy" : [ "cc", "hh", "mm", "cpp", "cxx", "c++", "c", "inl", "h", "hpp", "hxx", "h++", "cp", "inc" ],
+    "cppcheck" : [ "cc", "hh", "mm", "cpp", "cxx", "c++", "c", "inl", "h", "hpp", "hxx", "h++", "cp", "inc" ],
+    "wnpythoncodecheck" : [ "py" ],
+    "spotbugs" : [ "java" ],
+    "checkstyle" : [ "java" ],
+    "coverity" : [ "*" ],
+    "gostyle" : [ "go" ],
+    "ucfn" : [ "*" ],
+    "codefolder" : [ "*" ],
+    "cpplint" : [ "cc", "hh", "mm", "cpp", "cxx", "c++", "c", "inl", "h", "hpp", "hxx", "h++", "cp", "inc" ],
+    "anystandard" : [ "lua" ],
+    "sonarqube" : [ "*" ],
+    "secmissile" : [ "*" ],
+    "atia" : [ "cpp", " hpp" ],
+    "specchecker" : [ "cc", "mm", "hh", "cpp", "cxx", "c++", "c", "inl", "h", "hpp", "hxx", "h++", "cp", "inc" ],
+    "pmd-p3c" : [ "java" ],
+    "tscancode" : [ "cc", "cpp", "c", "h" ],
+    "microcode" : [ "p5", "h", "asm" ],
+    "pclint-plus" : [ "cc", "hh", "mm", "cpp", "cxx", "c++", "c", "inl", "h", "hpp", "hxx", "h++", "cp", "inc" ],
+    "flexelint" : [ "cc", "hh", "mm", "cpp", "cxx", "c++", "c", "inl", "h", "hpp", "hxx", "h++", "cp", "inc" ],
+    "fortify" : [ "*" ],
+    "secbrella" : [ "py", "*" ],
+    "commitlog" : [ "*" ],
+    "goarch" : [ "go" ],
+    "pythonchecker" : [ "py" ],
+    "chat" : [ "*" ],
+    "pylint" : [ "py" ],
+    "sccheck" : [ "java" ],
+    "golint" : [ "go" ],
+    "fixbot-pclintplus" : [ "cc", "mm", "hh", "cpp", "cxx", "c++", "c", "inl", "h", "hpp", "hxx", "h++", "cp", "tpp", "txx", "inc" ],
+    "fmc" : [ "*" ]
+  },
+  "properties" : {
+    "fixbotengine-java" : {
+      "fixbotDir" : "C:\\Users\\gwx1016061\\.hicode\\CodeCheck\\CodeCheckAgent\\fixbot"
+    },
+    "codemars" : {
+      "pythonVersion" : "python3"
+    },
+    "cmetrics" : {
+      "checkPath" : "\"D:\\workspace\\HwShare_OneHop\\entry\\src\\main\\java\\com\\huawei\\cookbook\\CommonOperatorAbility.java\""
+    }
+  },
+  "runtimeEnv" : {
+    "jrePath" : "D:\\idea\\DevEco Studio\\DevEco Studio 3.0.0.342\\jbr\\bin\\java.exe"
+  },
+  "mode" : 2,
+  "languageSupports" : [ {
+    "fileSuffixes" : [ "java" ],
+    "language" : "java"
+  } ],
+  "ruleSets" : [ {
+    "toolRules" : [ {
+      "rules" : [ {
+        "ruleName" : "DefaultCharset",
+        "args" : [ ]
+      }, {
+        "ruleName" : "LineSeperator",
+        "args" : [ ]
+      }, {
+        "ruleName" : "ThreadSafe",
+        "args" : [ ]
+      }, {
+        "ruleName" : "JavaDocFormat",
+        "args" : [ ]
+      }, {
+        "ruleName" : "CodeInComment",
+        "args" : [ ]
+      }, {
+        "ruleName" : "IdentName",
+        "args" : [ ]
+      }, {
+        "ruleName" : "LocaleMatters",
+        "args" : [ ]
+      }, {
+        "ruleName" : "MethodHead",
+        "args" : [ ]
+      }, {
+        "ruleName" : "MultipleVariableDeclarations",
+        "args" : [ ]
+      }, {
+        "ruleName" : "UnnecessaryNew",
+        "args" : [ ]
+      }, {
+        "ruleName" : "PreciseCompute",
+        "args" : [ ]
+      }, {
+        "ruleName" : "FileEncoding",
+        "args" : [ ]
+      }, {
+        "ruleName" : "OperatorWrap",
+        "args" : [ ]
+      }, {
+        "ruleName" : "UpperEllRule",
+        "args" : [ ]
+      }, {
+        "ruleName" : "JavadocScope",
+        "args" : [ ]
+      }, {
+        "ruleName" : "NewThreadShouldSetName",
+        "args" : [ ]
+      }, {
+        "ruleName" : "ToArray",
+        "args" : [ ]
+      }, {
+        "ruleName" : "HWIndentation",
+        "args" : [ ]
+      }, {
+        "ruleName" : "SeparatorWrap",
+        "args" : [ ]
+      }, {
+        "ruleName" : "CommentSpace",
+        "args" : [ ]
+      }, {
+        "ruleName" : "DetectGC",
+        "args" : [ ]
+      }, {
+        "ruleName" : "FileLength",
+        "args" : [ ]
+      }, {
+        "ruleName" : "ThreadUncaughtException",
+        "args" : [ ]
+      }, {
+        "ruleName" : "NeedBraces",
+        "args" : [ ]
+      }, {
+        "ruleName" : "SameVariableAssignment",
+        "args" : [ ]
+      }, {
+        "ruleName" : "LoggerIsNotStaticFinal",
+        "args" : [ ]
+      }, {
+        "ruleName" : "NoCompareNaN",
+        "args" : [ ]
+      }, {
+        "ruleName" : "SystemPrintln",
+        "args" : [ ]
+      }, {
+        "ruleName" : "FunctionLength",
+        "args" : [ ]
+      }, {
+        "ruleName" : "HWArrayTypeStyle",
+        "args" : [ ]
+      }, {
+        "ruleName" : "HWInfoLog",
+        "args" : [ ]
+      }, {
+        "ruleName" : "ResourceRelease",
+        "args" : [ ]
+      }, {
+        "ruleName" : "ConstantNamingRule",
+        "args" : [ ]
+      }, {
+        "ruleName" : "NoAssignInControlConditionExpression",
+        "args" : [ ]
+      }, {
+        "ruleName" : "NoRemveAddItemInLoop",
+        "args" : [ ]
+      }, {
+        "ruleName" : "TopClassComment",
+        "args" : [ ]
+      }, {
+        "ruleName" : "FloatEquals",
+        "args" : [ ]
+      }, {
+        "ruleName" : "MethodName",
+        "args" : [ ]
+      }, {
+        "ruleName" : "HWEmptyLineSeperator",
+        "args" : [ ]
+      }, {
+        "ruleName" : "ThreadAdjust",
+        "args" : [ ]
+      }, {
+        "ruleName" : "EmptyCatchBlock",
+        "args" : [ ]
+      } ],
+      "toolName" : "checkstylechecker"
+    }, {
+      "rules" : [ {
+        "ruleName" : "ClassNamingConventions",
+        "args" : [ ]
+      }, {
+        "ruleName" : "LocalVariableNamingConventions",
+        "args" : [ ]
+      }, {
+        "ruleName" : "ReturnBreakContinueFromFinally",
+        "args" : [ ]
+      }, {
+        "ruleName" : "MissingOverride",
+        "args" : [ ]
+      }, {
+        "ruleName" : "DontUseFloatTypeForLoopIndices",
+        "args" : [ ]
+      }, {
+        "ruleName" : "LoggingAvoidChinese",
+        "args" : [ ]
+      } ],
+      "toolName" : "pmd"
+    }, {
+      "rules" : [ {
+        "ruleName" : "AccessStaticViaInstance",
+        "args" : [ ]
+      }, {
+        "ruleName" : "FileTabCharacter",
+        "args" : [ ]
+      } ],
+      "toolName" : "fixbotengine-java"
+    }, {
+      "rules" : [ {
+        "ruleName" : "Missing_SecurityManager_Check_Serializable",
+        "args" : [ ]
+      }, {
+        "ruleName" : "Weak_Encryption_DiffieHellman",
+        "args" : [ ]
+      }, {
+        "ruleName" : "Forbid_Serialize_Nonstatic_Inner_Class",
+        "args" : [ ]
+      }, {
+        "ruleName" : "Weak_Encryption_DSA",
+        "args" : [ ]
+      }, {
+        "ruleName" : "Privacy_Violation_Serialization",
+        "args" : [ ]
+      }, {
+        "ruleName" : "SecurityManager_Privacy_Operation",
+        "args" : [ ]
+      }, {
+        "ruleName" : "XXE_SchemaFactory",
+        "args" : [ ]
+      }, {
+        "ruleName" : "Weak_Encryption_DH",
+        "args" : [ ]
+      }, {
+        "ruleName" : "Insecure_XML_Transform_By_XSLT",
+        "args" : [ ]
+      }, {
+        "ruleName" : "XXE_DocumentHelper",
+        "args" : [ ]
+      }, {
+        "ruleName" : "Forbid_Synchronize_getClass_Object",
+        "args" : [ ]
+      }, {
+        "ruleName" : "Weak_Hash_SHA1WithRSA",
+        "args" : [ ]
+      }, {
+        "ruleName" : "XXE_SAXTransformerFactory",
+        "args" : [ ]
+      }, {
+        "ruleName" : "Call_Super_GetPermission",
+        "args" : [ ]
+      }, {
+        "ruleName" : "Canonical_Path",
+        "args" : [ ]
+      }, {
+        "ruleName" : "Forbid_System_Exit",
+        "args" : [ ]
+      }, {
+        "ruleName" : "Weak_Hash_ECDSA",
+        "args" : [ ]
+      }, {
+        "ruleName" : "Forbid_Thread_Stop",
+        "args" : [ ]
+      }, {
+        "ruleName" : "Weak_Encryption_AES",
+        "args" : [ ]
+      }, {
+        "ruleName" : "Forbid_Synchronize_Reused_Object",
+        "args" : [ ]
+      }, {
+        "ruleName" : "XXE_XMLReaderFactory",
+        "args" : [ ]
+      }, {
+        "ruleName" : "Bad_Practices_Sockets",
+        "args" : [ ]
+      }, {
+        "ruleName" : "XXE_XMLInputFactory",
+        "args" : [ ]
+      }, {
+        "ruleName" : "Privacy_Violation_Password",
+        "args" : [ ]
+      }, {
+        "ruleName" : "Weak_Encryption_ARCFOUR",
+        "args" : [ ]
+      }, {
+        "ruleName" : "Object_Signed_Encrypted",
+        "args" : [ ]
+      }, {
+        "ruleName" : "Weak_Encryption_RC4",
+        "args" : [ ]
+      }, {
+        "ruleName" : "Weak_Encryption_RC2",
+        "args" : [ ]
+      }, {
+        "ruleName" : "Weak_Encryption_RSA",
+        "args" : [ ]
+      }, {
+        "ruleName" : "Weak_Hash_MD2",
+        "args" : [ ]
+      }, {
+        "ruleName" : "Weak_Hash_MD5WithRSA",
+        "args" : [ ]
+      }, {
+        "ruleName" : "Weak_Encryption_PBKDF2WithHmacMD5",
+        "args" : [ ]
+      }, {
+        "ruleName" : "Weak_Hash_SHA1",
+        "args" : [ ]
+      }, {
+        "ruleName" : "Invalid_Security_Check",
+        "args" : [ ]
+      }, {
+        "ruleName" : "Weak_Cryptographic_Hash_Iteration_Count",
+        "args" : [ ]
+      }, {
+        "ruleName" : "Weak_Hash_MD4",
+        "args" : [ ]
+      }, {
+        "ruleName" : "Weak_Hash_SHA0",
+        "args" : [ ]
+      }, {
+        "ruleName" : "Weak_Hash_MD5",
+        "args" : [ ]
+      }, {
+        "ruleName" : "Forbid_Synchronize_Concurrency_Object",
+        "args" : [ ]
+      }, {
+        "ruleName" : "IO_Process_WaitFor",
+        "args" : [ ]
+      }, {
+        "ruleName" : "XXE_DocumentBuilderFactory",
+        "args" : [ ]
+      }, {
+        "ruleName" : "Weak_Encryption_Blowfish",
+        "args" : [ ]
+      }, {
+        "ruleName" : "XXE_SAXBuilder",
+        "args" : [ ]
+      }, {
+        "ruleName" : "Weak_Cryptographic_Hash_Salt",
+        "args" : [ ]
+      }, {
+        "ruleName" : "XXE_SAXParserFactory",
+        "args" : [ ]
+      }, {
+        "ruleName" : "Invalid_Read_From_Stream",
+        "args" : [ ]
+      }, {
+        "ruleName" : "Zip_Entry_Size",
+        "args" : [ ]
+      }, {
+        "ruleName" : "Weak_Hash_SHA1WithDSA",
+        "args" : [ ]
+      }, {
+        "ruleName" : "Forbid_Catch_NullPointerException",
+        "args" : [ ]
+      }, {
+        "ruleName" : "Forbid_Thread_Run",
+        "args" : [ ]
+      }, {
+        "ruleName" : "Weak_Encryption_Inadequate_RSA_Padding",
+        "args" : [ ]
+      }, {
+        "ruleName" : "Weak_Encryption_DES",
+        "args" : [ ]
+      }, {
+        "ruleName" : "Weak_Hash_SHA1WithECDSA",
+        "args" : [ ]
+      }, {
+        "ruleName" : "XXE_DocumentBuilderFactoryImpl",
+        "args" : [ ]
+      }, {
+        "ruleName" : "Hardcoded_Password",
+        "args" : [ ]
+      }, {
+        "ruleName" : "Weak_Encryption_Insecure_Mode_AES",
+        "args" : [ ]
+      }, {
+        "ruleName" : "XXE_TransformerFactory",
+        "args" : [ ]
+      }, {
+        "ruleName" : "Ignore_Returned_Value",
+        "args" : [ ]
+      }, {
+        "ruleName" : "Weak_Hash_DSA",
+        "args" : [ ]
+      }, {
+        "ruleName" : "Assertions_With_Side_Effects",
+        "args" : [ ]
+      }, {
+        "ruleName" : "XXE_SAXReader",
+        "args" : [ ]
+      }, {
+        "ruleName" : "Lock_Synchronized",
+        "args" : [ ]
+      }, {
+        "ruleName" : "Insecure_Instance_Lock",
+        "args" : [ ]
+      } ],
+      "toolName" : "codemars"
+    }, {
+      "rules" : [ {
+        "ruleName" : "cmetrics fake rule",
+        "args" : [ ]
+      } ],
+      "toolName" : "cmetrics"
+    }, {
+      "rules" : [ {
+        "ruleName" : "FallThrough",
+        "args" : [ ]
+      }, {
+        "ruleName" : "PackageName",
+        "args" : [ ]
+      }, {
+        "ruleName" : "HiddenField",
+        "args" : [ ]
+      }, {
+        "ruleName" : "LeftCurly",
+        "args" : [ ]
+      }, {
+        "ruleName" : "NoFinalizer",
+        "args" : [ ]
+      }, {
+        "ruleName" : "EqualsHashCode",
+        "args" : [ ]
+      } ],
+      "toolName" : "checkstyle"
+    } ],
+    "language" : "java"
+  } ]
+}

@@ -1,0 +1,242 @@
+/*
+ * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+.container {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+.title {
+    font-size: 18px;
+    color: #FF000000;
+    font-family: HWtext-65ST, HWtext;
+}
+
+.shutdown-img{
+    width: 80px;
+    height: 80px;
+}
+
+.progressStyle{
+    width: 60px;
+    height: 60px;
+}
+
+.font-65ST{
+    font-family: HWtext-65ST,HWtext;
+    font-weight: normal;
+    allow-scale: false;
+}
+
+.dialogContainer {
+    flex-direction: column;
+    margin-left: 24px;
+    margin-right: 24px;
+}
+
+.fontTitle{
+    font-size: 20px;
+    color: #000000;
+    margin-top: 15px;
+}
+
+.fontContent{
+    font-size: 16px;
+}
+
+.divider-vertical {
+    height: 24px;
+    width: 1px;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.confirm-button-base {
+    height: 30px;
+    width: 128px;
+    border-radius: 16px;
+    font-size: 16px;
+    font-family: HWtext-65ST,HWtext;
+    background-color: transparent;
+    padding-left: 5px;
+    padding-right: 5px;
+    text-color: #007DFF;
+}
+
+.text-center {
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+
+.deviceDialogButton {
+    flex-direction: row;
+    margin-top: 25px;
+    margin-bottom: 18px;
+}
+
+.charing{
+    font-size: 18px;
+    color: #358CFD;
+}
+
+.features-list {
+    height: 140px;
+    columns: 2;
+}
+
+.common-div-effect {
+    height: 60px;
+    border-radius: 16px;
+    margin-bottom: 8px;
+    background-color: #ffffff;
+}
+
+.more {
+    height: 85px;
+}
+
+.color-blue{
+    color: #007dff;
+}
+
+.common-margin-right{
+    margin-right: 8px;
+}
+.common-margin-left{
+    margin-left: 8px;
+}
+
+.feature-color {
+    padding-top: 5px;
+    color: #358CFD;
+    font-size: 16px;
+}
+
+.font-26{
+    font-size: 13px;
+}
+.font-34{
+    font-size: 16px;
+}
+
+.modeDiv{
+    position: absolute;
+    top: 330px;
+    flex-direction: column;
+    background-color: #ff0000;
+    width: 48%;
+    border-radius: 16px;
+}
+
+.divider-horonzial {
+    color: darkgray;
+    width: 100%;
+    height: 0.5px;
+    background-color: transparent;
+}
+
+.color-gray {
+    color: #999999;
+}
+
+.font-13{
+    font-size: 13px;
+}
+
+.flex-row {
+    flex-direction: row;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.card-common {
+    margin-top: 8px;
+    border-radius: 16px;
+    background-color: #ffffff;
+    height: 88px;
+}
+
+.padding-lr {
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+.text-center {
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+
+.connect-status {
+    opacity: 1;
+}
+
+.desc{
+    height: 60px;
+    border-radius: 16px;
+    background-color: #ffffff;
+}
+
+.desc-img{
+    width: 30px;
+    height: 30px;
+}
+
+.online{
+    opacity: 1;
+}
+
+.unOnline{
+    opacity: 0.5;
+}
+
+@media screen and (device-type: tablet) and (orientation: landscape) {
+    .title {
+        font-size: 100px;
+    }
+}
+
+@media screen and (device-type: wearable) {
+    .title {
+        font-size: 28px;
+        color: #FFFFFF;
+    }
+}
+
+@media screen and (device-type: tv) {
+    .container {
+        background-image: url("../../common/images/Wallpaper.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    .title {
+        font-size: 100px;
+        color: #FFFFFF;
+    }
+}
+
+@media screen and (device-type: phone) and (orientation: landscape) {
+    .title {
+        font-size: 60px;
+    }
+}

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CodeCheckProjectSettings">
+    <option name="branch" value="master" />
+    <option name="repositoryUrl" value="https://codehub-dg-y.huawei.com/CodeLabs/HwShare_OneHop.git" />
+  </component>
+</project>

@@ -15,7 +15,6 @@
 
 package com.huawei.codecdemo.codec;
 
-import com.huawei.codecdemo.codec.api.CodecListener;
 import com.huawei.codecdemo.utils.LogUtil;
 
 import ohos.agp.graphics.Surface;
@@ -27,7 +26,6 @@ import ohos.media.common.BufferInfo;
 import ohos.media.common.Format;
 import ohos.media.muxer.Muxer;
 
-import java.io.File;
 import java.nio.ByteBuffer;
 
 /**
@@ -41,20 +39,12 @@ public class CodecDecoder {
     private static final int WRITE_BUFFER = 1;
     private static final int STOP_CODEC = 2;
     private Codec decoder;
-    private EventHandler decoderHandler;
-    private CodecListener callback;
+    private final EventHandler decoderHandler;
     private Muxer muxer;
-    private int trackIndex;
     private boolean isOpen;
-    private boolean isSaveFile;
-    private File decodeFile;
 
     private CodecDecoder(Builder builder) {
         initDecoder(builder.format, builder.surface);
-        if (builder.filePath != null) {
-            isSaveFile = true;
-            initMuxer(builder.format, builder.filePath);
-        }
         decoderHandler = new MyEventHandler(EventRunner.create(CodecDecoder.class.getSimpleName()));
     }
 
@@ -115,13 +105,6 @@ public class CodecDecoder {
                     @Override
                     public void onReadBuffer(ByteBuffer byteBuffer, BufferInfo bufferInfo, int tag) {
                         LogUtil.info(TAG, "decode onReadBuffer is called ");
-                        if (callback != null) {
-                            callback.onGetcodecBuffer(byteBuffer, bufferInfo);
-                        }
-                        if (isSaveFile) {
-                            boolean isSuccess = muxer.writeBuffer(trackIndex, byteBuffer, bufferInfo);
-                            LogUtil.info(TAG, " 文件decodec写入,result is :" + isSuccess);
-                        }
                     }
 
                     @Override
@@ -131,24 +114,8 @@ public class CodecDecoder {
                 });
     }
 
-    private void initMuxer(Format fmt, String filePath) {
-        decodeFile = new File(filePath);
-        muxer = new Muxer(decodeFile.getPath(), Muxer.MediaFileFormat.FORMAT_MPEG4);
-        trackIndex = muxer.appendTrack(fmt);
-        muxer.start();
-    }
-
     /**
-     * 设置解码监听回调
-     *
-     * @param listener listener
-     */
-    public void setDecodeListener(CodecListener listener) {
-        callback = listener;
-    }
-
-    /**
-     * 启动解码器
+     * openDecoder
      */
     public void openDecoder() {
         if (!isOpen) {
@@ -159,7 +126,7 @@ public class CodecDecoder {
     }
 
     /**
-     * 开始解码
+     * startDecode
      *
      * @param buffer buffer
      */
@@ -171,21 +138,12 @@ public class CodecDecoder {
     }
 
     /**
-     * 停止解码
+     * stopDecode
      */
     public void stopDecode() {
         if (isOpen) {
             decoderHandler.sendEvent(STOP_CODEC);
         }
-    }
-
-    /**
-     * 解码器是否启动
-     *
-     * @return isOpen
-     */
-    public boolean isOpen() {
-        return isOpen;
     }
 
     /**
@@ -195,7 +153,6 @@ public class CodecDecoder {
      */
     public static class Builder {
         private Format format;
-        private String filePath;
         private Surface surface;
 
         /**
@@ -223,17 +180,6 @@ public class CodecDecoder {
          */
         public Builder setFormat(Format format) {
             this.format = format;
-            return this;
-        }
-
-        /**
-         * setSaveFilePath of Builder
-         *
-         * @param path path
-         * @return builder
-         */
-        public Builder setSaveFilePath(String path) {
-            this.filePath = path;
             return this;
         }
 

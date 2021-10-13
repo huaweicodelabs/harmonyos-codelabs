@@ -15,6 +15,8 @@
 
 package ohos.codelabs.distributedvideo;
 
+import static ohos.security.SystemPermission.DISTRIBUTED_DATASYNC;
+
 import ohos.aafwk.ability.Ability;
 import ohos.aafwk.content.Intent;
 import ohos.bundle.IBundleManager;
@@ -23,20 +25,19 @@ import ohos.codelabs.distributedvideo.slice.MainAbilitySlice;
 /**
  * the main page
  *
- * @since 2020-12-04
+ * @since 2021-09-07
  *
  */
 public class MainAbility extends Ability {
-    private static final String PERMISSION_DATASYNC = "ohos.permission.DISTRIBUTED_DATASYNC";
     private static final int MY_PERMISSION_REQUEST_CODE = 1;
 
     @Override
     public void onStart(Intent intent) {
         super.onStart(intent);
         super.setMainRoute(MainAbilitySlice.class.getName());
-        if (verifySelfPermission(PERMISSION_DATASYNC) != IBundleManager.PERMISSION_GRANTED) {
-            if (canRequestPermission(PERMISSION_DATASYNC)) {
-                requestPermissionsFromUser(new String[] {PERMISSION_DATASYNC}, MY_PERMISSION_REQUEST_CODE);
+        if (verifySelfPermission(DISTRIBUTED_DATASYNC) != IBundleManager.PERMISSION_GRANTED) {
+            if (canRequestPermission(DISTRIBUTED_DATASYNC)) {
+                requestPermissionsFromUser(new String[] {DISTRIBUTED_DATASYNC}, MY_PERMISSION_REQUEST_CODE);
             }
         }
     }

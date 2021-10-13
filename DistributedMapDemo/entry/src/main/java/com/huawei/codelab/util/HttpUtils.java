@@ -17,8 +17,6 @@ package com.huawei.codelab.util;
 
 import com.huawei.codelab.map.Const;
 
-import ohos.agp.utils.LayoutAlignment;
-import ohos.agp.window.dialog.ToastDialog;
 import ohos.app.Context;
 import ohos.app.dispatcher.TaskDispatcher;
 import ohos.app.dispatcher.task.TaskPriority;
@@ -63,11 +61,11 @@ public class HttpUtils {
 
     private static HttpUtils instance;
 
-    private HttpResponseCache httpResponseCache;
+    private final HttpResponseCache httpResponseCache;
 
-    private Context context;
+    private final Context context;
 
-    private TaskDispatcher globalTaskDispatcher;
+    private final TaskDispatcher globalTaskDispatcher;
 
     private InputStream dataStream;
 
@@ -107,13 +105,13 @@ public class HttpUtils {
      */
     public void get(String url, ResponseCallback callback) {
         if (Const.MAP_KEY.isEmpty()) {
-            showError("MAP_KAY cannot be empty");
+            showError("MAP_KAY不能为空");
         } else {
             globalTaskDispatcher.asyncDispatch(() -> {
                 try {
                     doGet(url, callback);
                 } catch (IOException e) {
-                    showError(e.getMessage());
+                    showError("网络或API接口请求异常");
                 }
             });
         }
@@ -124,7 +122,7 @@ public class HttpUtils {
      *
      * @param address request address
      * @param callback response callback
-     * @throws IOException
+     * @throws IOException Exception
      */
     private void doGet(String address, ResponseCallback callback) throws IOException {
         HttpURLConnection connection = null;
@@ -151,7 +149,7 @@ public class HttpUtils {
             }
         } catch (IOException | KeyManagementException | NoSuchAlgorithmException e) {
             if (callback != null) {
-                showError(e.getMessage());
+                showError("网络或API接口请求异常");
                 LogUtils.error(TAG, "doGet IOException:" + e.getMessage());
             }
         } finally {
@@ -181,7 +179,7 @@ public class HttpUtils {
      * @throws NoSuchAlgorithmException exception
      */
     private HttpURLConnection getNetConnection(String strUrl, String method)
-        throws KeyManagementException, IOException, NoSuchAlgorithmException {
+            throws KeyManagementException, IOException, NoSuchAlgorithmException {
         NetManager netManager = NetManager.getInstance(context);
         NetHandle netHandle = netManager.getDefaultNet();
         if (netHandle == null) {
@@ -189,7 +187,7 @@ public class HttpUtils {
         }
         HttpURLConnection connection;
         SSLContext sslcontext = SSLContext.getInstance(SSL_PROVIDER_TLS);
-        sslcontext.init(null, new TrustManager[] {new MyX509TrustManager()}, new java.security.SecureRandom());
+        sslcontext.init(null, new TrustManager[]{new MyX509TrustManager()}, new java.security.SecureRandom());
         HostnameVerifier ignoreHostnameVerifier = (hostname, session) -> true;
         HttpsURLConnection.setDefaultHostnameVerifier(ignoreHostnameVerifier);
         HttpsURLConnection.setDefaultSSLSocketFactory(sslcontext.getSocketFactory());
@@ -212,16 +210,7 @@ public class HttpUtils {
     }
 
     private void showError(String content) {
-        context.getUITaskDispatcher().asyncDispatch(new Runnable() {
-            @Override
-            public void run() {
-                ToastDialog toastDialog = new ToastDialog(context);
-                toastDialog.setAutoClosable(false);
-                toastDialog.setContentText(content);
-                toastDialog.setAlignment(LayoutAlignment.CENTER);
-                toastDialog.show();
-            }
-        });
+        context.getUITaskDispatcher().asyncDispatch(() -> MapUtils.showToast(context,content));
     }
 
     /**

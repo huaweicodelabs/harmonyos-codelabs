@@ -27,12 +27,11 @@ import ohos.codelabs.distributedvideo.slice.SimplePlayerAbilitySlice;
 import ohos.codelabs.distributedvideo.util.AbilitySliceRouteUtil;
 import ohos.codelabs.distributedvideo.util.LogUtil;
 import ohos.rpc.IRemoteObject;
-import ohos.rpc.RemoteException;
 
 /**
  * VideoMigrateService
  *
- * @since 2020-12-04
+ * @since 2021-09-07
  */
 public class VideoMigrateService extends Ability {
     private static final String DESCRIPTOR = "com.huawei.codelab.ImplVideoMigration";
@@ -51,7 +50,7 @@ public class VideoMigrateService extends Ability {
     /**
      * MyBinder
      *
-     * @since 2020-12-04
+     * @since 2021-09-07
      */
     private class MyBinder extends VideoMigrationStub {
         /**
@@ -64,7 +63,7 @@ public class VideoMigrateService extends Ability {
         }
 
         @Override
-        public void flyIn(int startTimemiles) throws RemoteException {
+        public void flyIn(int startTimemiles) {
             Intent intent = new Intent();
             Operation operation = new Intent.OperationBuilder().withBundleName(getBundleName())
                     .withAbilityName(PlayerAbility.class.getName()).build();
@@ -74,16 +73,11 @@ public class VideoMigrateService extends Ability {
         }
 
         @Override
-        public void playControl(int controlCode, int extras) throws RemoteException {
+        public void playControl(int controlCode, int extras) {
             ImplPlayer player = SimplePlayerAbilitySlice.getImplPlayer();
             if (player != null) {
                 if (controlCode == ControlCode.RESUME.getCode()) {
-                    if (player.getPlayerStatu() == PlayerStatu.STOP
-                            || player.getPlayerStatu() == PlayerStatu.COMPLETE) {
-                        player.replay();
-                    } else {
-                        player.resume();
-                    }
+                    resumeVideo(player);
                 } else if (controlCode == ControlCode.PAUSE.getCode()) {
                     player.pause();
                 } else if (controlCode == ControlCode.STOP.getCode()) {
@@ -108,9 +102,18 @@ public class VideoMigrateService extends Ability {
         }
 
         @Override
-        public int flyOut() throws RemoteException {
+        public int flyOut() {
             AbilitySliceRouteUtil.getInstance().terminateSlices();
             return SimplePlayerAbilitySlice.getImplPlayer().getCurrentPosition();
+        }
+    }
+
+    private void resumeVideo(ImplPlayer player) {
+        if (player.getPlayerStatu() == PlayerStatu.STOP
+                || player.getPlayerStatu() == PlayerStatu.COMPLETE) {
+            player.replay();
+        } else {
+            player.resume();
         }
     }
 }

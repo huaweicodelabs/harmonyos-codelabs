@@ -16,7 +16,7 @@
 package com.huawei.codecdemo.camera.utils;
 
 /**
- * Nv21Handler 视频采集格式是NV21，（属于YUV420）
+ * Nv21Handler NV21，（YUV420）
  *
  * @since 2021-04-09
  */
@@ -28,7 +28,7 @@ public class Nv21Handler {
     }
 
     /**
-     * 420p旋转90度
+     * 420p Rotation 90 Degrees
      *
      * @param data data
      * @param imageWidth imageWidth
@@ -57,7 +57,7 @@ public class Nv21Handler {
     }
 
     /**
-     * 420p旋转270度
+     * 420p Rotation 270 Degrees
      *
      * @param data data
      * @param imageWidth imageWidth
@@ -85,49 +85,9 @@ public class Nv21Handler {
     }
 
     /**
-     * yuv420数据镜像
+     * yuv420 Rotation 90 Degrees and scale x
      *
-     * @param data data 原始数据
-     * @param imageW imageWidth
-     * @param imageH imageHeight
-     */
-    public static void mirrorYuv420(byte[] data, int imageW, int imageH) {
-        byte temp;
-        int current;
-        int next;
-        for (int i = 0; i < imageH; i++) {
-            current = i * imageW;
-            next = (i + 1) * imageW - 1;
-            while (current < next) {
-                temp = data[current];
-                data[current] = data[next];
-                data[next] = temp;
-                current++;
-                next--;
-            }
-        }
-        int index = imageW * imageH;
-        for (int i = 0; i < imageH / NUMBER_2; i++) {
-            current = i * imageW;
-            next = (i + 1) * imageW - NUMBER_2;
-            while (current < next) {
-                temp = data[current + index];
-                data[current + index] = data[next + index];
-                data[next + index] = temp;
-
-                temp = data[current + index + 1];
-                data[current + index + 1] = data[next + index + 1];
-                data[next + index + 1] = temp;
-                current += NUMBER_2;
-                next -= NUMBER_2;
-            }
-        }
-    }
-
-    /**
-     * yuv420数据旋转270并镜像
-     *
-     * @param data data 原始数据
+     * @param data data
      * @param imageW imageWidth
      * @param imageH imageHeight
      * @return byte[]

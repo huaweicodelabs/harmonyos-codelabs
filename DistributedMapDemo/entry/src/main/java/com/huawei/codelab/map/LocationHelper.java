@@ -15,7 +15,7 @@
 
 package com.huawei.codelab.map;
 
-import ohos.agp.window.dialog.ToastDialog;
+import com.huawei.codelab.util.MapUtils;
 import ohos.app.Context;
 import ohos.location.Location;
 import ohos.location.Locator;
@@ -35,7 +35,7 @@ public class LocationHelper {
     /**
      * 获取本机位置信息
      *
-     * @param con Context con
+     * @param con      Context con
      * @param callBack LocCallBack callBack
      */
     public void getMyLocation(Context con, LocCallBack callBack) {
@@ -47,10 +47,7 @@ public class LocationHelper {
             MyLocatorCallback locatorCallback = new MyLocatorCallback();
             locator.requestOnce(requestParam, locatorCallback);
         } else {
-            ToastDialog toastDialog = new ToastDialog(context);
-            toastDialog.setAutoClosable(false);
-            toastDialog.setContentText("请前往设置打开位置信息开关");
-            toastDialog.show();
+            MapUtils.showToast(context, "请前往设置打开位置信息开关");
         }
     }
 
@@ -77,7 +74,7 @@ public class LocationHelper {
         @Override
         public void onLocationReport(Location location) {
             if (locCallBack != null) {
-                context.getUITaskDispatcher().asyncDispatch((Runnable) () -> locCallBack.locCallBack(location));
+                context.getUITaskDispatcher().asyncDispatch(() -> locCallBack.locCallBack(location));
             }
         }
 

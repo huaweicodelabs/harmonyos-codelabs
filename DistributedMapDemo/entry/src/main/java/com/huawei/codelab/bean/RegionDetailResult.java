@@ -23,8 +23,6 @@ package com.huawei.codelab.bean;
 public class RegionDetailResult {
     private RegeocodeEntity regeocode;
 
-    private String status;
-
     public RegeocodeEntity getRegeocode() {
         return regeocode;
     }
@@ -33,20 +31,12 @@ public class RegionDetailResult {
         this.regeocode = regeocode;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     /**
      * RegeocodeEntity
      *
      * @since 2021-03-12
      */
-    public class RegeocodeEntity {
+    public static class RegeocodeEntity {
         private AddressComponentEntity addressComponent;
 
         public AddressComponentEntity getAddressComponent() {
@@ -62,7 +52,7 @@ public class RegionDetailResult {
          *
          * @since 2021-03-12
          */
-        public class AddressComponentEntity {
+        public static class AddressComponentEntity {
             private String citycode;
 
             public String getCitycode() {

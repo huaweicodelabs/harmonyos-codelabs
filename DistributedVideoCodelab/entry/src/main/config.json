@@ -1,6 +1,6 @@
 {
   "app": {
-    "bundleName": "com.huawei.cookbook",
+    "bundleName": "com.huawei.codelab",
     "vendor": "huawei",
     "version": {
       "code": 1000000,
@@ -44,10 +44,7 @@
         "launchType": "standard"
       },
       {
-        "orientation": "unspecified",
-        "configChanges": [
-          "orientation"
-        ],
+        "orientation": "portrait",
         "name": ".PlayerAbility",
         "icon": "$media:icon",
         "description": "$string:videodetailabilityslice_description",

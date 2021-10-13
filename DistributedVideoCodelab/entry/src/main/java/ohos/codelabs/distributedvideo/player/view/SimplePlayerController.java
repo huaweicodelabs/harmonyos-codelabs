@@ -52,7 +52,7 @@ public class SimplePlayerController extends ComponentContainer implements ImplPl
     private static final int CONTROLLER_HIDE_DLEY_TIME = 5000;
     private static final int PROGRESS_RUNNING_TIME = 1000;
     private boolean mIsDragMode = false;
-    private Context mContext;
+    private final Context mContext;
     private ImplPlayer mPlayer;
     private DirectionalLayout bottomLayout;
     private Image mPlayToogle;
@@ -62,7 +62,7 @@ public class SimplePlayerController extends ComponentContainer implements ImplPl
     private Text mCurrentTime;
     private Text mTotleTime;
     private ControllerHandler mHandler;
-    private StatuChangeListener mStatuChangeListener = new StatuChangeListener() {
+    private final StatuChangeListener mStatuChangeListener = new StatuChangeListener() {
         @Override
         public void statuCallback(PlayerStatu statu) {
             mContext.getUITaskDispatcher().asyncDispatch(() -> {
@@ -264,8 +264,7 @@ public class SimplePlayerController extends ComponentContainer implements ImplPl
     /**
      * ControllerHandler
      *
-     * @author chenweiquan
-     * @since 2020-12-04
+     * @since 2021-09-07
      */
     private class ControllerHandler extends EventHandler {
         private int currentPosition;

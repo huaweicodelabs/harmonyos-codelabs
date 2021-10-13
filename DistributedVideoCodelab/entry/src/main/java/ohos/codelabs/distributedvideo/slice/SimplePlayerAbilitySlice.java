@@ -20,12 +20,10 @@ import ohos.aafwk.ability.IAbilityConnection;
 import ohos.aafwk.content.Intent;
 import ohos.aafwk.content.Operation;
 import ohos.agp.components.Button;
-import ohos.agp.components.Component;
 import ohos.agp.components.DependentLayout;
 import ohos.agp.components.Image;
 import ohos.agp.components.ListContainer;
 import ohos.app.dispatcher.task.TaskPriority;
-import ohos.bundle.AbilityInfo;
 import ohos.bundle.ElementName;
 import ohos.codelabs.distributedvideo.ResourceTable;
 import ohos.codelabs.distributedvideo.VideoMigrateService;
@@ -45,7 +43,6 @@ import ohos.codelabs.distributedvideo.provider.CommonProvider;
 import ohos.codelabs.distributedvideo.provider.ViewProvider;
 import ohos.codelabs.distributedvideo.util.AbilitySliceRouteUtil;
 import ohos.codelabs.distributedvideo.util.LogUtil;
-import ohos.codelabs.distributedvideo.util.ScreenUtils;
 import ohos.distributedschedule.interwork.DeviceInfo;
 import ohos.distributedschedule.interwork.DeviceManager;
 import ohos.rpc.IRemoteObject;
@@ -57,7 +54,7 @@ import java.util.List;
 /**
  * PlayerAbilitySlice
  *
- * @since 2020-12-04
+ * @since 2021-09-29
  */
 public class SimplePlayerAbilitySlice extends AbilitySlice {
     private static final String TAG = SimplePlayerAbilitySlice.class.getSimpleName();
@@ -65,13 +62,12 @@ public class SimplePlayerAbilitySlice extends AbilitySlice {
     private static ImplPlayer player;
     private RemoteController remoteController;
     private ImplVideoMigration implVideoMigration;
-    private DependentLayout parentLayout;
     private ListContainer deviceListContainer;
     private Image tv;
     private SlidePopupWindow transWindow;
-    private List<DeviceInfo> devices = new ArrayList<>(0);
+    private final List<DeviceInfo> devices = new ArrayList<>(0);
     private int startMillisecond;
-    private String url = "entry/resources/base/media/gubeishuizhen.mp4";
+    private final String url = "entry/resources/base/media/gubeishuizhen.mp4";
 
     @Override
     public void onStart(Intent intent) {
@@ -96,13 +92,13 @@ public class SimplePlayerAbilitySlice extends AbilitySlice {
 
     private void initComponent() {
         if (findComponentById(ResourceTable.Id_parent) instanceof DependentLayout) {
-            parentLayout = (DependentLayout) findComponentById(ResourceTable.Id_parent);
             transWindow = new SlidePopupWindow.Builder(this).create(ResourceTable.Layout_trans_slide);
             if (transWindow.findComponentById(ResourceTable.Id_device_list_container) instanceof ListContainer) {
                 deviceListContainer =
                         (ListContainer) transWindow.findComponentById(ResourceTable.Id_device_list_container);
             }
             remoteController = new RemoteController(this);
+            DependentLayout parentLayout = (DependentLayout) findComponentById(ResourceTable.Id_parent);
             parentLayout.addComponent(transWindow);
             parentLayout.addComponent(remoteController);
         }
@@ -152,13 +148,9 @@ public class SimplePlayerAbilitySlice extends AbilitySlice {
     /**
      * MyRemoteControllerListener
      *
-     * @since 2020-12-04
+     * @since 2021-09-07
      */
     private class MyRemoteControllerListener implements RemoteController.RemoteControllerListener {
-        @Override
-        public void controllerShow() {
-        }
-
         @Override
         public void controllerDismiss() {
             int progress = 0;
@@ -176,6 +168,7 @@ public class SimplePlayerAbilitySlice extends AbilitySlice {
         public void sendControl(int code, int extra) {
             try {
                 if (implVideoMigration != null) {
+                    // 通过IDL通信，发送控制视频播放的指令
                     implVideoMigration.playControl(code, extra);
                 }
             } catch (RemoteException e) {
@@ -193,7 +186,7 @@ public class SimplePlayerAbilitySlice extends AbilitySlice {
     }
 
     private void showDeviceList() {
-        CommonProvider commonProvider = new CommonProvider<DeviceInfo>(
+        CommonProvider<DeviceInfo> commonProvider = new CommonProvider<DeviceInfo>(
                 devices,
                 getContext(),
                 ResourceTable.Layout_device_list_item) {
@@ -226,12 +219,7 @@ public class SimplePlayerAbilitySlice extends AbilitySlice {
         boolean connectFlag = connectAbility(intent, new IAbilityConnection() {
             @Override
             public void onAbilityConnectDone(ElementName elementName, IRemoteObject remoteObject, int extra) {
-                implVideoMigration = VideoMigrationStub.asInterface(remoteObject);
-                try {
-                    implVideoMigration.flyIn(startMillisecond);
-                } catch (RemoteException e) {
-                    LogUtil.error(TAG, "connect successful,but have remote exception");
-                }
+                flyIn(remoteObject);
             }
 
             @Override
@@ -240,12 +228,23 @@ public class SimplePlayerAbilitySlice extends AbilitySlice {
             }
         });
         if (connectFlag) {
-            Toast.toast(this, "transmit successful！", TOAST_DURATION);
+            Toast.toast(this, "transmit successful!", TOAST_DURATION);
             remoteController.show();
             startMillisecond = player.getCurrentPosition();
             player.release();
         } else {
             Toast.toast(this, "transmit failed!Please try again later.", TOAST_DURATION);
+        }
+    }
+
+    private void flyIn(IRemoteObject remoteObject) {
+        implVideoMigration = VideoMigrationStub.asInterface(remoteObject);
+        try {
+            if (implVideoMigration != null) {
+                implVideoMigration.flyIn(startMillisecond);
+            }
+        } catch (RemoteException e) {
+            LogUtil.error(TAG, "connect successful,but have remote exception");
         }
     }
 
@@ -293,16 +292,5 @@ public class SimplePlayerAbilitySlice extends AbilitySlice {
         AbilitySliceRouteUtil.getInstance().removeRoute(this);
         player.getLifecycle().onStop();
         super.onStop();
-    }
-
-    @Override
-    protected void onOrientationChanged(AbilityInfo.DisplayOrientation displayOrientation) {
-        super.onOrientationChanged(displayOrientation);
-        int screenWidth = ScreenUtils.getScreenWidth(this);
-        parentLayout.setWidth(screenWidth);
-        tv.setVisibility(displayOrientation == AbilityInfo.DisplayOrientation.LANDSCAPE
-                ? Component.HIDE
-                : Component.VISIBLE);
-        player.openGesture(displayOrientation == AbilityInfo.DisplayOrientation.LANDSCAPE);
     }
 }

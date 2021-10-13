@@ -59,7 +59,7 @@ import java.util.List;
 public class GsonUtils<E> {
     private static final String TAG = GsonUtils.class.getSimpleName();
 
-    private static Gson gson = null;
+    private static final Gson gson;
 
     static {
         gson = new GsonBuilder().disableHtmlEscaping().registerTypeAdapterFactory(new MyTypeAdapterFactory()).create();

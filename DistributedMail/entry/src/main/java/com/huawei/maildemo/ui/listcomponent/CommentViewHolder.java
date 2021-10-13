@@ -33,8 +33,8 @@ public class CommentViewHolder {
     /**
      * convertView
      */
-    private Component convertView;
-    private Map<Integer, Component> mViews = new HashMap<>();
+    private final Component convertView;
+    private final Map<Integer, Component> mViews = new HashMap<>();
 
     /**
      * 对成员变量赋值，并把当前CommentViewHolder用tag存起来以便复用

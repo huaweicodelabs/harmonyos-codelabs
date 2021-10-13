@@ -1,0 +1,28 @@
+{
+  "string": [
+    {
+      "name": "entry_MainAbility",
+      "value": "bleDemo"
+    },
+    {
+      "name": "mainability_description",
+      "value": "JS_Empty Ability"
+    },
+    {
+      "name": "controlability_description",
+      "value": "JS_Empty Ability"
+    },
+    {
+      "name": "entry_ControlAbility",
+      "value": "entry_ControlAbility"
+    },
+    {
+      "name": "emptyability_description",
+      "value": "JS_Empty Ability"
+    },
+    {
+      "name": "entry_EmptyAbility",
+      "value": "entry_EmptyAbility"
+    }
+  ]
+}

@@ -43,15 +43,15 @@ public class HmPlayer implements ImplPlayer {
     private static final int MICRO_MILLI_RATE = 1000;
     private Player mPlayer;
     private Surface surface;
-    private HmPlayerLifecycle mLifecycle;
-    private Builder mBuilder;
-    private PlayerStatu mStatu = PlayerStatu.IDEL;
+    private final HmPlayerLifecycle lifecycle;
+    private final Builder builder;
+    private PlayerStatu statu = PlayerStatu.IDEL;
     private float currentVolume = 1;
     private double videoScale = Constants.NUMBER_NEGATIVE_1;
     private boolean isGestureOpen;
 
-    private List<StatuChangeListener> statuChangeCallbacks = new ArrayList<>(0);
-    private List<ScreenChangeListener> screenChangeCallbacks = new ArrayList<>(0);
+    private final List<StatuChangeListener> statusChangeCallbacks = new ArrayList<>(0);
+    private final List<ScreenChangeListener> screenChangeCallbacks = new ArrayList<>(0);
 
     /**
      * constructor of HmPlayer
@@ -59,13 +59,13 @@ public class HmPlayer implements ImplPlayer {
      * @param builder builder
      */
     private HmPlayer(Builder builder) {
-        mBuilder = builder;
-        mLifecycle = new HmPlayerLifecycle(this);
+        this.builder = builder;
+        lifecycle = new HmPlayerLifecycle(this);
     }
 
     private void initBasePlayer() {
-        mPlayer = new Player(mBuilder.mContext);
-        Source source = new SourceFactory(mBuilder.mContext, mBuilder.filePath).getSource();
+        mPlayer = new Player(builder.context);
+        Source source = new SourceFactory(builder.context, builder.filePath).getSource();
         mPlayer.setSource(source);
         mPlayer.setPlayerCallback(new HmPlayerCallback());
     }
@@ -73,14 +73,14 @@ public class HmPlayer implements ImplPlayer {
     /**
      * HmPlayer Callback
      *
-     * @since 2020-12-04
+     * @since 2021-09-07
      */
     private class HmPlayerCallback implements Player.IPlayerCallback {
         @Override
         public void onPrepared() {
             LogUtil.info(TAG, "onPrepared is called ");
-            for (StatuChangeListener callback : statuChangeCallbacks) {
-                mStatu = PlayerStatu.PREPARED;
+            for (StatuChangeListener callback : statusChangeCallbacks) {
+                statu = PlayerStatu.PREPARED;
                 callback.statuCallback(PlayerStatu.PREPARED);
             }
         }
@@ -91,23 +91,23 @@ public class HmPlayer implements ImplPlayer {
             if (i1 == 0) {
                 switch (info) {
                     case Player.PLAYER_INFO_VIDEO_RENDERING_START:
-                        for (StatuChangeListener callback : statuChangeCallbacks) {
-                            mStatu = PlayerStatu.PLAY;
+                        for (StatuChangeListener callback : statusChangeCallbacks) {
+                            statu = PlayerStatu.PLAY;
                             callback.statuCallback(PlayerStatu.PLAY);
                         }
-                        if (mBuilder.isPause) {
+                        if (builder.isPause) {
                             pause();
                         }
                         break;
                     case Player.PLAYER_INFO_BUFFERING_START:
-                        for (StatuChangeListener callback : statuChangeCallbacks) {
-                            mStatu = PlayerStatu.BUFFERING;
+                        for (StatuChangeListener callback : statusChangeCallbacks) {
+                            statu = PlayerStatu.BUFFERING;
                             callback.statuCallback(PlayerStatu.BUFFERING);
                         }
                         break;
                     case Player.PLAYER_INFO_BUFFERING_END:
-                        for (StatuChangeListener callback : statuChangeCallbacks) {
-                            mStatu = PlayerStatu.PLAY;
+                        for (StatuChangeListener callback : statusChangeCallbacks) {
+                            statu = PlayerStatu.PLAY;
                             callback.statuCallback(PlayerStatu.PLAY);
                         }
                         break;
@@ -120,8 +120,8 @@ public class HmPlayer implements ImplPlayer {
         @Override
         public void onError(int type, int extra) {
             LogUtil.info(TAG, "onError is called ,i is " + type + ",i1 is " + extra);
-            for (StatuChangeListener callback : statuChangeCallbacks) {
-                mStatu = PlayerStatu.ERROR;
+            for (StatuChangeListener callback : statusChangeCallbacks) {
+                statu = PlayerStatu.ERROR;
                 callback.statuCallback(PlayerStatu.ERROR);
             }
             release();
@@ -130,15 +130,15 @@ public class HmPlayer implements ImplPlayer {
         @Override
         public void onResolutionChanged(int videoX, int videoY) {
             LogUtil.info(TAG, "onResolutionChanged videoX is " + videoX + ",videoY is " + videoY);
-            if (!mBuilder.isStretch && videoX != 0 && videoY != 0) {
+            if (videoX != 0 && videoY != 0) {
                 videoScale = (double) videoX / videoY;
             }
         }
 
         @Override
         public void onPlayBackComplete() {
-            for (StatuChangeListener callback : statuChangeCallbacks) {
-                mStatu = PlayerStatu.COMPLETE;
+            for (StatuChangeListener callback : statusChangeCallbacks) {
+                statu = PlayerStatu.COMPLETE;
                 callback.statuCallback(PlayerStatu.COMPLETE);
             }
         }
@@ -159,15 +159,18 @@ public class HmPlayer implements ImplPlayer {
 
         @Override
         public void onMediaTimeIncontinuity(Player.MediaTimeInfo mediaTimeInfo) {
+            if (mPlayer == null) {
+                return;
+            }
             LogUtil.info(TAG, "onMediaTimeIncontinuity is called");
             for (Player.StreamInfo streanInfo : mPlayer.getStreamInfo()) {
                 int streamType = streanInfo.getStreamType();
-                if (streamType == Player.StreamInfo.MEDIA_STREAM_TYPE_AUDIO && mStatu == PlayerStatu.PREPARED) {
-                    for (StatuChangeListener callback : statuChangeCallbacks) {
-                        mStatu = PlayerStatu.PLAY;
+                if (streamType == Player.StreamInfo.MEDIA_STREAM_TYPE_AUDIO && statu == PlayerStatu.PREPARED) {
+                    for (StatuChangeListener callback : statusChangeCallbacks) {
+                        statu = PlayerStatu.PLAY;
                         callback.statuCallback(PlayerStatu.PLAY);
                     }
-                    if (mBuilder.isPause) {
+                    if (builder.isPause) {
                         pause();
                     }
                 }
@@ -180,15 +183,15 @@ public class HmPlayer implements ImplPlayer {
      */
     private void start() {
         if (mPlayer != null) {
-            mBuilder.mContext.getGlobalTaskDispatcher(TaskPriority.DEFAULT).asyncDispatch(() -> {
+            builder.context.getGlobalTaskDispatcher(TaskPriority.DEFAULT).asyncDispatch(() -> {
                 if (surface != null) {
                     mPlayer.setVideoSurface(surface);
                 } else {
                     LogUtil.error(TAG, "The surface has not been initialized.");
                 }
                 mPlayer.prepare();
-                if (mBuilder.startMillisecond > 0) {
-                    int microsecond = mBuilder.startMillisecond * MICRO_MILLI_RATE;
+                if (builder.startMillisecond > 0) {
+                    int microsecond = builder.startMillisecond * MICRO_MILLI_RATE;
                     mPlayer.rewindTo(microsecond);
                 }
                 mPlayer.play();
@@ -198,7 +201,7 @@ public class HmPlayer implements ImplPlayer {
 
     @Override
     public ImplLifecycle getLifecycle() {
-        return mLifecycle;
+        return lifecycle;
     }
 
     @Override
@@ -209,13 +212,13 @@ public class HmPlayer implements ImplPlayer {
     @Override
     public void addPlayerStatuCallback(StatuChangeListener callback) {
         if (callback != null) {
-            statuChangeCallbacks.add(callback);
+            statusChangeCallbacks.add(callback);
         }
     }
 
     @Override
     public void removePlayerStatuCallback(StatuChangeListener callback) {
-        statuChangeCallbacks.remove(callback);
+        statusChangeCallbacks.remove(callback);
     }
 
     @Override
@@ -232,12 +235,12 @@ public class HmPlayer implements ImplPlayer {
 
     @Override
     public Builder getBuilder() {
-        return mBuilder;
+        return builder;
     }
 
     @Override
     public PlayerStatu getPlayerStatu() {
-        return mStatu;
+        return statu;
     }
 
     @Override
@@ -262,8 +265,8 @@ public class HmPlayer implements ImplPlayer {
         if (mPlayer != null) {
             mPlayer.reset();
         }
-        for (StatuChangeListener callback : statuChangeCallbacks) {
-            mStatu = PlayerStatu.PREPARING;
+        for (StatuChangeListener callback : statusChangeCallbacks) {
+            statu = PlayerStatu.PREPARING;
             callback.statuCallback(PlayerStatu.PREPARING);
         }
         initBasePlayer();
@@ -275,14 +278,14 @@ public class HmPlayer implements ImplPlayer {
         if (isPlaying()) {
             rewindTo(0);
         } else {
-            reload(mBuilder.filePath, 0);
+            reload(builder.filePath, 0);
         }
     }
 
     @Override
     public void reload(String filepath, int startMillisecond) {
-        mBuilder.filePath = filepath;
-        mBuilder.startMillisecond = startMillisecond;
+        builder.filePath = filepath;
+        builder.startMillisecond = startMillisecond;
         play();
     }
 
@@ -292,8 +295,8 @@ public class HmPlayer implements ImplPlayer {
             return;
         }
         mPlayer.stop();
-        for (StatuChangeListener callback : statuChangeCallbacks) {
-            mStatu = PlayerStatu.STOP;
+        for (StatuChangeListener callback : statusChangeCallbacks) {
+            statu = PlayerStatu.STOP;
             callback.statuCallback(PlayerStatu.STOP);
         }
     }
@@ -303,11 +306,11 @@ public class HmPlayer implements ImplPlayer {
         if (mPlayer == null) {
             return;
         }
-        if (mStatu != PlayerStatu.IDEL) {
+        if (statu != PlayerStatu.IDEL) {
             videoScale = Constants.NUMBER_NEGATIVE_1;
             mPlayer.release();
-            for (StatuChangeListener callback : statuChangeCallbacks) {
-                mStatu = PlayerStatu.IDEL;
+            for (StatuChangeListener callback : statusChangeCallbacks) {
+                statu = PlayerStatu.IDEL;
                 callback.statuCallback(PlayerStatu.IDEL);
             }
         }
@@ -318,12 +321,12 @@ public class HmPlayer implements ImplPlayer {
         if (mPlayer == null) {
             return;
         }
-        if (mStatu != PlayerStatu.IDEL) {
+        if (statu != PlayerStatu.IDEL) {
             if (!isPlaying()) {
                 mPlayer.play();
             }
-            for (StatuChangeListener callback : statuChangeCallbacks) {
-                mStatu = PlayerStatu.PLAY;
+            for (StatuChangeListener callback : statusChangeCallbacks) {
+                statu = PlayerStatu.PLAY;
                 callback.statuCallback(PlayerStatu.PLAY);
             }
         }
@@ -336,8 +339,8 @@ public class HmPlayer implements ImplPlayer {
         }
         if (isPlaying()) {
             mPlayer.pause();
-            for (StatuChangeListener callback : statuChangeCallbacks) {
-                mStatu = PlayerStatu.PAUSE;
+            for (StatuChangeListener callback : statusChangeCallbacks) {
+                statu = PlayerStatu.PAUSE;
                 callback.statuCallback(PlayerStatu.PAUSE);
             }
         }
@@ -378,7 +381,7 @@ public class HmPlayer implements ImplPlayer {
         if (mPlayer == null) {
             return;
         }
-        if (mStatu != PlayerStatu.IDEL) {
+        if (statu != PlayerStatu.IDEL) {
             mPlayer.setPlaybackSpeed(speed);
         }
     }
@@ -401,9 +404,9 @@ public class HmPlayer implements ImplPlayer {
         if (mPlayer == null) {
             return;
         }
-        if (mStatu != PlayerStatu.IDEL) {
-            for (StatuChangeListener callback : statuChangeCallbacks) {
-                mStatu = PlayerStatu.BUFFERING;
+        if (statu != PlayerStatu.IDEL) {
+            for (StatuChangeListener callback : statusChangeCallbacks) {
+                statu = PlayerStatu.BUFFERING;
                 callback.statuCallback(PlayerStatu.BUFFERING);
             }
             mPlayer.rewindTo(startMicrosecond * MICRO_MILLI_RATE);
@@ -413,13 +416,12 @@ public class HmPlayer implements ImplPlayer {
     /**
      * Builder
      *
-     * @since 2020-12-04
+     * @since 2021-09-07
      */
     public static class Builder {
-        private Context mContext;
+        private final Context context;
         private String filePath;
         private int startMillisecond;
-        private boolean isStretch;
         private boolean isPause;
 
         /**
@@ -428,7 +430,7 @@ public class HmPlayer implements ImplPlayer {
          * @param context context
          */
         public Builder(Context context) {
-            mContext = context;
+            this.context = context;
             filePath = "";
             startMillisecond = 0;
         }
@@ -471,17 +473,6 @@ public class HmPlayer implements ImplPlayer {
          */
         public int getStartMillisecond() {
             return startMillisecond;
-        }
-
-        /**
-         * setStretch of Builder
-         *
-         * @param isS isStretch
-         * @return Builder
-         */
-        public Builder setStretch(boolean isS) {
-            this.isStretch = isS;
-            return this;
         }
 
         /**

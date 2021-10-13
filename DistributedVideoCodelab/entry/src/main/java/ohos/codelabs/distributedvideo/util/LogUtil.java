@@ -21,7 +21,7 @@ import ohos.hiviewdfx.HiLogLabel;
 /**
  * Log util
  *
- * @since 2020-12-04
+ * @since 2021-09-07
  *
  */
 public class LogUtil {

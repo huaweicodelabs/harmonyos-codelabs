@@ -1,0 +1,12 @@
+// IHwShareService.idl
+
+// Declare any non-default types here with sequenceable or interface statements
+sequenceable ohos.interwork.utils.PacMapEx;
+interface com.huawei.hwshare.third.IHwShareCallback;
+interface com.huawei.hwshare.third.IHwShareService {
+    /*
+     * Example of a service method that uses some parameters
+     */
+    int startAuth([in] String appId, [in] IHwShareCallback callback);
+    int shareFaInfo([in] PacMapEx pacMapEx);
+}

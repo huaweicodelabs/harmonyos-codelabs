@@ -23,6 +23,206 @@
     {
       "name": "movieplayability_description",
       "value": "Java_Phone_Empty Feature Ability"
+    },
+    {
+      "name": "search",
+      "value": "搜索"
+    },
+    {
+      "name": "clear",
+      "value": "清空"
+    },
+    {
+      "name": "delete",
+      "value": "删除"
+    },
+    {
+      "name": "wireless_ear",
+      "value": "无线耳机"
+    },
+    {
+      "name": "smart_glasses",
+      "value": "智能眼镜"
+    },
+    {
+      "name": "acoustics",
+      "value": "音响"
+    },
+    {
+      "name": "flagship_store",
+      "value": "旗舰店"
+    },
+    {
+      "name": "tree",
+      "value": "胡杨树"
+    },
+    {
+      "name": "desert",
+      "value": "沙漠"
+    },
+    {
+      "name": "watch_fit",
+      "value": "WATCHFIT"
+    },
+    {
+      "name": "watch_git",
+      "value": "WATCHGT2"
+    },
+    {
+      "name": "starry_blue",
+      "value": "星空蓝"
+    },
+    {
+      "name": "watch_gt_pro",
+      "value": "WATCHGT2PRO"
+    },
+    {
+      "name": "A",
+      "value": "A"
+    },
+    {
+      "name": "B",
+      "value": "B"
+    },
+    {
+      "name": "C",
+      "value": "C"
+    },
+    {
+      "name": "D",
+      "value": "D"
+    },
+    {
+      "name": "E",
+      "value": "E"
+    },
+    {
+      "name": "F",
+      "value": "F"
+    },
+    {
+      "name": "G",
+      "value": "G"
+    },
+    {
+      "name": "H",
+      "value": "H"
+    },
+    {
+      "name": "I",
+      "value": "I"
+    },
+    {
+      "name": "J",
+      "value": "J"
+    },
+    {
+      "name": "K",
+      "value": "K"
+    },
+    {
+      "name": "L",
+      "value": "L"
+    },
+    {
+      "name": "M",
+      "value": "M"
+    },
+    {
+      "name": "N",
+      "value": "N"
+    },
+    {
+      "name": "O",
+      "value": "O"
+    },
+    {
+      "name": "P",
+      "value": "P"
+    },
+    {
+      "name": "Q",
+      "value": "Q"
+    },
+    {
+      "name": "R",
+      "value": "R"
+    },
+    {
+      "name": "S",
+      "value": "S"
+    },
+    {
+      "name": "T",
+      "value": "T"
+    },
+    {
+      "name": "U",
+      "value": "U"
+    },
+    {
+      "name": "V",
+      "value": "V"
+    },
+    {
+      "name": "W",
+      "value": "W"
+    },
+    {
+      "name": "X",
+      "value": "X"
+    },
+    {
+      "name": "Y",
+      "value": "Y"
+    },
+    {
+      "name": "Z",
+      "value": "Z"
+    },
+    {
+      "name": "zero",
+      "value": "0"
+    },
+    {
+      "name": "one",
+      "value": "1"
+    },
+    {
+      "name": "two",
+      "value": "2"
+    },
+    {
+      "name": "three",
+      "value": "3"
+    },
+    {
+      "name": "four",
+      "value": "4"
+    },
+    {
+      "name": "five",
+      "value": "5"
+    },
+    {
+      "name": "six",
+      "value": "6"
+    },
+    {
+      "name": "seven",
+      "value": "7"
+    },
+    {
+      "name": "eight",
+      "value": "8"
+    },
+    {
+      "name": "nine",
+      "value": "9"
+    },
+    {
+      "name": "huawei_smart_tv",
+      "value": "华为智慧屏"
     }
   ]
 }

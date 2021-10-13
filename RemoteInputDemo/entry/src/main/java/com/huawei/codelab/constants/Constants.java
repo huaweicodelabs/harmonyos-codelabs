@@ -16,7 +16,7 @@
 package com.huawei.codelab.constants;
 
 /**
- * 移动指令
+ * Constants
  *
  * @since 2021-02-04
  */

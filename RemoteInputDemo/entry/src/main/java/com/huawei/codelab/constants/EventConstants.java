@@ -16,7 +16,7 @@
 package com.huawei.codelab.constants;
 
 /**
- * 事件
+ * EventConstants
  *
  * @since 2021-02-26
  */

@@ -1,0 +1,40 @@
+{
+  "string": [
+    {
+      "name": "app_name",
+      "value": "SearchImageByKeywords"
+    },
+    {
+      "name": "entry_MainAbility",
+      "value": "SearchImageByKeywords"
+    },
+    {
+      "name": "mainability_description",
+      "value": "Java_Phone_Empty Feature Ability"
+    },
+    {
+      "name": "searching_images_by_keyword",
+      "value": "关键词搜索图片"
+    },
+    {
+      "name": "image_list",
+      "value": "图片列表"
+    },
+    {
+      "name": "enter_keywords",
+      "value": "请输入关键词："
+    },
+    {
+      "name": "start_recognize",
+      "value": "开始通用文字识别"
+    },
+    {
+      "name": "search_result",
+      "value": "搜索结果"
+    },
+    {
+      "name": "enter_statement",
+      "value": "Enter a statement."
+    }
+  ]
+}

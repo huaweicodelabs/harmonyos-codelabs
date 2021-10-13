@@ -1,0 +1,64 @@
+<!--
+  Copyright (c) 2021 Huawei Device Co., Ltd.
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+ -->
+
+<div class="container">
+    <div class="div-permit" if="{{ ! isGame }}">
+        <text class="text-title">来自远程合成设备小游戏权限请求，是否允许?</text>
+        <div class="div-button">
+            <text class="text-allow" onclick="isAllowGame(0)">允许</text>
+            <text class="text-reject" onclick="isAllowGame(1)">不允许</text>
+        </div>
+    </div>
+
+    <div class="div-permit" if="{{ isGame }}">
+        <div class="div-text" if="{{ ! isStart }}">
+            <div class="div-text" if="{{ ! isEnd }}">
+                <text class="text-button" onclick="startFA">开始游戏</text>
+            </div>
+            <div class="div-text" if="{{ isEnd }}">
+                <div class="div-center">
+                    <text class="text-end0">拒绝玩游戏，</text>
+                    <text class="text-end1">{{ countdown }}</text>
+                    <text class="text-end2">后退出应用</text>
+                </div>
+                <text class="text-button">拒绝玩游戏，{{ countdown }}后退出应用</text>
+            </div>
+        </div>
+
+        <div class="div-image" if="{{ isStart }}"
+             @touchstart="touchStart"
+             @touchmove="touchMove"
+             @touchcancel="touchCancel"
+             @touchend="touchEnd"
+                >
+            <image for="{{ (index, item) in modes }}"
+                   class="product{{ item.lever }}"
+                   style="top : {{ item.top }}; left : {{ item.left }}" src="{{ item.src }} "/>
+        </div>
+    </div>
+
+    <dialog id="showDialog" class="select-device-dialog">
+        <div class="select-device-wrapper">
+            <text class="select-device-title">选择设备</text>
+            <list class="select-device-list">
+                <list-item class="select-device-item" for="{{ deviceList }}" id="list">
+                    <text class="select-device-item-left"
+                          onclick="selectDevice({{ $item.networkId }})">{{ $item.deviceName }}
+                    </text>
+                </list-item>
+            </list>
+        </div>
+    </dialog>
+</div>

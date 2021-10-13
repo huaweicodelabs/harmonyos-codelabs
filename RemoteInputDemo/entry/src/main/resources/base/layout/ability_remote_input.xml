@@ -8,7 +8,7 @@
     ohos:width="match_parent">
 
     <DirectionalLayout
-        ohos:height="108vp"
+        ohos:height="90vp"
         ohos:width="match_parent"
         ohos:alignment="center">
         <DirectionalLayout
@@ -29,16 +29,16 @@
                 ohos:width="match_content"
                 ohos:margin="5vp"
                 ohos:text_size="20vp"
-                ohos:text="华为智慧屏"/>
+                ohos:text="$string:huawei_smart_tv"/>
         </DirectionalLayout>
 
         <TextField
             ohos:id="$+id:remote_input"
-            ohos:height="45vp"
+            ohos:height="42vp"
             ohos:width="match_parent"
             ohos:text_size="18vp"
             ohos:bottom_margin="15vp"
-            ohos:top_margin="15vp"
+            ohos:top_margin="12vp"
             ohos:left_margin="30vp"
             ohos:right_margin="30vp"
             ohos:left_padding="10vp"
@@ -52,16 +52,17 @@
     <DirectionalLayout
         ohos:alignment="center"
         ohos:background_element="$graphic:background_round"
-        ohos:height="216vp"
+        ohos:height="210vp"
         ohos:left_margin="30vp"
         ohos:right_margin="30vp"
         ohos:top_margin="10vp"
-        ohos:bottom_margin="15vp"
+        ohos:bottom_margin="3vp"
         ohos:width="match_parent">
         <DirectionalLayout
             ohos:height="50vp"
             ohos:width="60vp"
-            ohos:bottom_margin="25vp"
+            ohos:top_margin="5vp"
+            ohos:bottom_margin="15vp"
             ohos:background_element="$graphic:background_ability_remote_input"
             ohos:alignment="center">
 
@@ -120,7 +121,8 @@
         <DirectionalLayout
             ohos:height="50vp"
             ohos:width="60vp"
-            ohos:top_margin="25vp"
+            ohos:bottom_margin="5vp"
+            ohos:top_margin="15vp"
             ohos:background_element="$graphic:background_ability_remote_input"
             ohos:alignment="center">
 
@@ -135,7 +137,7 @@
     </DirectionalLayout>
 
     <DependentLayout
-        ohos:height="50vp"
+        ohos:height="48vp"
         ohos:width="match_parent"
         ohos:left_margin="35vp"
         ohos:right_margin="35vp"

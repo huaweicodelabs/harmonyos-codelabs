@@ -19,7 +19,7 @@ import com.huawei.codelab.constants.Constants;
 import com.huawei.codelab.slice.MainAbilitySlice;
 
 /**
- * 主要回调方法
+ * MainCallBack
  *
  * @since 2021-02-26
  */
@@ -31,10 +31,10 @@ public class MainCallBack {
     }
 
     /**
-     * 焦点移动方法
+     * movePoint
      *
-     * @param slice X轴坐标
-     * @param moveDirection Y轴坐标
+     * @param slice slice
+     * @param moveDirection moveDirection
      */
     public static void movePoint(MainAbilitySlice slice, String moveDirection) {
         switch (moveDirection) {

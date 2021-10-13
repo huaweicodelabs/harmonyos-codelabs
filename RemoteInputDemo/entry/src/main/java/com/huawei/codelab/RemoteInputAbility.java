@@ -21,7 +21,7 @@ import ohos.aafwk.ability.Ability;
 import ohos.aafwk.content.Intent;
 
 /**
- * 远程遥控入口
+ * RemoteInputAbility
  *
  * @since 2021-02-26
  */

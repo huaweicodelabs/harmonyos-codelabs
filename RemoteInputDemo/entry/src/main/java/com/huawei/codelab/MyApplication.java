@@ -18,7 +18,7 @@ package com.huawei.codelab;
 import ohos.aafwk.ability.AbilityPackage;
 
 /**
- * 应用入口
+ * MyApplication
  *
  * @since 2021-02-26
  */

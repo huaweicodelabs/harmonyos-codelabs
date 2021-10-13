@@ -63,7 +63,7 @@ public class MainAbility extends Ability {
             return;
         }
         // 向用户申请相关权限的授权
-        requestPermissionsFromUser(permissionFiltereds.toArray(new String[permissionFiltereds.size()]),
+        requestPermissionsFromUser(permissionFiltereds.toArray(new String[0]),
                 PERMISSION_REQUEST_CODE);
     }
 
