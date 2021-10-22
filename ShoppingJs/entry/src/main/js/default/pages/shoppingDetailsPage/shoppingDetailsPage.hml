@@ -145,7 +145,7 @@
                         {{pageInfo.selectRewardTime}}
                     </text>
                     <div class="dialog-div-select-picker">
-                        <picker type="date" selected="{{ newDate }}" hours="24" value="{{ newDate }}"
+                        <picker type="date" selected="{{ newDate }}" value="{{ newDate }}"
                                 @change="changeDate" @cancel="cancelDate">
                         </picker>
                     </div>

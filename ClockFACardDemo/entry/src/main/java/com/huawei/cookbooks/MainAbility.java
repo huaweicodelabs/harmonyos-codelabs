@@ -29,21 +29,16 @@ import ohos.aafwk.content.Operation;
 import ohos.agp.components.ComponentProvider;
 import ohos.data.DatabaseHelper;
 import ohos.data.orm.OrmContext;
-import ohos.hiviewdfx.HiLog;
-import ohos.hiviewdfx.HiLogLabel;
 
 /**
  * Card Main Ability
  */
 public class MainAbility extends Ability {
-    private static final HiLogLabel LABEL_LOG = new HiLogLabel(0, 0, "com.huawei.cookbooks.MainAbility");
     private static final int DEFAULT_DIMENSION_2X2 = 2;
     private static final int DEFAULT_DIMENSION_2X4 = 3;
     private static final String EMPTY_STRING = "";
     private static final int INVALID_FORM_ID = -1;
-    private long formId;
-    private ProviderFormInfo formInfo;
-    private DatabaseHelper helper = new DatabaseHelper(this);
+    private final DatabaseHelper helper = new DatabaseHelper(this);
     private OrmContext connect;
 
     @Override
@@ -69,7 +64,7 @@ public class MainAbility extends Ability {
             return new ProviderFormInfo();
         }
         // 获取卡片id
-        formId = INVALID_FORM_ID;
+        long formId;
         if (intent.hasParameter(AbilitySlice.PARAM_FORM_IDENTITY_KEY)) {
             formId = intent.getLongParam(AbilitySlice.PARAM_FORM_IDENTITY_KEY, INVALID_FORM_ID);
         } else {
@@ -89,7 +84,7 @@ public class MainAbility extends Ability {
         if (dimension == DEFAULT_DIMENSION_2X4) {
             layoutId = ResourceTable.Layout_form_image_with_info_date_card_2_4;
         }
-        formInfo = new ProviderFormInfo(layoutId, this);
+        ProviderFormInfo formInfo = new ProviderFormInfo(layoutId, this);
         // 存储卡片信息
         Form form = new Form(formId, formName, dimension);
         ComponentProvider componentProvider = ComponentProviderUtils.getComponentProvider(form, this);
@@ -98,18 +93,14 @@ public class MainAbility extends Ability {
             connect =
                     helper.getOrmContext("FormDatabase", "FormDatabase.db", FormDatabase.class);
         }
-        try {
-            DatabaseUtils.insertForm(form, connect);
-        } catch (Exception e) {
-            DatabaseUtils.deleteFormData(form.getFormId(), connect);
-        }
+        DatabaseUtils.insertForm(form, this);
         return formInfo;
     }
 
     @Override
-    protected void onDeleteForm(long formId) {
-        super.onDeleteForm(formId);
+    protected void onDeleteForm(long id) {
+        super.onDeleteForm(id);
         // 删除数据库中的卡片信息
-        DatabaseUtils.deleteFormData(formId, connect);
+        DatabaseUtils.deleteFormData(id, this);
     }
 }

@@ -1,0 +1,96 @@
+{
+  "string": [
+    {
+      "name": "entry_MainAbility",
+      "value": "简单图库"
+    },
+    {
+      "name": "mainability_description",
+      "value": "简单图库能力"
+    },
+    {
+      "name": "tab_strings",
+      "value": "页签"
+    },
+    {
+      "name": "tips",
+      "value": "这是测试功能，暂时还未实现."
+    },
+    {
+      "name": "featured",
+      "value": "精选"
+    },
+    {
+      "name": "discover",
+      "value": "发现"
+    },
+    {
+      "name": "wallpaper",
+      "value": "壁纸"
+    },
+    {
+      "name": "knowledge",
+      "value": "知识"
+    },
+    {
+      "name": "photo",
+      "value": "摄影"
+    },
+    {
+      "name": "more",
+      "value": "更多"
+    },
+    {
+      "name": "delete",
+      "value": "删除"
+    },
+    {
+      "name": "today_recommend",
+      "value": "今日推荐"
+    },
+    {
+      "name": "featured_recommend",
+      "value": "精选推荐"
+    },
+    {
+      "name": "september_recommend",
+      "value": "9月推荐"
+    },
+    {
+      "name": "august_recommend",
+      "value": "8月推荐"
+    },
+    {
+      "name": "notification_settings",
+      "value": "通知设置"
+    },
+    {
+      "name": "harmony_notification",
+      "value": "鸿蒙系统提醒"
+    },
+    {
+      "name": "background_reminderAgent",
+      "value": "HarmonyOS后台代理提醒"
+    },
+    {
+      "name": "reminder_tips",
+      "value": "设置后,清除应用、重启设备、设备关机,提醒正常触发"
+    },
+    {
+      "name": "subscribe_succeed",
+      "value": "预定成功。"
+    },
+    {
+      "name": "add_reminder",
+      "value": "是否添加到HarmonyOS后台代理提醒?"
+    },
+    {
+      "name": "yes",
+      "value": "是"
+    },
+    {
+      "name": "no",
+      "value": "否"
+    }
+  ]
+}

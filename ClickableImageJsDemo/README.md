@@ -1,6 +1,6 @@
 # ClickableImageJsDemo
 简介
-• HarmonyOS JSUI提供了常用的布局、组件等页面元素，并且为这些组件提供了很多属性与可监听到的事件（例如动画属性与点击、触碰事件），开发者可以根据实际场景和开发需求，选用不同的组件、事件、属性来实现界面交互效果的设计。
+• HarmonyOS JSUI提供了常用的布局、组件等页面元素，并且为这些组件提供了很多属性与事件（例如动画属性与点击、触碰事件），开发者可以根据实际场景和开发需求，选用不同的组件、事件、属性来实现界面交互效果的设计。
 
 安装要求
 • 安装DevEco Studio
@@ -11,7 +11,7 @@
 
 用户指南
 • 下载此项目
-• 打开HUAWEI DevEco Studio，单击File> Open选择此ComponentCodelab
+• 打开HUAWEI DevEco Studio，单击File> Open选择此Codelab
 • 单击Build> Build App(s)/Hap(s)>Build Debug Hap(s)以编译hap软件包
 • 单击Run> Run 'entry'以运行hap包
 
@@ -23,7 +23,7 @@
 请参阅LICENSE文件以获得更多信息。
 
 What is it?
- HarmonyOS JSUI provides commonly used layout, components, and other page elements, and provides many properties and audible events (such as animated properties and click-and-touch events) for these components, allowing developers to design different components, events, and properties to achieve interface interaction based on actual scenes and development needs
+ HarmonyOS JSUI provides commonly used layout, components, and other page elements, and provides many properties and events (such as animated properties and click-and-touch events) for these components, allowing developers to design different components, events, and properties to achieve interface interaction based on actual scenes and development needs
 
 Installation requirements
 • Install DevEco Studio

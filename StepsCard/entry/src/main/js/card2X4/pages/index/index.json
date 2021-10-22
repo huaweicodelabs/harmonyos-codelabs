@@ -1,5 +1,8 @@
 {
   "data": {
+    "initData": "请点击卡片获取数据...",
+    "initShow": true,
+    "isShow": false,
     "datasets": [
       {
         "strokeColor": "#CDCACA",

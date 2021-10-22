@@ -19,6 +19,14 @@
     {
       "name": "stepformability_description",
       "value": "Java_Phone_Empty Feature Ability"
+    },
+    {
+      "name": "today_walk",
+      "value": "I'm leaving today."
+    },
+    {
+      "name": "steps",
+      "value": "steps"
     }
   ]
 }

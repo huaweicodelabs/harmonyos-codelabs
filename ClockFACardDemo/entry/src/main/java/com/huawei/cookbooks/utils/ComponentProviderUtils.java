@@ -19,31 +19,42 @@ import com.huawei.cookbooks.ResourceTable;
 import com.huawei.cookbooks.database.Form;
 
 import ohos.agp.components.ComponentProvider;
+import ohos.agp.components.Text;
 import ohos.agp.utils.Color;
 import ohos.app.Context;
 
 import java.util.Calendar;
+import java.util.Locale;
 
 /**
  * Component ProviderUtils
  */
 public class ComponentProviderUtils {
+    private static final int COLOR_NUM_255 = 255;
+    private static final int COLOR_NUM_245 = 245;
+    private static final int COLOR_NUM_238 = 238;
+    private static final int COLOR_NUM_192 = 192;
     // 当前星期颜色
-    private static Color nowWeekColor = new Color(Color.rgb(255, 245, 238));
+    private static final Color NOW_WEEK_COLOR = new Color(Color.rgb(COLOR_NUM_255, COLOR_NUM_245, COLOR_NUM_238));
 
     // 原色星期
-    private static Color primaryWeekColor = new Color(Color.rgb(192, 192, 192));
+    private static final Color PRIMARY_WEEK_COLOR = new Color(Color.rgb(COLOR_NUM_192, COLOR_NUM_192, COLOR_NUM_192));
 
+    private static final int FONT_SIZE = 100;
     private static final int WEEK_DAYS = 7;
     private static final int STRING_LENGTH = 2;
     private static final int DIM_VERSION = 3;
-    private static final int SUNDAY = 1;
+    private static final int DEFAULT_DIMENSION_2X2 = 2;
     private static final int MONDAY = 2;
     private static final int TUESDAY = 3;
     private static final int WEDNESDAY = 4;
     private static final int THURSDAY = 5;
     private static final int FRIDAY = 6;
     private static final int SATURDAY = 7;
+    private static final String LANGUAGE_ENGLISH = "en";
+
+    private ComponentProviderUtils() {
+    }
 
     /**
      * Obtain the day of the week
@@ -53,8 +64,7 @@ public class ComponentProviderUtils {
     public static int getWeekDayId() {
         Calendar calendar = Calendar.getInstance();
         int week = calendar.get(Calendar.DAY_OF_WEEK);
-        int result = getWeekIdResult(week);
-        return result;
+        return getWeekIdResult(week);
     }
 
     /**
@@ -64,11 +74,8 @@ public class ComponentProviderUtils {
      * @return component id
      */
     private static int getWeekIdResult(int week) {
-        int result = ResourceTable.Id_mon;
+        int result;
         switch (week) {
-            case SUNDAY:
-                result = ResourceTable.Id_sun;
-                break;
             case MONDAY:
                 result = ResourceTable.Id_mon;
                 break;
@@ -108,7 +115,26 @@ public class ComponentProviderUtils {
         }
         ComponentProvider componentProvider = new ComponentProvider(layoutId, context);
         setComponentProviderValue(componentProvider);
+        setWeekTextSize(form.getDimension(),componentProvider);
         return componentProvider;
+    }
+
+    /**
+     * set week text size
+     * @param dimension form dimension
+     * @param componentProvider componentProvider
+     */
+    private static void setWeekTextSize(int dimension, ComponentProvider componentProvider) {
+        String language = Locale.getDefault().getLanguage();
+        if (dimension == DEFAULT_DIMENSION_2X2 && language.equals(LANGUAGE_ENGLISH)) {
+            componentProvider.setTextSize(ResourceTable.Id_mon, FONT_SIZE, Text.TextSizeType.VP);
+            componentProvider.setTextSize(ResourceTable.Id_tue, FONT_SIZE, Text.TextSizeType.VP);
+            componentProvider.setTextSize(ResourceTable.Id_wed, FONT_SIZE, Text.TextSizeType.VP);
+            componentProvider.setTextSize(ResourceTable.Id_thu, FONT_SIZE, Text.TextSizeType.VP);
+            componentProvider.setTextSize(ResourceTable.Id_fri, FONT_SIZE, Text.TextSizeType.VP);
+            componentProvider.setTextSize(ResourceTable.Id_sat, FONT_SIZE, Text.TextSizeType.VP);
+            componentProvider.setTextSize(ResourceTable.Id_sun, FONT_SIZE, Text.TextSizeType.VP);
+        }
     }
 
     /**
@@ -147,11 +173,11 @@ public class ComponentProviderUtils {
 
         // 获取当前星期
         int weekDayId = getWeekDayId();
-        componentProvider.setTextColor(weekDayId, nowWeekColor);
+        componentProvider.setTextColor(weekDayId, NOW_WEEK_COLOR);
 
         // 将前一天的星期改回原色
         int lastWeekId = getLastWeekDayId();
-        componentProvider.setTextColor(lastWeekId, primaryWeekColor);
+        componentProvider.setTextColor(lastWeekId, PRIMARY_WEEK_COLOR);
     }
 
     /**

@@ -1,6 +1,6 @@
 # Distributed Voice Camera
 简介
-• 在此demo中，使用HarmonyOS分布式文件系统和AI语音识别功能开发了一个分布式语音摄像头。使用此相机应用程序，同一分布式网络下的不同设备可以实时看到主设备拍摄的照片。这有效解决了对方拍照时需要来回跑过手机的痛点，此外，主设备还支持语音控制摄像头功能，让您可以从远处控制摄像头。
+• 在此demo中，使用HarmonyOS分布式文件系统和AI语音识别功能开发了一个分布式语音摄像头。使用此相机应用程序，同一分布式网络下的不同设备可以实时看到主设备拍摄的照片。这有效解决了对方拍照时需要来回跑的问题，此外，主设备还支持语音控制摄像头功能，让您可以从远处控制摄像头。
 
 安装要求
 • 安装DevEco Studio
@@ -11,7 +11,7 @@
 
 用户指南
 • 下载此项目
-• 打开HUAWEI DevEco Studio，单击File> Open选择此ComponentCodelab
+• 打开HUAWEI DevEco Studio，单击File> Open选择此Codelab
 • 单击Build> Build App(s)/Hap(s)>Build Debug Hap(s)以编译hap软件包
 • 单击Run> Run 'entry'以运行hap包
 

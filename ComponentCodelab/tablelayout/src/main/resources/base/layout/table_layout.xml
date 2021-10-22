@@ -1,159 +1,176 @@
 <?xml version="1.0" encoding="utf-8"?>
 <DirectionalLayout
     xmlns:ohos="http://schemas.huawei.com/res/ohos"
-    ohos:width="match_parent"
     ohos:height="match_parent"
+    ohos:width="match_parent"
     ohos:background_element="#EDEDED"
     ohos:layout_alignment="center"
     ohos:orientation="vertical">
+
     <Text
         ohos:id="$+id:info"
-        ohos:width="match_content"
         ohos:height="30vp"
-        ohos:text_size="20fp"
-        ohos:top_margin="20vp"
+        ohos:width="match_content"
+        ohos:layout_alignment="horizontal_center"
         ohos:text=""
         ohos:text_alignment="center"
-        ohos:layout_alignment="horizontal_center"/>
+        ohos:text_size="20fp"
+        ohos:top_margin="20vp"/>
+
     <TableLayout
         ohos:id="$+id:table"
+        ohos:height="match_content"
         ohos:width="700"
-        ohos:height="match_content"
+        ohos:column_count="3"
+        ohos:layout_alignment="horizontal_center"
         ohos:orientation="horizontal"
-        ohos:layout_alignment="horizontal_center"
-        ohos:top_margin="10"
-        ohos:column_count="3">
+        ohos:top_margin="10">
+
         <Button
-            ohos:width="50vp"
             ohos:height="50vp"
-            ohos:text_size="15fp"
-            ohos:left_margin="20vp"
-            ohos:top_margin="15vp"
+            ohos:width="50vp"
             ohos:background_element="$graphic:circle_button_element"
-            ohos:text="1"
-            ohos:text_alignment="center"/>
+            ohos:left_margin="20vp"
+            ohos:text="$string:one"
+            ohos:text_alignment="center"
+            ohos:text_size="15fp"
+            ohos:top_margin="15vp"/>
+
         <Button
-            ohos:width="50vp"
             ohos:height="50vp"
-            ohos:text_size="15fp"
-            ohos:left_margin="20vp"
-            ohos:top_margin="15vp"
+            ohos:width="50vp"
             ohos:background_element="$graphic:circle_button_element"
-            ohos:text="2"
-            ohos:text_alignment="center"/>
+            ohos:left_margin="20vp"
+            ohos:text="$string:two"
+            ohos:text_alignment="center"
+            ohos:text_size="15fp"
+            ohos:top_margin="15vp"/>
+
         <Button
-            ohos:width="50vp"
             ohos:height="50vp"
-            ohos:text_size="15fp"
-            ohos:left_margin="20vp"
-            ohos:top_margin="15vp"
+            ohos:width="50vp"
             ohos:background_element="$graphic:circle_button_element"
-            ohos:text="3"
-            ohos:text_alignment="center"/>
+            ohos:left_margin="20vp"
+            ohos:text="$string:three"
+            ohos:text_alignment="center"
+            ohos:text_size="15fp"
+            ohos:top_margin="15vp"/>
+
         <Button
-            ohos:width="50vp"
             ohos:height="50vp"
-            ohos:text_size="15fp"
-            ohos:left_margin="20vp"
-            ohos:top_margin="15vp"
+            ohos:width="50vp"
             ohos:background_element="$graphic:circle_button_element"
-            ohos:text="4"
-            ohos:text_alignment="center"/>
+            ohos:left_margin="20vp"
+            ohos:text="$string:four"
+            ohos:text_alignment="center"
+            ohos:text_size="15fp"
+            ohos:top_margin="15vp"/>
+
         <Button
-            ohos:width="50vp"
             ohos:height="50vp"
-            ohos:text_size="15fp"
-            ohos:left_margin="20vp"
-            ohos:top_margin="15vp"
+            ohos:width="50vp"
             ohos:background_element="$graphic:circle_button_element"
-            ohos:text="5"
-            ohos:text_alignment="center"/>
+            ohos:left_margin="20vp"
+            ohos:text="$string:five"
+            ohos:text_alignment="center"
+            ohos:text_size="15fp"
+            ohos:top_margin="15vp"/>
+
         <Button
-            ohos:width="50vp"
             ohos:height="50vp"
-            ohos:text_size="15fp"
-            ohos:left_margin="20vp"
-            ohos:top_margin="15vp"
+            ohos:width="50vp"
             ohos:background_element="$graphic:circle_button_element"
-            ohos:text="6"
-            ohos:text_alignment="center"/>
+            ohos:left_margin="20vp"
+            ohos:text="$string:six"
+            ohos:text_alignment="center"
+            ohos:text_size="15fp"
+            ohos:top_margin="15vp"/>
+
         <Button
-            ohos:width="50vp"
             ohos:height="50vp"
-            ohos:text_size="15fp"
-            ohos:left_margin="20vp"
-            ohos:top_margin="15vp"
+            ohos:width="50vp"
             ohos:background_element="$graphic:circle_button_element"
-            ohos:text="7"
-            ohos:text_alignment="center"/>
+            ohos:left_margin="20vp"
+            ohos:text="$string:seven"
+            ohos:text_alignment="center"
+            ohos:text_size="15fp"
+            ohos:top_margin="15vp"/>
+
         <Button
-            ohos:width="50vp"
             ohos:height="50vp"
-            ohos:text_size="15fp"
-            ohos:left_margin="20vp"
-            ohos:top_margin="15vp"
+            ohos:width="50vp"
             ohos:background_element="$graphic:circle_button_element"
-            ohos:text="8"
-            ohos:text_alignment="center"/>
+            ohos:left_margin="20vp"
+            ohos:text="$string:eight"
+            ohos:text_alignment="center"
+            ohos:text_size="15fp"
+            ohos:top_margin="15vp"/>
+
         <Button
-            ohos:width="50vp"
             ohos:height="50vp"
-            ohos:text_size="15fp"
-            ohos:left_margin="20vp"
-            ohos:top_margin="15vp"
+            ohos:width="50vp"
             ohos:background_element="$graphic:circle_button_element"
-            ohos:text="9"
-            ohos:text_alignment="center"/>
+            ohos:left_margin="20vp"
+            ohos:text="$string:nine"
+            ohos:text_alignment="center"
+            ohos:text_size="15fp"
+            ohos:top_margin="15vp"/>
+
         <Button
-            ohos:width="50vp"
             ohos:height="50vp"
-            ohos:text_size="15fp"
-            ohos:left_margin="20vp"
-            ohos:top_margin="15vp"
+            ohos:width="50vp"
             ohos:background_element="$graphic:circle_button_element"
-            ohos:text="*"
-            ohos:text_alignment="center"/>
+            ohos:left_margin="20vp"
+            ohos:text="$string:asterisk"
+            ohos:text_alignment="center"
+            ohos:text_size="15fp"
+            ohos:top_margin="15vp"/>
+
         <Button
-            ohos:width="50vp"
             ohos:height="50vp"
-            ohos:text_size="15fp"
-            ohos:left_margin="20vp"
-            ohos:top_margin="15vp"
+            ohos:width="50vp"
             ohos:background_element="$graphic:circle_button_element"
-            ohos:text="0"
-            ohos:text_alignment="center"/>
+            ohos:left_margin="20vp"
+            ohos:text="$string:zero"
+            ohos:text_alignment="center"
+            ohos:text_size="15fp"
+            ohos:top_margin="15vp"/>
+
         <Button
-            ohos:width="50vp"
             ohos:height="50vp"
-            ohos:text_size="15fp"
-            ohos:left_margin="20vp"
-            ohos:top_margin="15vp"
+            ohos:width="50vp"
             ohos:background_element="$graphic:circle_button_element"
-            ohos:text="#"
-            ohos:text_alignment="center"/>
+            ohos:left_margin="20vp"
+            ohos:text="$string:pound_sign"
+            ohos:text_alignment="center"
+            ohos:text_size="15fp"
+            ohos:top_margin="15vp"/>
     </TableLayout>
+
     <DirectionalLayout
-        ohos:width="match_content"
         ohos:height="match_content"
-        ohos:top_margin="20vp"
+        ohos:width="match_content"
         ohos:layout_alignment="horizontal_center"
-        ohos:orientation="horizontal">
+        ohos:orientation="horizontal"
+        ohos:top_margin="20vp">
+
         <Button
             ohos:id="$+id:call"
-            ohos:width="60vp"
             ohos:height="35vp"
-            ohos:text_size="15fp"
-            ohos:text="CALL"
+            ohos:width="60vp"
             ohos:background_element="$graphic:button_element"
-            ohos:text_alignment="center"/>
+            ohos:text="$string:CALL"
+            ohos:text_alignment="center"
+            ohos:text_size="15fp"/>
+
         <Button
             ohos:id="$+id:clear"
-            ohos:width="60vp"
             ohos:height="35vp"
-            ohos:text_size="15fp"
-            ohos:text="CLEAR"
+            ohos:width="60vp"
             ohos:background_element="$graphic:button_element"
             ohos:left_margin="10vp"
-            ohos:text_alignment="center"/>
+            ohos:text="$string:CLEAR"
+            ohos:text_alignment="center"
+            ohos:text_size="15fp"/>
     </DirectionalLayout>
 </DirectionalLayout>

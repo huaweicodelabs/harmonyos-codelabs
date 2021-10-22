@@ -28,7 +28,7 @@
             <Text
                 ohos:height="match_content"
                 ohos:width="match_content"
-                ohos:text="今天一共走了"
+                ohos:text="$string:today_walk"
                 ohos:text_color="#E5000000"
                 ohos:text_size="16fp"
                 ohos:right_margin="10fp"
@@ -45,7 +45,7 @@
             <Text
                 ohos:height="match_content"
                 ohos:width="match_content"
-                ohos:text="步"
+                ohos:text="$string:steps"
                 ohos:text_color="#E5000000"
                 ohos:left_margin="10fp"
                 ohos:text_size="16fp"

@@ -15,6 +15,70 @@
     {
       "name": "TimeAbility_description",
       "value": "hap sample empty service"
+    },
+    {
+      "name": "Monday",
+      "value": "一"
+    },
+    {
+      "name": "Tuesday",
+      "value": "二"
+    },
+    {
+      "name": "Wednesday",
+      "value": "三"
+    },
+    {
+      "name": "Thursday",
+      "value": "四"
+    },
+    {
+      "name": "Friday",
+      "value": "五"
+    },
+    {
+      "name": "Saturday",
+      "value": "六"
+    },
+    {
+      "name": "Sunday",
+      "value": "日"
+    },
+    {
+      "name": "hour",
+      "value": "Hour"
+    },
+    {
+      "name": "min",
+      "value": "Min"
+    },
+    {
+      "name": "sec",
+      "value": "Sec"
+    },
+    {
+      "name": "text_font_date",
+      "value": "sans-serif-medium"
+    },
+    {
+      "name": "zero",
+      "value": "00"
+    },
+    {
+      "name": "text_font_hour",
+      "value": "HwChinese-medium"
+    },
+    {
+      "name": "colon",
+      "value": ":"
+    },
+    {
+      "name": "text_font_colon",
+      "value": "bold"
+    },
+    {
+      "name": "default_date",
+      "value": "2021-03-24"
     }
   ]
 }

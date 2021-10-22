@@ -7,6 +7,50 @@
     {
       "name": "mainability_description",
       "value": "Java_Phone_Empty Feature Ability"
+    },
+    {
+      "name": "Components",
+      "value": "Common Components"
+    },
+    {
+      "name": "TabList",
+      "value": "TabList and Tab"
+    },
+    {
+      "name": "ListContainer",
+      "value": "ListContainer"
+    },
+    {
+      "name": "RadioContainer",
+      "value": "RadioContainer"
+    },
+    {
+      "name": "Checkbox",
+      "value": "Checkbox"
+    },
+    {
+      "name": "DatePicker",
+      "value": "DatePicker"
+    },
+    {
+      "name": "layouts",
+      "value": "Common layout"
+    },
+    {
+      "name": "DirectionalLayout",
+      "value": "DirectionalLayout"
+    },
+    {
+      "name": "DependentLayout",
+      "value": "DependentLayout"
+    },
+    {
+      "name": "StackLayout",
+      "value": "StackLayout"
+    },
+    {
+      "name": "TableLayout",
+      "value": "TableLayout"
     }
   ]
 }

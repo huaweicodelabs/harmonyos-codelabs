@@ -27,21 +27,30 @@ public class Form extends OrmObject {
     @PrimaryKey()
     private Long formId;
     private String formName;
-    private Integer dimension;
+    private int dimension;
 
-    public Form(Long formId, String formName, Integer dimension) {
+    /**
+     * constructor
+     * @param formId service widget id
+     * @param formName service widget name
+     * @param dimension service widget dimension
+     */
+    public Form(Long formId, String formName, int dimension) {
         this.formId = formId;
         this.formName = formName;
         this.dimension = dimension;
     }
 
+    /**
+     * constructor
+     */
     public Form() { }
 
-    public Integer getDimension() {
+    public int getDimension() {
         return dimension;
     }
 
-    public void setDimension(Integer dimension) {
+    public void setDimension(int dimension) {
         this.dimension = dimension;
     }
 

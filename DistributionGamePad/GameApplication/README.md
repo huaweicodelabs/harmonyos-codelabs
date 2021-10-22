@@ -1,6 +1,6 @@
 # GameApplication
 简介
-• 此Demo是分发游戏板的一个手机项目。它使用和谐OS发行版和图形功能。启动游戏应用程序后，它将要求您选择手柄，您可以选择一个或两个手柄。选择完成后，它将自动启动句柄。
+• 此Demo是分布式游戏手柄大屏端的应用。使用HarmonyOS的分布式和画布图形功能。启动游戏应用程序后，可以选择一个或两个手柄。选择完成后，将自动启动手柄。
 安装要求
 • 安装DevEco Studio
 • 设置DevEco Studio开发环境。DevEco Studio开发环境需要连接到网络，以确保该正常使用。可以根据以下两种情况配置开发环境：
@@ -10,7 +10,7 @@
 
 用户指南
 • 下载此项目
-• 打开HUAWEI DevEco Studio，单击File> Open选择此ComponentCodelab
+• 打开HUAWEI DevEco Studio，单击File> Open选择此Codelab
 • 单击Build> Build App(s)/Hap(s)>Build Debug Hap(s)以编译hap软件包
 • 单击Run> Run 'entry'以运行hap包
 
@@ -22,7 +22,7 @@
 请参阅LICENSE文件以获得更多信息。
 
 What is it?
-The GameApplication is a phone project of DistributionGamePad. It use HarmonyOS distribution and graphic feature.
+The GameApplication is a TV side application of DistributionGamePad. It use HarmonyOS distribution and graphic feature.
 After start GameApplication it will ask you to choose the handles, You can choose one or two handles. When the selection is complete it will start handles automaticly.
 
 Installation requirements

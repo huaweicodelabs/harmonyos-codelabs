@@ -19,8 +19,8 @@ import com.huawei.codelab.ResourceTable;
 
 import ohos.aafwk.ability.AbilitySlice;
 import ohos.aafwk.content.Intent;
+import ohos.aafwk.content.Operation;
 import ohos.agp.components.Component;
-import ohos.agp.window.dialog.ToastDialog;
 
 /**
  * The main AbilitySlice.
@@ -28,6 +28,16 @@ import ohos.agp.window.dialog.ToastDialog;
  * @since 2021-01-11
  */
 public class MainAbilitySlice extends AbilitySlice implements Component.ClickedListener {
+    private static final String MainAbility_TABLIST = "com.huawei.tablist.MainAbility";
+    private static final String MainAbility_CHECKBOX = "com.huawei.checkbox.MainAbility";
+    private static final String MainAbility_DATEPICKER = "com.huawei.datepicker.MainAbility";
+    private static final String MainAbility_DEPENDENTLAYOUT = "com.huawei.dependentlayout.MainAbility";
+    private static final String MainAbility_DIRECTIONALLAYOUT = "com.huawei.directionallayout.MainAbility";
+    private static final String MainAbility_LISTCONTAINER = "com.huawei.listcontainer.MainAbility";
+    private static final String MainAbility_RADIOCONTINER = "com.huawei.radiocontainer.MainAbility";
+    private static final String MainAbility_STACKLAYOUT = "com.huawei.stacklayout.MainAbility";
+    private static final String MainAbility_TABLELAYOUT = "com.huawei.tablelayout.MainAbility";
+
     @Override
     public void onStart(Intent intent) {
         super.onStart(intent);
@@ -44,7 +54,7 @@ public class MainAbilitySlice extends AbilitySlice implements Component.ClickedL
         );
     }
 
-    private void setClickedListener(Component.ClickedListener clickListener, Component...components) {
+    private void setClickedListener(Component.ClickedListener clickListener, Component... components) {
         for (Component component : components) {
             if (component == null) {
                 continue;
@@ -57,28 +67,49 @@ public class MainAbilitySlice extends AbilitySlice implements Component.ClickedL
     public void onClick(Component component) {
         String className = "";
         switch (component.getId()) {
+            case ResourceTable.Id_tab_list:
+                className = MainAbility_TABLIST;
+                break;
+            case ResourceTable.Id_checkbox:
+                className = MainAbility_CHECKBOX;
+                break;
+            case ResourceTable.Id_date_picker:
+                className = MainAbility_DATEPICKER;
+                break;
+            case ResourceTable.Id_dependent_layout:
+                className = MainAbility_DEPENDENTLAYOUT;
+                break;
+            case ResourceTable.Id_directional_layout:
+                className = MainAbility_DIRECTIONALLAYOUT;
+                break;
+            case ResourceTable.Id_list_container:
+                className = MainAbility_LISTCONTAINER;
+                break;
+            case ResourceTable.Id_radio_container:
+                className = MainAbility_RADIOCONTINER;
+                break;
+            case ResourceTable.Id_stack_layout:
+                className = MainAbility_STACKLAYOUT;
+                break;
+            case ResourceTable.Id_table_layout:
+                className = MainAbility_TABLELAYOUT;
+                break;
             default:
                 break;
         }
         abilitySliceJump(className);
     }
 
-    private void abilitySliceJump(String name) {
-        if (name == null || "".equals(name)) {
-            return;
-        }
-        try {
-            Class abilitySliceClass = Class.forName(name);
-            Object object = abilitySliceClass.newInstance();
-            if (object instanceof AbilitySlice) {
-                present((AbilitySlice) object, new Intent());
-            }
-        } catch (ReflectiveOperationException e) {
-            new ToastDialog(getContext())
-                    .setText("Error!")
-                    .show();
-        }
-    }
+private void abilitySliceJump(String name) {
+    Intent intent = new Intent();
+    Operation operation = new Intent.OperationBuilder()
+            .withDeviceId("")
+            .withBundleName(getBundleName())
+            .withAbilityName(name)
+            .build();
+    intent.setOperation(operation);
+    startAbility(intent);
+}
 
     @Override
     public void onActive() {

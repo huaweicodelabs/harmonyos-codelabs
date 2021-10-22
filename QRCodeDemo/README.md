@@ -1,4 +1,4 @@
-简介 • 本cookbook旨在使开发人员学会如何实现二维码生成、扫描等功能。
+简介 • 本Codelab旨在使开发人员学会如何实现二维码生成、扫描等功能。
 
 安装要求
 • 安装DevEco Studio
@@ -9,7 +9,7 @@
 
 用户指南
 • 下载此项目
-• 打开HUAWEI DevEco Studio，单击File> Open选择此StepsCard
+• 打开HUAWEI DevEco Studio，单击File> Open选择此Codelab
 • 单击Build> Build App(s)/Hap(s)>Build Debug Hap(s)以编译hap软件包
 • 单击Run> Run 'entry'以运行hap包
 

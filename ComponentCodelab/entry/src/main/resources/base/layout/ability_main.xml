@@ -13,7 +13,7 @@
         <Text
             ohos:width="match_content"
             ohos:height="match_content"
-            ohos:text="Common Components"
+            ohos:text="$string:Components"
             ohos:text_color="#708090"
             ohos:top_margin="15vp"
             ohos:left_margin="10vp"
@@ -34,7 +34,7 @@
                 ohos:height="120"
                 ohos:margin="5"
                 ohos:padding="2"
-                ohos:text="TabList and Tab"
+                ohos:text="$string:TabList"
                 ohos:text_size="17fp"/>
             <Button
                 ohos:id="$+id:list_container"
@@ -42,7 +42,7 @@
                 ohos:height="120"
                 ohos:margin="5"
                 ohos:padding="2"
-                ohos:text="ListContainer"
+                ohos:text="$string:ListContainer"
                 ohos:text_size="17fp"/>
             <Button
                 ohos:id="$+id:radio_container"
@@ -50,7 +50,7 @@
                 ohos:height="120"
                 ohos:margin="5"
                 ohos:padding="2"
-                ohos:text="RadioContainer"
+                ohos:text="$string:RadioContainer"
                 ohos:text_size="17fp"/>
             <Button
                 ohos:id="$+id:checkbox"
@@ -58,7 +58,7 @@
                 ohos:height="120"
                 ohos:margin="5"
                 ohos:padding="2"
-                ohos:text="Checkbox"
+                ohos:text="$string:Checkbox"
                 ohos:text_size="17fp"/>
             <Button
                 ohos:id="$+id:date_picker"
@@ -66,13 +66,13 @@
                 ohos:height="120"
                 ohos:margin="5"
                 ohos:padding="2"
-                ohos:text="DatePicker"
+                ohos:text="$string:DatePicker"
                 ohos:text_size="17fp"/>
         </TableLayout>
         <Text
             ohos:width="match_content"
             ohos:height="match_content"
-            ohos:text="Common layout"
+            ohos:text="$string:layouts"
             ohos:text_color="#708090"
             ohos:top_margin="15vp"
             ohos:left_margin="10vp"
@@ -94,7 +94,7 @@
                 ohos:height="120"
                 ohos:margin="5"
                 ohos:padding="2"
-                ohos:text="DirectionalLayout"
+                ohos:text="$string:DirectionalLayout"
                 ohos:text_size="17fp"/>
             <Button
                 ohos:id="$+id:dependent_layout"
@@ -102,7 +102,7 @@
                 ohos:height="120"
                 ohos:margin="5"
                 ohos:padding="2"
-                ohos:text="DependentLayout"
+                ohos:text="$string:DependentLayout"
                 ohos:text_size="17fp"/>
             <Button
                 ohos:id="$+id:stack_layout"
@@ -110,7 +110,7 @@
                 ohos:height="120"
                 ohos:margin="5"
                 ohos:padding="2"
-                ohos:text="StackLayout"
+                ohos:text="$string:StackLayout"
                 ohos:text_size="17fp"/>
             <Button
                 ohos:id="$+id:table_layout"
@@ -118,7 +118,7 @@
                 ohos:height="120"
                 ohos:margin="5"
                 ohos:padding="2"
-                ohos:text="TableLayout"
+                ohos:text="$string:TableLayout"
                 ohos:text_size="17fp"/>
         </TableLayout>
     </DirectionalLayout>

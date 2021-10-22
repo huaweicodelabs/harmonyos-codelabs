@@ -30,13 +30,18 @@ import ohos.agp.components.Image;
 import ohos.agp.render.Paint;
 import ohos.agp.render.PixelMapHolder;
 import ohos.app.Context;
-import ohos.app.dispatcher.task.TaskPriority;
 import ohos.data.distributed.common.KvManagerConfig;
 import ohos.data.distributed.common.KvManagerFactory;
 import ohos.distributedhardware.devicemanager.DeviceInfo;
 import ohos.media.image.PixelMap;
 import ohos.media.image.common.Rect;
 import ohos.media.image.common.Size;
+import ohos.utils.zson.ZSONArray;
+import ohos.utils.zson.ZSONObject;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * right abilitySlice
@@ -50,6 +55,10 @@ public class RightAbilitySlice extends AbilitySlice implements IAbilityContinuat
     private static final int HEIGHT_RATIO = 9; // 高比例
     private static final int WIDTH_RATIO = 16; // 宽比例
     private static final int CIR_SIZE = 50; // 裁剪截取宽高
+    private static final String INDEX = "index";
+    private static final String ISCORP = "isCorp";
+    private static final String ISSCALE = "isScale";
+    private static final String ISMIRRORFLAG = "isMirrorFlag";
     private static Context context;
     private static PixelMap pixelMap; // 被操作的原始图片
     private static PixelMap imagePixelMap; // 裁剪缩放镜像后的图片
@@ -70,13 +79,15 @@ public class RightAbilitySlice extends AbilitySlice implements IAbilityContinuat
     private DeviceDialog deviceDialog; // 设备选择
     private String remoteData; // 远程迁移标识
     private int remoteIndex; // 迁移的图片下标
-    private boolean circulationFlag = false; // 是否流转中
+    private boolean isOther; // 是否流转新增、修改的图片
+    private boolean isCirculation = false; // 是否流转中
 
     @Override
     public void onStart(Intent intent) {
         super.onStart(intent);
         super.setUIContent(ResourceTable.Layout_ability_right);
         context = getContext();
+        isOther = false;
         // 设置右屏幕宽度
         Utils.setRightWidth(getContext());
         // 计算屏幕总宽度
@@ -89,17 +100,17 @@ public class RightAbilitySlice extends AbilitySlice implements IAbilityContinuat
         // 根据设备类型显示隐藏保存组件
         if (localDeviceType == DeviceInfo.DeviceType.PHONE.value()) {
             saveComponent.setVisibility(Component.HIDE);
+            // Refresh the listContainer data
+            MainAbilitySlice.initData(Utils.transIdToPixelMap(context));
         } else {
             saveComponent.setVisibility(Component.VISIBLE);
         }
         if ("remote".equals(this.remoteData)) {
             // 设置远程图片
             setImageRemote();
-            // 根据缩放、镜像标识设置图片
-            setImageByFlag();
         } else {
             // 获取图片下标 设置图片
-            int index = Integer.parseInt(intent.getParams().getParam("index").toString());
+            int index = Integer.parseInt(intent.getParams().getParam(INDEX).toString());
             setImage(index);
         }
         // 初始化设备选择
@@ -144,7 +155,7 @@ public class RightAbilitySlice extends AbilitySlice implements IAbilityContinuat
     }
 
     /**
-     * 裁剪、缩放、镜像绑定点击事件
+     * Clipping, zooming, and mirroring binding click events
      *
      * @since 2021-09-10
      */
@@ -184,7 +195,7 @@ public class RightAbilitySlice extends AbilitySlice implements IAbilityContinuat
                     saveImage();
                     break;
                 case ResourceTable.Id_device_image:
-                    // 打开设备选择框（链接）
+                    // 打开设备选择框（连接）
                     deviceDialog.showDeviceList();
                     break;
                 case ResourceTable.Id_cir_image:
@@ -206,7 +217,8 @@ public class RightAbilitySlice extends AbilitySlice implements IAbilityContinuat
                 if (isMirror) {
                     isMirror = false; // Reset the image ID to false
                     PixelMapHolder pmh = new PixelMapHolder(mirrorPixelMap);
-                    canvas.scale(// 进行镜像操作
+                    // 进行镜像操作
+                    canvas.scale(
                             scaleX,
                             1.0f,
                             (float) mirrorPixelMap.getImageInfo().size.width / HALF,
@@ -269,23 +281,21 @@ public class RightAbilitySlice extends AbilitySlice implements IAbilityContinuat
     private void setImageRemote() {
         // 重新定义右边图片大小
         idIndex = remoteIndex; // 设置选择当前图片的索引
-        getGlobalTaskDispatcher(TaskPriority.DEFAULT).syncDispatch(() -> {
-            // Obtaining PixelMaps from Distributed Files
-            byte[] remoteByteArray = Utils.getByteArrayFromFile(context);
-            // Convert byte[] into PixelMap
-            pixelMap = Utils.resizePixelMap(Utils.byteArrayToPixelmap(remoteByteArray));
-        });
-        imagePixelMap = pixelMap;
+        if (!isOther) {
+            pixelMap = Utils.getPixelMapByIndex(idIndex); // 保存当前图片，操作时用到
+            imagePixelMap = pixelMap;
+        }
         image.setPixelMap(pixelMap);
         image.setMarginLeft(MARGIN);
         image.setMarginRight(MARGIN);
-    }
-
-    // 根据缩放、镜像标识设置图片
-    private void setImageByFlag() {
-        if (isScale) {
+        if (isCorp || isScale) { // 裁剪、缩放
             imagePixelMap = getPixelMapFromResource();
             image.setPixelMap(imagePixelMap);
+        }
+        if (isMirrorFlag) { // 镜像
+            isMirror = true;
+            scaleX = -scaleX;
+            mirrorImage(imagePixelMap); // 镜像图片
         }
     }
 
@@ -320,12 +330,22 @@ public class RightAbilitySlice extends AbilitySlice implements IAbilityContinuat
      * @param flag flag
      */
     public static void saveOrReplaceImage(int flag) {
+        Map<String, Object> map = new HashMap<>(0);
+        map.put(ISCORP, isCorp);
+        map.put(ISSCALE, isScale);
+        map.put(ISMIRRORFLAG, isMirrorFlag);
+        map.put(INDEX, idIndex); // 操作的图片下标
         if (flag == 0) {
             // 新增
             Utils.addPixelMap(imagePixelMap);
+            // 保存新增的操作指令
+            map.put("nowIndex", Utils.getResourcePixelMaps().size() - 1); // 新增后的图片下标
+            Utils.setAddOrderMaps(map);
         } else {
             // 替换
             Utils.updatePixelMap(imagePixelMap, idIndex);
+            // 保存修改的操作指令
+            Utils.setUpdateOrderMaps(map);
         }
         // Refresh the listContainer data
         MainAbilitySlice.initData(Utils.transIdToPixelMap(context));
@@ -346,21 +366,16 @@ public class RightAbilitySlice extends AbilitySlice implements IAbilityContinuat
 
     // 流转
     private void circulation() {
-        if (circulationFlag) {
+        if (isCirculation) {
             Utils.creatToastDialog(context, "正在流转，请稍后再试！");
             return;
         }
-        circulationFlag = true;
         if (selectDeviceId == null || "".equals(selectDeviceId)) {
             // 选择设备以后才能流转（迁移）
-            Utils.creatToastDialog(context, "请选择链接设备后进行流转操作！");
+            Utils.creatToastDialog(context, "请选择连接设备后进行流转操作！");
             return;
         }
-        getGlobalTaskDispatcher(TaskPriority.DEFAULT).syncDispatch(() -> {
-            // Convert PixelMap to byte[] and save it to a distributed file
-            byte[] bytes = Utils.pixelMapToByteArray(imagePixelMap);
-            Utils.saveByteArrayToFile(context, bytes);
-        });
+        isCirculation = true;
         continueAbility(selectDeviceId);
     }
 
@@ -389,28 +404,95 @@ public class RightAbilitySlice extends AbilitySlice implements IAbilityContinuat
     @Override
     public boolean onSaveData(IntentParams saveData) {
         saveData.setParam("continueParam", "remote");
-        saveData.setParam("isCorp", isCorp); // 裁剪
-        saveData.setParam("isScale", isScale); // 缩放
-        saveData.setParam("isMirrorFlag", isMirrorFlag); // 镜像
+        saveData.setParam(ISCORP, isCorp); // 裁剪
+        saveData.setParam(ISSCALE, isScale); // 缩放
+        saveData.setParam(ISMIRRORFLAG, isMirrorFlag); // 镜像
         saveData.setParam("scaleX", scaleX); // 镜像值
         saveData.setParam("remoteIndex", idIndex); // 当前图片下标
+        saveData.setParam("add", Utils.getAddOrderMaps());
+        saveData.setParam("update",Utils.getUpdateOrderMaps());
         return true;
     }
 
     @Override
     public boolean onRestoreData(IntentParams restoreData) {
+        isOther = false;
+        this.remoteIndex = Integer.parseInt(restoreData.getParam("remoteIndex").toString());
+
+        // 获取设备类型
+        int localDeviceType = Integer.parseInt(KvManagerFactory.getInstance().createKvManager(
+                new KvManagerConfig(this)).getLocalDeviceInfo().getType());
+        // 根据设备类型显示隐藏保存组件
+        if (localDeviceType == DeviceInfo.DeviceType.PHONE.value()) {
+            // 重新初始化数据
+            Utils.transResourceIdsToListOnce(getContext());
+            // 清空修改、新增的缓存
+            Utils.clearCache();
+            Object add = restoreData.getParam("add"); // 新增图片数据
+            Object update = restoreData.getParam("update"); // 修改图片数据
+            List<? extends Map> addOrderMaps =
+                    ZSONArray.stringToClassList(ZSONObject.toZSONString(add), HashMap.class);
+            List<? extends Map> updateOrderMaps =
+                    ZSONArray.stringToClassList(ZSONObject.toZSONString(update), HashMap.class);
+            // 添加、更新数据
+            addAndUpdatePixelMap((List<? extends Map<String, Object>>) addOrderMaps, 0);
+            addAndUpdatePixelMap((List<? extends Map<String, Object>>) updateOrderMaps, 1);
+        }
         // 远端FA迁移传来的状态数据，开发者可以按照特定的场景对这些数据进行处理
         this.remoteData = restoreData.getParam("continueParam").toString();
-        isCorp = (boolean) restoreData.getParam("isCorp"); // 裁剪
-        isScale = (boolean) restoreData.getParam("isScale"); // 缩放
-        isMirrorFlag = (boolean) restoreData.getParam("isMirrorFlag"); // 镜像
+        isCorp = (boolean) restoreData.getParam(ISCORP); // 裁剪
+        isScale = (boolean) restoreData.getParam(ISSCALE); // 缩放
+        isMirrorFlag = (boolean) restoreData.getParam(ISMIRRORFLAG); // 镜像
         scaleX = Float.parseFloat(restoreData.getParam("scaleX").toString()); // 镜像值
-        this.remoteIndex = Integer.parseInt(restoreData.getParam("remoteIndex").toString());
         return true;
     }
 
     @Override
     public void onCompleteContinuation(int result) {
-        circulationFlag = false;
+        isCirculation = false;
+    }
+
+    // 手机端获取平板端新增、修改的数据，并更新到内存
+    private void addAndUpdatePixelMap(List<? extends Map<String, Object>> orderMaps, int flag) {
+        for (Map<String, Object> map: orderMaps) {
+            // 获取原始图片的下标
+            int index = Integer.parseInt(map.get(INDEX).toString());
+            if (flag == 0) { // 处理新增数据
+                // 获取当前图片的下标
+                int nowIndex = Integer.parseInt(map.get("nowIndex").toString());
+                if (remoteIndex == nowIndex) {
+                    isOther = true;
+                }
+            } else { // 处理修改数据
+                if (remoteIndex == index) {
+                    isOther = true;
+                }
+            }
+            // 获取原始图片的pixelMap对象
+            pixelMap = Utils.getPixelMapByIndex(index);
+            imagePixelMap = pixelMap;
+            image = new Image(getContext()); // 初始化image
+            image.setPixelMap(pixelMap);
+            image.setMarginLeft(MARGIN);
+            image.setMarginRight(MARGIN);
+            isCorp = (boolean) map.get("isCorp"); // 缩放指令
+            isScale = (boolean) map.get("isScale"); // 裁剪指令
+            isMirrorFlag = (boolean) map.get("isMirrorFlag"); // 镜像指令
+            if (isCorp || isScale) { // 裁剪、缩放
+                imagePixelMap = getPixelMapFromResource();
+                image.setPixelMap(imagePixelMap);
+            }
+            if (isMirrorFlag) { // 镜像
+                imagePixelMap = Utils.mirrorPixelMap(imagePixelMap, -scaleX);
+            }
+            pixelMap = imagePixelMap;
+            if (flag == 0) { // 处理新增数据
+                // 将新增的pixelMap对象添加到list中
+                Utils.addPixelMap(imagePixelMap);
+            } else { // 处理修改数据
+                // 将新增的pixelMap对象添加到list中
+                Utils.updatePixelMap(imagePixelMap, index);
+            }
+        }
     }
 }

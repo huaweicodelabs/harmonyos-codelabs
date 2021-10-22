@@ -8,7 +8,7 @@
     <Text
         ohos:width="match_content"
         ohos:height="match_content"
-        ohos:text="Lantern riddles of Mid Autumn Festival"
+        ohos:text="$string:title"
         ohos:text_alignment="center"
         ohos:multiple_lines="true"
         ohos:layout_alignment="center"
@@ -17,7 +17,7 @@
     <Text
         ohos:width="match_parent"
         ohos:height="match_content"
-        ohos:text="1.what man cannot live in a house?"
+        ohos:text="$string:one"
         ohos:multiple_lines="true"
         ohos:left_margin="20vp"
         ohos:top_margin="20vp"
@@ -25,7 +25,7 @@
     <Text
         ohos:width="match_parent"
         ohos:height="match_content"
-        ohos:text="2.What never asks questions but gets a lot of answers?"
+        ohos:text="$string:two"
         ohos:multiple_lines="true"
         ohos:left_margin="20vp"
         ohos:top_margin="20vp"
@@ -33,7 +33,7 @@
     <Text
         ohos:width="match_parent"
         ohos:height="match_content"
-        ohos:text="3.A mouse has a large pocket．What is it?"
+        ohos:text="$string:three"
         ohos:multiple_lines="true"
         ohos:left_margin="20vp"
         ohos:top_margin="20vp"
@@ -41,7 +41,7 @@
     <Text
         ohos:width="match_parent"
         ohos:height="match_content"
-        ohos:text="4.What can hear you without ears and can answer you without a mouth?"
+        ohos:text="$string:four"
         ohos:multiple_lines="true"
         ohos:left_margin="20vp"
         ohos:top_margin="20vp"
@@ -49,7 +49,7 @@
     <Text
         ohos:width="match_parent"
         ohos:height="match_content"
-        ohos:text="5.What is higher without a head than with a head?"
+        ohos:text="$string:five"
         ohos:multiple_lines="true"
         ohos:left_margin="20vp"
         ohos:top_margin="20vp"
@@ -57,7 +57,7 @@
     <Text
         ohos:width="match_parent"
         ohos:height="match_content"
-        ohos:text="6.What is dark but made by light?"
+        ohos:text="$string:six"
         ohos:multiple_lines="true"
         ohos:left_margin="20vp"
         ohos:top_margin="20vp"
@@ -65,7 +65,7 @@
     <Text
         ohos:width="match_parent"
         ohos:height="match_content"
-        ohos:text="7.What person tried to make you smile most of the time?"
+        ohos:text="$string:seven"
         ohos:multiple_lines="true"
         ohos:left_margin="20vp"
         ohos:top_margin="20vp"
@@ -73,7 +73,7 @@
     <Text
         ohos:width="match_parent"
         ohos:height="match_content"
-        ohos:text="8.You have it．You read it．There're some pictures in it?"
+        ohos:text="$string:eight"
         ohos:multiple_lines="true"
         ohos:left_margin="20vp"
         ohos:top_margin="20vp"
@@ -81,7 +81,7 @@
     <Text
         ohos:width="match_parent"
         ohos:height="match_content"
-        ohos:text="9.What animal has a head like a cat, eyes like a cat, a tail like a cat, but isn't a cat? "
+        ohos:text="$string:nine"
         ohos:multiple_lines="true"
         ohos:left_margin="20vp"
         ohos:top_margin="20vp"
@@ -89,7 +89,7 @@
     <Text
         ohos:width="match_parent"
         ohos:height="match_content"
-        ohos:text="10.What has hands but no feet, a face but no eyes, tells but not talk?"
+        ohos:text="$string:ten"
         ohos:multiple_lines="true"
         ohos:left_margin="20vp"
         ohos:top_margin="20vp"

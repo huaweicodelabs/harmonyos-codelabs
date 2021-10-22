@@ -19,7 +19,7 @@
       "deliveryWithInstall": true,
       "moduleName": "stacklayout",
       "moduleType": "feature",
-      "installationFree": false
+      "installationFree": true
     },
     "abilities": [
       {

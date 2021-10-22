@@ -20,7 +20,6 @@ import com.huawei.tablelayout.ResourceTable;
 import ohos.aafwk.ability.AbilitySlice;
 import ohos.aafwk.content.Intent;
 import ohos.agp.components.Button;
-import ohos.agp.components.Component;
 import ohos.agp.components.TableLayout;
 import ohos.agp.components.Text;
 import ohos.agp.utils.LayoutAlignment;
@@ -48,30 +47,20 @@ public class MainAbilitySlice extends AbilitySlice {
      * 初始化组件
      */
     private void initComponent() {
-        info = (Text)findComponentById(ResourceTable.Id_info);
-        call = (Button)findComponentById(ResourceTable.Id_call);
-        clear = (Button)findComponentById(ResourceTable.Id_clear);
+        info = (Text) findComponentById(ResourceTable.Id_info);
+        call = (Button) findComponentById(ResourceTable.Id_call);
+        clear = (Button) findComponentById(ResourceTable.Id_clear);
     }
 
     /**
      * 设置点击事件
      */
     private void setClickedListener() {
-        call.setClickedListener(new Component.ClickedListener() {
-            @Override
-            public void onClick(Component component) {
-                showTips();
-            }
-        });
+        call.setClickedListener(component -> showTips());
 
-        clear.setClickedListener(new Component.ClickedListener() {
-            @Override
-            public void onClick(Component component) {
-                info.setText("");
-            }
-        });
+        clear.setClickedListener(component -> info.setText(""));
 
-        TableLayout table = (TableLayout)findComponentById(ResourceTable.Id_table);
+        TableLayout table = (TableLayout) findComponentById(ResourceTable.Id_table);
         int childNum = table.getChildCount();
         for (int index = 0; index < childNum; index++) {
             setClickListener(table, index);
@@ -80,13 +69,10 @@ public class MainAbilitySlice extends AbilitySlice {
 
     private void setClickListener(TableLayout table, int index) {
         Button child = (Button)(table.getComponentAt(index));
-        child.setClickedListener(new Component.ClickedListener() {
-            @Override
-            public void onClick(Component component) {
-                if (component instanceof Button) {
-                    Button button = (Button)component;
-                    info.setText(info.getText() + button.getText());
-                }
+        child.setClickedListener(component -> {
+            if (component instanceof Button) {
+                Button button = (Button)component;
+                info.setText(info.getText() + button.getText());
             }
         });
     }

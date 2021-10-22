@@ -50,6 +50,9 @@ export default {
     oldContrastValue: 10,
     saturationValue: 10,
     oldSaturationValue: 10,
+    beginBright:true,
+    beginContrast:true,
+    beginSaturation:true,
     brightnessImgData: null,
     contrastImgData: null,
     saturationImgData: null,
@@ -139,7 +142,6 @@ export default {
     this.dHeight = this.originalImageHeight;
     console.log('初始化onShow()绘制完图片宽:' + this.dWidth + '高:' + this.dHeight);
   },
-
   // 裁剪页面
   showCropPage() {
     this.showFlag1 = true;
@@ -222,6 +224,9 @@ export default {
     // 缩小
     ctx.scale(this.cropWidth / this.cropImgMaxWidth, this.cropHeight / this.cropImgMaxHeight);
     // 保存图片
+    this.beginBright = this.brightnessValue === 0 ? true : false
+    this.beginContrast = this.contrastValue === 0 ? true : false
+    this.beginSaturation = this.saturationValue === 0 ? true : false
     this.brightnessImgData = ctx.getImageData(this.zero, this.zero, this.canvasWidth, this.canvasHeight);
     this.contrastImgData = this.brightnessImgData;
     this.saturationImgData = this.brightnessImgData;
@@ -273,6 +278,9 @@ export default {
       ctx.scale(this.cropWidth / this.cropImgMaxWidth, this.cropWidth / this.cropImgMaxWidth);
     }
     // 保存图片
+    this.beginBright = this.brightnessValue === 0 ? true : false
+    this.beginContrast = this.contrastValue === 0 ? true : false
+    this.beginSaturation = this.saturationValue === 0 ? true : false
     this.brightnessImgData = ctx.getImageData(this.zero, this.zero, this.canvasWidth, this.canvasHeight);
     this.contrastImgData = this.brightnessImgData;
     this.saturationImgData = this.brightnessImgData;
@@ -341,6 +349,9 @@ export default {
       ctx.scale(this.cropHeight / this.cropImgMaxHeight, this.cropHeight / this.cropImgMaxHeight);
     }
     // 保存图片
+    this.beginBright = this.brightnessValue === 0 ? true : false
+    this.beginContrast = this.contrastValue === 0 ? true : false
+    this.beginSaturation = this.saturationValue === 0 ? true : false
     this.brightnessImgData = ctx.getImageData(this.zero, this.zero, this.canvasWidth, this.canvasHeight);
     this.contrastImgData = this.brightnessImgData;
     this.saturationImgData = this.brightnessImgData;
@@ -506,7 +517,7 @@ export default {
     } else if (e.mode === 'end') {
       this.brightnessValue = e.value;
       // 亮度调节值最大时，恢复裁剪后的图片
-      if (e.value === this.sliderMaxValue) {
+      if (e.value === this.sliderMaxValue && this.beginBright) {
         const test = this.$element('canvasOne');
         const ctx = test.getContext('2d');
         // 恢复图片
@@ -515,6 +526,7 @@ export default {
       } else {
         // 亮度调节系数（新亮度值比原来亮度值）
         const adjustValue = e.value / this.oldBrightnessValue;
+        console.log('adjustValue:: ' + adjustValue)
         this.adjustBrightness(adjustValue);
         this.oldBrightnessValue = e.value;
       }
@@ -549,7 +561,7 @@ export default {
       this.oldContrastValue = e.value;
     } else if (e.mode === 'end') {
       this.contrastValue = e.value;
-      if (e.value === this.sliderMaxValue) {F
+      if (e.value === this.sliderMaxValue && this.beginContrast) {
         const test = this.$element('canvasOne');
         const ctx = test.getContext('2d');
         ctx.restore();
@@ -585,7 +597,7 @@ export default {
       this.oldSaturationValue = e.value;
     } else if (e.mode === 'end') {
       this.saturationValue = e.value;
-      if (e.value === this.sliderMaxValue) {
+      if (e.value === this.sliderMaxValue && this.beginSaturation) {
         const test = this.$element('canvasOne');
         const ctx = test.getContext('2d');
         ctx.restore();

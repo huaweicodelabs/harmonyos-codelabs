@@ -28,7 +28,6 @@ import ohos.agp.utils.Color;
 import ohos.eventhandler.EventHandler;
 import ohos.eventhandler.EventRunner;
 import ohos.eventhandler.InnerEvent;
-import ohos.hiviewdfx.HiLogLabel;
 
 import java.util.Calendar;
 import java.util.Timer;
@@ -38,21 +37,14 @@ import java.util.TimerTask;
  * Clock Card Slice
  */
 public class ClockCardSlice extends AbilitySlice {
-    private static final HiLogLabel LABEL_LOG = new HiLogLabel(0, 0, ClockCardSlice.class.getName());
     private static final long SEND_PERIOD = 1000L;
     private static final int COLOR_RGB = 192;
     private static final int TIME_LENGTH = 2;
-    private Text dateText;
-    private Text hourText;
-    private Text minText;
-    private Text secondText;
-    private EventRunner runner;
     private MyEventHandle myEventHandle;
-    private AbilitySlice slice = this;
     private Timer timer;
-    private Runnable runnable = new Runnable() {
+    private final Runnable runnable = new Runnable() {
         private void initHandler() {
-                runner = EventRunner.getMainEventRunner();
+            EventRunner runner = EventRunner.getMainEventRunner();
                 if (runner == null) {
                     return;
                 }
@@ -93,37 +85,37 @@ public class ClockCardSlice extends AbilitySlice {
      */
     private void initComponent() {
         Calendar now = Calendar.getInstance();
-        Component dateComponent = slice.findComponentById(ResourceTable.Id_date);
-        if (dateComponent != null && dateComponent instanceof Text) {
-            dateText = (Text) dateComponent;
+        Component dateComponent = findComponentById(ResourceTable.Id_date);
+        if (dateComponent instanceof Text) {
+            Text dateText = (Text) dateComponent;
             dateText.setText(DateUtils.getCurrentDate("yyyy-MM-dd"));
         }
-        Component hourComponent = slice.findComponentById(ResourceTable.Id_hour);
-        if (hourComponent != null && hourComponent instanceof Text) {
-            hourText = (Text) hourComponent;
+        Component hourComponent = findComponentById(ResourceTable.Id_hour);
+        if (hourComponent instanceof Text) {
+            Text hourText = (Text) hourComponent;
             int hour = now.get(Calendar.HOUR_OF_DAY);
             setTextValue(hour, hourText);
         }
         Component minComponent = findComponentById(ResourceTable.Id_min);
-        if (minComponent != null && minComponent instanceof Text) {
-            minText = (Text) minComponent;
+        if (minComponent instanceof Text) {
+            Text minText = (Text) minComponent;
             int min = now.get(Calendar.MINUTE);
             setTextValue(min, minText);
         }
         Component secComponent = findComponentById(ResourceTable.Id_sec);
-        if (secComponent != null && secComponent instanceof Text) {
-            secondText = (Text) secComponent;
+        if (secComponent instanceof Text) {
+            Text secondText = (Text) secComponent;
             int second = now.get(Calendar.SECOND);
             setTextValue(second, secondText);
         }
         int weekId = ComponentProviderUtils.getWeekDayId();
-        Component weekComponent = slice.findComponentById(weekId);
-        if (weekComponent != null && weekComponent instanceof Text) {
+        Component weekComponent = findComponentById(weekId);
+        if (weekComponent instanceof Text) {
             Text week = (Text) weekComponent;
             week.setTextColor(new Color(Color.rgb(0, 0, 0)));
         }
         int lastWeekDayId = ComponentProviderUtils.getLastWeekDayId();
-        Component lastWeekComponent = slice.findComponentById(lastWeekDayId);
+        Component lastWeekComponent = findComponentById(lastWeekDayId);
         if (weekComponent != null && lastWeekComponent instanceof Text) {
             Text lastWeek = (Text) lastWeekComponent;
             lastWeek.setTextColor(new Color(Color.rgb(COLOR_RGB, COLOR_RGB, COLOR_RGB)));
@@ -138,16 +130,9 @@ public class ClockCardSlice extends AbilitySlice {
         }
     }
 
-    @Override
-    public void onActive() {
-        super.onActive();
-    }
-
-    @Override
-    public void onForeground(Intent intent) {
-        super.onForeground(intent);
-    }
-
+    /**
+     * MyEventHandle 用于更新页面
+     */
     private class MyEventHandle extends EventHandler {
         MyEventHandle(EventRunner runner) throws IllegalArgumentException {
             super(runner);

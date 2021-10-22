@@ -1,16 +1,11 @@
 {
   "app": {
-    "bundleName": "com.xwx.karaoke.harmony",
+    "bundleName": "com.huawei.cookbook",
     "vendor": "huawei",
     "version": {
-      "code": 1,
-      "name": "1.0"
-    },
-    "apiVersion": {
-      "compatible": 5,
-      "target": 5
-    },
-    "type": "normal"
+      "code": 1000000,
+      "name": "1.0.0"
+    }
   },
   "deviceConfig": {},
   "module": {
@@ -21,9 +16,10 @@
       "wearable"
     ],
     "distro": {
-      "deliveryWithInstall": true,
+       "deliveryWithInstall": true,
       "moduleName": "entry",
-      "moduleType": "entry"
+      "moduleType": "entry",
+      "installationFree": false
     },
     "abilities": [
       {

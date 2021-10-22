@@ -1,10 +1,9 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 apply plugin: 'com.huawei.ohos.app'
-
 ohos {
-    compileSdkVersion 5
+    compileSdkVersion 6
     defaultConfig {
-        compatibleSdkVersion 4
+        compatibleSdkVersion 5
     }
 }
 
@@ -19,8 +18,8 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.huawei.ohos:hap:2.4.4.2'
-        classpath 'com.huawei.ohos:decctest:1.0.0.7'
+        classpath 'com.huawei.ohos:hap:2.4.5.0'
+        classpath 'com.huawei.ohos:decctest:1.2.4.1'
     }
 }
 

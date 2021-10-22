@@ -11,6 +11,26 @@
     {
       "name": "mainability_HelloWorld",
       "value": "你好，世界"
+    },
+    {
+      "name": "title",
+      "value": "NewsDemo"
+    },
+    {
+      "name": "reads",
+      "value": "reads：10"
+    },
+    {
+      "name": "likes",
+      "value": "likes：9"
+    },
+    {
+      "name": "future",
+      "value": "Ten Future Trends of Digital Energy"
+    },
+    {
+      "name": "energy_digitalization",
+      "value": "Energy digitalization is an inevitable trend. Innovative integration of digital and energy technologies enables end-to-end visual, manageable, and controllable intelligent management of energy infrastructure, improving energy efficiency."
     }
   ]
 }

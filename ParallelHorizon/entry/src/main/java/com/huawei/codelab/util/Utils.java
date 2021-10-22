@@ -34,21 +34,13 @@ import ohos.app.Context;
 import ohos.global.resource.NotExistException;
 import ohos.hiviewdfx.HiLog;
 import ohos.hiviewdfx.HiLogLabel;
-import ohos.media.image.ImagePacker;
 import ohos.media.image.ImageSource;
 import ohos.media.image.PixelMap;
 import ohos.media.image.common.PixelFormat;
 import ohos.media.image.common.Size;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -71,28 +63,32 @@ public class Utils {
             ResourceTable.Media_p11, ResourceTable.Media_p12,
             ResourceTable.Media_p13); // Image ID set
     private static final int HALF = 2; // 取值一半，除以此数
-    private static final int LINE_NO_DATA = -1; // 未读到数据 -1
-    private static final int BUFF_SIZE = 1024; // 读取数据缓存
     private static final int HEIGHT_RATIO = 9; // 高比例
     private static final int WIDTH_RATIO = 16; // 宽比例
     private static final int RES_HEIGHT = 500; // 默认高度500
-    private static final int DIVIDE_WIDTH = 16; // 两个slice中间分屏线宽度
+    private static final int DIVIDE_WIDTH = 16; // Width of the split screen in the middle of two slices
     private static final int COLUMN_FOUR = 4; // 每行显示4张图片
     private static final int COLUMN_THREE = 3; // 每行显示3张图片
     private static final int COLUMN_TWO = 2; // 每行显示2张图片
     private static int leftWidth; // 左边屏幕宽度
     private static int rightWidth; // 右边屏幕宽度
     private static int sumWidth; // 左右屏幕之和
+
     // Original size of the pixelMap set when the image ID
     // in the Media is converted to the original size of the pixelMap set
     private static List<PixelMap> resourcePixelMaps;
     private static List<PixelMap> pixelMaps; // PixelMap collection of all images displayed in the listContainer
-    private static final List<PixelMap> ADD_PIXELMAPS = new ArrayList<>(0); // Add a pixel map of an image
+
+    private static List<PixelMap> addPixelmaps = new ArrayList<>(0); // Add a pixel map of an image
+
     // Update the pixel map of an image
-    private static final List<Map<String, Object>> UPDATE_PIXELMAPS = new ArrayList<>(0);
+    private static List<Map<String, Object>> updatePixelmaps = new ArrayList<>(0);
     private static int rows; // 行数
     private static int columns; // 列数
     private static int size; // 图片数量
+
+    private static final List<Map<String, Object>> ADD_ORDER_MAPS = new ArrayList<>(0);
+    private static final List<Map<String, Object>> UPDATE_ORDER_MAPS = new ArrayList<>(0);
 
     private Utils() {
     }
@@ -170,7 +166,7 @@ public class Utils {
      * @return PixelMap[] in List
      */
     public static List<PixelMap[]> transIdToPixelMap(Context context) {
-        size = PICTURE_IDS.size() + ADD_PIXELMAPS.size();
+        size = PICTURE_IDS.size() + addPixelmaps.size();
         // 设置行列
         setColunmRows();
         // Converts the pictures in the Media and the added and updated pictures
@@ -247,7 +243,7 @@ public class Utils {
 
     // Add the new pixel map to the duplicate pixel map
     private static void addNewPixelMapToPixelMaps() {
-        for (PixelMap pixelMap: ADD_PIXELMAPS) {
+        for (PixelMap pixelMap: addPixelmaps) {
             PixelMap.InitializationOptions initializationOptions = new PixelMap.InitializationOptions();
             initializationOptions.size = new Size(leftWidth / columns, RES_HEIGHT); // 设置尺寸
             // Adding a PixelMap object to the end of the PixelMaps collection
@@ -259,7 +255,7 @@ public class Utils {
      * Modify the pixel map to be modified based on the subscript
      */
     public static void updateNewPixelMapToPixelMaps() {
-        for (Map<String, Object> map: UPDATE_PIXELMAPS) {
+        for (Map<String, Object> map: updatePixelmaps) {
             int index = Integer.parseInt(map.get("index").toString()); // Obtain the PixelMap subscript to be updated
             PixelMap pixelMap = (PixelMap) map.get("pixelMap"); // Obtains the corresponding PixelMap object
             PixelMap.InitializationOptions initializationOptions = new PixelMap.InitializationOptions();
@@ -326,7 +322,7 @@ public class Utils {
      * @param pixelMap pixelMap
      */
     public static void addPixelMap(PixelMap pixelMap) {
-        ADD_PIXELMAPS.add(pixelMap); // 添加到当前左边屏幕中图片集合
+        addPixelmaps.add(pixelMap); // 添加到当前左边屏幕中图片集合
         resourcePixelMaps.add(pixelMap); // 添加到原始图片集合中
     }
 
@@ -340,7 +336,7 @@ public class Utils {
         Map<String, Object> map = new HashMap<>(0);
         map.put("pixelMap", pixelMap);
         map.put("index", index);
-        UPDATE_PIXELMAPS.add(map);
+        updatePixelmaps.add(map);
         resourcePixelMaps.remove(index);
         resourcePixelMaps.add(index, pixelMap); // 添加到原始图片集合中
     }
@@ -374,130 +370,6 @@ public class Utils {
     }
 
     /**
-     * Convert pixelmap to byte[]
-     *
-     * @param pixelMap pixelMap
-     * @return byte[]
-     */
-    public static byte[] pixelMapToByteArray(PixelMap pixelMap) {
-        if (pixelMap == null) {
-            return new byte[0];
-        }
-        ImagePacker imagePacker = ImagePacker.create(); // 创建图像编码类
-        ByteArrayOutputStream byteStream = new ByteArrayOutputStream(); // 创建输出对象
-        ImagePacker.PackingOptions packingOptions = new ImagePacker.PackingOptions(); // 创建编码输出流和编码参数对象
-        packingOptions.format = "image/jpeg"; // 输出格式
-        imagePacker.initializePacking(byteStream, packingOptions); // 将输出流设置为打包后输出目的
-        imagePacker.addImage(pixelMap); // Adding a PixelMap object to an image wrapper
-        imagePacker.finalizePacking(); // 完成图像打包任务
-        return byteStream.toByteArray();
-    }
-
-    /**
-     * Convert byte[] into PixelMap
-     *
-     * @param bytes bytes
-     * @return pixelMap
-     */
-    public static PixelMap byteArrayToPixelmap(byte[] bytes) {
-        ImageSource.SourceOptions srcOpts = new ImageSource.SourceOptions();
-        srcOpts.formatHint = "image/png"; // 指定数据源的格式信息
-        ImageSource imageSource;
-        imageSource = ImageSource.create(bytes, srcOpts); // Creating an Image Source ImageSource Object
-        // Create an object to decode a PixelMap image
-        ImageSource.DecodingOptions decodingOpts = new ImageSource.DecodingOptions();
-        return imageSource.createPixelmap(decodingOpts);
-    }
-
-    /**
-     * Save byte[] of PixelMap to a distributed file
-     *
-     * @param context context
-     * @param bytes bytes
-     */
-    public static void saveByteArrayToFile(Context context, byte[] bytes) {
-        OutputStream outputStream = null;
-        InputStream inputStream = null;
-        try {
-            File distDir = context.getDistributedDir(); // 获取分布式文件夹
-            String filePath = distDir + File.separator + "pixelMap.txt"; // 获取分布式文件
-            outputStream = new FileOutputStream(filePath);
-            inputStream = new ByteArrayInputStream(bytes);
-            byte[] buffs = new byte[BUFF_SIZE]; // 读取缓存大小
-            int len;
-            while ((len = inputStream.read(buffs)) != LINE_NO_DATA) { // 读取文件
-                outputStream.write(buffs, 0, len);
-            }
-        } catch (FileNotFoundException e) {
-            HiLog.error(TAG, "filePath error");
-        } catch (IOException e) {
-            HiLog.error(TAG, "file read error");
-        } finally {
-            try {
-                assert inputStream != null;
-                inputStream.close(); // 关闭输入流
-            } catch (IOException e) {
-                HiLog.error(TAG, "inputStream close error");
-            }
-            try {
-                outputStream.close(); // 关闭输出流
-            } catch (IOException e) {
-                HiLog.error(TAG, "outputStream close error");
-            }
-        }
-    }
-
-    /**
-     * Obtain the byte[] of the PixelMap from the distributed file
-     *
-     * @param context context
-     * @return byte[]
-     * @noinspection checkstyle:InnerAssignment
-     */
-    public static byte[] getByteArrayFromFile(Context context) {
-        byte[] buffers = null;
-        FileInputStream fi = null;
-        try {
-            File distDir = context.getDistributedDir(); // 获取分布式文件夹
-            String filePath = distDir + File.separator + "pixelMap.txt"; // 获取分布式文件夹
-            File file = new File(filePath);
-            long fileSize = file.length();
-            if (fileSize > Integer.MAX_VALUE) { // 判断数据溢出
-                HiLog.error(TAG, "file too big error");
-                return new byte[0];
-            }
-            fi = new FileInputStream(file);
-            buffers = new byte[(int) fileSize];
-            int offset = 0;
-            int numRead;
-            while (offset < buffers.length) { // 读取分布式文件中的数据（byte[]）
-                numRead = fi.read(buffers, offset, buffers.length - offset);
-                if (numRead >= 0) {
-                    offset += numRead;
-                } else {
-                    break;
-                }
-            }
-            // 确保所有数据均被读取
-            if (offset != buffers.length) {
-                HiLog.error(TAG, "could not completely read file error");
-            }
-        } catch (FileNotFoundException e) {
-            HiLog.error(TAG, " read file error");
-        } catch (IOException e) {
-            HiLog.error(TAG, "file read error");
-        } finally {
-            try {
-                assert fi != null;
-                fi.close();
-            } catch (IOException e) {
-                HiLog.error(TAG, " fileInputStream close error");
-            }
-        }
-        return buffers;
-    }
-
-    /**
      * Creating a pixel map
      *
      * @param width width
@@ -526,7 +398,8 @@ public class Utils {
         Canvas canvas = new Canvas(); // Convert PixelMap to Texture Objects
         canvas.setTexture(texture); // Canvas object painting texture
         PixelMapHolder pixelMapHolder = new PixelMapHolder(pixelMap);
-        canvas.scale(// 进行镜像
+        // 进行镜像
+        canvas.scale(
                 scaleX,
                 1.0f,
                 (float) pixelMap.getImageInfo().size.width / HALF,
@@ -537,5 +410,58 @@ public class Utils {
                 0,
                 new Paint());
         return pixelMapReturns;
+    }
+
+    /**
+     * get new add orders
+     *
+     * @return pixelMaps
+     */
+    public static List<Map<String, Object>> getAddOrderMaps() {
+        return ADD_ORDER_MAPS;
+    }
+
+    /**
+     * get new update orders
+     *
+     * @return pixelMaps
+     */
+    public static List<Map<String, Object>> getUpdateOrderMaps() {
+        return UPDATE_ORDER_MAPS;
+    }
+
+    /**
+     * get all pixelMap
+     *
+     * @return pixelMaps
+     */
+    public static List<PixelMap> getResourcePixelMaps() {
+        return resourcePixelMaps;
+    }
+
+    /**
+     * 保存新增的操作指令
+     *
+     * @param opeMap opeMap
+     */
+    public static void setAddOrderMaps(Map<String, Object> opeMap) {
+        ADD_ORDER_MAPS.add(opeMap);
+    }
+
+    /**
+     * 保存修改的操作指令
+     *
+     * @param opeMap opeMap
+     */
+    public static void setUpdateOrderMaps(Map<String, Object> opeMap) {
+        UPDATE_ORDER_MAPS.add(opeMap);
+    }
+
+    /**
+     * 清空新增、修改的缓存
+     */
+    public static void clearCache() {
+        addPixelmaps = new ArrayList<>(0);
+        updatePixelmaps = new ArrayList<>(0);
     }
 }

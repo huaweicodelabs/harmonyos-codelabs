@@ -22,7 +22,7 @@
                     ohos:id="$+id:title_icon"
                     ohos:height="match_content"
                     ohos:width="match_content"
-                    ohos:text="NewsDemo"
+                    ohos:text="$string:title"
                     ohos:left_margin="20vp"
                     ohos:text_size="20fp"
                     ohos:weight="1"/>
@@ -31,14 +31,14 @@
                     ohos:height="match_content"
                     ohos:width="match_content"
                     ohos:right_margin="10vp"
-                    ohos:text="reads：10"
+                    ohos:text="$string:reads"
                     ohos:text_size="10fp"/>
                 <Text
                     ohos:id="$+id:likes_num"
                     ohos:height="match_content"
                     ohos:width="match_content"
                     ohos:right_margin="20vp"
-                    ohos:text="likes：9"
+                    ohos:text="$string:likes"
                     ohos:text_size="10fp"/>
             </DirectionalLayout>
             <Text
@@ -49,7 +49,7 @@
                 ohos:max_text_lines="4"
                 ohos:multiple_lines="true"
                 ohos:right_margin="20vp"
-                ohos:text="Ten Future Trends of Digital Energy"
+                ohos:text="$string:future"
                 ohos:text_color="#000000"
                 ohos:text_size="18fp"
                 ohos:top_margin="10vp"/>
@@ -60,8 +60,8 @@
                 ohos:left_margin="20vp"
                 ohos:multiple_lines="true"
                 ohos:right_margin="20vp"
-                ohos:text="Energy digitalization is an inevitable trend. Innovative integration of digital and energy technologies enables end-to-end visual, manageable, and controllable intelligent management of energy infrastructure, improving energy efficiency."
-                ohos:text_alignment="center_horizontal"
+                ohos:text="$string:energy_digitalization"
+                ohos:text_alignment="horizontal_center"
                 ohos:text_color="#708090"
                 ohos:text_size="16fp"
                 ohos:top_margin="5vp"/>
@@ -121,7 +121,7 @@
             ohos:height="30vp"
             ohos:width="160vp"
             ohos:background_element="$graphic:corner_bg_comment"
-            ohos:hint="Enter a comment."
+            ohos:hint="$string:hint"
             ohos:left_padding="5vp"
             ohos:right_padding="10vp"
             ohos:text_alignment="vertical_center"

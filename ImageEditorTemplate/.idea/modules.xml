@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="ProjectModuleManager">
-    <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ImageEditorTemplate.iml" filepath="$PROJECT_DIR$/.idea/modules/ImageEditorTemplate.iml" group="ImageEditorTemplate" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/entry/entry.iml" filepath="$PROJECT_DIR$/.idea/modules/entry/entry.iml" group="ImageEditorTemplate/entry" />
-    </modules>
-  </component>
-</project>

@@ -1,5 +1,5 @@
 <div class="card_root_layout" on:click="routerEvent">
-    <div class="div_basic_container">
+    <div class="div_basic_container" show="{{isShow}}">
     <!-- 左侧布局 -->
         <div class="left_items" @click="routerEvent1" >
             <div class="left_items_top">
@@ -35,5 +35,8 @@
                 <chart type="line" id="chart" datasets="{{ datasets }}" options="{{ options }}"></chart>
             </div>
         </div>
+    </div>
+    <div show="{{initShow}}" class="init">
+        <text>{{initData}}</text>
     </div>
 </div>

@@ -11,6 +11,14 @@
     {
       "name": "mainability_HelloWorld",
       "value": "你好，世界"
+    },
+    {
+      "name": "date",
+      "value": "Currently selected date:  "
+    },
+    {
+      "name": "hint",
+      "value": "date"
     }
   ]
 }

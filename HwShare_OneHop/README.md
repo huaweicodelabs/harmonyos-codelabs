@@ -1,5 +1,5 @@
 # HwShare_OneHop
-简介 • 此Demo用于使用碰一碰获取智能家居并NFC标签中存储的设备信息，并利用此信息通过蓝牙连接设备，达到控制设备的目的。另外还支持通过华为分享将控制页分享给其他手机，使分享接收方连接设备并控制设备。
+简介 • 此Demo用于使用碰一碰获取智能家居的NFC标签中存储的设备信息，并利用此信息通过蓝牙连接设备，达到控制设备的目的。另外还支持通过华为分享将FA分享给其他手机，使分享接收方连接设备并控制设备。
 
 安装要求 • 安装DevEco Studio • 设置DevEco Studio开发环境。DevEco Studio开发环境需要连接到网络，以确保该正常使用。可以根据以下两种情况配置开发环境： 1.如果您可以直接访问Internet，则只需下载HarmonyOS SDK 2.如果网络无法直接访问Internet，则可以通过代理服务器进行访问 • 生成密钥并申请证书
 
@@ -9,7 +9,7 @@
 
 许可 请参阅LICENSE文件以获得更多信息。
 
-What is it? This demo is used to obtain device information stored in the smart home and NFC tag by using touch and touch, and use the information to connect the device through Bluetooth to control the device. In addition, you can share the control page with other phones through Huawei Share, so that the sharing recipient can connect to the device and control the device.
+What is it? This demo is used to obtain device information stored in the NFC tag of a smart home by using touch and touch, and use the information to connect the device through Bluetooth to control the device. In addition, Huawei shares FAs with other mobile phones so that the sharing receiver can connect and control the devices.
 
 Installation requirements • Install DevEco Studio • Set up the DevEco Studio development environment.The DevEco Studio development environment needs to depend on the network environment. It needs to be connected to the network to ensure the normal use of the tool.The development environment can be configured according to the following two situations 1.If you can directly access the Internet, just download the HarmonyOS SDK 2.If the network cannot access the Internet directly, it can be accessed through a proxy server • Generate secret key and apply for certificate
 

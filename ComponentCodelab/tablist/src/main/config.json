@@ -9,11 +9,14 @@
   },
   "deviceConfig": {},
   "module": {
-    "package": "com.huawei.cookbook",
-    "name": ".MyApplication",
-    "mainAbility": "com.huawei.cookbook.MainAbility",
+    "package": "com.huawei.tablist",
+    "name": ".MainAbility",
+    "mainAbility": "com.huawei.tablist.MainAbility",
     "deviceType": [
       "phone"
+    ],
+    "reqCapabilities": [
+      "video_support"
     ],
     "distro": {
       "deliveryWithInstall": true,
@@ -25,7 +28,7 @@
       {
         "orientation": "unspecified",
         "visible": true,
-        "name": "com.huawei.cookbook.MainAbility",
+        "name": "com.huawei.tablist.MainAbility",
         "icon": "$media:icon",
         "description": "$string:mainability_description",
         "label": "$string:tablist_MainAbility",

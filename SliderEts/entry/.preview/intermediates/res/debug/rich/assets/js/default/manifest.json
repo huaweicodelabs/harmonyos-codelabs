@@ -1,0 +1,22 @@
+{
+    "appID": "com.huawei.cookbooks",
+    "appName": "$string:entry_MainAbility",
+    "versionName": "1.0.0",
+    "versionCode": 1000000,
+    "minPlatformVersion": 7,
+    "pages": [
+        "pages/index"
+    ],
+    "deviceType": [
+        "phone",
+        "tablet"
+    ],
+    "mode": {
+        "type": "pageAbility",
+        "syntax": "ets"
+    },
+    "window": {
+        "designWidth": 720,
+        "autoDesignWidth": false
+    }
+}

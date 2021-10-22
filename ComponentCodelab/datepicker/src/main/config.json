@@ -19,7 +19,7 @@
       "deliveryWithInstall": true,
       "moduleName": "datepicker",
       "moduleType": "feature",
-      "installationFree": false
+      "installationFree": true
     },
     "abilities": [
       {

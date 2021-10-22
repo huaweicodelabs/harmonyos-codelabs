@@ -1,5 +1,5 @@
-<div class="card_root_layout" >
-    <div class="div_basic_container">
+<div class="card_root_layout" on:click="routerEvent">
+    <div class="div_basic_container" show="{{isShow}}" @click="routerEvent1">
         <!-- 环形进度条 -->
         <progress type="ring" percent="{{percent}}" class="div_progress" >
         </progress>
@@ -11,5 +11,8 @@
             <text class="item_content">{{$t('strings.step')}}
             </text>
         </div>
+    </div>
+    <div show="{{initShow}}" class="init">
+        <text>{{initData}}</text>
     </div>
 </div>

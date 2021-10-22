@@ -16,7 +16,10 @@
 package com.huawei.cookbooks.utils;
 
 import com.huawei.cookbooks.database.Form;
+import com.huawei.cookbooks.database.FormDatabase;
 
+import ohos.app.Context;
+import ohos.data.DatabaseHelper;
 import ohos.data.orm.OrmContext;
 import ohos.data.orm.OrmPredicates;
 
@@ -27,17 +30,24 @@ import java.util.List;
  */
 public class DatabaseUtils {
     /**
+     * Hidden Construction Method
+     */
+    private DatabaseUtils() {
+    }
+    /**
      * delete data
      *
      * @param formId form id
-     * @param connect data connection
+     * @param context context
      */
-    public static void deleteFormData(long formId, OrmContext connect) {
+
+    public static void deleteFormData(long formId, Context context) {
+        OrmContext connect = getConnect(context);
         OrmPredicates where = connect.where(Form.class);
         where.equalTo("formId", formId);
-        List<Form> query = connect.query(where);
-        if (!query.isEmpty()) {
-            connect.delete(query.get(0));
+        List<Form> forms = connect.query(where);
+        if (!forms.isEmpty()) {
+            connect.delete(forms.get(0));
             connect.flush();
         }
     }
@@ -46,10 +56,16 @@ public class DatabaseUtils {
      * add card info
      *
      * @param form card object
-     * @param connect data connection
+     * @param context context
      */
-    public static void insertForm(Form form, OrmContext connect) {
+    public static void insertForm(Form form,Context context) {
+        OrmContext connect = getConnect(context);
         connect.insert(form);
         connect.flush();
+    }
+
+    private static OrmContext getConnect(Context context) {
+        DatabaseHelper helper = new DatabaseHelper(context);
+        return helper.getOrmContext("FormDatabase", "FormDatabase.db", FormDatabase.class);
     }
 }

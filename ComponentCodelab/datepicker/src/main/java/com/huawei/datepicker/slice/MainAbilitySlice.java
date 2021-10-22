@@ -63,12 +63,8 @@ public class MainAbilitySlice extends AbilitySlice {
      */
     private void setValueChangedListener() {
         datePicker.setValueChangedListener(
-                new DatePicker.ValueChangedListener() {
-                    @Override
-                    public void onValueChanged(DatePicker picker, int year, int monthOfYear, int dayOfMonth) {
-                        textDate.setText(String.format(Locale.ROOT,"%02d/%02d/%4d", dayOfMonth, monthOfYear, year));
-                    }
-                }
+                (picker, year, monthOfYear, dayOfMonth) ->
+                        textDate.setText(String.format(Locale.ROOT,"%02d/%02d/%4d", dayOfMonth, monthOfYear, year))
         );
     }
 

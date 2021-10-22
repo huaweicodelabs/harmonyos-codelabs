@@ -1,7 +1,7 @@
 小设备合成游戏
 简介：魔性的小设备合成，玩到根本停不下来
 玩法：启动游戏，随机出现设备图形，可以手动触摸图形移动位置。相同图形碰撞可以合成新的图形，不同的图形碰撞可以改变运行轨迹，直到停止运动。
-    最后合成HarmonyOS图形，恭喜游戏成功。若满屏了还没有合成，则游戏结束。
+    最后合成HarmonyOS图形，游戏成功。若满屏了还没有合成，则游戏结束。
 安装要求
 • 安装DevEco Studio
 • 设置DevEco Studio开发环境。DevEco Studio开发环境需要连接到网络，以确保该正常使用。可以根据以下两种情况配置开发环境：
@@ -11,7 +11,7 @@
 
 用户指南
 • 下载此项目
-• 打开HUAWEI DevEco Studio，单击File> Open选择此ComponentCodelab
+• 打开HUAWEI DevEco Studio，单击File> Open选择此Codelab
 • 单击Build> Build App(s)/Hap(s)>Build Debug Hap(s)以编译hap软件包
 • 单击Run> Run 'entry'以运行hap包
 
@@ -26,7 +26,7 @@
 gadget synthesis game
 Introduce: The small device of magic synthesizes, play to not stop at all.
 How to play: Start the game and randomly display the device graphics. You can manually touch the graphics to move the position. A new graphic can be synthesized by collisions of the same graphic, and a different graphic can change the trajectory until the motion stops.
-             Finally synthesized HarmonyOS graphics, congratulations on the success of the game. If the full screen has not been synthesized, the game ends.
+             Finally synthesized HarmonyOS graphics, the game success. If the full screen has not been synthesized, the game ends.
             
 Installation requirements
 • Install DevEco Studio

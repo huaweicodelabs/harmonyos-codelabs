@@ -114,18 +114,6 @@
     font-size: 22px;
 }
 
-.container-more-div {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
-    font-weight: 700;
-}
-
-.container-more-div:after {
-    content: "";
-    width: 100px;
-}
-
 .container-home-image {
     width: 310px;
     height: 160px;

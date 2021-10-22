@@ -156,7 +156,7 @@
             </div>
         </div>
     </div>
-    <div class="container-bottom-div" @click="buy" @click="clickBuy">
+    <div class="container-bottom-div" @click="clickBuy">
         <image src="{{icon.buys}}" class="container-bottom-div-image" @click="clickBuy">
         </image>
         <image src="{{icon.shoppingCarts}}" class="container-bottom-div-image" @click="clickShoppingCart">

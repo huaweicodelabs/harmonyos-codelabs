@@ -18,8 +18,8 @@
             ohos:width="match_parent"
             ohos:text_alignment="horizontal_center"
             ohos:margin="10fp"
-            ohos:text="2021-03-24"
-            ohos:text_font="sans-serif-medium"
+            ohos:text="$string:default_date"
+            ohos:text_font="$string:text_font_date"
             ohos:text_size="10fp"
             />
     </DirectionalLayout>
@@ -37,7 +37,7 @@
             ohos:height="match_content"
             ohos:width="match_content"
             ohos:margin="10vp"
-            ohos:text="HOUR"
+            ohos:text="$string:hour"
             ohos:text_size="10fp"
             />
 
@@ -45,7 +45,7 @@
             ohos:height="match_content"
             ohos:width="match_content"
             ohos:margin="10vp"
-            ohos:text="MIN"
+            ohos:text="$string:min"
             ohos:text_size="10fp"
             />
 
@@ -53,7 +53,7 @@
             ohos:height="match_content"
             ohos:width="match_content"
             ohos:margin="10vp"
-            ohos:text="SEC"
+            ohos:text="$string:sec"
             ohos:text_size="10fp"
             />
     </DirectionalLayout>
@@ -72,10 +72,10 @@
             ohos:id="$+id:hour"
             ohos:height="match_content"
             ohos:width="match_content"
-            ohos:left_margin="10vp"
-            ohos:right_margin="5vp"
-            ohos:text="00"
-            ohos:text_font="HwChinese-medium"
+            ohos:start_margin="10vp"
+            ohos:end_margin="5vp"
+            ohos:text="$string:zero"
+            ohos:text_font="$string:text_font_hour"
             ohos:text_size="20fp"
             ohos:top_margin="2vp"
             />
@@ -83,8 +83,8 @@
         <Text
             ohos:height="match_content"
             ohos:width="match_content"
-            ohos:text=":"
-            ohos:text_font="bold"
+            ohos:text="$string:colon"
+            ohos:text_font="$string:text_font_colon"
             ohos:text_size="20fp"
             ohos:top_margin="2vp"
             />
@@ -93,10 +93,10 @@
             ohos:id="$+id:min"
             ohos:height="match_content"
             ohos:width="match_content"
-            ohos:left_margin="5vp"
-            ohos:right_margin="5vp"
-            ohos:text="00"
-            ohos:text_font="HwChinese-medium"
+            ohos:start_margin="5vp"
+            ohos:end_margin="5vp"
+            ohos:text="$string:zero"
+            ohos:text_font="$string:text_font_hour"
             ohos:text_size="20fp"
             ohos:top_margin="2vp"
             />
@@ -104,8 +104,8 @@
         <Text
             ohos:height="match_content"
             ohos:width="match_content"
-            ohos:text=":"
-            ohos:text_font="bold"
+            ohos:text="$string:colon"
+            ohos:text_font="$string:text_font_colon"
             ohos:text_size="20fp"
             ohos:top_margin="2vp"
             />
@@ -114,10 +114,10 @@
             ohos:id="$+id:sec"
             ohos:height="match_content"
             ohos:width="match_content"
-            ohos:left_margin="5vp"
-            ohos:right_margin="10vp"
-            ohos:text="00"
-            ohos:text_font="HwChinese-medium"
+            ohos:start_margin="5vp"
+            ohos:end_margin="10vp"
+            ohos:text="$string:zero"
+            ohos:text_font="$string:text_font_hour"
             ohos:text_size="20fp"
             ohos:top_margin="2vp"
             />
@@ -128,25 +128,28 @@
         ohos:width="match_parent"
         ohos:alignment="center"
         ohos:below="$id:time"
-        ohos:margin="20fp"
+        ohos:start_margin="15vp"
+        ohos:end_margin="10vp"
+        ohos:top_margin="20vp"
+        ohos:bottom_margin="20vp"
         ohos:orientation="horizontal"
         >
         <Text
             ohos:id="$+id:sun"
             ohos:height="match_content"
             ohos:width="match_content"
-            ohos:text="日"
+            ohos:text="$string:Sunday"
             ohos:text_color="#C0C0C0"
-            ohos:text_size="10fp"
+            ohos:text_size="8vp"
             ohos:weight="1"
             />
         <Text
             ohos:id="$+id:mon"
             ohos:height="match_content"
             ohos:width="match_content"
-            ohos:text="一"
+            ohos:text="$string:Monday"
             ohos:text_color="#C0C0C0"
-            ohos:text_size="10fp"
+            ohos:text_size="8vp"
             ohos:weight="1"
             />
 
@@ -154,9 +157,9 @@
             ohos:id="$+id:tue"
             ohos:height="match_content"
             ohos:width="match_content"
-            ohos:text="二"
+            ohos:text="$string:Tuesday"
             ohos:text_color="#C0C0C0"
-            ohos:text_size="10fp"
+            ohos:text_size="8vp"
             ohos:weight="1"
             />
 
@@ -164,9 +167,9 @@
             ohos:id="$+id:wed"
             ohos:height="match_content"
             ohos:width="match_content"
-            ohos:text="三"
+            ohos:text="$string:Wednesday"
             ohos:text_color="#C0C0C0"
-            ohos:text_size="10fp"
+            ohos:text_size="8vp"
             ohos:weight="1"
             />
 
@@ -174,9 +177,9 @@
             ohos:id="$+id:thu"
             ohos:height="match_content"
             ohos:width="match_content"
-            ohos:text="四"
+            ohos:text="$string:Thursday"
             ohos:text_color="#C0C0C0"
-            ohos:text_size="10fp"
+            ohos:text_size="8vp"
             ohos:weight="1"
             />
 
@@ -184,9 +187,9 @@
             ohos:id="$+id:fri"
             ohos:height="match_content"
             ohos:width="match_content"
-            ohos:text="五"
+            ohos:text="$string:Friday"
             ohos:text_color="#C0C0C0"
-            ohos:text_size="10fp"
+            ohos:text_size="8vp"
             ohos:weight="1"
             />
 
@@ -194,9 +197,9 @@
             ohos:id="$+id:sat"
             ohos:height="match_content"
             ohos:width="match_content"
-            ohos:text="六"
+            ohos:text="$string:Saturday"
             ohos:text_color="#C0C0C0"
-            ohos:text_size="10fp"
+            ohos:text_size="8vp"
             ohos:weight="1"
             />
     </DirectionalLayout>

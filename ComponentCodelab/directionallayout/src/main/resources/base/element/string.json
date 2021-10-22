@@ -11,6 +11,50 @@
     {
       "name": "mainability_HelloWorld",
       "value": "Hello World"
+    },
+    {
+      "name": "title",
+      "value": "Lantern riddles of Mid Autumn Festival"
+    },
+    {
+      "name": "one",
+      "value": "1.what man cannot live in a house?"
+    },
+    {
+      "name": "two",
+      "value": "2.What never asks questions but gets a lot of answers?"
+    },
+    {
+      "name": "three",
+      "value": "3.A mouse has a large pocket．What is it?"
+    },
+    {
+      "name": "four",
+      "value": "4.What can hear you without ears and can answer you without a mouth?"
+    },
+    {
+      "name": "five",
+      "value": "5.What is higher without a head than with a head?"
+    },
+    {
+      "name": "six",
+      "value": "6.What is dark but made by light?"
+    },
+    {
+      "name": "seven",
+      "value": "7.What person tried to make you smile most of the time?"
+    },
+    {
+      "name": "eight",
+      "value": "8.You have it．You read it．There're some pictures in it?"
+    },
+    {
+      "name": "nine",
+      "value": "9.What animal has a head like a cat, eyes like a cat, a tail like a cat, but isn't a cat? "
+    },
+    {
+      "name": "ten",
+      "value": "10.What has hands but no feet, a face but no eyes, tells but not talk?"
     }
   ]
 }

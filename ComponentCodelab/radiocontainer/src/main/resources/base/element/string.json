@@ -11,6 +11,34 @@
     {
       "name": "mainability_HelloWorld",
       "value": "Hello World"
+    },
+    {
+      "name": "question",
+      "value": "Question:Which of the following options belong to fruit?"
+    },
+    {
+      "name": "answer",
+      "value": "Your Answer:"
+    },
+    {
+      "name": "brackets",
+      "value": "[]"
+    },
+    {
+      "name": "apple",
+      "value": "A.Apple"
+    },
+    {
+      "name": "potato",
+      "value": "B.Potato"
+    },
+    {
+      "name": "pumpkin",
+      "value": "C.Pumpkin"
+    },
+    {
+      "name": "vegetables",
+      "value": "D.Vegetables"
     }
   ]
 }

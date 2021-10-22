@@ -110,3 +110,8 @@
     flex-direction: row;
     width: 50px;
 }
+.init{
+    align-items: center;
+    font-size: 14px;
+    color: black;
+}

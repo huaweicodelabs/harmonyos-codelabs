@@ -1,6 +1,6 @@
 # DistributedMapDemo
 简介 
-分布式地图应用展示了简单的HarmonyOS分布式能力。您可以通过该应用程序模拟导航。此示例代码完成了手机、智能手表和平板电脑之间的导航数据流转。您和我们从头开始合作。此示例代码已完成，您可以与我们一起从零开始学习。
+分布式地图应用展示了简单的HarmonyOS分布式能力。您可以通过该应用程序模拟导航。此示例代码完成了手机、智能手表和平板电脑之间的导航数据流转。此示例代码已完成，您可以与我们一起从零开始学习。
 
 其中地图的加载使用的是董昱老师的TinyMap，我们根据需求做了些修改，并且添加了绘制路径的功能。
 
@@ -13,7 +13,7 @@
 
 用户指南
 • 下载此项目
-• 打开HUAWEI DevEco Studio，单击File> Open选择此ComponentCodelab
+• 打开HUAWEI DevEco Studio，单击File> Open选择此Codelab
 • 单击Build> Build App(s)/Hap(s)>Build Debug Hap(s)以编译hap软件包
 • 单击Run> Run 'entry'以运行hap包
 
@@ -25,7 +25,7 @@
 请参阅LICENSE文件以获得更多信息。
 
 What is it? 
-The DistributedMapDemo application is to show the simple HarmonyOS Distributed capability. You can simulate navigation through the app. This sample code has been completed for the flow of navigation data between your phone, smartwatch, and tablet. You can work with us from the beginning. This example code is complete and you can learn from the beginning with us.
+The DistributedMapDemo application is to show the simple HarmonyOS Distributed capability. You can simulate navigation through the app. This sample code has been completed for the flow of navigation data between your phone, smartwatch, and tablet. This example code is complete and you can learn from the beginning with us.
 
 The map is loaded using Dong Yu's TinyMap. We modify the map as required and add the function of drawing paths.
 

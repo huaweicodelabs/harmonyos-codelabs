@@ -31,13 +31,13 @@
             ohos:height="match_parent"
             ohos:text_size="15vp"
             ohos:padding="4vp"
-            ohos:text="Currently selected date:  "/>
+            ohos:text="$string:date"/>
         <Text
             ohos:id="$+id:text_date"
             ohos:height="match_content"
             ohos:width="100vp"
             ohos:background_element="$graphic:button_element"
-            ohos:hint="date"
+            ohos:hint="$string:hint"
             ohos:left_margin="13vp"
             ohos:padding="4vp"
             ohos:text_size="15vp">

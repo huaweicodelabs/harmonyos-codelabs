@@ -1,0 +1,96 @@
+{
+  "string": [
+    {
+      "name": "entry_MainAbility",
+      "value": "SimpleGallery"
+    },
+    {
+      "name": "mainability_description",
+      "value": "ETS_Empty Feature Ability"
+    },
+    {
+      "name": "tips",
+      "value": "This is a test function and has not been implemented."
+    },
+    {
+      "name": "tab_strings",
+      "value": "Tab"
+    },
+    {
+      "name": "featured",
+      "value": "featured"
+    },
+    {
+      "name": "discover",
+      "value": "discover"
+    },
+    {
+      "name": "wallpaper",
+      "value": "wallpaper"
+    },
+    {
+      "name": "knowledge",
+      "value": "knowledge"
+    },
+    {
+      "name": "photo",
+      "value": "photo"
+    },
+    {
+      "name": "more",
+      "value": "more"
+    },
+    {
+      "name": "delete",
+      "value": "delete"
+    },
+    {
+      "name": "today_recommend",
+      "value": "Today Recommends"
+    },
+    {
+      "name": "featured_recommend",
+      "value": "Featured Recommends"
+    },
+    {
+      "name": "september_recommend",
+      "value": "September Recommends"
+    },
+    {
+      "name": "august_recommend",
+      "value": "August Recommends"
+    },
+    {
+      "name": "notification_settings",
+      "value": "Notification Settings"
+    },
+    {
+      "name": "harmony_notification",
+      "value": "HarmonyOS Notification"
+    },
+    {
+      "name": "background_reminderAgent",
+      "value": "HarmonyOS Background ReminderAgent"
+    },
+    {
+      "name": "reminder_tips",
+      "value": "After the setting, the system clears the app, restarts the device, and shuts down the device. The notification is triggered normally."
+    },
+    {
+      "name": "subscribe_succeed",
+      "value": "Subscribe succeed."
+    },
+    {
+      "name": "add_reminder",
+      "value": "Do you want to add to the HarmonyOS background reminder?"
+    },
+    {
+      "name": "yes",
+      "value": "Yes"
+    },
+    {
+      "name": "no",
+      "value": "No"
+    }
+  ]
+}

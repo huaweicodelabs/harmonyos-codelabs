@@ -9,9 +9,9 @@
   },
   "deviceConfig": {},
   "module": {
-    "package": "com.huawei.cookbook",
-    "name": ".MyApplication",
-    "mainAbility": "com.huawei.cookbook.MainAbility",
+    "package": "com.huawei.listcontainer",
+    "name": "com.huawei.listcontainer.MyApplication",
+    "mainAbility": "com.huawei.listcontainer.MainAbility",
     "deviceType": [
       "phone"
     ],
@@ -19,13 +19,13 @@
       "deliveryWithInstall": true,
       "moduleName": "listcontainer",
       "moduleType": "feature",
-      "installationFree": false
+      "installationFree": true
     },
     "abilities": [
       {
         "orientation": "unspecified",
         "visible": true,
-        "name": "com.huawei.cookbook.MainAbility",
+        "name": "com.huawei.listcontainer.MainAbility",
         "icon": "$media:icon",
         "description": "$string:mainability_description",
         "label": "$string:listcontainer_MainAbility",

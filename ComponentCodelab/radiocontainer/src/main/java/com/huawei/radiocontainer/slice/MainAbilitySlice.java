@@ -69,9 +69,8 @@ public class MainAbilitySlice extends AbilitySlice {
         for (int i = 0; i < count; i++) {
             ((RadioButton) container.getComponentAt(i)).setButtonElement(getStateElement());
         }
-        container.setMarkChangedListener((radioContainer1, index) -> {
-            answer.setText(String.format(Locale.ROOT,"[%c]", (char) ('A' + index)));
-        });
+        container.setMarkChangedListener((radioContainer1, index) ->
+                answer.setText(String.format(Locale.ROOT,"[%c]", (char) ('A' + index))));
     }
 
     @Override

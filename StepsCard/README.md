@@ -1,6 +1,6 @@
 # StepsCard
 
-简介 • 本cookbook旨在使开发人员了解HarmonyOS中JS卡片的开发，包含卡片的创建、更新、删除功能，以文字的方式展了现用户当日行走的步数及路程，以进度条的方式展现了用户完成目标步数的进度，以线形图的方式展现了用户近四天的行走的步数统计，并实现了随着用户行走而更新卡片数据的效果。
+简介 • 本Codelab旨在使开发人员了解HarmonyOS中JS卡片的开发，包含卡片的创建、更新、删除功能，以文字的方式展现了用户当日行走的步数及路程，以进度条的方式展现了用户完成目标步数的进度，以线形图的方式展现了用户近四天的行走的步数统计，并实现了随着用户行走而更新卡片数据的效果。
 
 安装要求
 • 安装DevEco Studio
@@ -25,7 +25,7 @@
 请参阅LICENSE文件以获得更多信息。
 
 What is it?
-This cookbook is designed to enable developers to understand the development of JS cards in HarmonyOS, including card creation, update, and deletion functions. It displays the number of steps and distances that users have walked on the day in text mode, and displays the progress of users completing the target steps in a progress bar. A line chart is used to display the step count statistics of the user in the last four days, and the card data is updated as the user walks.
+This Codelab is designed to enable developers to understand the development of JS cards in HarmonyOS, including card creation, update, and deletion functions. It displays the number of steps and distances that users have walked on the day in text mode, and displays the progress of users completing the target steps in a progress bar. A line chart is used to display the step count statistics of the user in the last four days, and the card data is updated as the user walks.
 
 Installation requirements
 • Install DevEco Studio

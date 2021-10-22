@@ -1,7 +1,7 @@
 # Education System
 简介 
 • 远程教育和多屏幕协作是智能教育的重要场景。
-• 在本文中，CodeLab使用亲子早期教育系统来完成两个有关分布式早期教育算术问题和分布式益智游戏的综合案例。
+• 本CodeLab使用亲子早期教育系统来完成有关分布式早期教育算术问题和分布式益智游戏的综合案例。
 • 它旨在帮助开发人员快速了解HarmonyOS应用程序开发，多屏协作交互和分布式跨设备传输的经验。
 • 从项目创建、代码编写到编译、构造、部署和操作。
 
@@ -14,7 +14,7 @@
 
 用户指南
 • 下载此项目
-• 打开HUAWEI DevEco Studio，单击File> Open选择此ComponentCodelab
+• 打开HUAWEI DevEco Studio，单击File> Open选择此Codelab
 • 单击Build> Build App(s)/Hap(s)>Build Debug Hap(s)以编译hap软件包
 • 单击Run> Run 'entry'以运行hap包
 
@@ -27,7 +27,7 @@
 
 What is it?
 •Distance education and multi-screen collaboration are an important scene of smart education. 
-•In this article, CodeLab uses a parent-child early education system to complete two comprehensive cases of distributed early education arithmetic problems and distributed puzzle games. 
+•This CodeLab uses a parent-child early education system to complete two comprehensive cases of distributed early education arithmetic problems and distributed puzzle games. 
 •It aims to help developers quickly understand the experience of HarmonyOS application development, multi-screen collaborative interaction, and distributed cross-device transfer. 
 •From project creation, code writing, to compilation, construction, deployment and operation.
 

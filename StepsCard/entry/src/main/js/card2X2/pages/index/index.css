@@ -36,17 +36,21 @@
     position: absolute;
 }
 
-.item_title {/*    width: 154px;*/
+.item_title {
     font-weight: bold;
     color: #F3F6F5;
     font-size: 16px;
 }
 
-.item_content {/*    width: 154px;*/
+.item_content {
     color: #F3F6F5;
     font-size: 12px;
     margin-top: 2px;
 
 }
-
+.init{
+    align-items: center;
+    font-size: 16px;
+    color: black;
+}
 

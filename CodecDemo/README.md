@@ -1,6 +1,6 @@
 # CodecDemo
 简介
-• 此Demo用于捕获预览帧，转换为视频原始数据并使用HamonyOS视频解码能力播放预览画面。
+• 此Demo用于捕获预览帧，转换为视频原始数据并使用HarmonyOS视频解码能力播放预览画面。
 
 安装要求
 • 安装DevEco Studio

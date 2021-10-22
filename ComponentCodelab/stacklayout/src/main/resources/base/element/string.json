@@ -11,6 +11,18 @@
     {
       "name": "mainability_HelloWorld",
       "value": "Hello World"
+    },
+    {
+      "name": "layer_one",
+      "value": "Layer1"
+    },
+    {
+      "name": "layer_two",
+      "value": "Layer2"
+    },
+    {
+      "name": "layer_three",
+      "value": "Layer3"
     }
   ]
 }

@@ -126,6 +126,8 @@ public class ChartDataUtils {
         } else {
             round = (int) Math.round(Double.parseDouble(value) / TARGET_STEPS * PROGRESS_PERCENT);
         }
+        result.put("initShow", false);
+        result.put("isShow", true);
         result.put("percent", round);
         result.put("steps", value);
         if (dimension == DIMENSION_2X4) {

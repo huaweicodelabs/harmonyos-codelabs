@@ -1,8 +1,8 @@
 # DistributionGamePad
 简介
-• 此Demo是分发游戏板，是一个简单的分发飞行游戏，包含游戏应用程序和游戏句柄两个应用程序。它是为了显示分发和图形功能。
-• 游戏应用程序：它在电视端运行是一个飞机游戏。
-• 游戏手柄：它运行在手机端，是一个可以控制电视端平面的手柄。
+• 此Demo是一个简单的分布式飞行游戏，包含游戏和游戏手柄两个应用程序。主要展示了分布式和画布的图形功能。
+• 游戏应用程序：在电视端运行的飞机游戏。
+• 游戏手柄：运行在手机端，可以控制电视端飞机游戏的手柄。
 
 安装要求
 • 安装DevEco Studio
@@ -13,7 +13,7 @@
 
 用户指南
 • 下载此项目
-• 打开HUAWEI DevEco Studio，单击File> Open选择此ComponentCodelab
+• 打开HUAWEI DevEco Studio，单击File> Open选择此Codelab
 • 单击Build> Build App(s)/Hap(s)>Build Debug Hap(s)以编译hap软件包
 • 单击Run> Run 'entry'以运行hap包
 

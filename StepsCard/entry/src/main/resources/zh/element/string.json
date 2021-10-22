@@ -21,8 +21,12 @@
       "value": "Java_Phone_Empty Feature Ability"
     },
     {
-      "name": "today",
-      "value": "今天走了"
+      "name": "today_walk",
+      "value": "今天一共走了"
+    },
+    {
+      "name": "steps",
+      "value": "步"
     }
   ]
 }

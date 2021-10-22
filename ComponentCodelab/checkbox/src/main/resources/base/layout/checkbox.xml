@@ -9,7 +9,7 @@
         ohos:height="match_content"
         ohos:width="match_parent"
         ohos:top_margin="32vp"
-        ohos:text="Question:Which of the following are fruits?"
+        ohos:text="$string:question"
         ohos:text_size="20fp"
         ohos:layout_alignment="left"
         ohos:multiple_lines="true"/>
@@ -21,7 +21,7 @@
         <Text
             ohos:height="match_content"
             ohos:width="match_content"
-            ohos:text="Your Answer:"
+            ohos:text="$string:answer"
             ohos:text_size="20fp"/>
         <Text
             ohos:id="$+id:text_answer"
@@ -29,7 +29,7 @@
             ohos:width="match_content"
             ohos:text_size="20fp"
             ohos:left_margin="18vp"
-            ohos:text="[]"
+            ohos:text="$string:brackets"
             ohos:text_color="#FF3333"/>
     </DirectionalLayout>
     <Checkbox
@@ -37,7 +37,7 @@
         ohos:top_margin="20vp"
         ohos:height="match_content"
         ohos:width="match_content"
-        ohos:text="A Apples"
+        ohos:text="$string:apple"
         ohos:text_size="20fp"
         ohos:text_color_on="#FF3333"
         ohos:text_color_off="#000000"/>
@@ -46,7 +46,7 @@
         ohos:top_margin="20vp"
         ohos:height="match_content"
         ohos:width="match_content"
-        ohos:text="B Bananas"
+        ohos:text="$string:bananas"
         ohos:text_size="20fp"
         ohos:text_color_on="#FF3333"
         ohos:text_color_off="#000000"/>
@@ -55,7 +55,7 @@
         ohos:top_margin="20vp"
         ohos:height="match_content"
         ohos:width="match_content"
-        ohos:text="C Strawberries"
+        ohos:text="$string:strawberries"
         ohos:text_size="20fp"
         ohos:text_color_on="#FF3333"
         ohos:text_color_off="#000000" />
@@ -64,7 +64,7 @@
         ohos:top_margin="20vp"
         ohos:height="match_content"
         ohos:width="match_content"
-        ohos:text="D Potatoes"
+        ohos:text="$string:potatoes"
         ohos:text_size="20fp"
         ohos:text_color_on="#FF3333"
         ohos:text_color_off="black" />

@@ -19,7 +19,7 @@
       "deliveryWithInstall": true,
       "moduleName": "directionallayout",
       "moduleType": "feature",
-      "installationFree": false
+      "installationFree": true
     },
     "abilities": [
       {
