@@ -1,0 +1,3 @@
+media icon 0x1000002
+string entry_MainAbility 0x1000000
+string mainability_description 0x1000001

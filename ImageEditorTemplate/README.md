@@ -23,7 +23,7 @@ ImageEditorTemplate
 请参阅LICENSE文件以获得更多信息。
 
 What is it?
-This section describes how to use the JS UI to cut and adjust images. The main application page consists of the top area, middle area, and bottom area. The top area consists of the back, undo, redo, and save image components. The middle area consists of a preview image and a crop box. From top to bottom, the bottom area is used to adjust the editing parameters of the secondary function, used to select the secondary function, and used to select the image editing function.
+This section describes how to use the JS UI to crop and adjust images. The main application page consists of the top area, middle area, and bottom area. The top area consists of the back, undo, redo, and save image components. The middle area consists of a preview image and a crop box. From top to bottom, the bottom area is used to adjust the editing parameters of the secondary function, used to select the secondary function, and used to select the image editing function.
 
 Installation requirements
 • Install DevEco Studio

@@ -45,11 +45,6 @@
         "label": "$string:app_name",
         "type": "page",
         "launchType": "standard"
-      },
-      {
-        "visible": true,
-        "name": "com.huawei.codelab.SharedService",
-        "type": "service"
       }
     ],
     "reqPermissions": [

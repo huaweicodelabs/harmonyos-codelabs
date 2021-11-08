@@ -22,8 +22,8 @@
             <text class="container-txt">{{ titleAppBar }}</text>
         </div>
         <div class="container-appBar-right">
-            <image src="common/images/rewind.svg" class="container-image-right" onclick="rewind"></image>
-            <image src="common/images/advance.svg" class="container-image-right" onclick="advance"></image>
+            <image src="common/images/redo.svg" class="container-image-right" onclick="redo"></image>
+            <image src="common/images/undo.svg" class="container-image-right" onclick="undo"></image>
             <image src="common/images/save.svg" class="container-image-right" onclick="save"></image>
         </div>
     </div>
@@ -68,7 +68,7 @@
         </div>
         <div class="container-bottom-three-first">
             <!-- 裁剪 -->
-            <image src="common/images/cut_blue.svg" style="width : 24px; height : 24px;"></image>
+            <image src="common/images/crop_blue.svg" style="width : 24px; height : 24px;"></image>
             <!-- 调节 -->
             <image src="common/images/adjust_white.svg" style="width : 24px; height : 24px; margin-left : 148px;"
                    onclick="showAdjustPage"></image>
@@ -91,9 +91,9 @@
                 style="color : #808080;"/>
         <div class="container-bottom-two-second">
             <!-- 亮度 -->
-            <image src="{{ luminanceImgSrc }}"
+            <image src="{{ brightnessImgSrc }}"
                    style="width : 24px; height : 24px; margin-left : 60px;"
-                   onclick="luminanceAdj"></image>
+                   onclick="brightnessAdj"></image>
             <!-- 对比度 -->
             <image src="{{ contrastImgSrc }}"
                    style="width : 24px; height : 24px; margin-left : 86px;"
@@ -104,7 +104,7 @@
         </div>
         <div class="container-bottom-three-second">
             <!-- 亮度 -->
-            <text class="luminanceTxt" style="color : {{ luminanceColor }};" onclick="luminanceAdj">{{ luminance }}</text>
+            <text class="brightnessTxt" style="color : {{ brightnessColor }};" onclick="brightnessAdj">{{ brightness }}</text>
             <!-- 对比度 -->
             <text class="contrastTxt" style="color : {{ contrastColor }};" onclick="contrastAdj">{{ contrast }}</text>
             <!-- 饱和度 -->
@@ -112,7 +112,7 @@
         </div>
         <div class="container-bottom-four-second">
             <!-- 裁剪 -->
-            <image src="common/images/cut_white.svg" style="width : 24px; height : 24px;" onclick="showCropPage"/>
+            <image src="common/images/crop_white.svg" style="width : 24px; height : 24px;" onclick="showCropPage"/>
             <!-- 裁剪 -->
             <image src="common/images/adjust_blue.svg" style="width : 24px; height : 24px; margin-left : 148px;"/>
         </div>

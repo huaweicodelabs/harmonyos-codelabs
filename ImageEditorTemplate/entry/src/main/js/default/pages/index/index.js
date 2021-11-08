@@ -27,9 +27,9 @@ export default {
     conBotSecImgSrc: '',
     conBotThrImgSrc: '',
     conBotFouImgSrc: '',
-    luminance: '',
-    luminanceImgSrc: '',
-    luminanceColor: '',
+    brightness: '',
+    brightnessImgSrc: '',
+    brightnessColor: '',
     contrast: '',
     contrastImgSrc: '',
     contrastColor: '',
@@ -58,12 +58,12 @@ export default {
     saturationImgData: null,
     dWidth: 0,
     dHeight: 0,
-    proport: 0,
+    ratios: 0,
     sx: 0,
     sy: 0,
     dx: 0,
     dy: 0,
-    offset: 40,
+    offset: 30,
     showFlag1: true,
     showFlag2: false,
     showBrightness: true,
@@ -84,7 +84,7 @@ export default {
     // 裁剪框宽和高分别为300、224(对应原图宽和高)
     this.cropWidth = this.originalImageWidth;
     this.cropHeight = this.originalImageHeight;
-    console.log('初始化onInit()裁剪框宽:' + this.cropWidth + '高:' + this.cropHeight);
+    console.log('onInit()裁剪框宽:' + this.cropWidth + '高:' + this.cropHeight);
     // 裁剪框左边距(等于画布左边距)
     this.cropLeft = this.offset;
     this.title = this.$t('strings.title');
@@ -92,15 +92,15 @@ export default {
     this.picFrame = this.$t('strings.picFrame');
     this.cropping = this.$t('strings.cropping');
     this.adjust = this.$t('strings.adjust');
-    this.luminance = this.$t('strings.luminance');
+    this.brightness = this.$t('strings.brightness');
     this.contrast = this.$t('strings.contrast');
     this.saturation = this.$t('strings.saturation');
     this.picFraImgSrc = this.$t('strings.picFraImgSrc');
-    this.conBotFirImgSrc = 'common/images/picture_frame_white_blue.svg';
+    this.conBotFirImgSrc = 'common/images/image_frame_white_blue.svg';
     this.conBotSecImgSrc = this.$t('strings.conBotSecImgSrc');
     this.conBotThrImgSrc = this.$t('strings.conBotThrImgSrc');
     this.conBotFouImgSrc = this.$t('strings.conBotFouImgSrc');
-    this.luminanceImgSrc = 'common/images/luminance_blue.svg';
+    this.brightnessImgSrc = 'common/images/brightness_blue.svg';
     this.contrastImgSrc = this.$t('strings.contrastImgSrc');
     this.saturationImgSrc = this.$t('strings.saturationImgSrc');
   },
@@ -140,14 +140,14 @@ export default {
     // 绘制完成后图片宽高
     this.dWidth = this.originalImageWidth;
     this.dHeight = this.originalImageHeight;
-    console.log('初始化onShow()绘制完图片宽:' + this.dWidth + '高:' + this.dHeight);
+    console.log('onShow()绘制完图片宽:' + this.dWidth + '高:' + this.dHeight);
   },
   // 裁剪页面
   showCropPage() {
     this.showFlag1 = true;
     this.showFlag2 = false;
-    // 调节裁剪框位置。proport:裁剪比例
-    switch (this.proport) {
+    // 调节裁剪框位置。ratios:裁剪比例
+    switch (this.ratios) {
       // 原图
       case 0:
         this.conBotFirImage();
@@ -175,10 +175,10 @@ export default {
     this.showBrightness = true;
     this.showContrast = false;
     this.showSaturation = false;
-    this.luminanceColor = '#2788B9';
+    this.brightnessColor = '#2788B9';
     this.contrastColor = '#ffffff';
     this.saturationColor = '#ffffff';
-    switch (this.proport) {
+    switch (this.ratios) {
       case 0:
         break;
       case 1:
@@ -383,7 +383,7 @@ export default {
 
   // 原图尺寸
   conBotFirImage() {
-    this.conBotFirImgSrc = 'common/images/picture_frame_white_blue.svg';
+    this.conBotFirImgSrc = 'common/images/image_frame_white_blue.svg';
     this.conBotSecImgSrc = this.$t('strings.conBotSecImgSrc');
     this.conBotThrImgSrc = this.$t('strings.conBotThrImgSrc');
     this.conBotFouImgSrc = this.$t('strings.conBotFouImgSrc');
@@ -395,12 +395,12 @@ export default {
     this.cropWidth = this.dWidth;
     this.cropHeight = this.dHeight;
     console.log('原图调整裁剪框位置后宽:' + this.cropWidth + '高:' + this.cropHeight);
-    this.proport = 0;
+    this.ratios = 0;
   },
   // 1:1
   conBotSecImage() {
     this.conBotFirImgSrc = this.$t('strings.conBotFirImgSrc');
-    this.conBotSecImgSrc = 'common/images/proportions_1-1_blue.png';
+    this.conBotSecImgSrc = 'common/images/ratios_1-1_blue.png';
     this.conBotThrImgSrc = this.$t('strings.conBotThrImgSrc');
     this.conBotFouImgSrc = this.$t('strings.conBotFouImgSrc');
     // 裁剪框左边距
@@ -419,13 +419,13 @@ export default {
       this.cropHeight = this.dHeight;
     }
     console.log('1:1调整裁剪框位置后宽:' + this.cropWidth + '高:' + this.cropHeight);
-    this.proport = 1;
+    this.ratios = 1;
   },
   // 16:9
   conBotThrImage() {
     this.conBotFirImgSrc = this.$t('strings.conBotFirImgSrc');
     this.conBotSecImgSrc = this.$t('strings.conBotSecImgSrc');
-    this.conBotThrImgSrc = 'common/images/proportions_16-9_blue.png';
+    this.conBotThrImgSrc = 'common/images/ratios_16-9_blue.png';
     this.conBotFouImgSrc = this.$t('strings.conBotFouImgSrc');
     // 裁剪框上边距
     this.cropTop = this.cropBoxTopThr;
@@ -435,14 +435,14 @@ export default {
     this.cropWidth = this.dWidth;
     this.cropHeight = this.cropWidth * 9 / 16;
     console.log('16:9调整裁剪框位置后宽:' + this.cropWidth + '高:' + this.cropHeight);
-    this.proport = 16 / 9;
+    this.ratios = 16 / 9;
   },
   // 9:16
   conBotFouImage() {
     this.conBotFirImgSrc = this.$t('strings.conBotFirImgSrc');
     this.conBotSecImgSrc = this.$t('strings.conBotSecImgSrc');
     this.conBotThrImgSrc = this.$t('strings.conBotThrImgSrc');
-    this.conBotFouImgSrc = 'common/images/proportions_9-16_blue.png';
+    this.conBotFouImgSrc = 'common/images/ratios_9-16_blue.png';
     // 裁剪框上边距
     this.cropTop = this.cropBoxTopFou;
     // 裁剪框左边距
@@ -451,14 +451,14 @@ export default {
     this.cropHeight = this.dHeight;
     this.cropWidth = this.dHeight * 9 / 16;
     console.log('9:16调整裁剪框位置后宽:' + this.cropWidth + '高:' + this.cropHeight);
-    this.proport = 9 / 16;
+    this.ratios = 9 / 16;
   },
   // 亮度
-  luminanceAdj() {
-    this.luminanceColor = '#2788B9';
+  brightnessAdj() {
+    this.brightnessColor = '#2788B9';
     this.contrastColor = '#ffffff';
     this.saturationColor = '#ffffff';
-    this.luminanceImgSrc = 'common/images/luminance_blue.svg';
+    this.brightnessImgSrc = 'common/images/brightness_blue.svg';
     this.contrastImgSrc = this.$t('strings.contrastImgSrc');
     this.saturationImgSrc = this.$t('strings.saturationImgSrc');
     this.showBrightness = true;
@@ -474,10 +474,10 @@ export default {
   },
   // 对比度
   contrastAdj() {
-    this.luminanceColor = '#ffffff';
+    this.brightnessColor = '#ffffff';
     this.contrastColor = '#2788B9';
     this.saturationColor = '#ffffff';
-    this.luminanceImgSrc = this.$t('strings.luminanceImgSrc');
+    this.brightnessImgSrc = this.$t('strings.brightnessImgSrc');
     this.contrastImgSrc = 'common/images/contrast_blue.svg';
     this.saturationImgSrc = this.$t('strings.saturationImgSrc');
     this.showBrightness = false;
@@ -493,10 +493,10 @@ export default {
   },
   // 饱和度
   saturationAdj() {
-    this.luminanceColor = '#ffffff';
+    this.brightnessColor = '#ffffff';
     this.contrastColor = '#ffffff';
     this.saturationColor = '#2788B9';
-    this.luminanceImgSrc = this.$t('strings.luminanceImgSrc');
+    this.brightnessImgSrc = this.$t('strings.brightnessImgSrc');
     this.contrastImgSrc = this.$t('strings.contrastImgSrc');
     this.saturationImgSrc = 'common/images/saturation_blue.svg';
     this.showBrightness = false;
@@ -715,15 +715,15 @@ export default {
     return [newR, newG, newB];
   },
   // 回退
-  rewind() {
+  redo() {
     prompt.showToast({
-      message: 'Please implement your rewind function'
+      message: 'Please implement your redo function'
     });
   },
   // 前进
-  advance() {
+  undo() {
     prompt.showToast({
-      message: 'Please implement your advance function'
+      message: 'Please implement your undo function'
     });
   },
   // 保存

@@ -87,9 +87,9 @@
     position: absolute;
     height: 300px;
     width: 300px;
-    margin-left: 40px;
-    margin-right: 40px;
-    margin-bottom: 40px;
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-bottom: 30px;
 }
 /* 裁剪框 */
 #crop_image_content #mainBox {
@@ -190,7 +190,7 @@
 .container-bottom-three-second {
     flex-direction: row;
 }
-.luminanceTxt {
+.brightnessTxt {
     font-size: 14px;
     margin-left: 60px;
 }

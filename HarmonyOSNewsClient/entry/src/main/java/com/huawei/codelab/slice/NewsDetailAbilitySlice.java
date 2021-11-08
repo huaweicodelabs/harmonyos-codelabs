@@ -15,33 +15,19 @@
 
 package com.huawei.codelab.slice;
 
+import com.huawei.codelab.NewsAbility;
 import com.huawei.codelab.ResourceTable;
-import com.huawei.codelab.SharedService;
-import com.huawei.codelab.provider.DevicesListProvider;
+import com.huawei.codelab.distribute.api.SelectDeviceResultListener;
+import com.huawei.codelab.distribute.factory.DeviceSelector;
 import com.huawei.codelab.utils.CommonUtils;
-import com.huawei.codelab.utils.DialogUtils;
 import com.huawei.codelab.utils.LogUtils;
 
-import manager.INewsDemoIDL;
-import manager.NewsDemoIDLStub;
 import ohos.aafwk.ability.AbilitySlice;
-import ohos.aafwk.ability.IAbilityConnection;
+import ohos.aafwk.ability.continuation.ExtraParams;
 import ohos.aafwk.content.Intent;
 import ohos.aafwk.content.Operation;
-import ohos.agp.components.DependentLayout;
-import ohos.agp.components.Image;
-import ohos.agp.components.ListContainer;
-import ohos.agp.components.Text;
-import ohos.agp.components.TextField;
-import ohos.agp.window.dialog.CommonDialog;
-import ohos.bundle.ElementName;
+import ohos.agp.components.*;
 import ohos.distributedschedule.interwork.DeviceInfo;
-import ohos.distributedschedule.interwork.DeviceManager;
-import ohos.rpc.IRemoteObject;
-import ohos.rpc.RemoteException;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * News detail slice
@@ -54,15 +40,10 @@ public class NewsDetailAbilitySlice extends AbilitySlice {
     public static final String INTENT_LIKE = "intent_like";
     public static final String INTENT_CONTENT = "intent_content";
     public static final String INTENT_IMAGE = "intent_image";
-    private static final String TAG = "NewsDetailAbilitySlice";
-    private static final int WAIT_TIME = 30000;
-    private static final int DIALOG_SIZE_WIDTH = 900;
-    private static final int DIALOG_SIZE_HEIGHT = 800;
     private DependentLayout parentLayout;
     private TextField commentFocus;
     private Image iconShared;
-    private CommonDialog dialog;
-    private List<DeviceInfo> devices = new ArrayList<>();
+    private DeviceSelector deviceSelector;
     private String reads;
     private String likes;
     private String title;
@@ -80,6 +61,7 @@ public class NewsDetailAbilitySlice extends AbilitySlice {
         image = intent.getStringParam(INTENT_IMAGE);
         initView();
         initListener();
+        initDistributeComponent();
     }
 
     private void initView() {
@@ -100,92 +82,44 @@ public class NewsDetailAbilitySlice extends AbilitySlice {
 
     private void initListener() {
         parentLayout.setTouchEventListener(
-            (component, touchEvent) -> {
-                if (commentFocus.hasFocus()) {
-                    commentFocus.clearFocus();
-                }
-                return true;
-            });
-        iconShared.setClickedListener(
-            component -> {
-                initDevices();
-                showDeviceList();
-            });
+                (component, touchEvent) -> {
+                    if (commentFocus.hasFocus()) {
+                        commentFocus.clearFocus();
+                    }
+                    return true;
+                });
+        iconShared.setClickedListener(component -> deviceSelector.showDistributeDevices(
+                new String[]{ExtraParams.DEVICETYPE_SMART_PAD, ExtraParams.DEVICETYPE_SMART_PHONE},
+                null));
     }
 
-    private void initDevices() {
-        if (devices.size() > 0) {
-            devices.clear();
-        }
-        List<DeviceInfo> deviceInfos =
-                DeviceManager.getDeviceList(DeviceInfo.FLAG_GET_ONLINE_DEVICE);
-        devices.addAll(deviceInfos);
-    }
-
-    private void showDeviceList() {
-        dialog = new CommonDialog(NewsDetailAbilitySlice.this);
-        dialog.setAutoClosable(true);
-        dialog.setTitleText("Harmony devices");
-        dialog.setSize(DIALOG_SIZE_WIDTH, DIALOG_SIZE_HEIGHT);
-        ListContainer devicesListContainer = new ListContainer(getContext());
-        DevicesListProvider devicesListProvider = new DevicesListProvider(devices, this);
-        devicesListContainer.setItemProvider(devicesListProvider);
-        devicesListContainer.setItemClickedListener(
-            (listContainer, component, position, id) -> {
-                dialog.destroy();
-                startAbilityFA(devices.get(position).getDeviceId());
-            });
-        devicesListProvider.notifyDataChanged();
-        dialog.setContentCustomComponent(devicesListContainer);
-        dialog.show();
-    }
-
-    private void startAbilityFA(String devicesId) {
-        Intent intent = new Intent();
-        Operation operation =
-                new Intent.OperationBuilder()
-                        .withDeviceId(devicesId)
+    private void initDistributeComponent() {
+        deviceSelector = new DeviceSelector();
+        deviceSelector.setup(getAbility());
+        deviceSelector.setSelectDeviceResultListener(new SelectDeviceResultListener() {
+            @Override
+            public void onSuccess(DeviceInfo info) {
+                Intent intent = new Intent();
+                Operation operation = new Intent.OperationBuilder()
+                        .withDeviceId(info.getDeviceId())
                         .withBundleName(getBundleName())
-                        .withAbilityName(SharedService.class.getName())
+                        .withAbilityName(NewsAbility.class.getName())
+                        .withAction("action.detail")
                         .withFlags(Intent.FLAG_ABILITYSLICE_MULTI_DEVICE)
                         .build();
-        intent.setOperation(operation);
-        boolean connectFlag =
-                connectAbility(
-                        intent,
-                        new IAbilityConnection() {
-                            @Override
-                            public void onAbilityConnectDone(
-                                    ElementName elementName, IRemoteObject remoteObject, int i) {
-                                INewsDemoIDL sharedManager = NewsDemoIDLStub.asInterface(remoteObject);
-                                try {
-                                    sharedManager.tranShare(title, reads, likes, content, image);
-                                } catch (RemoteException e) {
-                                    LogUtils.info(TAG, "connect successful,but have remote exception");
-                                }
-                            }
+                intent.setOperation(operation);
+                intent.setParam(NewsDetailAbilitySlice.INTENT_TITLE, title);
+                intent.setParam(NewsDetailAbilitySlice.INTENT_READ, reads);
+                intent.setParam(NewsDetailAbilitySlice.INTENT_LIKE, likes);
+                intent.setParam(NewsDetailAbilitySlice.INTENT_CONTENT, content);
+                intent.setParam(NewsDetailAbilitySlice.INTENT_IMAGE, image);
+                startAbility(intent);
+            }
 
-                            @Override
-                            public void onAbilityDisconnectDone(ElementName elementName, int i) {
-                                disconnectAbility(this);
-                            }
-                        });
-        DialogUtils.toast(
-                this, connectFlag ? "Sharing succeeded!" : "Sharing failed. Please try again later.", WAIT_TIME);
-    }
-
-    @Override
-    public void onActive() {
-        super.onActive();
-    }
-
-    @Override
-    public void onForeground(Intent intent) {
-        super.onForeground(intent);
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
+            @Override
+            public void onFail(DeviceInfo info) {
+                LogUtils.error("cwq","onFail is called,info is "+info.getDeviceState());
+            }
+        });
     }
 }
