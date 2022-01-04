@@ -91,22 +91,29 @@ public class HwShareJSInterface {
     // start share
     private void hwShare(ShareInfo shareInfo,String prodId,String macAddress) {
         PacMapEx pacMap = new PacMapEx();
+        // 分享的服务类型，当前只支持默认值0，非必选参数。如果不传递此参数，则接收方默认赋值为0。
         pacMap.putObjectValue(ShareFaManager.SHARING_FA_TYPE, 0);
+        // 分享的服务的bundleName，最大长度1024，必选参数。
         pacMap.putObjectValue(ShareFaManager.HM_BUNDLE_NAME, shareInfo.getBundleName());
+        // 分享的服务的Ability类名，最大长度1024，必选参数。
         pacMap.putObjectValue(ShareFaManager.HM_ABILITY_NAME, shareInfo.getAbilityName());
+        // 两台手机登录的华为帐号不同时弹出的卡片展示的服务介绍信息，最大长度1024，必选参数。
         pacMap.putObjectValue(ShareFaManager.SHARING_CONTENT_INFO, shareInfo.getContent());
         // 需要传递到分享对应的Ability的数据
         ZSONObject object = new ZSONObject();
         object.put("macAddress",macAddress);
         object.put("prodId",prodId);
         object.put("isShare",true);
+        // 携带的额外信息，可传递到被拉起的服务界面 ，最大长度10240，非必选参数。
         pacMap.putObjectValue(ShareFaManager.SHARING_EXTRA_INFO, object.toString());
+        // 两台手机登录的华为帐号不同时弹出的卡片展示服务介绍图片，最大长度153600，必选参数。
         pacMap.putObjectValue(ShareFaManager.SHARING_THUMB_DATA, shareInfo.getIntroductoryImages());
-        pacMap.putObjectValue(ShareFaManager.HM_FA_ICON, shareInfo.getIcons());
+        // 两台手机登录的华为帐号不同时弹出的卡片服务图标，如果不传递此参数，取分享方默认服务图标，最大长度32768，非必选参数。
+        pacMap.putObjectValue( ShareFaManager.HM_FA_ICON, shareInfo.getIcons());
+        // 两台手机登录的华为帐号不同时弹出的卡片展示的服务名称，最大长度1024，非必选参数。如果不传递此参数，取分享方默认服务名称。
         pacMap.putObjectValue(ShareFaManager.HM_FA_NAME, shareInfo.getFaName());
         ShareFaManager instance = ShareFaManager.getInstance(context);
-        // 发起分享
+        // 发起分享 第一个参数为appid，在华为AGC创建原子化服务时自动生成。
         instance.shareFaInfo(APP_ID, pacMap,macAddress);
     }
-
 }

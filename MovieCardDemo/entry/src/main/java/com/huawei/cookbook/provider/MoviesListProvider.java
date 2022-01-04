@@ -17,7 +17,6 @@ package com.huawei.cookbook.provider;
 
 import com.huawei.cookbook.ResourceTable;
 import com.huawei.cookbook.database.MovieInfo;
-import com.huawei.cookbook.util.CommonUtils;
 
 import ohos.agp.components.BaseItemProvider;
 import ohos.agp.components.Component;
@@ -33,11 +32,9 @@ import java.util.List;
  * MoviesListProvider
  */
 public class MoviesListProvider extends BaseItemProvider {
-    private static final int WIDTH = 110;
-    private static final int HIGHT = 110;
-    private List<MovieInfo> moviesInfos;
+    private final List<MovieInfo> moviesInfos;
 
-    private Context context;
+    private final Context context;
 
     /**
      * MoviesListProvider
@@ -85,10 +82,6 @@ public class MoviesListProvider extends BaseItemProvider {
         viewHolder.sort.setText(moviesInfos.get(index).getSort());
         viewHolder.title.setText(moviesInfos.get(index).getTitle());
         viewHolder.image.setPixelMap(moviesInfos.get(index).getImgUrl().intValue());
-
-           /*
-                .setPixelMap(CommonUtils.getPixelMapFromPath(context,
-                moviesInfos.get(index).getImgUrl(), WIDTH, HIGHT).get());*/
         viewHolder.rating.setText(moviesInfos.get(index).getRating());
         viewHolder.type.setText(moviesInfos.get(index).getType());
         return temp;

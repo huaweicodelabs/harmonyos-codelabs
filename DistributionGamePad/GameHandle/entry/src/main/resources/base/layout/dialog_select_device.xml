@@ -8,15 +8,15 @@
 
     <DirectionalLayout
         ohos:height="49vp"
-        ohos:left_padding="12vp"
-        ohos:right_padding="12vp"
+        ohos:start_padding="12vp"
+        ohos:end_padding="12vp"
         ohos:width="match_parent"
         ohos:orientation="horizontal">
 
         <Text
             ohos:id="$+id:select_devices"
             ohos:height="match_parent"
-            ohos:text="选择设备"
+            ohos:text="$string:selectDevice"
             ohos:text_size="18fp"
             ohos:width="match_content"
             ohos:weight="5"/>
@@ -26,7 +26,7 @@
             ohos:align_parent_right="true"
             ohos:height="match_parent"
             ohos:id="$+id:confirm"
-            ohos:text="确定"
+            ohos:text="$string:confirm"
             ohos:text_color="blue"
             ohos:width="match_content"
             ohos:weight="1"/>

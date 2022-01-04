@@ -1,0 +1,76 @@
+{
+  "string": [
+    {
+      "name": "app_name",
+      "value": "Movie service widget"
+    },
+    {
+      "name": "mainability_description",
+      "value": "Java_Phone_Empty Feature Ability"
+    },
+    {
+      "name": "title",
+      "value": "Movie service widget"
+    },
+    {
+      "name": "moviesdetailability_description",
+      "value": "Java_Empty Ability"
+    },
+    {
+      "name": "moviesdetailability_HelloWorld",
+      "value": "Hello World"
+    },
+    {
+      "name": "entry_MoviesDetailAbility",
+      "value": "Movie details"
+    },
+    {
+      "name": "movie_rank",
+      "value": "Hot Movie Rankings"
+    },
+    {
+      "name": "movie_type",
+      "value": "Genre"
+    },
+    {
+      "name": "tucked",
+      "value": "Hide"
+    },
+    {
+      "name": "movie_rank_detail",
+      "value": "Movie rankings by real-time popularity"
+    },
+    {
+      "name": "init_data",
+      "value": "Touch to obtain data"
+    },
+    {
+      "name": "all_rankings",
+      "value": "Rankings"
+    },
+    {
+      "name": "want_see",
+      "value": "Favorite"
+    },
+    {
+      "name": "movie",
+      "value": "Movie"
+    },
+    {
+      "name": "starring",
+      "value": "Starring"
+    },
+    {
+      "name": "introduction",
+      "value": "Synopsis"
+    },
+    {
+      "name": "full_text",
+      "value": "More"
+    },
+    {
+      "name": "stills",
+      "value": "Stills"
+    }
+  ]
+}

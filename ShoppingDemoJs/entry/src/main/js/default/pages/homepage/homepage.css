@@ -1,0 +1,329 @@
+.container {
+    flex-direction: column;
+    align-items: center;
+}
+
+.title {
+    font-size: 30px;
+    text-align: left;
+}
+
+.titles {
+    font-size: 30px;
+    text-align: left;
+    color: red;
+}
+
+.tabs {
+    width: 100%;
+    margin-bottom: 65px;
+}
+
+.tabcontent {
+    width: 100%;
+    height: 85%;
+    justify-content: center;
+}
+
+.item-content {
+    height: 100%;
+    justify-content: center;
+}
+
+.item-title {
+    font-size: 60px;
+}
+
+.tab-bar {
+    height: 60px;
+    border-color: #30a9e4f0;
+    background-color: #007DFF;
+}
+
+.tab-text {
+    width: 100%;
+    text-align: center;
+    font-size: 24px;
+}
+
+.tab-text:active {
+    color: red;
+}
+
+.todo-wraper {
+    width: 100%;
+    height: 100%;
+}
+
+.todo-title {
+    width: 100%;
+    font-size: 18px;
+}
+
+.todo-total {
+    width: 70%;
+    flex-direction: column;
+}
+
+.todo-title {
+    width: 100%;
+    font-size: 30px;
+}
+
+.todo-content {
+    width: 100%;
+    font-size: 26px;
+    color: gray;
+}
+
+.todo-price {
+    width: 100%;
+    font-size: 26px;
+    color: red;
+}
+
+.margin-comm {
+    margin: 10px;
+}
+
+.width-comm {
+    width: 30%;
+}
+
+.flex-direction-column {
+    flex-direction: column;
+}
+
+.top-comm {
+    top: 65px;
+}
+
+.container-bottom-div {
+    border-top: .1px solid #9D9D9D;
+    background-color: #FFF;
+    height: 80px;
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.container-bottom-div-text {
+    color: #FFF;
+    font-size: 22px;
+}
+
+.container-home-image {
+    width: 310px;
+    height: 160px;
+}
+
+.container-home-pinned {
+    width: 80px;
+    height: 80px;
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+}
+
+.container-shopping-title {
+    position: fixed;
+    background-color: deepskyblue;
+    height: 60px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    top: 0px;
+    left: 0px;
+}
+
+.container-shopping-list {
+    height: 205px;
+    align-items: center;
+}
+
+.container-shopping-list-image {
+    width: 200px;
+    height: 85%;
+    margin: 0px 10px;
+}
+
+.container-shopping-list-div {
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.container-shopping-list-div-text {
+    font-size: 26px;
+}
+
+.container-shopping-list-div-texts {
+    font-size: 24px;
+    color: red;
+    font-weight: 700;
+    margin-top: 10px;
+}
+
+.container-shopping-list-divider {
+    margin: 2px 0px;
+    color: grey;
+    stroke-width: 1px;
+    line-cap: round;
+}
+
+.container-shopping-bottom {
+    background-color: aquamarine;
+    height: 70px;
+    width: 100%;
+    position: fixed;
+    bottom: 80px;
+    left: 0px;
+}
+
+.container-shopping-bottom-div {
+    width: 75%;
+    align-items: center;
+    padding-left: 10px;
+}
+
+.container-shopping-bottom-div-text {
+    color: red;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.container-shopping-bottom-divs {
+    width: 25%;
+    align-items: center;
+    justify-content: center;
+}
+
+.container-shopping-bottom-divs-texts {
+    color: #FFFFFF;
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.container-my-top {
+    height: 150px;
+}
+
+.container-my-top-div {
+    width: 30%;
+    align-items: center;
+    justify-content: center;
+    margin: 15px 0px;
+}
+
+.container-my-top-div-image {
+    width: 75px;
+    height: 75px;
+}
+
+.container-my-top-divs {
+    flex-direction: column;
+    margin: 15px 0px;
+    padding-top: 12px;
+}
+
+.container-my-top-divs-text {
+    font-size: 26px;
+}
+
+.container-my-top-divs-texts {
+    color: dimgray;
+    font-size: 24px;
+}
+
+.container-my-top-divss {
+    position: absolute;
+    top: 50px;
+    right: 45px;
+}
+
+.container-my-top-divss-image {
+    width: 22px;
+    height: 22px;
+}
+
+.container-my-title {
+    flex-direction: row;
+    height: 70px;
+    justify-content: space-around;
+}
+
+.container-my-title-text {
+    font-size: 26px;
+}
+
+.container-my-title-texts {
+    color: dimgray;
+    font-size: 24px;
+}
+
+.container-my-deals {
+    flex-direction: column;
+    height: 140px;
+}
+
+.container-my-deals-text {
+    font-size: 30px;
+    font-weight: 600;
+    height: 40px;
+    margin-left: 10px;
+}
+
+.container-my-deals-div {
+    justify-content: space-around;
+    font-weight: 700;
+    height: 100px;
+}
+
+.container-my-deals-div-div {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-my-image {
+    height: 50px;
+    width: 50px;
+}
+
+.container-my-text {
+    color: dimgray;
+    font-size: 24px;
+}
+
+.container-my-more {
+    flex-direction: column;
+    margin-bottom: 65px;
+}
+
+.container-my-more-div {
+    height: 40px;
+    width: 100%;
+}
+
+.container-my-more-div-text {
+    font-size: 30px;
+    font-weight: 600;
+    margin-left: 10px;
+}
+
+.container-my-more-divs {
+    justify-content: space-around;
+}
+
+.container-my-more-divs-div {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 110px;
+}
+
+.container-bottom-div-image {
+    width: 50px;
+    height: 50px;
+}

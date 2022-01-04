@@ -19,7 +19,6 @@ import com.huawei.codelab.ResourceTable;
 import com.huawei.codelab.slice.MainAbilitySlice;
 import com.huawei.codelab.util.Constants;
 import com.huawei.codelab.util.GameUtils;
-
 import ohos.agp.components.AttrSet;
 import ohos.agp.components.Component;
 import ohos.agp.render.Canvas;
@@ -31,8 +30,6 @@ import ohos.app.Context;
 import ohos.eventhandler.EventHandler;
 import ohos.eventhandler.EventRunner;
 import ohos.eventhandler.InnerEvent;
-import ohos.hiviewdfx.HiLog;
-import ohos.hiviewdfx.HiLogLabel;
 
 import java.security.SecureRandom;
 import java.util.ArrayList;
@@ -45,7 +42,6 @@ import java.util.List;
  * @since 2021-03-05
  */
 public class GameView extends Component implements Component.DrawTask {
-    private static final HiLogLabel TAG = new HiLogLabel(HiLog.LOG_APP, 0xD001400, "gameView");
     private static int status; // 状态 0主页面 1游戏进行中 2游戏暂停 3游戏结束
     private static int frame; // 画面帧数
     private static final int CREATE_ENEMY_PLANE_FRAME = 50; // 生成敌机帧数
@@ -73,7 +69,7 @@ public class GameView extends Component implements Component.DrawTask {
 
     private static final int ANGULAR_180 = 180;
 
-    private static List<Explosion> explosions = new ArrayList<>(0); // 爆炸效果集合
+    private static final List<Explosion> explosions = new ArrayList<>(0); // 爆炸效果集合
 
     private static PixelMapHolder myPlaneOnePixelMapHolder; // 我的飞机一
     private static PixelMapHolder myPlaneTwoPixelMapHolder; // 我的飞机二
@@ -87,31 +83,21 @@ public class GameView extends Component implements Component.DrawTask {
 
     private int playerOneScore = 0; // 玩家一分数
     private int playerTwoScore = 0; // 玩家二分数
-    private int screenWidth;
-    private int screenHeight;
+    private final int screenWidth;
+    private final int screenHeight;
     private Canvas nowCanvas;
 
     private List<String> deviceIds; // 连接手柄id集合
     private List<MyPlane> myPlanes; // 创建飞机集合
-    private List<EnemyPlane> enemyPlanes = new ArrayList<>(0); // 敌机集合
-    private List<Bomb> bombs = new ArrayList<>(0); // 炸弹集合
-    private List<Bullet> bullets = new ArrayList<>(0); // 子弹集合
+    private final List<EnemyPlane> enemyPlanes = new ArrayList<>(0); // 敌机集合
+    private final List<Bomb> bombs = new ArrayList<>(0); // 炸弹集合
+    private final List<Bullet> bullets = new ArrayList<>(0); // 子弹集合
 
     private Paint paint;
     private Paint textPaint;
 
-    private MyEventHandler myEventHandler;
-    private SecureRandom random;
-
-    /**
-     * GameView constructor
-     *
-     * @param context context
-     */
-    public GameView(Context context) {
-        super(context);
-        init(context, null);
-    }
+    private final MyEventHandler myEventHandler;
+    private final SecureRandom random;
 
     /**
      * GameView constructor
@@ -124,10 +110,10 @@ public class GameView extends Component implements Component.DrawTask {
         GameUtils.setContext(context);
         this.screenWidth = GameUtils.getScreenWidth();
         this.screenHeight = GameUtils.getScreenHeight();
-        this.frame = 0;
+        frame = 0;
         myEventHandler = new MyEventHandler(EventRunner.create(true));
         random = new SecureRandom();
-        init(context, attrSet);
+        init();
     }
 
     @Override
@@ -158,17 +144,14 @@ public class GameView extends Component implements Component.DrawTask {
             return;
         }
         // 通过调用Invalidate()方法使得View持续渲染，实现动态效果
-        getContext().getUITaskDispatcher().asyncDispatch(new Runnable() {
-            @Override
-            public void run() {
-                if (status != Constants.GAME_PAUSE) { // 暂停
-                    invalidate();
-                }
+        getContext().getUITaskDispatcher().asyncDispatch(() -> {
+            if (status != Constants.GAME_PAUSE) { // 暂停
+                invalidate();
             }
         });
     }
 
-    private void init(Context context, AttrSet attrSet) {
+    private void init() {
         paint = new Paint();
         paint.setStyle(Paint.Style.STROKE_STYLE);
         textPaint = new Paint();
@@ -240,11 +223,11 @@ public class GameView extends Component implements Component.DrawTask {
     // 创建我的飞机
     private void createMyPlane() {
         int index = 0;
-        MyPlane myPlane = null;
+        MyPlane myPlane;
         int position = this.screenWidth / MAXMYPLANENUM - MY_PLANE_INITIAL_POSITION;
         for (String deviceId : deviceIds) {
             if (index == 0) {
-                myPlane = new MyPlane(myPlaneOnePixelMapHolder, position + index * MY_PLANE_INITIAL_POSITION,
+                myPlane = new MyPlane(myPlaneOnePixelMapHolder, position,
                         this.screenHeight - MY_PLANE_V_LIMIT);
             } else {
                 myPlane = new MyPlane(myPlaneTwoPixelMapHolder, position + index * MY_PLANE_INITIAL_POSITION,
@@ -261,9 +244,7 @@ public class GameView extends Component implements Component.DrawTask {
 
     // 画我的飞机
     private void drawMyPlane() {
-        Iterator<MyPlane> iterator = myPlanes.iterator();
-        while (iterator.hasNext()) {
-            MyPlane myPlane = iterator.next();
+        for (MyPlane myPlane : myPlanes) {
             if (!myPlane.isDestroyed()) {
                 myPlane.draw(nowCanvas, paint);
             }
@@ -509,9 +490,7 @@ public class GameView extends Component implements Component.DrawTask {
     private void bombEnemyPlane(MyPlane myPlane) {
         int score = 0; // 炸弹摧毁屏幕敌机获得分数
         myPlane.setBombNum(myPlane.getBombNum() - 1);
-        Iterator<EnemyPlane> iteratorEnemyPlane = enemyPlanes.iterator();
-        while (iteratorEnemyPlane.hasNext()) {
-            EnemyPlane enemyPlane = iteratorEnemyPlane.next();
+        for (EnemyPlane enemyPlane : enemyPlanes) {
             if (!enemyPlane.isDestroyed()) {
                 createExposion(enemyPlane.getPlaneX(), enemyPlane.getPlaneY());
                 score += SCORE;
@@ -545,12 +524,7 @@ public class GameView extends Component implements Component.DrawTask {
             return;
         }
         status = Constants.GAME_START;
-        getContext().getUITaskDispatcher().asyncDispatch(new Runnable() {
-            @Override
-            public void run() {
-                invalidate();
-            }
-        });
+        getContext().getUITaskDispatcher().asyncDispatch(this::invalidate);
     }
 
     // 获取状态

@@ -22,5 +22,5 @@ dependencies {
     ohosTestImplementation 'com.huawei.ohos.testkit:runner:1.0.0.200'
 }
 decc {
-    supportType = ['html','xml']
+    supportType = ['html', 'xml']
 }

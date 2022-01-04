@@ -5,29 +5,31 @@ apply plugin: 'com.huawei.ohos.app'
 ohos {
     compileSdkVersion 5
 }
-	
+
 buildscript {
     repositories {
         maven {
-            url 'http://repo.ark.tools.huawei.com/artifactory/maven-public/'
+            url 'https://repo.huaweicloud.com/repository/maven/'
         }
         maven {
-            url 'http://mirrors.tools.huawei.com/maven/'
+            url 'https://developer.huawei.com/repo/'
         }
+        jcenter()
     }
     dependencies {
-        classpath 'com.huawei.ohos:hap:2.4.5.5'
-        classpath 'com.huawei.ohos:decctest:1.2.5.1'
+        classpath 'com.huawei.ohos:hap:3.0.3.4'
+        classpath 'com.huawei.ohos:decctest:1.2.6.0'
     }
 }
 
 allprojects {
     repositories {
         maven {
-            url 'http://repo.ark.tools.huawei.com/artifactory/maven-public/'
+            url 'https://repo.huaweicloud.com/repository/maven/'
         }
         maven {
-            url 'http://mirrors.tools.huawei.com/maven/'
+            url 'https://developer.huawei.com/repo/'
         }
+        jcenter()
     }
 }

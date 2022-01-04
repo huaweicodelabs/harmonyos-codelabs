@@ -201,8 +201,8 @@ public class CommonOperatorAbility extends AceInternalAbility {
     private void hwShare(MessageParcel data) {
         ZSONObject params = ZSONObject.stringToZSON(data.readString());
         HwShareJSInterface hwShareJSInterface = new HwShareJSInterface(context);
-        context.getUITaskDispatcher().asyncDispatch(() -> hwShareJSInterface.share(params.getString("prodId"),
-                params.getString("macAddress")));
+        hwShareJSInterface.share(params.getString("prodId"),
+                params.getString("macAddress"));
     }
 
     private ZSONObject getVersionInfo(MessageParcel data) {
@@ -216,8 +216,8 @@ public class CommonOperatorAbility extends AceInternalAbility {
             ZSONObject version = ZSONObject.stringToZSON(versionInfo);
             String fwv = version.getString("fwv");
             String hwv = version.getString("hwv");
-            LogUtils.erro("fwv = " + fwv);
-            LogUtils.erro("hwv = " + hwv);
+            LogUtils.info("fwv = " + fwv);
+            LogUtils.info("hwv = " + hwv);
             zsonObject.put("fwv", fwv);
             zsonObject.put("hwv", hwv);
         }

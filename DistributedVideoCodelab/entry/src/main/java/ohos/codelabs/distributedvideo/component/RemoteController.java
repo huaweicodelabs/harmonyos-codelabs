@@ -30,7 +30,7 @@ import ohos.multimodalinput.event.TouchEvent;
 /**
  * RemoteController
  *
- * @since 2021-09-29
+ * @since 2020-12-04
  */
 public class RemoteController extends DependentLayout
         implements Component.ClickedListener, Component.TouchEventListener, Slider.ValueChangedListener {
@@ -87,8 +87,9 @@ public class RemoteController extends DependentLayout
     }
 
     private void initButton(int res) {
+        Button button = null;
         if (componentParent.findComponentById(res) instanceof Button) {
-            Button button = (Button) componentParent.findComponentById(res);
+            button = (Button) componentParent.findComponentById(res);
             button.setClickedListener(this);
             button.setTouchEventListener(this);
             button.setAlpha(ALPHA);
@@ -102,6 +103,9 @@ public class RemoteController extends DependentLayout
         if (!isShown) {
             isShown = true;
             setVisibility(VISIBLE);
+            if (remoteControllerListener != null) {
+                remoteControllerListener.controllerShow();
+            }
         }
     }
 
@@ -139,13 +143,20 @@ public class RemoteController extends DependentLayout
     /**
      * RemoteControllerListener
      *
-     * @since 2021-09-29
+     * @since 2020-12-07
      */
     public interface RemoteControllerListener {
         /**
+         * show the controller dialog
+         *
+         * @since 2020-12-07
+         */
+        void controllerShow();
+
+        /**
          * dismiss the controller dialog
          *
-         * @since 2021-09-07
+         * @since 2020-12-07
          */
         void controllerDismiss();
 

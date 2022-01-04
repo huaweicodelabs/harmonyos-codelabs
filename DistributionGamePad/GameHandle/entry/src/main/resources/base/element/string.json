@@ -23,6 +23,30 @@
     {
       "name": "distributed_handle",
       "value": "Distributed Handle"
+    },
+    {
+      "name": "score",
+      "value": "SCORE:"
+    },
+    {
+      "name": "startScore",
+      "value": "0"
+    },
+    {
+      "name": "pause",
+      "value": "PAUSE"
+    },
+    {
+      "name": "start",
+      "value": "START"
+    },
+    {
+      "name": "selectDevice",
+      "value": "选择设备"
+    },
+    {
+      "name": "confirm",
+      "value": "确定"
     }
   ]
 }

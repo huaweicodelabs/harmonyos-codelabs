@@ -79,7 +79,6 @@ public class BleManager {
     private final List<UUID> uuidList;
     private boolean isScanning = false;
     private String macAddress;
-
     private Optional<BlePeripheralDevice> peripheralDevice;
     private GattCharacteristic mWriteChar;
     private GattCharacteristic mReadChar;

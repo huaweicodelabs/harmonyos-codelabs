@@ -30,7 +30,7 @@ import ohos.multimodalinput.event.TouchEvent;
 /**
  * SlidePopupWindow
  *
- * @since 2021-09-07
+ * @since 2020-12-04
  */
 public class SlidePopupWindow extends DependentLayout implements Component.TouchEventListener {
     /**
@@ -51,21 +51,30 @@ public class SlidePopupWindow extends DependentLayout implements Component.Touch
     public static final int SLIDE_FROM_RIGHT = 3;
 
     private static final int COLOR_FULL = 255;
-    private final Builder builder;
-    private final Component rootView;
+    private final Builder mBuilder;
+    private final Component mRootView;
     private final AnimatorProperty animatorProperty;
     private int startX = 0;
     private int endX = 0;
     private int startY = 0;
     private int endY = 0;
     private boolean isShow;
-    private PopupWindowListener listener;
+    private PopupWindowListener mListener;
 
     private SlidePopupWindow(Builder builder, int res) {
-        super(builder.context);
-        this.builder = builder;
-        rootView = LayoutScatter.getInstance(builder.context).parse(res, this, false);
-        animatorProperty = rootView.createAnimatorProperty();
+        super(builder.mContext);
+        mBuilder = builder;
+        mRootView = LayoutScatter.getInstance(builder.mContext).parse(res, this, false);
+        animatorProperty = mRootView.createAnimatorProperty();
+        initView();
+        initListener();
+    }
+
+    private SlidePopupWindow(Builder builder, Component rootView) {
+        super(builder.mContext);
+        mBuilder = builder;
+        mRootView = rootView;
+        animatorProperty = mRootView.createAnimatorProperty();
         initView();
         initListener();
     }
@@ -75,38 +84,38 @@ public class SlidePopupWindow extends DependentLayout implements Component.Touch
         setWidth(ScreenUtils.getScreenWidth(mContext));
         setHeight(ScreenUtils.getScreenHeight(mContext) - Constants.NUMBER_168);
         ShapeElement element = new ShapeElement();
-        element.setRgbColor(new RgbColor(0, 0, 0, (int) (COLOR_FULL * builder.alpha)));
+        element.setRgbColor(new RgbColor(0, 0, 0, (int) (COLOR_FULL * mBuilder.alpha)));
         setBackground(element);
-        LayoutConfig config = (LayoutConfig) rootView.getLayoutConfig();
-        switch (builder.direction) {
+        LayoutConfig config = (LayoutConfig) mRootView.getLayoutConfig();
+        switch (mBuilder.direction) {
             case SLIDE_FROM_TOP:
                 config.addRule(LayoutConfig.ALIGN_PARENT_TOP);
-                config.setMargins(0, -rootView.getHeight(), 0, 0);
-                startY = -rootView.getHeight();
+                config.setMargins(0, -mRootView.getHeight(), 0, 0);
+                startY = -mRootView.getHeight();
                 break;
             case SLIDE_FROM_BOTTOM:
                 config.addRule(LayoutConfig.ALIGN_PARENT_BOTTOM);
-                config.setMargins(0, 0, 0, -rootView.getHeight());
+                config.setMargins(0, 0, 0, -mRootView.getHeight());
                 startY = getHeight();
-                endY = getHeight() - rootView.getHeight();
+                endY = getHeight() - mRootView.getHeight();
                 break;
             case SLIDE_FROM_LEFT:
                 config.addRule(LayoutConfig.ALIGN_PARENT_LEFT);
-                config.setMargins(-rootView.getWidth(), 0, 0, 0);
-                startX = -rootView.getWidth();
+                config.setMargins(-mRootView.getWidth(), 0, 0, 0);
+                startX = -mRootView.getWidth();
                 break;
             case SLIDE_FROM_RIGHT:
                 config.addRule(LayoutConfig.ALIGN_PARENT_RIGHT);
-                config.setMargins(0, 0, -rootView.getWidth(), 0);
+                config.setMargins(0, 0, -mRootView.getWidth(), 0);
                 startX = getWidth();
-                endX = getWidth() - rootView.getWidth();
+                endX = getWidth() - mRootView.getWidth();
                 break;
             default:
                 break;
         }
-        rootView.setLayoutConfig(config);
-        rootView.setTouchEventListener((component, touchEvent) -> true);
-        addComponent(rootView);
+        mRootView.setLayoutConfig(config);
+        mRootView.setTouchEventListener((component, touchEvent) -> true);
+        addComponent(mRootView);
     }
 
     private void initListener() {
@@ -117,14 +126,14 @@ public class SlidePopupWindow extends DependentLayout implements Component.Touch
     /**
      * MyAnimatorStateChangeListener
      *
-     * @since 2021-09-07
+     * @since 2020-12-04
      */
     private class MyAnimatorStateChangeListener implements Animator.StateChangedListener {
         @Override
         public void onStart(Animator animator) {
             if (isShow) {
-                if (listener != null) {
-                    listener.windowShow();
+                if (mListener != null) {
+                    mListener.windowShow();
                 }
                 setVisibility(VISIBLE);
             }
@@ -142,8 +151,8 @@ public class SlidePopupWindow extends DependentLayout implements Component.Touch
         public void onEnd(Animator animator) {
             if (!isShow) {
                 setVisibility(INVISIBLE);
-                if (listener != null) {
-                    listener.windowDismiss();
+                if (mListener != null) {
+                    mListener.windowDismiss();
                 }
             }
         }
@@ -160,7 +169,7 @@ public class SlidePopupWindow extends DependentLayout implements Component.Touch
     /**
      * PopupWindowListener
      *
-     * @since 2021-09-07
+     * @since 2020-12-04
      */
     public interface PopupWindowListener {
         /**
@@ -177,10 +186,10 @@ public class SlidePopupWindow extends DependentLayout implements Component.Touch
     /**
      * setPopupWindowListener
      *
-     * @param popupWindowListener popupWindowListener
+     * @param listener listener
      */
-    public void setPopupWindowListener(PopupWindowListener popupWindowListener) {
-        this.listener = popupWindowListener;
+    public void setPopupWindowListener(PopupWindowListener listener) {
+        mListener = listener;
     }
 
     @Override
@@ -201,7 +210,7 @@ public class SlidePopupWindow extends DependentLayout implements Component.Touch
                     .moveFromY(startY)
                     .moveToY(endY)
                     .setCurveType(Animator.CurveType.LINEAR)
-                    .setDuration(builder.animDuration)
+                    .setDuration(mBuilder.animDuration)
                     .start();
         }
     }
@@ -218,7 +227,7 @@ public class SlidePopupWindow extends DependentLayout implements Component.Touch
                     .moveFromY(endY)
                     .moveToY(startY)
                     .setCurveType(Animator.CurveType.LINEAR)
-                    .setDuration(builder.animDuration)
+                    .setDuration(mBuilder.animDuration)
                     .start();
         }
     }
@@ -227,15 +236,15 @@ public class SlidePopupWindow extends DependentLayout implements Component.Touch
      * Builder
      *
      * @author chenweiquan
-     * @since 2021-09-07
+     * @since 2020-12-04
      */
     public static class Builder {
         private static final float ALPHA_DEFAULT = 0.5f;
         private static final int ANIM_DURATION = 300;
-        private final Context context;
-        private final float alpha;
-        private final int animDuration;
-        private final int direction;
+        private final Context mContext;
+        private float alpha;
+        private int animDuration;
+        private int direction;
 
         /**
          * constructor of Builder
@@ -243,10 +252,59 @@ public class SlidePopupWindow extends DependentLayout implements Component.Touch
          * @param context builder
          */
         public Builder(Context context) {
-            this.context = context;
+            this.mContext = context;
             alpha = ALPHA_DEFAULT;
             animDuration = ANIM_DURATION;
             direction = SLIDE_FROM_BOTTOM;
+        }
+
+        public float getAlpha() {
+            return alpha;
+        }
+
+        /**
+         * setAlpha of Builder
+         *
+         * @param alpha alpha
+         * @return Builder
+         */
+        public Builder setAlpha(float alpha) {
+            if (alpha > 1) {
+                this.alpha = 1;
+            } else {
+                this.alpha = Math.max(0, alpha);
+            }
+            return this;
+        }
+
+        public int getAnimDuration() {
+            return animDuration;
+        }
+
+        /**
+         * setAnimDuration of Builder
+         *
+         * @param animDuration animDuration
+         * @return Builder
+         */
+        public Builder setAnimDuration(int animDuration) {
+            this.animDuration = animDuration;
+            return this;
+        }
+
+        public int getDirection() {
+            return direction;
+        }
+
+        /**
+         * setDirection of Builder
+         *
+         * @param direction direction
+         * @return Builder
+         */
+        public Builder setDirection(int direction) {
+            this.direction = direction;
+            return this;
         }
 
         /**
@@ -257,6 +315,16 @@ public class SlidePopupWindow extends DependentLayout implements Component.Touch
          */
         public SlidePopupWindow create(int res) {
             return new SlidePopupWindow(this, res);
+        }
+
+        /**
+         * getView of Builder
+         *
+         * @param component res
+         * @return SlidePopupWindow
+         */
+        public SlidePopupWindow create(Component component) {
+            return new SlidePopupWindow(this, component);
         }
     }
 }

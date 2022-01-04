@@ -1,0 +1,51 @@
+<!--
+ Copyright (c) 2021 Huawei Device Co., Ltd.
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+     http://www.apache.org/licenses/LICENSE-2.0
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ -->
+
+<div class="container">
+
+    <text class="text-title">{{ title }}</text>
+    <text class="text-reads">reads: {{ reads }}   likes: {{ likes }}</text>
+    <image class="image" src="{{ imgUrl }}"></image>
+    <text class="text-content">
+        {{ content }}
+    </text>
+    <!-- 详情页底部-->
+    <div class="bottom">
+        <textarea class="textarea" placeholder="Enter a comment."></textarea>
+        <image class="image-bottom" src="/common/images/icon_message.png"></image>
+        <image class="image-bottom" src="/common/images/icon_star.png"></image>
+        <image class="image-bottom" src="/common/images/icon_good.png"></image>
+        <image class="image-bottom" src="/common/images/icon_share.png" onclick="toShare"></image>
+    </div>
+
+
+    <dialog id="showDialog" class="select-device-dialog">
+        <div class="select-device-wrapper">
+            <text class="select-device-title">选择设备</text>
+            <list class="select-device-list">
+                <list-item class="select-device-item" for="{{ deviceList }}" id="list">
+                    <text class="select-device-item-left">{{ $item.deviceName }}
+                    </text>
+                    <input class="select-device-item-right" type="checkbox" name="Device" value="{{$idx}}"
+                           @change="selectDevice({{$idx}})" checked="{{$item.checked}}">
+                    </input>
+                </list-item>
+            </list>
+            <div class="choose-ok-or-not">
+                <text class="select-device-btn" @click="chooseCancel">取消</text>
+                <text class="select-device-btn" @click="chooseComform">确定</text>
+            </div>
+        </div>
+    </dialog>
+
+</div>

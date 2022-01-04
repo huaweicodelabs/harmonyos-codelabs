@@ -11,7 +11,8 @@
         ohos:width="50vp"
         ohos:image_src="$media:item_left_img"
         ohos:layout_alignment="vertical_center"
-        ohos:left_margin="10vp"
+        ohos:start_margin="10vp"
+        ohos:end_margin="0vp"
         ohos:scale_mode="zoom_center"/>
 
     <Text

@@ -62,21 +62,17 @@ public class GameUtils {
      *
      */
     public static int getScreenHeight() {
-        if (screenHeight != 0) {
-            return screenHeight;
-        } else {
+        if (screenHeight == 0) {
             DisplayManager displayManager = DisplayManager.getInstance();
             Optional<Display> optDisplay = displayManager.getDefaultDisplay(context);
             Point point = new Point(0, 0);
-            if (!optDisplay.isPresent()) {
-                screenHeight = (int) point.position[1];
-            } else {
+            if (optDisplay.isPresent()) {
                 Display display = optDisplay.get();
                 display.getSize(point);
-                screenHeight = (int) point.position[1];
             }
-            return screenHeight;
+            screenHeight = (int) point.position[1];
         }
+        return screenHeight;
     }
 
     /**
@@ -86,21 +82,17 @@ public class GameUtils {
      *
      */
     public static int getScreenWidth() {
-        if (screenWidth != 0) {
-            return screenWidth;
-        } else {
+        if (screenWidth == 0) {
             DisplayManager displayManager = DisplayManager.getInstance();
             Optional<Display> optDisplay = displayManager.getDefaultDisplay(context);
             Point point = new Point(0, 0);
-            if (!optDisplay.isPresent()) {
-                screenWidth = (int) point.position[0];
-            } else {
+            if (optDisplay.isPresent()) {
                 Display display = optDisplay.get();
                 display.getSize(point);
-                screenWidth = (int) point.position[0];
             }
-            return screenWidth;
+            screenWidth = (int) point.position[0];
         }
+        return screenWidth;
     }
 
     /**
@@ -114,7 +106,7 @@ public class GameUtils {
      */
     public static PixelMapHolder transIdToPixelMapHolder(int resId, int width, int height) {
         InputStream source = null;
-        ImageSource imageSource = null;
+        ImageSource imageSource;
         try {
             source = context.getResourceManager().getResource(resId);
             imageSource = ImageSource.create(source, null);
@@ -125,6 +117,7 @@ public class GameUtils {
             HiLog.error(TAG, "getPixelMap error");
         } finally {
             try {
+                assert source != null;
                 source.close();
             } catch (IOException e) {
                 HiLog.error(TAG, "getPixelMap source close error");

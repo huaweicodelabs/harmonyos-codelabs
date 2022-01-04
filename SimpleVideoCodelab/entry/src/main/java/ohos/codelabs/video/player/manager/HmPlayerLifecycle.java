@@ -27,7 +27,7 @@ import ohos.codelabs.video.player.constant.PlayerStatu;
  */
 public class HmPlayerLifecycle implements ImplLifecycle {
     private static final String TAG = HmPlayerLifecycle.class.getSimpleName();
-    private ImplPlayer mPlayer;
+    private final ImplPlayer mPlayer;
 
     /**
      * HmPlayerLifecycle

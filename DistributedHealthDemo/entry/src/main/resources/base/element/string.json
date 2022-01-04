@@ -1,0 +1,39 @@
+{
+  "string": [
+    {
+      "name": "app_name",
+      "value": "DistributedHealthDemo"
+    },
+    {
+      "name": "mainability_description",
+      "value": "Java_Phone_Empty Feature Ability"
+    },
+    {
+      "name": "serviceability_description",
+      "value": "hap sample empty service"
+    },
+    {
+      "name": "heart_rate",
+      "value": "订阅心率"
+    },
+    {
+      "name": "cancel_heart_rate",
+      "value": "取消订阅心率"
+    },    {
+      "name": "real_heart_rate",
+      "value": "实时心率"
+    },
+    {
+      "name": "subscribe_steps",
+      "value": "订阅步数"
+    },
+    {
+      "name": "cancel_subscribe_steps",
+      "value": "取消订阅步数"
+    },
+    {
+      "name": "total_real_steps",
+      "value": "实时总步数"
+    }
+  ]
+}

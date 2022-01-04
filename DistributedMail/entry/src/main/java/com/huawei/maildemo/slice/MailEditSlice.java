@@ -81,10 +81,10 @@ public class MailEditSlice extends AbilitySlice implements IAbilityContinuation 
     private Image doConnectImg;
 
     private final List<String> mDialogDataList = new ArrayList<>();
-    private ListComponentAdapter mRecycleItemProvider;
+    private ListComponentAdapter<String> mRecycleItemProvider;
     private CommonDialog fileDialog;
     private final List<String> mAttachmentDataList = new ArrayList<>();
-    private ListComponentAdapter mAttachmentProvider;
+    private ListComponentAdapter<String> mAttachmentProvider;
 
     private Boolean picIsClicked=false;
 
@@ -337,7 +337,7 @@ public class MailEditSlice extends AbilitySlice implements IAbilityContinuation 
                 in = new FileInputStream(fileDescriptor);
                 out = new FileOutputStream(fr);
                 byte[] buffers = new byte[CACHE_SIZE];
-                int count = 0;
+                int count;
                 LogUtil.info(TAG, "START WRITING");
                 while ((count = in.read(buffers)) != IO_END_LEN) {
                     out.write(buffers, 0, count);

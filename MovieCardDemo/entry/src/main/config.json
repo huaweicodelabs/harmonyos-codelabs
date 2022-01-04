@@ -33,6 +33,7 @@
             ]
           }
         ],
+        "configChanges": ["locale"],
         "orientation": "unspecified",
         "name": "com.huawei.cookbook.MainAbility",
         "icon": "$media:icon",

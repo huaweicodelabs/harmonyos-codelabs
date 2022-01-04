@@ -11,6 +11,10 @@
     {
       "name": "videodetailabilityslice_description",
       "value": "hap sample empty service"
+    },
+    {
+      "name": "default_time",
+      "value": "00:00:00"
     }
   ]
 }

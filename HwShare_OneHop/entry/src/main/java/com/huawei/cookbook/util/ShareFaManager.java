@@ -212,7 +212,7 @@ public class ShareFaManager {
         }
     }
 
-    // 拉起分享FA
+    // 连接华为分享服务
     private boolean bindShareService() {
         if (mShareService != null) {
             return false;

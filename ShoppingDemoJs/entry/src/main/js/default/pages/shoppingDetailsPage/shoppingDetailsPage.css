@@ -1,0 +1,356 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 4500px;
+    margin: 0px;
+    padding: 0px;
+}
+
+.swiper {
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    width: 100%;
+    height: 720px;
+    indicator-color: lavender;
+    indicator-size: 6px;
+    indicator-bottom: 20px;
+    indicator-left: 35%;
+    indicator-selected-color: red;
+}
+
+.swiperContent {
+    height: 100%;
+    justify-content: center;
+}
+
+.swiperContents {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.text {
+    font-size: 22px;
+}
+
+.content {
+    top: 50px;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
+
+.listContent {
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
+
+.dialog-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+
+.dialog-div {
+    flex-direction: column;
+}
+
+.listSty {
+    margin-top: 5px;
+    flex-direction: column;
+    height: 550px;
+    width: 100%;
+    margin-top: 25px;
+}
+
+.todo-title {
+    width: 100%;
+    height: 30px;
+    font-size: 16px;
+}
+
+.dialog-div-progress {
+    flex-direction: column;
+    height: 25%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.dialog-div-rating {
+    margin: 20px 10px 0px 10px;
+    flex-direction: column;
+    width: 100%;
+    font-size: 16px;
+}
+
+.min-progress {
+    width: 10%;
+    height: 10%;
+    margin-top: 20px;
+    stroke-width: 3px;
+}
+
+.customMarquee {
+    margin-left: 10px;
+    width: 90%;
+    height: 80px;
+    border-radius: 20px;
+    font-size: 22px;
+    color: red;
+    font-weight: bolder;
+    font-family: serif;
+}
+
+.icon-style {
+    width: 30px;
+    height: 30px;
+}
+
+.content-annualPrice-div {
+    height: 120px;
+    background-color: red;
+    align-items: center;
+}
+
+.content-annualPrice-image {
+    align-content: center;
+    width: 65px;
+    height: 65px;
+    margin-left: 10px;
+}
+
+.content-annualPrice-text {
+    color: #FFF;
+    font-size: 32px;
+    margin-left: 10px;
+}
+
+.content-title-div {
+    flex-direction: column;
+    margin: 6px 0px;
+    height: 140px;
+}
+
+.content-title-div-title {
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.content-title-div-content {
+    margin: 0px 3px;
+    color: dimgray;
+    font-size: 22px;
+}
+
+.content-marquee-div {
+    align-items: center;
+    width: 100%;
+    height: 80px;
+    background-color: #FA8072;
+}
+
+.content-marquee-div-image {
+    width: 32px;
+    height: 32px;
+    margin-left: 10px;
+}
+
+.content-flex-direction-column {
+    flex-direction: column;
+}
+
+.content-column-height {
+    height: 60px;
+}
+
+.content-column-size-mar {
+    margin: 6px 15px;
+    font-size: 22px;
+}
+
+.content-column-color {
+    color: #777777;
+}
+
+.content-column-width {
+    width: 95%;
+}
+
+.content-column-icon-image {
+    width: 15px;
+    height: 15px;
+    margin: 6px 15px;
+}
+
+.container-top-div {
+    height: 65px;
+    background-color: skyblue;
+    position: fixed;
+    top: 0px;
+}
+
+.container-top-div-center {
+    align-items: center;
+}
+
+.container-top-div-icon-left {
+    width: 85%;
+    margin-left: 15px;
+}
+
+.container-margin-right-comm {
+    margin-right: 10px;
+}
+
+.container-margin-right-comm1 {
+    margin-right: 15px;
+}
+
+.container-margin-left-comm {
+    margin-left: 20px;
+}
+
+.container-list-title {
+    width: 25%;
+    min-height: 35px;
+    font-size: 26px;
+    margin-left: 10px;
+}
+
+.container-list-content {
+    width: 70%;
+    min-height: 35px;
+    font-size: 26px;
+}
+
+.container-listContent-image {
+    width: 75%;
+    height: 480px;
+}
+
+.container-bottom-div {
+    background-color: red;
+    height: 100px;
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-bottom-div-text {
+    color: #FFF;
+    font-size: 30px;
+}
+
+.dialog-div-titleimage {
+    width: 320px;
+    height: 320px;
+}
+
+.dialog-flex-justify {
+    flex-direction: column;
+    justify-content: center;
+}
+
+.dialog-divs-text1 {
+    color: red;
+    margin: 6px 15px;
+    font-size: 28px;
+}
+
+.dialog-divs-text2 {
+    color: #777777;
+    font-size: 26px;
+    margin: 6px 20px;
+}
+
+.dialog-divs-icon-close {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+}
+
+.dialog-div-select {
+    align-items: center;
+    height: 120px;
+    flex-direction: column;
+}
+
+.dialog-div-select-text {
+    color: #777777;
+    font-size: 26px;
+    margin: 6px 5px 6px 20px;
+}
+
+.dialog-div-select-picker {
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 60%;
+}
+
+.dialog-div-bottom {
+    background-color: red;
+    height: 100px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+}
+
+.dialog-div-bottom-text {
+    color: #FFF;
+    font-size: 30px;
+}
+
+.font-size-comm {
+    font-size: 26px;
+}
+
+.font-size-comm1 {
+    font-size: 28px;
+}
+
+.font-weight-comm {
+    font-weight: 600;
+}
+
+.dialog-divs-divider-div {
+    width: 100%;
+    justify-content: flex-end;
+    margin-right: 35px;
+    height: 50px;
+    align-items: center;
+
+}
+
+.color-comm {
+    color: deepskyblue;
+}
+
+.dialog-divider {
+    stroke-width: 3;
+    height: 25px;
+    margin: 0px 10px;
+}
+
+.pinn {
+    width: 80px;
+    height: 80px;
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+}

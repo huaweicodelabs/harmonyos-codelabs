@@ -27,7 +27,6 @@ import ohos.multimodalinput.event.TouchEvent;
  * @since 2021-03-15
  */
 public class CalculAngle {
-    private static final String TAG = "AngleUtil";
 
     private int angle; // 记录手指移动相对于原点的角度
 
@@ -39,23 +38,13 @@ public class CalculAngle {
 
     private float moveY; // 记录手指当前纵坐标
 
-    private float smallCurrX; // 小圆当前坐标x
+    private final Component layout;
 
-    private float smallCurrY; // 小圆当前坐标y
+    private final int screenHeight;
 
-    private float disAbsX; // X轴移动距离绝对值
+    private final Button smallCircle;
 
-    private float disAbsY; // Y轴移动距离绝对值
-
-    private Component layout;
-
-    private int screenHeight;
-
-    private int height;
-
-    private Button smallCircle;
-
-    private Button bigCircle;
+    private final Button bigCircle;
 
     private int smallR; // 小圆半径
 
@@ -64,11 +53,11 @@ public class CalculAngle {
     /**
      * 摇杆滑动事件
      */
-    private Component.TouchEventListener onTouchEvent = new Component.TouchEventListener() {
+    private final Component.TouchEventListener onTouchEvent = new Component.TouchEventListener() {
         @Override
         public boolean onTouchEvent(Component component, TouchEvent touchEvent) {
             int layoutHeight = layout.getHeight();
-            height = screenHeight - layoutHeight;
+            int height = screenHeight - layoutHeight;
             smallR = smallCircle.getWidth() / Constants.QUADRANT_2; // 小圆半径
             bigR = bigCircle.getWidth() / Constants.QUADRANT_2; // 大圆半径
             int action = touchEvent.getAction();
@@ -88,8 +77,10 @@ public class CalculAngle {
                     moveX = touchEvent.getPointerPosition(0).getX();
                     // 记录手指当前纵坐标.
                     moveY = touchEvent.getPointerScreenPosition(0).getY() - height;
-                    smallCurrX = moveX - smallR;
-                    smallCurrY = moveY - smallR;
+                    // 小圆当前坐标x
+                    float smallCurrX = moveX - smallR;
+                    // 小圆当前坐标y
+                    float smallCurrY = moveY - smallR;
                     smallCircle.setVisibility(Component.VISIBLE);
                     // 设置小圆的坐标跟随手指的坐标 但不超出大圆范围
                     smallCircle.setContentPosition(getSmallCurrentPos(smallCurrX, smallCurrY)[0],
@@ -124,10 +115,6 @@ public class CalculAngle {
         return onTouchEvent;
     }
 
-    public void setOnTouchEvent(Component.TouchEventListener onTouchEvent) {
-        this.onTouchEvent = onTouchEvent;
-    }
-
     public int getAngle() {
         return angle;
     }
@@ -135,9 +122,8 @@ public class CalculAngle {
     /**
      * 计算角度
      *
-     * @return 角度
      */
-    private int calculateAngle() {
+    private void calculateAngle() {
         int degree = (int) Math.toDegrees(Math.atan(getDisAbsY() / getDisAbsX()));
         int quadrant = quadrant();
         switch (quadrant) {
@@ -161,7 +147,6 @@ public class CalculAngle {
                 angle = 0;
                 break;
         }
-        return angle;
     }
 
     /**
@@ -190,7 +175,7 @@ public class CalculAngle {
      * @return X轴移动方向
      */
     private boolean getFlagX() {
-        return moveX - startPosX > 0 ? true : false;
+        return moveX - startPosX > 0;
     }
 
     /**
@@ -200,12 +185,13 @@ public class CalculAngle {
      * @return Y轴移动方向
      */
     private boolean getFlagY() {
-        return moveY - startPosY > 0 ? true : false;
+        return moveY - startPosY > 0;
     }
 
     // 计算移动距离的绝对值
     private float getDisAbsX() {
-        disAbsX = Math.abs(moveX - startPosX);
+        // X轴移动距离绝对值
+        float disAbsX = Math.abs(moveX - startPosX);
         if (disAbsX < Constants.MIN_SLIDE) {
             return 1f;
         }
@@ -214,7 +200,8 @@ public class CalculAngle {
 
     // 计算移动距离的绝对值
     private float getDisAbsY() {
-        disAbsY = Math.abs(moveY - startPosY);
+        // Y轴移动距离绝对值
+        float disAbsY = Math.abs(moveY - startPosY);
         if (disAbsY < Constants.MIN_SLIDE) {
             return 1f;
         }

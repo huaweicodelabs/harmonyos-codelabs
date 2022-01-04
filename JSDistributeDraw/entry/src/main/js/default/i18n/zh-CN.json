@@ -1,0 +1,12 @@
+{
+  "strings": {
+    "local": "本地端",
+    "remote": "远程端",
+    "go_back": "撤回",
+    "select_device": "选择设备",
+    "yes": "确定",
+    "cancels": "取消"
+  },
+  "Files": {
+  }
+}

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DirectionalLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:height="match_parent"
+    ohos:background_element="$media:city"
+    ohos:width="match_parent"
+    ohos:orientation="vertical">
+
+    <Button
+        ohos:id="$+id:button_btnSubscribe"
+        ohos:height="match_content"
+        ohos:width="100vp"
+        ohos:background_element="$graphic:background_ability_main"
+        ohos:layout_alignment="horizontal_center"
+        ohos:text="$string:heart_rate"
+        ohos:text_color="#FFEEE6E6"
+        ohos:text_size="30"
+        ohos:top_margin="20px"
+        ohos:top_padding="10px"
+        />
+
+    <Button
+        ohos:id="$+id:button_btnUnsubscribe"
+        ohos:height="match_content"
+        ohos:width="100vp"
+        ohos:background_element="$graphic:background_ability_main"
+        ohos:layout_alignment="horizontal_center"
+        ohos:text="$string:cancel_heart_rate"
+        ohos:text_color="#FFEEE6E6"
+        ohos:text_size="30"
+        ohos:top_margin="20px"
+        ohos:top_padding="10px"
+        />
+
+    <Text
+        ohos:id="$+id:text_rate"
+        ohos:height="match_content"
+        ohos:width="120vp"
+        ohos:background_element="$graphic:background_rate_step"
+        ohos:layout_alignment="horizontal_center"
+        ohos:text="$string:real_heart_rate"
+        ohos:text_color="#FFEEE6E6"
+        ohos:text_alignment="horizontal_center"
+        ohos:text_size="30"
+        ohos:top_margin="20px"
+        ohos:top_padding="10px"
+        />
+
+    <Button
+        ohos:id="$+id:button_btnSubscribeStep"
+        ohos:height="match_content"
+        ohos:width="100vp"
+        ohos:background_element="$graphic:background_ability_main"
+        ohos:layout_alignment="horizontal_center"
+        ohos:text="$string:subscribe_steps"
+        ohos:text_color="#FFEEE6E6"
+        ohos:text_size="30"
+        ohos:top_margin="20px"
+        ohos:top_padding="10px"
+        />
+
+    <Button
+        ohos:id="$+id:button_btnUnsubscribeStep"
+        ohos:height="match_content"
+        ohos:width="100vp"
+        ohos:background_element="$graphic:background_ability_main"
+        ohos:layout_alignment="horizontal_center"
+        ohos:text="$string:cancel_subscribe_steps"
+        ohos:text_color="#FFEEE6E6"
+        ohos:text_size="30"
+        ohos:top_margin="20px"
+        ohos:top_padding="10px"
+        />
+
+    <Text
+        ohos:id="$+id:text_step"
+        ohos:height="match_content"
+        ohos:width="120vp"
+        ohos:background_element="$graphic:background_rate_step"
+        ohos:layout_alignment="horizontal_center"
+        ohos:text="$string:total_real_steps"
+        ohos:text_alignment="horizontal_center"
+        ohos:text_size="30"
+        ohos:text_color="#FFEEE6E6"
+        ohos:top_margin="20px"
+        ohos:top_padding="10px"
+        />
+
+</DirectionalLayout>

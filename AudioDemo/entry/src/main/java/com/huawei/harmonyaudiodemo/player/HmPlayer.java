@@ -44,15 +44,15 @@ public class HmPlayer implements ImplHmPlayer {
     private static final int MICRO_MILLI_RATE = 1000;
     private Player mPlayer;
     private Surface surface;
-    private HmPlayerLifecycle mLifecycle;
-    private Builder mBuilder;
+    private final HmPlayerLifecycle mLifecycle;
+    private final Builder mBuilder;
     private PlayerStatu mStatu = PlayerStatu.IDEL;
     private float currentVolume = 1;
     private double videoScale = Const.NUMBER_NEGATIVE_1;
     private boolean isGestureOpen = true;
 
-    private List<StatuChangeListener> statuChangeCallbacks = new ArrayList<>(0);
-    private List<ScreenChangeListener> screenChangeCallbacks = new ArrayList<>(0);
+    private final List<StatuChangeListener> statuChangeCallbacks = new ArrayList<>(0);
+    private final List<ScreenChangeListener> screenChangeCallbacks = new ArrayList<>(0);
 
     /**
      * constructor of HmPlayer
@@ -163,15 +163,18 @@ public class HmPlayer implements ImplHmPlayer {
         @Override
         public void onMediaTimeIncontinuity(Player.MediaTimeInfo mediaTimeInfo) {
             LogUtil.info(TAG, "onMediaTimeIncontinuity is called");
-            for (Player.StreamInfo streanInfo : mPlayer.getStreamInfo()) {
-                int streamType = streanInfo.getStreamType();
-                if (streamType == Player.StreamInfo.MEDIA_STREAM_TYPE_AUDIO && mStatu == PlayerStatu.PREPARED) {
-                    for (StatuChangeListener callback : statuChangeCallbacks) {
-                        mStatu = PlayerStatu.PLAY;
-                        callback.statuCallback(PlayerStatu.PLAY);
-                    }
-                    if (mBuilder.isPause) {
-                        pause();
+            Player.StreamInfo[] streamInfos = mPlayer.getStreamInfo();
+            if(streamInfos!=null){
+                for (Player.StreamInfo streanInfo : streamInfos) {
+                    int streamType = streanInfo.getStreamType();
+                    if (streamType == Player.StreamInfo.MEDIA_STREAM_TYPE_AUDIO && mStatu == PlayerStatu.PREPARED) {
+                        for (StatuChangeListener callback : statuChangeCallbacks) {
+                            mStatu = PlayerStatu.PLAY;
+                            callback.statuCallback(PlayerStatu.PLAY);
+                        }
+                        if (mBuilder.isPause) {
+                            pause();
+                        }
                     }
                 }
             }
@@ -414,7 +417,7 @@ public class HmPlayer implements ImplHmPlayer {
      * @since 2020-12-04
      */
     public static class Builder {
-        private Context mContext;
+        private final Context mContext;
         private String filePath;
         private int startMillisecond;
         private boolean isStretch;

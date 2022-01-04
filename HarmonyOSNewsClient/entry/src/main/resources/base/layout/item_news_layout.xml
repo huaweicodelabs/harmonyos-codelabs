@@ -17,7 +17,8 @@
             ohos:width="0vp"
             ohos:max_text_lines="3"
             ohos:multiple_lines="true"
-            ohos:right_padding="20vp"
+            ohos:start_padding="10vp"
+            ohos:end_padding="20vp"
             ohos:text_size="18vp"
             ohos:weight="3"/>
 

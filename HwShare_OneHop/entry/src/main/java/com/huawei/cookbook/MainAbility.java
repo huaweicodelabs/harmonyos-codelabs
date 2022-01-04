@@ -50,6 +50,7 @@ public class MainAbility extends AceAbility {
             String uuid = intent.getStringParam("uuid");
             int businessStage = intent.getIntParam("businessStage", 0);
             boolean init = intent.getBooleanParam("init", false);
+            // 获取设备Mac地址和产品id
             getMacAndProdId(intent);
             CommonOperatorAbility.getInstance().setContext(this);
             if (TextTool.isNullOrEmpty(bleMac) || TextTool.isNullOrEmpty(prodId)) {

@@ -36,6 +36,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 
 /**
@@ -43,6 +44,7 @@ import java.util.Optional;
  */
 public class CommonUtils {
     private static final String TAG = "Common Utils";
+    private static final String LOCAL_LANGUAGES_ENGLISH = "en";
     private static final int JSON_READ_ERROR = -1;
 
     private CommonUtils() {
@@ -107,8 +109,13 @@ public class CommonUtils {
      * @return movie list
      */
     public static List<MovieInfo> getMoviesData(Context context) {
+        String filePath = "entry/resources/rawfile/movies_datas.json";
+        String language = Locale.getDefault().getLanguage();
+        if(LOCAL_LANGUAGES_ENGLISH.equals(language)){
+            filePath = "entry/resources/rawfile/movies_datas_en.json";
+        }
         return ZSONArray.stringToClassList(getStringFromJsonPath(context,
-                "entry/resources/rawfile/movies_datas.json"), MovieInfo.class);
+                filePath), MovieInfo.class);
     }
 
     /**

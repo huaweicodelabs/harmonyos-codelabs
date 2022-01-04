@@ -24,7 +24,7 @@
                 ohos:height="match_content"
                 ohos:width="match_content"
                 ohos:left_margin="130vp"
-                ohos:text="电影"
+                ohos:text="$string:movie"
                 ohos:text_size="20fp"
 
                 ohos:weight="1"/>
@@ -68,6 +68,7 @@
                         ohos:width="match_content"
                         ohos:left_margin="20vp"
                         ohos:text_color="#FFB4B7B3"
+                        ohos:multiple_lines="true"
                         ohos:text_size="15fp"
                         ohos:top_margin="15vp"/>
 
@@ -77,7 +78,7 @@
                         ohos:height="match_content"
                         ohos:width="match_content"
                         ohos:left_margin="20vp"
-                        ohos:text="主演"
+                        ohos:text="$string:starring"
                         ohos:text_color="#FFB4B7B3"
                         ohos:text_size="15fp"
                         ohos:top_margin="5vp"/>
@@ -204,7 +205,7 @@
                 ohos:height="match_content"
                 ohos:width="match_parent"
                 ohos:left_margin="15vp"
-                ohos:text="剧情简介"
+                ohos:text="$string:introduction"
                 ohos:text_alignment="horizontal_center"
                 ohos:text_color="#000000"
                 ohos:text_size="16vp"
@@ -218,7 +219,7 @@
                 ohos:background_element="#415165"
                 ohos:multiple_lines="true"
                 ohos:text=""
-                ohos:text_alignment="horizontal_center"
+                ohos:text_alignment="left"
                 ohos:text_color="white"
                 ohos:text_size="16vp"
                 ohos:top_margin="5vp"/>
@@ -228,10 +229,10 @@
                 ohos:height="match_content"
                 ohos:width="match_content"
                 ohos:background_element="$graphic:sel_text_touch"
-                ohos:text="全文"
+                ohos:text="$string:full_text"
                 ohos:top_margin="5vp"
                 ohos:padding="5vp"
-                ohos:left_margin="280vp"
+                ohos:left_margin="270vp"
                 ohos:text_color="#000000"
                 ohos:text_size="16vp"
                 ohos:element_end="$+id:title_content"
@@ -243,7 +244,7 @@
                 ohos:height="match_content"
                 ohos:width="match_parent"
                 ohos:left_margin="15vp"
-                ohos:text="剧照"
+                ohos:text="$string:stills"
                 ohos:text_alignment="horizontal_center"
                 ohos:text_color="#000000"
                 ohos:text_size="16vp"

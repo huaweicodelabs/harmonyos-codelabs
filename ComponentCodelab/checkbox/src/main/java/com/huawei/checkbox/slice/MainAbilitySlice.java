@@ -40,7 +40,7 @@ public class MainAbilitySlice extends AbilitySlice {
     public void onStart(Intent intent) {
         super.onStart(intent);
         super.setUIContent(ResourceTable.Layout_checkbox);
-        answer = findComponentById(ResourceTable.Id_text_answer);
+        answer = (Text) findComponentById(ResourceTable.Id_text_answer);
         initCheckbox();
     }
 
@@ -74,28 +74,28 @@ public class MainAbilitySlice extends AbilitySlice {
 
     // 初始化Checkbox并设置订阅事件
     private void initCheckbox() {
-        Checkbox checkbox1 = findComponentById(ResourceTable.Id_checkbox_1);
+        Checkbox checkbox1 = (Checkbox) findComponentById(ResourceTable.Id_checkbox_1);
         checkbox1.setButtonElement(getStateElement());
         setCheckedStateChangedListener(checkbox1, "A");
         if (checkbox1.isChecked()) {
             selectedSet.add("A");
         }
 
-        Checkbox checkbox2 = findComponentById(ResourceTable.Id_checkbox_2);
+        Checkbox checkbox2 = (Checkbox) findComponentById(ResourceTable.Id_checkbox_2);
         checkbox2.setButtonElement(getStateElement());
         setCheckedStateChangedListener(checkbox2, "B");
         if (checkbox2.isChecked()) {
             selectedSet.add("B");
         }
 
-        Checkbox checkbox3 = findComponentById(ResourceTable.Id_checkbox_3);
+        Checkbox checkbox3 = (Checkbox) findComponentById(ResourceTable.Id_checkbox_3);
         checkbox3.setButtonElement(getStateElement());
         setCheckedStateChangedListener(checkbox3, "C");
         if (checkbox3.isChecked()) {
             selectedSet.add("C");
         }
 
-        Checkbox checkbox4 = findComponentById(ResourceTable.Id_checkbox_4);
+        Checkbox checkbox4 = (Checkbox) findComponentById(ResourceTable.Id_checkbox_4);
         checkbox4.setButtonElement(getStateElement());
         setCheckedStateChangedListener(checkbox4, "D");
         if (checkbox4.isChecked()) {

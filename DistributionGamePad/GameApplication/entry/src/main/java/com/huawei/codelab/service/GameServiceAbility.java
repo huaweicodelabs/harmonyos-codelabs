@@ -38,7 +38,7 @@ import ohos.rpc.RemoteObject;
 public class GameServiceAbility extends Ability {
     private static final HiLogLabel LABEL_LOG = new HiLogLabel(3, 0xD001100, "Demo");
 
-    private GameRemoteObject remoteObject = new GameRemoteObject();
+    private final GameRemoteObject remoteObject = new GameRemoteObject();
     private TaskDispatcher taskDispatcher;
 
     @Override
@@ -81,8 +81,6 @@ public class GameServiceAbility extends Ability {
      *
      */
     private class GameRemoteObject extends RemoteObject implements IRemoteBroker {
-        private static final int ERR_OK = 0;
-        private static final String TAG = "GameService";
 
         GameRemoteObject() {
             super("descriptor");
@@ -96,12 +94,7 @@ public class GameServiceAbility extends Ability {
         @Override
         public boolean onRemoteRequest(int code, MessageParcel data, MessageParcel reply, MessageOption option) {
             String deviceId = data.readString();
-            taskDispatcher.syncDispatch(new Runnable() {
-                @Override
-                public void run() {
-                    syncDispatchRequest(deviceId, data);
-                }
-            });
+            taskDispatcher.syncDispatch(() -> syncDispatchRequest(deviceId, data));
             return true;
         }
 

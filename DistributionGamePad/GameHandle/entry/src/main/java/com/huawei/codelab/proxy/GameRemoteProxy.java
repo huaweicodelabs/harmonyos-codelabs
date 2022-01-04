@@ -37,11 +37,11 @@ public class GameRemoteProxy implements IRemoteBroker {
 
     private final IRemoteObject remote;
 
-    private CalculAngle calculAngle;
+    private final CalculAngle calculAngle;
 
-    private String localDeviceId; // 本机设备Id
+    private final String localDeviceId; // 本机设备Id
 
-    private Handle handle;
+    private final Handle handle;
 
     /**
      * 功能描述
@@ -68,9 +68,8 @@ public class GameRemoteProxy implements IRemoteBroker {
      * 远程通信
      *
      * @param requestType 请求类型
-     * @throws RemoteException 远程通信异常
      */
-    public void senDataToRemote(int requestType) throws RemoteException {
+    public void senDataToRemote(int requestType) {
         MessageParcel data = MessageParcel.obtain();
         MessageParcel reply = MessageParcel.obtain();
         try {

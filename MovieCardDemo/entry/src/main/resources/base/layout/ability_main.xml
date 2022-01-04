@@ -19,7 +19,7 @@
             ohos:layout_alignment="center"
             ohos:text_alignment="center"
             ohos:text_color="#FF7E7A7A"
-            ohos:text="热门电影排行榜"/>
+            ohos:text="$string:movie_rank"/>
 
         <Text
             ohos:height="match_content"
@@ -29,7 +29,7 @@
             ohos:multiple_lines="true"
             ohos:max_text_lines="3"
             ohos:text_color="#17A98E"
-            ohos:text="根据电影实时热度得出的综合排名"/>
+            ohos:text="$string:movie_rank_detail"/>
     </DirectionalLayout>
 
     <Component

@@ -75,11 +75,11 @@ public class CommentViewHolder {
      * 根据泛型，指定view的类型
      *
      * @param resId resId
-     * @param type type
      * @param <T> generics
      * @return T
      */
-    public <T extends Component> T getView(int resId, Class<T> type) {
+    @SuppressWarnings("unchecked")
+    public <T extends Component> T getView(int resId) {
         Component view = mViews.get(resId);
         if (view == null) {
             view = convertView.findComponentById(resId);
@@ -95,7 +95,7 @@ public class CommentViewHolder {
      * @return Text
      */
     public Text getTextView(int resId) {
-        return getView(resId, Text.class);
+        return getView(resId);
     }
 
     /**
@@ -105,6 +105,6 @@ public class CommentViewHolder {
      * @return Image
      */
     public Image getImageView(int resId) {
-        return getView(resId, Image.class);
+        return getView(resId);
     }
 }

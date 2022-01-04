@@ -18,16 +18,14 @@ package com.huawei.cookbooks.task;
 import ohos.data.distributed.common.Entry;
 import ohos.data.distributed.user.SingleKvStore;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class PushDataTask implements Runnable {
-    private List<Entry> entries = new ArrayList<>();
+    private final List<Entry> entries;
 
-    private List<Entry> entries2 = new ArrayList<>();
+    private final List<Entry> entries2;
 
-    private SingleKvStore singleKvStore;
+    private final SingleKvStore singleKvStore;
 
     public PushDataTask(List<Entry> entries, List<Entry> entries2, SingleKvStore singleKvStore) {
         this.entries = entries;
@@ -37,8 +35,7 @@ public class PushDataTask implements Runnable {
 
     @Override
     public void run() {
-        for (Iterator item = entries.iterator(); item.hasNext(); ) {
-            Entry entry = (Entry) item.next();
+        for (Entry entry : entries) {
             if (!entries2.contains(entry)) {
                 singleKvStore.putString(entry.getKey(), entry.getValue().getString());
             }

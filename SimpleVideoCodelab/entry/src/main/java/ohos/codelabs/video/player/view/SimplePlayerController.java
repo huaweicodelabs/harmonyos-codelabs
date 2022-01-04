@@ -16,15 +16,7 @@
 package ohos.codelabs.video.player.view;
 
 import ohos.agp.colors.RgbColor;
-import ohos.agp.components.AttrSet;
-import ohos.agp.components.Component;
-import ohos.agp.components.ComponentContainer;
-import ohos.agp.components.DependentLayout;
-import ohos.agp.components.DirectionalLayout;
-import ohos.agp.components.Image;
-import ohos.agp.components.LayoutScatter;
-import ohos.agp.components.Slider;
-import ohos.agp.components.Text;
+import ohos.agp.components.*;
 import ohos.agp.components.element.ShapeElement;
 import ohos.app.Context;
 import ohos.codelabs.video.ResourceTable;
@@ -54,9 +46,7 @@ public class SimplePlayerController extends ComponentContainer implements ImplPl
     private static final int PROGRESS_RUNNING_TIME = 1000;
     private boolean mIsDragMode = false;
     private ImplPlayer mPlayer;
-    private DependentLayout topLayout;
     private DirectionalLayout bottomLayout;
-    private Image mBack;
     private Image mPlayToogle;
     private Image mForward;
     private Image mBackward;
@@ -64,15 +54,15 @@ public class SimplePlayerController extends ComponentContainer implements ImplPl
     private Text mCurrentTime;
     private Text mTotleTime;
     private ControllerHandler mHandler;
-    private StatuChangeListener mStatuChangeListener = new StatuChangeListener() {
+    private final StatuChangeListener mStatuChangeListener = new StatuChangeListener() {
         @Override
         public void statuCallback(PlayerStatu statu) {
             mContext.getUITaskDispatcher().asyncDispatch(() -> {
                 switch (statu) {
+                    case IDEL:
                     case PREPARING:
-                        mPlayToogle.setClickable(false);
+                        mProgressBar.setProgressValue(mPlayer.getBuilder().getStartMillisecond());
                         mProgressBar.setEnabled(false);
-                        mProgressBar.setProgressValue(0);
                         break;
                     case PREPARED:
                         mProgressBar.setMaxValue(mPlayer.getDuration());
@@ -81,7 +71,6 @@ public class SimplePlayerController extends ComponentContainer implements ImplPl
                     case PLAY:
                         showController(false);
                         mPlayToogle.setPixelMap(ResourceTable.Media_ic_music_stop);
-                        mPlayToogle.setClickable(true);
                         mProgressBar.setEnabled(true);
                         break;
                     case PAUSE:
@@ -121,8 +110,8 @@ public class SimplePlayerController extends ComponentContainer implements ImplPl
     /**
      * constructor of SimplePlayerController
      *
-     * @param context context
-     * @param attrSet attSet
+     * @param context   context
+     * @param attrSet   attSet
      * @param styleName styleName
      */
     public SimplePlayerController(Context context, AttrSet attrSet, String styleName) {
@@ -145,16 +134,10 @@ public class SimplePlayerController extends ComponentContainer implements ImplPl
                 LayoutScatter.getInstance(mContext)
                         .parse(ResourceTable.Layout_simple_player_controller_layout, null, false);
         addComponent(playerController);
-        if (playerController.findComponentById(ResourceTable.Id_controller_top_layout) instanceof DependentLayout) {
-            topLayout = (DependentLayout) playerController.findComponentById(ResourceTable.Id_controller_top_layout);
-        }
         if (playerController.findComponentById(ResourceTable.Id_controller_bottom_layout)
                 instanceof DirectionalLayout) {
             bottomLayout = (DirectionalLayout) playerController
                     .findComponentById(ResourceTable.Id_controller_bottom_layout);
-        }
-        if (playerController.findComponentById(ResourceTable.Id_back) instanceof Image) {
-            mBack = (Image) playerController.findComponentById(ResourceTable.Id_back);
         }
         if (playerController.findComponentById(ResourceTable.Id_play_controller) instanceof Image) {
             mPlayToogle = (Image) playerController.findComponentById(ResourceTable.Id_play_controller);
@@ -167,12 +150,12 @@ public class SimplePlayerController extends ComponentContainer implements ImplPl
         }
         if (playerController.findComponentById(ResourceTable.Id_progress) instanceof Slider) {
             mProgressBar = (Slider) playerController.findComponentById(ResourceTable.Id_progress);
+            ShapeElement shapeElement = new ShapeElement();
+            shapeElement.setRgbColor(new RgbColor(THUMB_RED, THUMB_GREEN, THUMB_BLUE));
+            shapeElement.setBounds(0, 0, THUMB_WIDTH, THUMB_HEIGHT);
+            shapeElement.setCornerRadius(THUMB_RADIUS);
+            mProgressBar.setThumbElement(shapeElement);
         }
-        ShapeElement shapeElement = new ShapeElement();
-        shapeElement.setRgbColor(new RgbColor(THUMB_RED, THUMB_GREEN, THUMB_BLUE));
-        shapeElement.setBounds(0, 0, THUMB_WIDTH, THUMB_HEIGHT);
-        shapeElement.setCornerRadius(THUMB_RADIUS);
-        mProgressBar.setThumbElement(shapeElement);
         if (playerController.findComponentById(ResourceTable.Id_current_time) instanceof Text) {
             mCurrentTime = (Text) playerController.findComponentById(ResourceTable.Id_current_time);
         }
@@ -182,9 +165,7 @@ public class SimplePlayerController extends ComponentContainer implements ImplPl
     }
 
     private void initListener() {
-        topLayout.setTouchEventListener((component, touchEvent) -> true);
         bottomLayout.setTouchEventListener((component, touchEvent) -> true);
-        mBack.setClickedListener(component -> mContext.terminateAbility());
     }
 
     private void initPlayListener() {
@@ -193,7 +174,7 @@ public class SimplePlayerController extends ComponentContainer implements ImplPl
             if (mPlayer.isPlaying()) {
                 mPlayer.pause();
             } else {
-                if (mPlayer.getPlayerStatu() == PlayerStatu.STOP) {
+                if (mPlayer.getPlayerStatu() == PlayerStatu.STOP || mPlayer.getPlayerStatu() == PlayerStatu.COMPLETE) {
                     mPlayer.replay();
                 } else {
                     mPlayer.resume();
@@ -201,37 +182,32 @@ public class SimplePlayerController extends ComponentContainer implements ImplPl
             }
         });
         mForward.setClickedListener(component ->
-                mPlayer.rewindTo(getBasicTransTime(mPlayer.getCurrentPosition()) + Constants.REWIND_STEP));
+                mPlayer.rewindTo(mPlayer.getCurrentPosition() + Constants.REWIND_STEP));
         mBackward.setClickedListener(component ->
-                mPlayer.rewindTo(getBasicTransTime(mPlayer.getCurrentPosition()) - Constants.REWIND_STEP));
-        mProgressBar.setValueChangedListener(
-                new Slider.ValueChangedListener() {
-                    @Override
-                    public void onProgressUpdated(Slider slider, int value, boolean isB) {
-                        mContext.getUITaskDispatcher().asyncDispatch(() ->
-                                mCurrentTime.setText(DateUtils.msToString(value)));
-                    }
+                mPlayer.rewindTo(mPlayer.getCurrentPosition() - Constants.REWIND_STEP));
+        mProgressBar.setValueChangedListener(new Slider.ValueChangedListener() {
+            @Override
+            public void onProgressUpdated(Slider slider, int value, boolean isB) {
+                mContext.getUITaskDispatcher().asyncDispatch(() ->
+                        mCurrentTime.setText(DateUtils.msToString(value)));
+            }
 
-                    @Override
-                    public void onTouchStart(Slider slider) {
-                        mIsDragMode = true;
-                        mHandler.removeEvent(Constants.PLAYER_PROGRESS_RUNNING, EventHandler.Priority.IMMEDIATE);
-                    }
+            @Override
+            public void onTouchStart(Slider slider) {
+                mIsDragMode = true;
+                mHandler.removeEvent(Constants.PLAYER_PROGRESS_RUNNING, EventHandler.Priority.IMMEDIATE);
+            }
 
-                    @Override
-                    public void onTouchEnd(Slider slider) {
-                        mIsDragMode = false;
-                        if (slider.getProgress() == mPlayer.getDuration()) {
-                            mPlayer.stop();
-                        } else {
-                            mPlayer.rewindTo(getBasicTransTime(slider.getProgress()));
-                        }
-                    }
-                });
-    }
-
-    private int getBasicTransTime(int currentTime) {
-        return currentTime / PROGRESS_RUNNING_TIME * PROGRESS_RUNNING_TIME;
+            @Override
+            public void onTouchEnd(Slider slider) {
+                mIsDragMode = false;
+                if (slider.getProgress() == mPlayer.getDuration()) {
+                    mPlayer.stop();
+                } else {
+                    mPlayer.rewindTo(slider.getProgress());
+                }
+            }
+        });
     }
 
     /**
@@ -283,6 +259,16 @@ public class SimplePlayerController extends ComponentContainer implements ImplPl
             super(runner);
         }
 
+        private void syncProgress() {
+            while (currentPosition < PROGRESS_RUNNING_TIME) {
+                currentPosition = mPlayer.getCurrentPosition();
+            }
+            mContext.getUITaskDispatcher().asyncDispatch(() -> {
+                mProgressBar.setProgressValue(currentPosition);
+                mCurrentTime.setText(DateUtils.msToString(currentPosition));
+            });
+        }
+
         @Override
         public void processEvent(InnerEvent event) {
             super.processEvent(event);
@@ -291,17 +277,19 @@ public class SimplePlayerController extends ComponentContainer implements ImplPl
             }
             switch (event.eventId) {
                 case Constants.PLAYER_PROGRESS_RUNNING:
-                    if (mPlayer != null && mPlayer.isPlaying() && !mIsDragMode) {
+                    if (mPlayer == null || mIsDragMode) {
+                        break;
+                    }
+                    if (mPlayer.isPlaying()) {
                         currentPosition = mPlayer.getCurrentPosition();
-                        while (currentPosition < PROGRESS_RUNNING_TIME) {
-                            currentPosition = mPlayer.getCurrentPosition();
-                        }
-                        mContext.getUITaskDispatcher().asyncDispatch(() -> {
-                            mProgressBar.setProgressValue(currentPosition);
-                            mCurrentTime.setText(DateUtils.msToString(currentPosition));
-                        });
+                        syncProgress();
                         mHandler.sendEvent(
                                 Constants.PLAYER_PROGRESS_RUNNING, PROGRESS_RUNNING_TIME, Priority.HIGH);
+                    } else if (mPlayer.getPlayerStatu() == PlayerStatu.COMPLETE
+                            &&
+                            currentPosition / PROGRESS_RUNNING_TIME != mPlayer.getDuration() / PROGRESS_RUNNING_TIME) {
+                        currentPosition = mPlayer.getDuration();
+                        syncProgress();
                     }
                     break;
                 case Constants.PLAYER_CONTROLLER_HIDE:

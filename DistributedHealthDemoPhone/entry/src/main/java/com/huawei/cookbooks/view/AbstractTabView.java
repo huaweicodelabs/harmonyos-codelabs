@@ -26,17 +26,17 @@ import ohos.agp.components.DirectionalLayout;
  * @since 2020-06-03
  */
 public abstract class AbstractTabView {
-    private int id;
+    private final int id;
 
-    private String name;
+    private final String name;
 
-    private int normalIcon;
+    private final int normalIcon;
 
-    private int activeIcon;
+    private final int activeIcon;
 
     private ComponentContainer rootLayout;
 
-    private AbilitySlice slice;
+    private final AbilitySlice slice;
 
     /**
      * Constructor
@@ -74,7 +74,6 @@ public abstract class AbstractTabView {
      * tab content on init
      */
     public void onSelected() {
-        return;
     }
 
     /**
@@ -96,14 +95,6 @@ public abstract class AbstractTabView {
 
     public ComponentContainer getRootLayout() {
         return rootLayout;
-    }
-
-    public int getNormalIcon() {
-        return normalIcon;
-    }
-
-    public int getActiveIcon() {
-        return activeIcon;
     }
 
     public void setRootLayout(ComponentContainer rootLayout) {

@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "NewsClient",
+      "value": "NewsClient"
+    },
+    {
+      "name": "mainability_description",
+      "value": "JS_Empty Ability"
+    },
+    {
+      "name": "distributed_datasync_reason",
+      "value": "This permission is required for distributed startup"
+    }
+  ]
+}

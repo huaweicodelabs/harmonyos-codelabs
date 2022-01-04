@@ -40,11 +40,11 @@ public class AudioRecorder {
     private static final String TAG = AudioRecorder.class.getSimpleName();
     private AudioCapturer audioCapturer;
     private AudioStreamInfo audioStreamInfo;
-    private EventHandler audioRecorderHandler;
-    private Builder builder;
-    private int bufferSize;
+    private final EventHandler audioRecorderHandler;
+    private final Builder builder;
+    private final int bufferSize;
     private boolean isRecording;
-    private boolean isSaveFile;
+    private final boolean isSaveFile;
 
     private AudioRecordListener audioRecordListener;
 
@@ -165,10 +165,10 @@ public class AudioRecorder {
      */
     public static class Builder {
         private String savefilePath;
-        private AudioStreamInfo.EncodingFormat encodingFormat;
-        private AudioStreamInfo.ChannelMask channelMask;
-        private AudioCapturerInfo.AudioInputSource inputSource;
-        private int inputSampleRate;
+        private final AudioStreamInfo.EncodingFormat encodingFormat;
+        private final AudioStreamInfo.ChannelMask channelMask;
+        private final AudioCapturerInfo.AudioInputSource inputSource;
+        private final int inputSampleRate;
 
         /**
          * constructor of Builder

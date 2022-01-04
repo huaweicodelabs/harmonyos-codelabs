@@ -28,17 +28,11 @@ import ohos.aafwk.ability.AbilitySlice;
 import ohos.aafwk.ability.IAbilityConnection;
 import ohos.aafwk.content.Intent;
 import ohos.aafwk.content.Operation;
-import ohos.agp.components.Button;
-import ohos.agp.components.Component;
-import ohos.agp.components.Image;
-import ohos.agp.components.Text;
+import ohos.agp.components.*;
 import ohos.bundle.ElementName;
 import ohos.data.distributed.common.KvManagerConfig;
 import ohos.data.distributed.common.KvManagerFactory;
-import ohos.multimodalinput.event.MmiPoint;
-import ohos.multimodalinput.event.TouchEvent;
 import ohos.rpc.IRemoteObject;
-import ohos.rpc.RemoteException;
 import ohos.vibrator.agent.VibratorAgent;
 
 import java.util.List;
@@ -63,8 +57,6 @@ public class HandleAbilitySlice extends AbilitySlice {
 
     private Handle handle;
 
-    private Component layout;
-
     private Text txtScore;
 
     private Button bigCircle; // 摇杆 大圆
@@ -81,19 +73,14 @@ public class HandleAbilitySlice extends AbilitySlice {
 
     private VibratorAgent vibratorAgent;
 
-    private boolean isFlagA = true;
-
-    private boolean isFlagB = true;
-
     /**
      * A技能
      */
-    private Component.ClickedListener listenerA = new Component.ClickedListener() {
+    private final Component.ClickedListener listenerA = new Component.ClickedListener() {
         @Override
         public void onClick(Component component) {
             vibrator(Constants.VIBRATION_30); // 震动
             handle.setIsAbtnClick(1);
-            isFlagA = true;
             postData();
             handle.setIsAbtnClick(0);
         }
@@ -102,12 +89,11 @@ public class HandleAbilitySlice extends AbilitySlice {
     /**
      * B技能
      */
-    private Component.ClickedListener listenerB = new Component.ClickedListener() {
+    private final Component.ClickedListener listenerB = new Component.ClickedListener() {
         @Override
         public void onClick(Component component) {
             vibrator(Constants.VIBRATION_80); // 震动
             handle.setIsBbtnClick(1);
-            isFlagB = true;
             postData();
             handle.setIsBbtnClick(0);
         }
@@ -116,7 +102,7 @@ public class HandleAbilitySlice extends AbilitySlice {
     /**
      * 暂停
      */
-    private Component.ClickedListener btnPauseListener = new Component.ClickedListener() {
+    private final Component.ClickedListener btnPauseListener = new Component.ClickedListener() {
         @Override
         public void onClick(Component component) {
             vibrator(Constants.VIBRATION_100); // 震动
@@ -129,7 +115,7 @@ public class HandleAbilitySlice extends AbilitySlice {
     /**
      * 开始游戏
      */
-    private Component.ClickedListener btnRestartListener = new Component.ClickedListener() {
+    private final Component.ClickedListener btnRestartListener = new Component.ClickedListener() {
         @Override
         public void onClick(Component component) {
             vibrator(Constants.VIBRATION_100); // 震动
@@ -139,43 +125,6 @@ public class HandleAbilitySlice extends AbilitySlice {
         }
     };
 
-    /**
-     * 摇杆与A、B技能多点触控
-     */
-    private Component.TouchEventListener layoutTouchEvent = new Component.TouchEventListener() {
-        @Override
-        public boolean onTouchEvent(Component component, TouchEvent touchEvent) {
-            int action = touchEvent.getAction();
-            int pointerCount = touchEvent.getPointerCount();
-            switch (action) {
-                case TouchEvent.OTHER_POINT_DOWN:
-                    for (int index = 0; index < pointerCount; index++) {
-                        otherPointDown(touchEvent, index);
-                    }
-                    break;
-                default:
-                    break;
-            }
-            return false;
-        }
-    };
-
-    private void otherPointDown(TouchEvent touchEvent, int index) {
-        MmiPoint pointerPosition = touchEvent.getPointerPosition(index);
-        boolean isInComponentArea =
-                inComponentArea(imgA, pointerPosition.getX(), pointerPosition.getY());
-        boolean isInComponentAreaB =
-                inComponentArea(imgB, pointerPosition.getX(), pointerPosition.getY());
-        if (isInComponentArea && isFlagA) {
-            isFlagA = false;
-            imgA.callOnClick();
-        }
-        if (isInComponentAreaB && isFlagB) {
-            isFlagB = false;
-            imgB.callOnClick();
-        }
-    }
-
     @Override
     public void onStart(Intent intent) {
         super.onStart(intent);
@@ -184,7 +133,7 @@ public class HandleAbilitySlice extends AbilitySlice {
         Object obj = intent.getParams().getParam("deviceId");
         if (obj instanceof String) {
             String deviceId = (String) obj;
-            isConn = connectRemotePa(deviceId, 1);
+            isConn = connectRemotePa(deviceId);
         }
         initComponent(); // 初始化
         setListener(); // 控件绑定事件
@@ -213,7 +162,7 @@ public class HandleAbilitySlice extends AbilitySlice {
 
     // 初始化控件
     private void initComponent() {
-        layout = findComponentById(ResourceTable.Id_layout);
+        Component layout = findComponentById(ResourceTable.Id_layout);
         int screenHeight = ScreenUtils.getScreenHeight(this);
         Component comScore = findComponentById(ResourceTable.Id_score);
         if (comScore instanceof Text) {
@@ -235,7 +184,8 @@ public class HandleAbilitySlice extends AbilitySlice {
         if (comBtnStart instanceof Button) {
             btnStart = (Button) comBtnStart;
         }
-        findComponentById(ResourceTable.Id_layout).setTouchEventListener(layoutTouchEvent);
+        ComponentContainer componentContainer = findComponentById(ResourceTable.Id_layout);
+        componentContainer.setTouchEventSplitable(true); // 多点触控
         Component comSlide = findComponentById(ResourceTable.Id_btn);
         if (comSlide instanceof Button) {
             bigCircle = (Button) comSlide;
@@ -252,7 +202,7 @@ public class HandleAbilitySlice extends AbilitySlice {
         calculAngle = new CalculAngle(smallCircle, bigCircle, layout, screenHeight); // 摇杆事件
     }
 
-    private boolean connectRemotePa(String deviceId, int requestType) {
+    private boolean connectRemotePa(String deviceId) {
         Intent connectPaIntent = new Intent();
         Operation operation = new Intent.OperationBuilder().withDeviceId(deviceId)
                 .withBundleName(getBundleName())
@@ -267,7 +217,7 @@ public class HandleAbilitySlice extends AbilitySlice {
                 LogUtil.info(TAG, "onAbilityConnectDone......");
                 proxy = new GameRemoteProxy(remote, localDeviceId, calculAngle, handle);
                 LogUtil.error(TAG, "connectRemoteAbility done");
-                send(requestType);
+                send();
             }
 
             @Override
@@ -278,17 +228,12 @@ public class HandleAbilitySlice extends AbilitySlice {
                 LogUtil.info(TAG, "onAbilityDisconnectDone......");
             }
         };
-        boolean ret = connectAbility(connectPaIntent, conn);
-        return ret;
+        return connectAbility(connectPaIntent, conn);
     }
 
-    private void send(int requestType) {
+    private void send() {
         if (proxy != null) {
-            try {
-                proxy.senDataToRemote(requestType);
-            } catch (RemoteException e) {
-                LogUtil.error(TAG, "onAbilityConnectDone RemoteException");
-            }
+            proxy.senDataToRemote(1);
         }
     }
 
@@ -297,11 +242,7 @@ public class HandleAbilitySlice extends AbilitySlice {
      */
     public static void postData() {
         if (isConn && proxy != null) {
-            try {
-                proxy.senDataToRemote(1);
-            } catch (RemoteException e) {
-                LogUtil.error(TAG, "Send Data to Remote Failed......................");
-            }
+            proxy.senDataToRemote(1);
         }
     }
 
@@ -327,10 +268,7 @@ public class HandleAbilitySlice extends AbilitySlice {
         int bottom = component.getBottom();
         int left = component.getLeft();
         int right = component.getRight();
-        if (pointX > left && pointX < right && pointY > top && pointY < bottom) {
-            return true;
-        }
-        return false;
+        return pointX > left && pointX < right && pointY > top && pointY < bottom;
     }
 
     /**

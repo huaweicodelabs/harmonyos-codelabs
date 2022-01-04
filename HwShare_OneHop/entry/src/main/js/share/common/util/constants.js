@@ -24,10 +24,7 @@ const data = {
     'https://www.huawei.com/auth/account/base.profile/accesstoken',
     'idtoken',
     'https://www.huawei.com/auth/account/base.profile/serviceauthcode'
-  ],
-  settingBundleName: 'com.android.settings',
-  settingActivityName: 'com.android.settings.HWSettings',
-  settingAction: 'android.settings.APPLICATION_DETAILS_SETTINGS'
+  ]
 };
 
 export default data;

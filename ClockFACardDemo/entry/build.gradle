@@ -18,6 +18,7 @@ ohos {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar', '*.har'])
     implementation 'android.arch.persistence.room:runtime:1.1.1'
+    implementation 'org.jetbrains:annotations:19.0.0'
     testCompile 'junit:junit:4.12'
 }
 

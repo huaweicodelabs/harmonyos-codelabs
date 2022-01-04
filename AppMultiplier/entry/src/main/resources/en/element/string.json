@@ -1,0 +1,80 @@
+{
+  "string": [
+    {
+      "name": "entry_MainAbility",
+      "value": "entry_MainAbility"
+    },
+    {
+      "name": "mainability_description",
+      "value": "Java_Empty Ability"
+    },
+    {
+      "name": "mainability_HelloWorld",
+      "value": "Hello World"
+    },
+    {
+      "name": "entry_RightAbility",
+      "value": "entry_RightAbility"
+    },
+    {
+      "name": "rightability_description",
+      "value": "Java_Empty Ability"
+    },
+    {
+      "name": "rightability_HelloWorld",
+      "value": "Hello World"
+    },
+    {
+      "name": "rightability_crop",
+      "value": "rightability_crop"
+    },
+    {
+      "name": "rightability_scale",
+      "value": "rightability_scale"
+    },
+    {
+      "name": "rightability_mirror",
+      "value": "rightability_mirror"
+    },
+    {
+      "name": "rightability_save",
+      "value": "rightability_save"
+    },
+    {
+      "name": "rightability_select",
+      "value": "rightability_select"
+    },
+    {
+      "name": "rightability_cir",
+      "value": "rightability_cir"
+    },
+    {
+      "name": "select_add",
+      "value": "select_add"
+    },
+    {
+      "name": "select_update",
+      "value": "select_update"
+    },
+    {
+      "name": "select_cancel",
+      "value": "select_cancel"
+    },
+    {
+      "name": "select_confirm",
+      "value": "select_confirm"
+    },
+    {
+      "name": "toast_error",
+      "value": "toast_error"
+    },
+    {
+      "name": "permreason_device",
+      "value": "show device"
+    },
+    {
+      "name": "permreason_file",
+      "value": "remote file"
+    }
+  ]
+}

@@ -32,7 +32,7 @@ public class Handle {
     private String deviceId; // 连接设备id
     private boolean isConn; // 是否连接
     private MainAbilitySlice.GameRemoteProxy proxy; // 远程连接类
-    private AbilitySlice abilitySlice; // 当前slice对象
+    private final AbilitySlice abilitySlice; // 当前slice对象
     private GameView gameView;
 
     /**
@@ -70,20 +70,8 @@ public class Handle {
         this.proxy = proxy;
     }
 
-    public GameView getGameView() {
-        return gameView;
-    }
-
     public void setGameView(GameView gameView) {
         this.gameView = gameView;
-    }
-
-    public AbilitySlice getAbilitySlice() {
-        return abilitySlice;
-    }
-
-    public void setAbilitySlice(AbilitySlice abilitySlice) {
-        this.abilitySlice = abilitySlice;
     }
 
     // 开始/重新开始

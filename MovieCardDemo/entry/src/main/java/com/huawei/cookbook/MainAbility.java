@@ -39,6 +39,7 @@ import ohos.event.intentagent.IntentAgentInfo;
 import ohos.eventhandler.EventHandler;
 import ohos.eventhandler.EventRunner;
 import ohos.eventhandler.InnerEvent;
+import ohos.global.configuration.Configuration;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -61,7 +62,7 @@ public class MainAbility extends Ability {
 
     private static final long PERIOD = 10000L;
 
-    private static final int STRENTH = 10;
+    private static final int STRENTH = 18;
 
     private static final String REG = "....";
     private static final String RESOURCE_IMAGE_ID = "resourceImageId";
@@ -80,7 +81,11 @@ public class MainAbility extends Ability {
         initData();
         initMyHandler();
     }
-
+    @Override
+    public void onConfigurationUpdated(Configuration configuration) {
+       // String language = configuration.getFirstLocale().getLanguage();
+        saveMovieInfo(CommonUtils.getMoviesData(this));
+    }
     /**
      * initData
      */
@@ -334,4 +339,5 @@ public class MainAbility extends Ability {
         refeshData();
         super.onUpdateForm(formId);
     }
+
 }

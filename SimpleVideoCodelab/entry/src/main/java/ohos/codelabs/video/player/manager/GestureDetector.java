@@ -108,7 +108,7 @@ public class GestureDetector {
                 currentMoveType = Constants.NUMBER_NEGATIVE_1;
                 mDownFocusX = 0;
                 mDownFocusY = 0;
-                mListener.onTouchBegin(focusX, focusY);
+                boolean beginResult = mListener.onTouchBegin(focusX, focusY);
                 break;
             case TouchEvent.POINT_MOVE:
                 if (mDownFocusX == 0 || mDownFocusY == 0) {

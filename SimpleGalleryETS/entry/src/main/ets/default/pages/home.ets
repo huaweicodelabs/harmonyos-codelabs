@@ -46,13 +46,11 @@ struct HomeComponent {
         .barHeight(0)
         .width('100%')
         .scrollable(false)
+        BottomTabs({ controller: this.controller, bottomTabIndex: $bottomTabIndex })
       }
       .width('100%')
       .layoutWeight(1)
-      .margin({ bottom: '8%' })
       .backgroundColor(this.backgroundColor)
-
-      BottomTabs({ controller: this.controller, bottomTabIndex: $bottomTabIndex })
 
       if (this.showSettings) {
         NotificationSettings({ showSettings: $showSettings })

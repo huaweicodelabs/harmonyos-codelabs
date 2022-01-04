@@ -46,7 +46,7 @@
         "name": "com.huawei.codelab.PlaneGameAbility",
         "icon": "$media:icon",
         "description": "$string:planegameability_description",
-        "label":  "$string:entry",
+        "label": "$string:entry",
         "type": "page",
         "launchType": "standard"
       },

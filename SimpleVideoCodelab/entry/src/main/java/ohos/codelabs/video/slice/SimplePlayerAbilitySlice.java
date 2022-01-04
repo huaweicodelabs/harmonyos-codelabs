@@ -42,12 +42,12 @@ public class SimplePlayerAbilitySlice extends AbilitySlice {
     private PlayerView playerView;
     private PlayerLoading loadingView;
     private SimplePlayerController controllerView;
-    private String url = "entry/resources/base/media/gubeishuizhen.mp4";
 
     @Override
     public void onStart(Intent intent) {
         super.onStart(intent);
         super.setUIContent(ResourceTable.Layout_simple_video_play_layout);
+        String url = "entry/resources/base/media/gubeishuizhen.mp4";
         player = new HmPlayer.Builder(this).setFilePath(url).create();
         player.getLifecycle().onStart();
         initComponent();

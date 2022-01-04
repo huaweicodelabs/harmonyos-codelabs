@@ -12,7 +12,7 @@
         ohos:width="match_content"
         ohos:background_element="gray"
         ohos:layout_alignment="horizontal_center"
-        ohos:text="SYSTEM_DTMF_0"
+        ohos:text="$string:SYSTEM_DTMF_0"
         ohos:text_size="30vp"
         ohos:top_margin="20vp"/>
 
@@ -22,7 +22,7 @@
         ohos:width="match_content"
         ohos:background_element="gray"
         ohos:layout_alignment="horizontal_center"
-        ohos:text="SYSTEM_DTMF_1"
+        ohos:text="$string:SYSTEM_DTMF_1"
         ohos:text_size="30vp"
         ohos:top_margin="20vp"/>
 
@@ -32,7 +32,7 @@
         ohos:width="match_content"
         ohos:background_element="gray"
         ohos:layout_alignment="horizontal_center"
-        ohos:text="SYSTEM_DTMF_2"
+        ohos:text="$string:SYSTEM_DTMF_2"
         ohos:text_size="30vp"
         ohos:top_margin="20vp"/>
 
@@ -42,7 +42,7 @@
         ohos:width="match_content"
         ohos:background_element="gray"
         ohos:layout_alignment="horizontal_center"
-        ohos:text="SYSTEM_DTMF_3"
+        ohos:text="$string:SYSTEM_DTMF_3"
         ohos:text_size="30vp"
         ohos:top_margin="20vp"/>
 
@@ -52,7 +52,7 @@
         ohos:width="match_content"
         ohos:background_element="gray"
         ohos:layout_alignment="horizontal_center"
-        ohos:text="SYSTEM_DTMF_4"
+        ohos:text="$string:SYSTEM_DTMF_4"
         ohos:text_size="30vp"
         ohos:top_margin="20vp"/>
 
@@ -62,7 +62,7 @@
         ohos:width="match_content"
         ohos:background_element="gray"
         ohos:layout_alignment="horizontal_center"
-        ohos:text="SYSTEM_DTMF_5"
+        ohos:text="$string:SYSTEM_DTMF_5"
         ohos:text_size="30vp"
         ohos:top_margin="20vp"/>
 
@@ -72,7 +72,7 @@
         ohos:width="match_content"
         ohos:background_element="gray"
         ohos:layout_alignment="horizontal_center"
-        ohos:text="SYSTEM_DTMF_6"
+        ohos:text="$string:SYSTEM_DTMF_6"
         ohos:text_size="30vp"
         ohos:top_margin="20vp"/>
 
@@ -82,7 +82,7 @@
         ohos:width="match_content"
         ohos:background_element="gray"
         ohos:layout_alignment="horizontal_center"
-        ohos:text="SYSTEM_DTMF_7"
+        ohos:text="$string:SYSTEM_DTMF_7"
         ohos:text_size="30vp"
         ohos:top_margin="20vp"/>
 
@@ -92,7 +92,7 @@
         ohos:width="match_content"
         ohos:background_element="gray"
         ohos:layout_alignment="horizontal_center"
-        ohos:text="SYSTEM_DTMF_8"
+        ohos:text="$string:SYSTEM_DTMF_8"
         ohos:text_size="30vp"
         ohos:top_margin="20vp"/>
 
@@ -102,19 +102,9 @@
         ohos:width="match_content"
         ohos:background_element="gray"
         ohos:layout_alignment="horizontal_center"
-        ohos:text="SYSTEM_DTMF_9"
+        ohos:text="$string:SYSTEM_DTMF_9"
         ohos:text_size="30vp"
         ohos:top_margin="20vp"/>
-
-    <!--    <Button-->
-    <!--        ohos:id="$+id:sound_keypress_standard"-->
-    <!--        ohos:height="match_content"-->
-    <!--        ohos:width="match_content"-->
-    <!--        ohos:background_element="gray"-->
-    <!--        ohos:layout_alignment="horizontal_center"-->
-    <!--        ohos:text="SYSTEM_KEYPRESS_STANDARD"-->
-    <!--        ohos:text_size="30vp"-->
-    <!--        ohos:top_margin="30vp"/>-->
 
 </DirectionalLayout>
 

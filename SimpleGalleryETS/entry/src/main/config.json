@@ -37,8 +37,6 @@
         ],
         "visible": true,
         "name": ".MainAbility",
-        "srcPath": "default",
-        "srcLanguage": "ets",
         "icon": "$media:icon",
         "description": "$string:mainability_description",
         "label": "$string:entry_MainAbility",

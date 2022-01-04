@@ -11,6 +11,78 @@
     {
       "name": "serviceability_description",
       "value": "hap sample empty service"
+    },
+    {
+      "name": "sync_phone_data",
+      "value": "同步手机数据"
+    },
+    {
+      "name": "sync_time",
+      "value": "同步时间 00:00"
+    },
+    {
+      "name": "step0",
+      "value": "步数0步"
+    },
+    {
+      "name": "low_intensity",
+      "value": "低强度"
+    },
+    {
+      "name": "distance0",
+      "value": "距离0.00公里 |"
+    },
+    {
+      "name": "kal0",
+      "value": "热量0.00千卡 |"
+    },
+    {
+      "name": "floors0",
+      "value": "爬楼0层"
+    },
+    {
+      "name": "heart_health",
+      "value": "心脏健康"
+    },
+    {
+      "name": "text0",
+      "value": "00:00"
+    },
+    {
+      "name": "beat",
+      "value": "次/分钟"
+    },
+    {
+      "name": "heart_rate_range",
+      "value": "心率范围"
+    },
+    {
+      "name": "zero2",
+      "value": "0~0"
+    },
+    {
+      "name": "beat_min",
+      "value": "次/分钟"
+    },
+    {
+      "name": "zero",
+      "value": "0"
+    },
+    {
+      "name": "sync_watch_data",
+      "value": "同步手表数据"
+    },
+    {
+      "name": "zero4",
+      "value": "00:00"
+    },
+    {
+      "name": "off",
+      "value": "OFF"
+    },
+    {
+      "name": "on",
+      "value": "ON"
     }
   ]
 }

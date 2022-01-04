@@ -1,0 +1,220 @@
+<div class="container">
+    <div class="container-top-div">
+        <div class="container-top-div-center">
+            <div class="container-top-div-icon-left">
+                <image src="/common/detail/icon-return.png" class="icon-style" @click="backPage">
+                </image>
+            </div>
+            <div>
+                <image src="/common/detail/icon-share.png" class="icon-style container-margin-right-comm1"
+                       @click="onTextClick">
+                </image>
+                <menu id="apiMenu" @selected="onMenuSelected">
+                    <option value="Item-1">
+                        {{pageInfo.scoring}}
+                    </option>
+                    <option value="Item-2">
+                        {{pageInfo.sharing}}
+                    </option>
+                    <option value="Item-3">
+                        {{pageInfo.views}}
+                    </option>
+                    <option value="Item-4">
+                        {{pageInfo.exit}}
+                    </option>
+                </menu>
+                <image src="/common/detail/icon-more.png" class="icon-style container-margin-right-comm"
+                       @click="onTextClick">
+                </image>
+            </div>
+        </div>
+    </div>
+    <div class="content">
+        <div>
+            <swiper class="swiper" id="swiper" index="0" autoplay="true" interval="3000" indicator="true" loop="true"
+                    digital="false">
+                <div class="swiperContent" for="{{ item in swiperList }}">
+                    <image src="/common/computer/computer{{item}}.png">
+                    </image>
+                </div>
+            </swiper>
+        </div>
+        <div class="content-annualPrice-div">
+            <image src="/common/computer/icon-promotion.png" class="content-annualPrice-image">
+            </image>
+            <text class="content-annualPrice-text">
+                {{pageInfo.annualPrice}}
+            </text>
+        </div>
+        <div class="content-title-div">
+            <text class="content-title-div-title">
+                {{pageInfo.productTitle}}
+            </text>
+            <text class="content-title-div-content">
+                {{pageInfo.productIntroduction}}
+            </text>
+        </div>
+        <div class="content-marquee-div">
+            <image src="/common/computer/icon-buy.png" class="content-marquee-div-image">
+            </image>
+            <marquee id="customMarquee" class="customMarquee" scrollamount="{{scrollAmount}}" loop="{{loop}}"
+                     direction="{{marqueeDir}}">{{pageInfo.marqueeCustomData}}
+            </marquee>
+        </div>
+        <div class="content-flex-direction-column ">
+            <div class="content-column-height">
+                <text class="content-column-size-mar content-column-color">
+                    {{pageInfo.shipment}}
+                </text>
+                <text class="content-column-size-mar" style="color : {{textColor}};" @click="changeColor">
+                    {{pageInfo.nextDayReach}}
+                </text>
+            </div>
+            <div @click="selectCity" class="content-column-height">
+                <div class="content-column-width">
+                    <text class="content-column-size-mar content-column-color">
+                        {{pageInfo.select}}
+                    </text>
+                    <text class="content-column-size-mar">
+                        {{selectCityString}}
+                    </text>
+                </div>
+                <image src="/common/computer/icon-return1.png" class="content-column-icon-image">
+                </image>
+            </div>
+            <div @click="selectSafeguard" class="content-column-height">
+                <div class="content-column-width">
+                    <text class="content-column-size-mar content-column-color">
+                        {{pageInfo.guarantee}}
+                    </text>
+                    <text class="content-column-size-mar">
+                        {{pageInfo.guaranteeContent}}
+                    </text>
+                </div>
+                <image src="/common/computer/icon-return1.png" class="content-column-icon-image">
+                </image>
+            </div>
+        </div>
+        <div class="listSty">
+            <list>
+                <list-item for="{{contentList}}">
+                    <text class="container-list-title">{{$item.title}}
+                    </text>
+                    <text class="container-list-content">{{$item.content}}
+                    </text>
+                </list-item>
+            </list>
+        </div>
+        <div class="listContent">
+            <div for="{{ item in swiperList }}" class="swiperContents">
+                <image src="/common/computer/computer{{item}}.png" class="container-listContent-image">
+                </image>
+            </div>
+        </div>
+    </div>
+    <div class="container-bottom-div" @click="buy">
+        <text class="container-bottom-div-text">
+            {{pageInfo.nowSell}}
+        </text>
+    </div>
+    <div>
+        <image src="/common/computer/icon-pinn.png" @click="stickFloat" class="pinn">
+        </image>
+    </div>
+    <dialog id="simpledialog" class="dialog-main">
+        <div class="dialog-div">
+            <div>
+                <div class="container-margin-left-comm">
+                    <image src="/common/computer/computer1.png" class="dialog-div-titleimage">
+                    </image>
+                </div>
+                <div class="dialog-flex-justify">
+                    <text class="dialog-divs-text1">
+                        {{pageInfo.annualPrice}}
+                    </text>
+                    <text class="dialog-divs-text2">
+                        {{pageInfo.inventory}}
+                    </text>
+                </div>
+                <image src="/common/computer/icon-close.png" class="dialog-divs-icon-close" @click="cancelSchedule">
+                </image>
+            </div>
+            <div class="dialog-div-select">
+                <div>
+                    <text class="dialog-div-select-text">
+                        {{pageInfo.selectRewardTime}}
+                    </text>
+                    <div class="dialog-div-select-picker">
+                        <picker type="date" selected="{{ newDate }}" value="{{ newDate }}"
+                                @change="changeDate" @cancel="cancelDate">
+                        </picker>
+                    </div>
+                </div>
+                <div>
+                    <text class="dialog-div-select-text">
+                        {{pageInfo.selectRewardCity}}
+                    </text>
+                    <div class="dialog-div-select-picker">
+                        <picker type="multi-text" @columnchange="columnTextData" columns="3" range="{{cityList}}"
+                                value="{{selectCityList}}" @change="changeCity">
+                        </picker>
+                    </div>
+                </div>
+            </div>
+            <div class="dialog-div-bottom" @click="buy">
+                <text class="dialog-div-bottom-text">
+                    {{pageInfo.nowSell}}
+                </text>
+            </div>
+        </div>
+    </dialog>
+    <dialog id="simpledialogs" class="dialog-main" @cancel="cancelBuyDialog">
+        <div class="dialog-div">
+            <div class="dialog-div-progress">
+                <progress class="min-progress" type="scale-ring" percent="{{progress.percent}}"
+                          secondarypercent="{{progress.secondarypercent}}">
+                </progress>
+                <text class="font-size-comm">
+                    <span>
+                        {{pageInfo.saleFlash}}(
+                    </span>
+                    <span>
+                        {{progress.percent}}%)
+                    </span>
+                </text>
+                <text class="font-size-comm">
+                    {{pageInfo.justMoment}}
+                </text>
+            </div>
+        </div>
+    </dialog>
+    <dialog id="ratingDialog" class="dialog-main" @cancel="cancelrRatingDialog">
+        <div class="dialog-div">
+            <div class="dialog-div-rating">
+                <text class="font-size-comm1 font-weight-comm">
+                    {{pageInfo.softwareScore}}
+                </text>
+                <div>
+                    <rating numstars="5" rating="{{ratingNum}}" @change="ratingChange">
+                    </rating>
+                </div>
+                <text class="font-size-comm1 font-weight-comm">
+                    {{pageInfo.ratingReason}}
+                </text>
+                <input type="text" placeholder="{{pageInfo.ratingPlaceholder}}" value="{{ratingReason}}"
+                       @change="ratingReasonChange">
+                </input>
+                <div class="dialog-divs-divider-div">
+                    <text class="font-size-comm1 color-comm" @click="confirmRatingInfo">
+                        {{pageInfo.confirm}}
+                    </text>
+                    <divider vertical="true" class="dialog-divider">
+                    </divider>
+                    <text class="font-size-comm1 color-comm" @click="cancelrRatingDialog">
+                        {{pageInfo.cancel}}
+                    </text>
+                </div>
+            </div>
+        </div>
+    </dialog>
+</div>

@@ -1,22 +1,9 @@
-<!--
-Copyright (c) 2021 Huawei Device Co., Ltd.
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
--->
 <div class="container">
     <div class="container-son-div">
         <div class="line-div">
             <div class="line-div-son margin-top-20" >
-                <image ref="imageNormal"  class="{{imageNormal.classType}}"  src="{{imageNormal.src}}"  ontouchstart="changeShadow(true)"  ontouchend="changeShadow(false)"  />
+                <image ref="imageNormal"  class="{{imageNormal.classType}}"  src="{{imageNormal.src}}"
+                       ontouchstart="changeShadow(true)"  ontouchend="changeShadow(false)"  />
             </div>
             <div class="line-div-son text-div">
                 <text class="font-size-20" >{{imageNormal.title}}</text>
@@ -34,7 +21,8 @@ limitations under the License.
     <div class="container-son-div">
         <div class="line-div">
             <div class="line-div-son margin-top-20" >
-                <image-animator ref="frameContainerPhone" class="animator" images="{{frameContainerPhone.frames}}" iteration="1" duration="{{frameContainerPhone.durationTime}}" onclick="handleStartFrameContainerPhone" />
+                <image-animator ref="frameContainerPhone" class="animator" images="{{frameContainerPhone.frames}}"
+                                iteration="1" duration="{{frameContainerPhone.durationTime}}" onclick="handleStartFrameContainerPhone" />
             </div>
             <div class="line-div-son text-div">
                 <text class="font-size-20" >{{frameContainerPhone.title}}</text>
@@ -42,7 +30,8 @@ limitations under the License.
         </div>
         <div class="line-div">
             <div class="line-div-son margin-top-20">
-                <image-animator  ref="frameContainerState" class="animator" images="{{frameContainerState.frames}}" iteration="1" duration="{{frameContainerState.durationTime}}" onclick="handleStartFrameContainerState" />
+                <image-animator  ref="frameContainerState" class="animator" images="{{frameContainerState.frames}}"
+                                 iteration="1" duration="{{frameContainerState.durationTime}}" onclick="handleStartFrameContainerState" />
             </div>
             <div class="line-div-son text-div">
                 <text class="font-size-20" >{{frameContainerState.title}}</text>

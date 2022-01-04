@@ -33,7 +33,8 @@
                 ohos:align_parent_right="true"
                 ohos:image_src="$media:icon_qianyi"
                 ohos:padding="10vp"
-                ohos:right_margin="10vp"
+                ohos:end_margin="10vp"
+                ohos:start_margin="0vp"
                 ohos:scale_mode="zoom_center"
                 />
         </DependentLayout>
@@ -53,7 +54,8 @@
                     ohos:height="match_parent"
                     ohos:width="100vp"
                     ohos:layout_alignment="vertical_center"
-                    ohos:left_padding="20vp"
+                    ohos:start_padding="20vp"
+                    ohos:end_padding="0vp"
                     ohos:text="$string:text_to"
                     ohos:text_alignment="vertical_center"
                     ohos:text_color="#ff000000"
@@ -82,7 +84,9 @@
                     ohos:height="-2"
                     ohos:width="100vp"
                     ohos:layout_alignment="vertical_center"
-                    ohos:left_padding="20vp"
+                    ohos:start_padding="20vp"
+                    ohos:end_padding="0vp"
+                    ohos:element_padding="0vp"
                     ohos:text="$string:text_cc"
                     ohos:text_alignment="vertical_center"
                     ohos:text_color="#ff000000"
@@ -108,13 +112,15 @@
                     ohos:height="50vp"
                     ohos:width="match_parent"
                     ohos:orientation="horizontal"
-                    ohos:right_margin="70vp">
+                    ohos:start_margin="0vp"
+                    ohos:end_margin="70vp">
 
                     <Text
                         ohos:height="match_parent"
                         ohos:width="100vp"
                         ohos:layout_alignment="vertical_center"
-                        ohos:left_padding="20vp"
+                        ohos:start_padding="20vp"
+                        ohos:end_padding="0vp"
                         ohos:text="$string:text_title"
                         ohos:text_alignment="vertical_center"
                         ohos:text_color="#ff000000"
@@ -153,9 +159,9 @@
                     ohos:height="0vp"
                     ohos:width="match_parent"
                     ohos:hint="$string:text_message"
-                    ohos:left_padding="20vp"
+                    ohos:start_padding="20vp"
+                    ohos:end_padding="20vp"
                     ohos:multiple_lines="true"
-                    ohos:right_padding="20vp"
                     ohos:text_color="#99000000"
                     ohos:text_cursor_visible="true"
                     ohos:text_size="14fp"
@@ -172,7 +178,8 @@
                         ohos:height="30vp"
                         ohos:width="180vp"
                         ohos:layout_alignment="vertical_center"
-                        ohos:left_padding="20vp"
+                        ohos:start_padding="20vp"
+                        ohos:end_padding="0vp"
                         ohos:text="$string:text_attachment"
                         ohos:text_size="18fp"/>
 

@@ -22,7 +22,7 @@
       "deliveryWithInstall": true,
       "moduleName": "tablist",
       "moduleType": "feature",
-      "installationFree": false
+      "installationFree": true
     },
     "abilities": [
       {

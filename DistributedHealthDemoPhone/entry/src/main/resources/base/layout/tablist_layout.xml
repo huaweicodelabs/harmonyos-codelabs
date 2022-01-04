@@ -14,7 +14,7 @@
         ohos:width="200vp"
         ohos:background_element="$graphic:step"
         ohos:layout_alignment="horizontal_center"
-        ohos:text="同步手机数据"
+        ohos:text="$string:sync_phone_data"
         ohos:text_color="#FFF7F7FA"
         ohos:text_size="27fp"
         ohos:top_margin="40vp"
@@ -39,8 +39,9 @@
                 ohos:id="$+id:otherStepTimeText"
                 ohos:height="match_content"
                 ohos:width="match_content"
-                ohos:left_margin="115vp"
-                ohos:text="同步时间 00:00"
+                ohos:start_margin="115vp"
+                ohos:end_margin="0vp"
+                ohos:text="$string:sync_time"
                 ohos:text_alignment="center"
                 ohos:text_color="white"
                 ohos:text_size="20fp"/>
@@ -61,7 +62,7 @@
                 ohos:max_angle="360"
                 ohos:progress="0"
                 ohos:progress_color="#FFFAF7F5"
-                ohos:progress_hint_text="步数0步"
+                ohos:progress_hint_text="$string:step0"
                 ohos:progress_width="20vp"
                 ohos:start_angle="0"/>
 
@@ -74,7 +75,7 @@
                 ohos:max_angle="360"
                 ohos:progress="0"
                 ohos:progress_color="#FFF5F5F5"
-                ohos:progress_hint_text="低强度"
+                ohos:progress_hint_text="$string:low_intensity"
                 ohos:progress_width="20vp"
                 ohos:start_angle="0"/>
         </DirectionalLayout>
@@ -89,8 +90,9 @@
                 ohos:id="$+id:otherStepDistances"
                 ohos:height="match_content"
                 ohos:width="match_content"
-                ohos:left_margin="40px"
-                ohos:text="距离0.00公里 |"
+                ohos:start_margin="40px"
+                ohos:end_margin="0px"
+                ohos:text="$string:distance0"
                 ohos:text_color="white"
                 ohos:text_size="15fp"/>
 
@@ -98,8 +100,9 @@
                 ohos:id="$+id:otherStepHeat"
                 ohos:height="match_content"
                 ohos:width="match_content"
-                ohos:left_margin="40px"
-                ohos:text="热量0.00千卡 |"
+                ohos:start_margin="40px"
+                ohos:end_margin="0px"
+                ohos:text="$string:kal0"
                 ohos:text_color="white"
                 ohos:text_size="15fp"/>
 
@@ -107,8 +110,9 @@
                 ohos:id="$+id:otherStepFloor"
                 ohos:height="match_content"
                 ohos:width="match_content"
-                ohos:left_margin="40px"
-                ohos:text="爬楼0层"
+                ohos:start_margin="40px"
+                ohos:end_margin="0px"
+                ohos:text="$string:floors0"
                 ohos:text_color="white"
                 ohos:text_size="15fp"/>
         </DirectionalLayout>
@@ -142,8 +146,9 @@
                     ohos:id="$+id:rateText"
                     ohos:height="match_content"
                     ohos:width="match_content"
-                    ohos:left_margin="10vp"
-                    ohos:text="心脏健康"
+                    ohos:start_margin="10vp"
+                    ohos:end_margin="0vp"
+                    ohos:text="$string:heart_health"
                     ohos:text_color="#FF0C0C0C"
                     ohos:text_size="20fp"/>
 
@@ -151,8 +156,9 @@
                     ohos:id="$+id:otherRateTimeText"
                     ohos:height="match_content"
                     ohos:width="match_content"
-                    ohos:left_margin="10vp"
-                    ohos:text="00:00"
+                    ohos:start_margin="10vp"
+                    ohos:end_margin="0vp"
+                    ohos:text="$string:text0"
                     ohos:text_color="white"
                     ohos:text_size="20fp"/>
             </DirectionalLayout>
@@ -167,7 +173,7 @@
                     ohos:id="$+id:otherRateData"
                     ohos:height="match_content"
                     ohos:width="match_content"
-                    ohos:text="0"
+                    ohos:text="$string:zero"
                     ohos:text_color="#FF0C0C0C"
                     ohos:text_size="30fp"
                     ohos:top_margin="30vp"/>
@@ -176,7 +182,7 @@
                     ohos:id="$+id:rateData5"
                     ohos:height="match_content"
                     ohos:width="match_content"
-                    ohos:text="次/分钟"
+                    ohos:text="$string:beat"
                     ohos:text_color="#FFF8F8F8"
                     ohos:text_size="20fp"
                     ohos:top_margin="30vp"/>
@@ -201,8 +207,9 @@
                 ohos:id="$+id:rateTexts"
                 ohos:height="match_content"
                 ohos:width="match_content"
-                ohos:left_margin="10vp"
-                ohos:text="心率范围"
+                ohos:start_margin="10vp"
+                ohos:end_margin="0vp"
+                ohos:text="$string:heart_rate_range"
                 ohos:text_color="#FF0E0E0E"
                 ohos:text_size="20fp"/>
 
@@ -216,7 +223,7 @@
                     ohos:id="$+id:otherRateRangeData"
                     ohos:height="match_content"
                     ohos:width="match_content"
-                    ohos:text="0~0"
+                    ohos:text="$string:zero2"
                     ohos:text_color="#FF0E0E0E"
                     ohos:text_size="30fp"
                     ohos:top_margin="40vp"/>
@@ -225,7 +232,7 @@
                     ohos:id="$+id:rateData7"
                     ohos:height="match_content"
                     ohos:width="match_content"
-                    ohos:text="次/分钟"
+                    ohos:text="$string:beat_min"
                     ohos:text_color="#FFF8F8F8"
                     ohos:text_size="20fp"
                     ohos:top_margin="40vp"/>

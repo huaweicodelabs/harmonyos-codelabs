@@ -51,7 +51,7 @@
         "description": "$string:mainability_description",
         "label": "$string:entry_MainAbility",
         "type": "page",
-        "visible": false,
+        "visible": true,
         "launchType": "standard",
         "formsEnabled": true,
         "forms": [
@@ -100,7 +100,7 @@
         "icon": "$media:icon",
         "description": "$string:serviceability_description",
         "type": "service",
-        "visible": false,
+        "visible": true,
         "backgroundModes": [
           "dataTransfer",
           "location"

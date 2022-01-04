@@ -38,7 +38,7 @@
         <!--中间的-->
         <DirectionalLayout
             ohos:height="match_parent"
-            ohos:width="150vp"
+            ohos:width="140vp"
             ohos:orientation="vertical">
 
             <Text
@@ -107,8 +107,7 @@
         <!--想看-->
         <DirectionalLayout
             ohos:height="match_parent"
-            ohos:width="50vp"
-            ohos:left_margin="5vp"
+            ohos:width="80vp"
             ohos:orientation="vertical">
 
             <Image
@@ -118,8 +117,8 @@
 
             <Text
                 ohos:height="30vp"
-                ohos:width="30vp"
-                ohos:text="想看"
+                ohos:width="60vp"
+                ohos:text="$string:want_see"
                 ohos:text_color="#FFF88B06"
                 ohos:text_size="13fp"/>
         </DirectionalLayout>

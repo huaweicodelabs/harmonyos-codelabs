@@ -36,7 +36,7 @@ import ohos.rpc.RemoteObject;
 public class GameServiceAbility extends Ability {
     private static final HiLogLabel LABEL_LOG = new HiLogLabel(3, 0xD001100, "Demo");
 
-    private GameRemoteObject remoteObject = new GameRemoteObject();
+    private final GameRemoteObject remoteObject = new GameRemoteObject();
 
     @Override
     public void onStart(Intent intent) {
@@ -75,7 +75,7 @@ public class GameServiceAbility extends Ability {
      *
      * @since 2021-03-16
      */
-    private class GameRemoteObject extends RemoteObject implements IRemoteBroker {
+    private static class GameRemoteObject extends RemoteObject implements IRemoteBroker {
         private static final int ERR_OK = 0;
 
         private static final String TAG = "GameService";

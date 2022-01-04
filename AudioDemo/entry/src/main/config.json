@@ -12,7 +12,9 @@
     "package": "com.huawei.harmonyaudiodemo",
     "name": ".MyApplication",
     "deviceType": [
-      "default"
+      "phone",
+      "tablet",
+      "tv"
     ],
     "distro": {
       "deliveryWithInstall": true,

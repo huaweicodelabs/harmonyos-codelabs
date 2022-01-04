@@ -1,0 +1,25 @@
+.container {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.chart-region {
+    height: 400px;
+    width: 700px;
+}
+
+.chart-background {
+    object-fit: fill;
+}
+
+.chart-data {
+    width: 700px;
+    height: 600px;
+}
+
+.button-sty {
+    margin-top: 10px;
+    width: 300px;
+    height: 80px;
+}

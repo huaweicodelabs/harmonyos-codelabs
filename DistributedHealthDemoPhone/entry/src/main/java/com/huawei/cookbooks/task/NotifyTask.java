@@ -43,29 +43,23 @@ public class NotifyTask implements Runnable {
 
     private static final int REQUEST_CODE = 200;
 
-    private Context context;
+    private final Context context;
 
     /**
      * Control gadget - vibrator
      */
-    private VibratorAgent vibratorAgent = new VibratorAgent();
-
-    private List<Integer> vibratorList = null;
+    private final VibratorAgent vibratorAgent = new VibratorAgent();
 
     /**
      * Notify abnormal data which use notification bar.
      */
-    private NotificationSlot slot = new NotificationSlot("slot_001", "slot_default", NotificationSlot.LEVEL_MIN);
+    private final NotificationSlot slot = new NotificationSlot("slot_001", "slot_default", NotificationSlot.LEVEL_MIN);
 
-    private int notificationId = 1;
+    private final int notificationId = 1;
 
-    private NotificationRequest request = new NotificationRequest(notificationId);
+    private final NotificationRequest request = new NotificationRequest(notificationId);
 
-    private NotificationRequest.NotificationNormalContent content = new NotificationRequest.NotificationNormalContent();
-
-    private String title = "通知";
-
-    private String text = "心率异常";
+    private final NotificationRequest.NotificationNormalContent content = new NotificationRequest.NotificationNormalContent();
 
     public NotifyTask(Context context) {
         this.context = context;
@@ -73,11 +67,13 @@ public class NotifyTask implements Runnable {
 
     @Override
     public void run() {
-        vibratorList = vibratorAgent.getVibratorIdList();
+        List<Integer> vibratorList = vibratorAgent.getVibratorIdList();
         vibratorAgent.startOnce(vibratorList.get(0), TIME_DURATION);
         try {
             NotificationHelper.addNotificationSlot(slot);
             request.setSlotId(slot.getId());
+            String title = "通知";
+            String text = "心率异常";
             content.setTitle(title).setText(text);
             NotificationRequest.NotificationContent notificationContent =
                     new NotificationRequest.NotificationContent(content);
@@ -99,12 +95,10 @@ public class NotifyTask implements Runnable {
         intent.setOperation(operation);
         List<Intent> intentList = new ArrayList<>();
         intentList.add(intent);
-        int requestCode = REQUEST_CODE;
         List<IntentAgentConstant.Flags> flags = new ArrayList<>();
         flags.add(IntentAgentConstant.Flags.UPDATE_PRESENT_FLAG);
-        IntentAgentInfo paramsInfo = new IntentAgentInfo(requestCode,
+        IntentAgentInfo paramsInfo = new IntentAgentInfo(REQUEST_CODE,
                 IntentAgentConstant.OperationType.START_ABILITY, flags, intentList, null);
-        IntentAgent agent = IntentAgentHelper.getIntentAgent(context, paramsInfo);
-        return agent;
+        return IntentAgentHelper.getIntentAgent(context, paramsInfo);
     }
 }

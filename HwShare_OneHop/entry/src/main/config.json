@@ -37,11 +37,7 @@
         "name": "ohos.permission.USE_BLUETOOTH"
       },
       {
-        "name": "ohos.permission.LOCATION",
-        "reason": "for ble scan device",
-        "usedScene": {
-          "when": "always"
-        }
+        "name": "ohos.permission.LOCATION"
       },
       {
         "name": "ohos.permission.DISCOVER_BLUETOOTH"

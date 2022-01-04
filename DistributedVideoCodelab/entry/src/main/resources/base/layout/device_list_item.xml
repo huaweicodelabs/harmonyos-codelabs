@@ -7,10 +7,11 @@
         ohos:id="$+id:device_text"
         ohos:height="match_parent"
         ohos:width="match_parent"
-        ohos:left_padding="10vp"
-        ohos:text_color="#55000000"
-        ohos:text_alignment="vertical_center|left"
         ohos:background_element="$graphic:selector_ability_main"
+        ohos:start_padding="10vp"
+        ohos:end_padding="10vp"
+        ohos:text_alignment="vertical_center|left"
+        ohos:text_color="#55000000"
         ohos:text_size="16fp"/>
 
 </DirectionalLayout>

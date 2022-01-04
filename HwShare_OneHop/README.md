@@ -1,6 +1,5 @@
 # HwShare_OneHop
 简介 • 此Demo用于使用碰一碰获取智能家居的NFC标签中存储的设备信息，并利用此信息通过蓝牙连接设备，达到控制设备的目的。另外还支持通过华为分享将FA分享给其他手机，使分享接收方连接设备并控制设备。
-
 安装要求 • 安装DevEco Studio • 设置DevEco Studio开发环境。DevEco Studio开发环境需要连接到网络，以确保该正常使用。可以根据以下两种情况配置开发环境： 1.如果您可以直接访问Internet，则只需下载HarmonyOS SDK 2.如果网络无法直接访问Internet，则可以通过代理服务器进行访问 • 生成密钥并申请证书
 
 用户指南 • 下载此项目 • 打开HUAWEI DevEco Studio，单击File> Open选择此项目 • 单击Build> Build App(s)/Hap(s)>Build Debug Hap(s)以编译hap软件包 • 单击Run> Run 'entry'以运行hap包

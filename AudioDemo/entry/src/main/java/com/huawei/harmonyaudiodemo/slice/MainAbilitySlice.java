@@ -68,12 +68,11 @@ public class MainAbilitySlice extends AbilitySlice implements Component.ClickedL
             default:
                 break;
         }
-        Operation operation =
-                new Intent.OperationBuilder()
-                        .withBundleName(getBundleName())
-                        .withAbilityName(MainAbility.class.getName())
-                        .withAction(actionName)
-                        .build();
+        Operation operation = new Intent.OperationBuilder()
+                .withBundleName(getBundleName())
+                .withAbilityName(MainAbility.class.getName())
+                .withAction(actionName)
+                .build();
         intent.setOperation(operation);
         startAbility(intent);
     }

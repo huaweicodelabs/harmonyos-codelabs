@@ -29,7 +29,7 @@ export struct NotificationSettings {
     Scroll() {
       Column() {
         Text()
-          .width('20%').height('2%')
+          .width('20%').height('1%')
           .backgroundColor(Color.Gray)
           .borderRadius(20)
           .margin({ top: 5 })
@@ -95,7 +95,7 @@ export struct NotificationSettings {
                       .layoutWeight(1)
                     Image($r('app.media.close_white'))
                       .objectFit(ImageFit.Contain)
-                      .width(30)
+                      .width(25)
                       .onClick(() => {
                         reminderId = item.reminderId
                         subscribeItems[item.id].isSubscribe = false
@@ -108,7 +108,7 @@ export struct NotificationSettings {
                   .width('100%').height('10%')
                 }
               }
-            })
+            }, item => item.title.toString())
           }
           .backgroundColor(Color.White)
           .margin({ top: '5%' })

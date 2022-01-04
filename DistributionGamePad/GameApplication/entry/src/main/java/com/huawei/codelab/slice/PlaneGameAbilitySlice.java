@@ -18,12 +18,9 @@ package com.huawei.codelab.slice;
 import com.huawei.codelab.ResourceTable;
 import com.huawei.codelab.game.GameView;
 import com.huawei.codelab.game.Handle;
-
 import ohos.aafwk.ability.AbilitySlice;
 import ohos.aafwk.content.Intent;
 import ohos.agp.components.Component;
-import ohos.hiviewdfx.HiLog;
-import ohos.hiviewdfx.HiLogLabel;
 
 import java.util.List;
 
@@ -34,7 +31,6 @@ import java.util.List;
  *
  */
 public class PlaneGameAbilitySlice extends AbilitySlice {
-    private static final HiLogLabel TAG = new HiLogLabel(HiLog.LOG_APP, 0xD001400, "fxh");
     private static GameView gameView;
 
     @Override

@@ -1,0 +1,167 @@
+<div class="container">
+    <div class="container" id="target" show="{{flag === oneFlag}}">
+        <search hint="{{pageWord.searchKeyWord}}" value="{{pageWord.searchValue}}" focusable="true"
+                @submit="submitColumn">
+        </search>
+        <tabs class="tabs" index="0" vertical="false" onchange="change">
+            <tab-bar class="tab-bar" mode="fixed">
+                <text class="tab-text" for="{{ item in titileList}}">{{ item }}
+                </text>
+            </tab-bar>
+            <tab-content class="tabcontent" scrollable="true">
+                <div class="item-content" for="{{ item in contentList}}">
+                    <list class="todo-wraper">
+                        <list-item for="{{allList}}">
+                            <div class="margin-comm" @click="detailPage">
+                                <div class="todo-total">
+                                    <text class="todo-title">
+                                        {{$item.title}}
+                                    </text>
+                                    <text class="todo-content">
+                                        {{$item.content}}
+                                    </text>
+                                    <text class="todo-price">
+                                        <span>
+                                            ￥
+                                        </span>
+                                        <span>
+                                            {{$item.price}}
+                                        </span>
+                                    </text>
+                                </div>
+                                <div class="width-comm">
+                                    <image src="{{$item.imgSrc}}" class="container-home-image">
+                                    </image>
+                                </div>
+                            </div>
+                        </list-item>
+                    </list>
+                </div>
+            </tab-content>
+        </tabs>
+    </div>
+    <div class="container-home-pinned" show="{{flag === oneFlag}}">
+        <image src="/common/computer/icon-pinn.png" @click="stickFloat">
+        </image>
+    </div>
+    <div class="container-shopping-title" show="{{flag === threeFlag}}">
+        <text>
+            {{pageWord.shopingCart}}
+        </text>
+    </div>
+    <div class="container" show="{{flag === threeFlag}}">
+        <div class="top-comm flex-direction-column">
+            <div for="{{ latestList }}" class="flex-direction-column">
+                <div class="container-shopping-list">
+                    <input type="checkbox" value="{{$item.price}}" @change="addShopping">
+                    </input>
+                    <image src="{{$item.imgSrc}}" class="container-shopping-list-image">
+                    </image>
+                    <div class="container-shopping-list-div">
+                        <text class="container-shopping-list-div-text">
+                            {{$item.title}}
+                        </text>
+                        <text class="container-shopping-list-div-texts">
+                            <span>
+                                {{$item.price}}
+                            </span>
+                            <span>
+                                元
+                            </span>
+                        </text>
+                    </div>
+                </div>
+                <divider class="container-shopping-list-divider">
+                </divider>
+            </div>
+        </div>
+    </div>
+    <div class="container-shopping-bottom" show="{{flag === threeFlag}}">
+        <div class="container-shopping-bottom-div">
+            <text class="container-shopping-bottom-div-text">
+                <span>
+                    合计：
+                </span>
+                <span>
+                    {{priceTotal}}
+                </span>
+                <span>
+                    元
+                </span>
+            </text>
+        </div>
+        <div class="container-shopping-bottom-divs">
+            <text class="container-shopping-bottom-divs-texts" @click="clickSettlement">
+                {{pageWord.settlement}}
+            </text>
+        </div>
+    </div>
+    <div class="container" show="{{flag === fourFlag}}">
+        <div class="container-my-top">
+            <div class="container-my-top-div">
+                <image src="/common/nav/icon-user.png" class="container-my-top-div-image">
+                </image>
+            </div>
+            <div class="container-my-top-divs">
+                <text class="container-my-top-divs-text">
+                    {{pageWord.nickname}}
+                </text>
+                <text class="container-my-top-divs-texts">
+                    {{pageWord.memberName}}{{pageWord.nickname}}
+                </text>
+            </div>
+            <div class="container-my-top-divss">
+                <image src="/common/computer/icon-return1.png" class="container-my-top-divss-image">
+                </image>
+            </div>
+        </div>
+        <div class="container-my-title">
+            <div class="flex-direction-column" for="{{item in menu}}">
+                <text class="container-my-title-text">
+                    {{item.title}}
+                </text>
+                <text class="container-my-title-texts">
+                    {{item.num}}
+                </text>
+            </div>
+        </div>
+        <div class="container-my-deals">
+            <text class="container-my-deals-text">
+                {{pageWord.myDeals}}
+            </text>
+            <div class="container-my-deals-div">
+                <div class="container-my-deals-div-div" for="{{transaction}}">
+                    <image src="{{$item.src}}" class="container-my-image">
+                    </image>
+                    <text class="container-my-text">
+                        {{$item.title}}{{$item.num}}
+                    </text>
+                </div>
+            </div>
+        </div>
+        <div class="container-my-more">
+            <div class="container-my-more-div">
+                <text class="container-my-more-div-text">
+                    {{pageWord.more}}
+                </text>
+            </div>
+            <div class="container-my-more-divs" for="{{item in more}}">
+                <div class="container-my-more-divs-div" for="{{child in item}}">
+                    <image src="{{child.src}}" class="container-my-image">
+                    </image>
+                    <text class="container-my-text">
+                        {{child.title}}
+                    </text>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-bottom-div" @click="clickBuy">
+        <image src="{{icon.buys}}" class="container-bottom-div-image" @click="clickBuy">
+        </image>
+        <image src="{{icon.shoppingCarts}}" class="container-bottom-div-image" @click="clickShoppingCart">
+        </image>
+        <image src="{{icon.mys}}" class="container-bottom-div-image" @click="clickMy">
+        </image>
+    </div>
+</div>

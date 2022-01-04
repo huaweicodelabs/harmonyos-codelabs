@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "entry_MainAbility",
+      "value": "JSDistributeDraw"
+    },
+    {
+      "name": "mainability_description",
+      "value": "JS_Empty Ability"
+    },
+    {
+      "name": "distributed_datasync_reason",
+      "value": "This permission is required for distributed startup"
+    }
+  ]
+}

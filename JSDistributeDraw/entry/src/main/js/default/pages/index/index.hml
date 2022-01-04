@@ -1,0 +1,41 @@
+<!--
+Copyright (c) 2021 Huawei Device Co., Ltd.
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+
+<stack class="container">
+    <canvas class="canvas" ref="canvas" ontouchstart="touchStart" ontouchmove="touchMove"></canvas>
+    <div class="operation_bar" id="operationBar">
+        <text class="title">{{ title }}</text>
+        <text class="back" onclick="goBack">{{ $t("strings.go_back") }}</text>
+        <image class="share_button" onclick="showDeviceList" src="/common/images/ic_hop.png"/>
+    </div>
+    <dialog id="showDialog" class="select_device_dialog">
+        <div class="select_device_wrapper">
+            <text class="select_device_title">{{ $t("strings.select_device") }}</text>
+            <list class="select_device_list">
+                <list-item class="select_device_item" for="{{ deviceList }}" id="list">
+                    <text class="select_device_item_left">{{ $item.deviceName }}
+                    </text>
+                    <input class="select_device_item_right" type="checkbox" name="Device" value="{{ $idx }}"
+                           @change="selectDevice({{ $idx }})" checked="{{ $item.checked }}">
+                    </input>
+                </list-item>
+            </list>
+            <div class="choose_ok_or_not">
+                <text class="select_device_btn" @click="chooseComform">{{ $t("strings.yes") }}</text>
+                <text class="select_device_btn" @click="chooseCancel">{{ $t("strings.cancels") }}</text>
+            </div>
+        </div>
+    </dialog>
+</stack>

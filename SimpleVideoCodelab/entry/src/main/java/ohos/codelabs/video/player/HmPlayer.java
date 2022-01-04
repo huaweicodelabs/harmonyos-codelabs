@@ -43,15 +43,15 @@ public class HmPlayer implements ImplPlayer {
     private static final int MICRO_MILLI_RATE = 1000;
     private Player mPlayer;
     private Surface surface;
-    private HmPlayerLifecycle mLifecycle;
-    private Builder mBuilder;
+    private final HmPlayerLifecycle mLifecycle;
+    private final Builder mBuilder;
     private PlayerStatu mStatu = PlayerStatu.IDEL;
     private float currentVolume = 1;
     private double videoScale = Constants.NUMBER_NEGATIVE_1;
     private boolean isGestureOpen;
 
-    private List<StatuChangeListener> statuChangeCallbacks = new ArrayList<>(0);
-    private List<ScreenChangeListener> screenChangeCallbacks = new ArrayList<>(0);
+    private final List<StatuChangeListener> statuChangeCallbacks = new ArrayList<>(0);
+    private final List<ScreenChangeListener> screenChangeCallbacks = new ArrayList<>(0);
 
     /**
      * constructor of HmPlayer
@@ -416,7 +416,7 @@ public class HmPlayer implements ImplPlayer {
      * @since 2020-12-04
      */
     public static class Builder {
-        private Context mContext;
+        private final Context mContext;
         private String filePath;
         private int startMillisecond;
         private boolean isStretch;

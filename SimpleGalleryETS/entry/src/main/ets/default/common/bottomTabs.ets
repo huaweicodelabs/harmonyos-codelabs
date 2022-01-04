@@ -39,9 +39,6 @@ export struct BottomTabs {
   @Link bottomTabIndex: number
 
   build() {
-    // TODO 請在此處添加容器組件Flex，實現底部頁簽的均分佈局
-
-    // END
     Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceEvenly }) {
       ForEach(this.tabSrc, item => {
         Column() {

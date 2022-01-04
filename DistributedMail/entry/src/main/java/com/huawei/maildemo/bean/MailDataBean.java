@@ -48,26 +48,10 @@ public class MailDataBean {
     private List<String> pictureDataList;
 
     /**
-     * Constructor
+     * ConstructorQ
      */
     public MailDataBean() {
         super();
-    }
-
-    /**
-     * Constructor
-     *
-     * @param receiver mail receiver
-     * @param cc mail cc
-     * @param title mail title
-     * @param content mail content
-     */
-    public MailDataBean(String receiver, String cc, String title, String content) {
-        super();
-        this.receiver = receiver;
-        this.cc = cc;
-        this.title = title;
-        this.content = content;
     }
 
     /**
@@ -75,6 +59,7 @@ public class MailDataBean {
      *
      * @param params IntentParams
      */
+    @SuppressWarnings("unchecked")
     public MailDataBean(IntentParams params) {
         if (params == null) {
             LogUtil.info(this.getClass(), "Invalid intent params, can't create MailDataBean");

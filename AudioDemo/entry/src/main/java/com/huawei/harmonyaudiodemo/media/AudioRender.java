@@ -35,10 +35,10 @@ public class AudioRender {
     private static final String TAG = AudioRender.class.getSimpleName();
     private AudioRendererInfo audioRenderInfo;
     private AudioRenderer audioRender;
-    private EventHandler audioRenderHandler;
+    private final EventHandler audioRenderHandler;
     private MediaStatu audioRenderStatu = MediaStatu.IDEL;
-    private Builder builder;
-    private int bufferSize;
+    private final Builder builder;
+    private final int bufferSize;
     private AudioPlayListener audioPlayListener;
 
     private AudioRender(Builder builder) {
@@ -183,12 +183,12 @@ public class AudioRender {
      */
     public static class Builder {
         private boolean isOneOffLoad;
-        private AudioStreamInfo.EncodingFormat encodingFormat;
-        private AudioStreamInfo.ChannelMask channelMask;
-        private int inputSampleRate;
-        private AudioStreamInfo.AudioStreamFlag streamFlag;
-        private AudioStreamInfo.StreamUsage streamUsage;
-        private AudioRendererInfo.AudioStreamOutputFlag streamOutputFlag;
+        private final AudioStreamInfo.EncodingFormat encodingFormat;
+        private final AudioStreamInfo.ChannelMask channelMask;
+        private final int inputSampleRate;
+        private final AudioStreamInfo.AudioStreamFlag streamFlag;
+        private final AudioStreamInfo.StreamUsage streamUsage;
+        private final AudioRendererInfo.AudioStreamOutputFlag streamOutputFlag;
 
         /**
          * constructor of Builder

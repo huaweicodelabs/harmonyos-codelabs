@@ -15,7 +15,7 @@
             ohos:id="$+id:page"
             ohos:width="match_parent"
             ohos:height="match_parent"
-            ></ScrollView>
+            />
     </DirectionalLayout>
 
     <Component
@@ -23,7 +23,7 @@
         ohos:height="1vp"
         ohos:above="$+id:footer"
         ohos:background_element="#EDF1F5"
-        ></Component>
+        />
 
     <DirectionalLayout
         ohos:id="$+id:footer"

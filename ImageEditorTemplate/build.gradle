@@ -16,18 +16,18 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'com.huawei.ohos:hap:3.0.3.4'
-        classpath 'com.huawei.ohos:decctest:3.0.1.0'
+        classpath 'com.huawei.ohos:hap:2.4.5.0'
+        classpath 'com.huawei.ohos:decctest:1.2.4.1'
     }
 }
 
 allprojects {
     repositories {
         maven {
-            url 'http://repo.ark.tools.huawei.com/artifactory/maven-public/'
+            url 'https://repo.huaweicloud.com/repository/maven/'
         }
         maven {
-            url 'http://mirrors.tools.huawei.com/maven/'
+            url 'https://developer.huawei.com/repo/'
         }
     }
 }

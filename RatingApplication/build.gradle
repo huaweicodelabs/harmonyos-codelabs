@@ -8,12 +8,13 @@ ohos {
 	
 buildscript {
     repositories {
-        maven {
-            url 'http://repo.ark.tools.huawei.com/artifactory/maven-public/'
+		maven {
+            url 'https://mirrors.huaweicloud.com/repository/maven/'
         }
         maven {
-            url 'http://mirrors.tools.huawei.com/maven/'
+            url 'https://developer.huawei.com/repo/'
         }
+        jcenter()
     }
     dependencies {
         classpath 'com.huawei.ohos:hap:2.4.5.3'
@@ -24,10 +25,11 @@ buildscript {
 allprojects {
     repositories {
         maven {
-            url 'http://repo.ark.tools.huawei.com/artifactory/maven-public/'
+            url 'https://mirrors.huaweicloud.com/repository/maven/'
         }
         maven {
-            url 'http://mirrors.tools.huawei.com/maven/'
+            url 'https://developer.huawei.com/repo/'
         }
+        jcenter()
     }
 }

@@ -23,7 +23,7 @@
     {
       "name": "gameoverability_description",
       "value": "Java_Phone_Empty Feature Ability"
-      },
+    },
     {
       "name": "entry",
       "value": "entry"
@@ -31,6 +31,38 @@
     {
       "name": "entry_MainAbility",
       "value": "GameApplication"
+    },
+    {
+      "name": "gameOver",
+      "value": "游戏结束"
+    },
+    {
+      "name": "planeOneScore",
+      "value": "玩家一分数：0"
+    },
+    {
+      "name": "planeTwoScore",
+      "value": "玩家二分数：0"
+    },
+    {
+      "name": "backHome",
+      "value": "pause：返回主页"
+    },
+    {
+      "name": "reStart",
+      "value": "start：重新开始"
+    },
+    {
+      "name": "planeBattle",
+      "value": "飞机大战"
+    },
+    {
+      "name": "selectDevice",
+      "value": "选择设备"
+    },
+    {
+      "name": "confirm",
+      "value": "确定"
     }
   ]
 }

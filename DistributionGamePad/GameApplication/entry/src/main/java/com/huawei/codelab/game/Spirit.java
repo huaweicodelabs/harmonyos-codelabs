@@ -34,13 +34,13 @@ import java.util.Optional;
  *
  */
 public abstract class Spirit {
-    private SecureRandom random = new SecureRandom();
-    private Optional<Spirit> optionalEmpty = Optional.empty();
+    private final SecureRandom random = new SecureRandom();
+    private final Optional<Spirit> optionalEmpty = Optional.empty();
     private PixelMapHolder pixelMapHolder; // 图片
     private int planeX; // x坐标
     private int planeY; // y坐标
-    private int width; // 宽
-    private int height; // 高
+    private final int width; // 宽
+    private final int height; // 高
     private int speed; // 速度
     private boolean isDestroyed; // 是否被销毁
 

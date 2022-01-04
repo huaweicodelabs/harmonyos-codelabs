@@ -6,17 +6,23 @@
     ohos:background_element="#FFEFF0"
     ohos:remote="true">
 
-    <Text
-        ohos:id="$+id:title"
-        ohos:height="match_content"
-        ohos:width="match_parent"
-        ohos:end_margin="12vp"
-        ohos:start_margin="44vp"
-        ohos:text="$string:title"
-        ohos:text_color="#E5000000"
-        ohos:text_size="16fp"
-        ohos:text_weight="500"
-        ohos:top_margin="12vp"/>
+
+        <Text
+            ohos:id="$+id:title"
+            ohos:height="match_content"
+            ohos:width="match_parent"
+            ohos:horizontal_center="true"
+            ohos:left_margin="10vp"
+            ohos:right_margin="10vp"
+            ohos:text="$string:title"
+            ohos:text_color="#E5000000"
+            ohos:text_size="12vp"
+            ohos:text_weight="500"
+            ohos:auto_font_size="true"
+            ohos:multiple_lines="false"
+            ohos:text_alignment="center"
+            ohos:top_margin="12vp"/>
+
 
     <DirectionalLayout
         ohos:id="$+id:card2_hints"
@@ -24,11 +30,12 @@
         ohos:width="match_parent"
         ohos:center_in_parent="true"
         ohos:visibility="visible">
+
         <Text
             ohos:height="match_content"
             ohos:width="match_parent"
-            ohos:text_alignment="center"
-            ohos:text="请点击卡片获取数据...">
+            ohos:text="$string:init_data"
+            ohos:text_alignment="center">
         </Text>
     </DirectionalLayout>
 
@@ -38,17 +45,16 @@
         ohos:width="match_parent"
         ohos:align_parent_bottom="true"
         ohos:bottom_margin="12vp"
-        ohos:end_margin="12vp"
+
         ohos:orientation="vertical"
         ohos:start_margin="12vp"
         ohos:visibility="invisible">
 
         <DependentLayout
-            ohos:height="48vp"
             ohos:id="$+id:movie_top"
+            ohos:height="48vp"
             ohos:width="match_parent"
             ohos:orientation="horizontal">
-
 
 
             <DirectionalLayout
@@ -74,7 +80,7 @@
                     ohos:text_size="10fp"
                     ohos:text_weight="400"
                     ohos:top_margin="2vp"
-                    ohos:truncation_mode="ellipsis_at_end"/>
+                    />
             </DirectionalLayout>
         </DependentLayout>
 
@@ -113,7 +119,7 @@
                     ohos:text_size="10fp"
                     ohos:text_weight="400"
                     ohos:top_margin="2vp"
-                    ohos:truncation_mode="ellipsis_at_end"/>
+                    />
             </DirectionalLayout>
         </DependentLayout>
 

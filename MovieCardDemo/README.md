@@ -1,5 +1,5 @@
 # MovieCardDemo
-#MovieCardDemo
+#DistributedHealthDemoPhone
 简介
 • 此Demo展示如何在手机上开发2x2电影卡片，上滑应用图标创建卡片，卡片列表会自动刷新相关内容，点击卡片图标进入应用首页
 

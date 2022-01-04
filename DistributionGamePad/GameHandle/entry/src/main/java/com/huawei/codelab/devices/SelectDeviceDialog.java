@@ -47,9 +47,9 @@ public class SelectDeviceDialog {
 
     private List<DeviceInfo> allDevices;
 
-    private AbilitySlice abilitySlice;
+    private final AbilitySlice abilitySlice;
 
-    private SelectResultListener listener;
+    private final SelectResultListener listener;
 
     /**
      * 选择连接设备的回调

@@ -4,7 +4,7 @@ apply plugin: 'com.huawei.ohos.decctest'
 ohos {
     compileSdkVersion 5
     defaultConfig {
-        compatibleSdkVersion 5
+        compatibleSdkVersion 4
     }
     buildTypes {
         release {

@@ -1,0 +1,90 @@
+{
+  "app": {
+    "bundleName": "com.huawei.codelab",
+    "vendor": "huawei",
+    "version": {
+      "code": 1000000,
+      "name": "1.0.0"
+    }
+  },
+  "deviceConfig": {},
+  "module": {
+    "reqPermissions": [
+      {
+        "name": "ohos.permission.DISTRIBUTED_DATASYNC",
+        "reason": "$string:permreason_device",
+        "usedScene":
+        {
+          "ability": [
+            "com.huawei.codelab.MainAbility",
+            "com.huawei.codelab.RightAbility"
+          ],
+          "when": "always"
+        }
+      },
+      {
+        "name": "ohos.permission.GET_DISTRIBUTED_DEVICE_INFO",
+        "reason": "$string:permreason_file",
+        "usedScene":
+        {
+          "ability": [
+            "com.huawei.codelab.MainAbility",
+            "com.huawei.codelab.RightAbility"
+          ],
+          "when": "always"
+        }
+      }
+    ],
+    "package": "com.huawei.codelab",
+    "name": ".MyApplication",
+    "mainAbility": "com.huawei.codelab.MainAbility",
+    "deviceType": [
+      "phone",
+      "tablet"
+    ],
+    "distro": {
+      "deliveryWithInstall": true,
+      "moduleName": "entry",
+      "moduleType": "entry",
+      "installationFree": false
+    },
+    "abilities": [
+      {
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ],
+        "orientation": "unspecified",
+        "name": "com.huawei.codelab.MainAbility",
+        "icon": "$media:icon",
+        "description": "$string:mainability_description",
+        "label": "$string:entry_MainAbility",
+        "type": "page",
+        "launchType": "standard"
+      },
+      {
+        "orientation": "unspecified",
+        "name": "com.huawei.codelab.RightAbility",
+        "icon": "$media:icon",
+        "description": "$string:rightability_description",
+        "label": "$string:entry_RightAbility",
+        "type": "page",
+        "launchType": "standard"
+      }
+    ],
+    "metaData": {
+      "customizeData": [
+        {
+          "name": "EasyGoClient",
+          "value": "true"
+        }
+      ]
+    }
+  }
+}

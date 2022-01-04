@@ -16,9 +16,9 @@ public class MyApplication extends AbilityPackage {
         LogUtils.info("onInitialize onInitialize");
         // 华为账号登录
         HmsBridge.getInstance().initBridge(this);
-        // 蓝牙控制JAVA FA注册
+        // 蓝牙控制Java FA注册
         BleOptionAbility.getInstance().register(this);
-        // 公用JAVA FA注册
+        // 公用Java FA注册
         CommonOperatorAbility.register(this);
     }
 

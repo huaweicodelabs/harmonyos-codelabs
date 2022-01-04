@@ -28,7 +28,6 @@ import com.huawei.cookbooks.view.HomeLayoutManager;
 import ohos.aafwk.ability.AbilitySlice;
 import ohos.aafwk.content.Intent;
 import ohos.agp.colors.RgbColor;
-import ohos.agp.components.AbsButton;
 import ohos.agp.components.Button;
 import ohos.agp.components.ComponentContainer;
 import ohos.agp.components.ComponentState;
@@ -45,7 +44,6 @@ import ohos.data.distributed.common.KvManagerConfig;
 import ohos.data.distributed.common.KvStoreException;
 import ohos.data.distributed.common.KvStoreType;
 import ohos.data.distributed.common.Options;
-import ohos.data.distributed.common.SyncCallback;
 import ohos.data.distributed.common.SyncMode;
 import ohos.data.distributed.device.DeviceFilterStrategy;
 import ohos.data.distributed.device.DeviceInfo;
@@ -101,10 +99,6 @@ public class HealthSlice extends AbilitySlice {
     private static final int OFF_COLOR = 0xFF808080;
 
     private static final String DOT = ".";
-
-    private HomeLayoutManager manager;
-
-    private ComponentContainer rootLayout;
 
     private KvManager kvManager;
 
@@ -184,13 +178,11 @@ public class HealthSlice extends AbilitySlice {
     @Bind(ResourceTable.Id_btn_switch)
     private Switch sw;
 
-    private List<String> deviceIdList = new ArrayList<>(0);
+    private final List<String> deviceIdList = new ArrayList<>(0);
 
-    private List<Integer> rateList = new ArrayList<>(0);
+    private final List<Integer> rateList = new ArrayList<>(0);
 
-    private List<Integer> stepList = new ArrayList<>(0);
-
-    private String regex = "-->";
+    private static final String regex = "-->";
 
     private MyEventHandler myHandler;
 
@@ -199,8 +191,8 @@ public class HealthSlice extends AbilitySlice {
     @Override
     public void onStart(Intent intent) {
         super.onStart(intent);
-        manager = new HomeLayoutManager(this);
-        rootLayout = manager.initSliceLayout();
+        HomeLayoutManager manager = new HomeLayoutManager(this);
+        ComponentContainer rootLayout = manager.initSliceLayout();
         super.setUIContent(rootLayout);
         initViewAnnotation();
         initListener();
@@ -237,23 +229,16 @@ public class HealthSlice extends AbilitySlice {
 
     private void initListener() {
         syncData.setClickedListener(
-            va -> {
-                syncData(singleKvStore);
-            });
+            va -> syncData(singleKvStore));
         syncPhoneData.setClickedListener(
-            va -> {
-                syncData(singleKvStore2);
-            });
-        sw.setCheckedStateChangedListener(new AbsButton.CheckedStateChangedListener() {
-            // 回调处理Switch状态改变事件
-            @Override
-            public void onCheckedChanged(AbsButton button, boolean isChecked) {
-                if (isChecked) {
-                    timer = new Timer();
-                    initMyHandler();
-                } else {
-                    timer.cancel();
-                }
+            va -> syncData(singleKvStore2));
+        // 回调处理Switch状态改变事件
+        sw.setCheckedStateChangedListener((button, isChecked) -> {
+            if (isChecked) {
+                timer = new Timer();
+                initMyHandler();
+            } else {
+                timer.cancel();
             }
         });
     }
@@ -302,19 +287,11 @@ public class HealthSlice extends AbilitySlice {
 
     private void doSync(String message, SingleKvStore kvStore) {
         kvStore.registerSyncCallback(
-                new SyncCallback() {
-                    @Override
-                    public void syncCompleted(Map<String, Integer> map) {
-                        getUITaskDispatcher()
-                                .asyncDispatch(
-                                        new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                showTip(message);
-                                            }
-                                        });
-                        kvStore.unRegisterSyncCallback();
-                    }
+                map -> {
+                    getUITaskDispatcher()
+                            .asyncDispatch(
+                                    () -> showTip(message));
+                    kvStore.unRegisterSyncCallback();
                 });
         try {
             LogUtils.info(TAG, "Start to get data");
@@ -327,12 +304,12 @@ public class HealthSlice extends AbilitySlice {
     private void renderingData(SingleKvStore kvStore) {
         if (kvStore != null) {
             List<Entry> entries = kvStore.getEntries("");
-            if (entries.size() == 0 || entries.isEmpty() || entries.equals(null)) {
+            if (entries.size() != 0) {
+                dealEntries(entries, kvStore);
+            } else {
                 String message = "未找到数据";
                 showTip(message);
-                return;
             }
-            dealEntries(entries, kvStore);
         }
     }
 
@@ -354,8 +331,6 @@ public class HealthSlice extends AbilitySlice {
             }
         } else if (key.contains(KeyEnum.RATE.getValue())) {
             rateList.add(Integer.valueOf(watchEntity.getData()));
-        } else {
-            stepList.add(Integer.valueOf(watchEntity.getData()));
         }
     }
 
@@ -438,21 +413,16 @@ public class HealthSlice extends AbilitySlice {
     }
 
     private void showTip(String message) {
-        myHandler.postTask(new Runnable() {
-            @Override
-            public void run() {
-                new ToastDialog(getContext())
-                        .setAlignment(LayoutAlignment.TOP)
-                        .setText(message)
-                        .setDuration(SHOW_TIME)
-                        .setSize(DIALOG_SIZE_WIDTH, DIALOG_SIZE_HEIGHT)
-                        .show();
-            }
-        });
+        myHandler.postTask(() -> new ToastDialog(getContext())
+                .setAlignment(LayoutAlignment.TOP)
+                .setText(message)
+                .setDuration(SHOW_TIME)
+                .setSize(DIALOG_SIZE_WIDTH, DIALOG_SIZE_HEIGHT)
+                .show());
     }
 
     /**
-     * myenven handler
+     * my event handler
      *
      * @since 2021-06-18
      */
@@ -468,21 +438,12 @@ public class HealthSlice extends AbilitySlice {
                 return;
             }
             int eventId = event.eventId;
-            switch (eventId) {
-                case EVENT_MESSAGE_NORMAL:
-                    timer.schedule(new TimerTask() {
-                        public void run() {
-                            getUITaskDispatcher().syncDispatch(new Runnable() {
-                                @Override
-                                public void run() {
-                                    syncData(singleKvStore);
-                                }
-                            });
-                        }
-                    }, 0, INTERVAL);
-                    break;
-                default:
-                    break;
+            if (eventId == EVENT_MESSAGE_NORMAL) {
+                timer.schedule(new TimerTask() {
+                    public void run() {
+                        getUITaskDispatcher().syncDispatch(() -> syncData(singleKvStore));
+                    }
+                }, 0, INTERVAL);
             }
         }
     }

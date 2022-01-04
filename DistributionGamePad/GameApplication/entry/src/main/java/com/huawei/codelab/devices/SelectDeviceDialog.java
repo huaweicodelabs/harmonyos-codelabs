@@ -44,8 +44,8 @@ public class SelectDeviceDialog {
     private CommonDialog commonDialog;
     private DevicesListAdapter devicesListAdapter;
     private List<DeviceInfo> allDevices;
-    private AbilitySlice abilitySlice;
-    private SelectResultListener listener;
+    private final AbilitySlice abilitySlice;
+    private final SelectResultListener listener;
 
     /**
      * Select Result Listener

@@ -87,6 +87,7 @@ public class ViewProvider {
      * @param <T> generic
      * @return view
      */
+    @SuppressWarnings("unchecked")
     public <T extends Component> T getView(int viewId) {
         Component view = views.get(viewId);
         if (view == null) {

@@ -152,6 +152,11 @@ public class SimplePlayerAbilitySlice extends AbilitySlice {
      */
     private class MyRemoteControllerListener implements RemoteController.RemoteControllerListener {
         @Override
+        public void controllerShow() {
+
+        }
+
+        @Override
         public void controllerDismiss() {
             int progress = 0;
             try {

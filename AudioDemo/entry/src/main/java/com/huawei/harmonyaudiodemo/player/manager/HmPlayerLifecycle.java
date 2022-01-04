@@ -27,7 +27,7 @@ import com.huawei.harmonyaudiodemo.player.constant.PlayerStatu;
  */
 public class HmPlayerLifecycle implements ImplLifecycle {
     private static final String TAG = HmPlayerLifecycle.class.getSimpleName();
-    private ImplHmPlayer mPlayer;
+    private final ImplHmPlayer mPlayer;
 
     /**
      * HmPlayerLifecycle

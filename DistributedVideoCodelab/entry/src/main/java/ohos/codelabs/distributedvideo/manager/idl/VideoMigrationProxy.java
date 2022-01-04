@@ -23,7 +23,7 @@ import ohos.rpc.RemoteException;
 /**
  * the main page
  *
- * @since 2021-09-07
+ * @since 2020-12-04
  *
  */
 public class VideoMigrationProxy implements ImplVideoMigration {
@@ -31,6 +31,8 @@ public class VideoMigrationProxy implements ImplVideoMigration {
     private static final int COMMAND_FLY_IN = IRemoteObject.MIN_TRANSACTION_ID;
     private static final int COMMAND_PLAY_CONTROL = IRemoteObject.MIN_TRANSACTION_ID + 1;
     private static final int COMMAND_FLY_OUT = IRemoteObject.MIN_TRANSACTION_ID + 2;
+    private static final int ERR_OK = 0;
+    private static final String TAG = "VideoMigrationProxy";
 
     private final IRemoteObject remote;
 

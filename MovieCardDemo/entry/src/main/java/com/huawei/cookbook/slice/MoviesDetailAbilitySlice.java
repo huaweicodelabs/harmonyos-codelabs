@@ -31,8 +31,12 @@ import ohos.agp.components.DependentLayout;
 import ohos.agp.components.Image;
 import ohos.agp.components.Text;
 import ohos.agp.window.dialog.CommonDialog;
+import ohos.global.resource.NotExistException;
+import ohos.global.resource.ResourceManager;
+import ohos.global.resource.WrongTypeException;
 import ohos.utils.zson.ZSONObject;
 
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.List;
 
@@ -118,7 +122,15 @@ public class MoviesDetailAbilitySlice extends AbilitySlice {
     private void initView() {
         initViewAnnotation();
         moviesRating.setText(rating);
-        moviesCommentCount.setText("电影类型: " + type);
+        try {
+            moviesCommentCount.setText(getResourceManager().getElement(ResourceTable.String_movie_type).getString()+": " + type);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (NotExistException e) {
+            e.printStackTrace();
+        } catch (WrongTypeException e) {
+            e.printStackTrace();
+        }
         moviesTitle.setText(title);
         // CommonUtils.getPixelMapFromPath(this, image, WIDTH, HIGHT).get()
         moviesImage.setPixelMap(image.intValue());
@@ -131,12 +143,29 @@ public class MoviesDetailAbilitySlice extends AbilitySlice {
     }
 
     private void toggleExpansionStatus() {
+        ResourceManager resourceManager = getResourceManager();
         mIsExpansion = !mIsExpansion;
         if (mIsExpansion) {
-            mExpansionButton.setText("收起");
+            try {
+                mExpansionButton.setText(resourceManager.getElement(ResourceTable.String_tucked).getString());
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (NotExistException e) {
+                e.printStackTrace();
+            } catch (WrongTypeException e) {
+                e.printStackTrace();
+            }
             moviesIntroduction.setMaxTextLines(Integer.MAX_VALUE);
         } else {
-            mExpansionButton.setText("全文");
+            try {
+                mExpansionButton.setText(resourceManager.getElement(ResourceTable.String_full_text).getString());
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (NotExistException e) {
+                e.printStackTrace();
+            } catch (WrongTypeException e) {
+                e.printStackTrace();
+            }
             moviesIntroduction.setMaxTextLines(MMAXLINE);
         }
     }

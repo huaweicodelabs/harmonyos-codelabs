@@ -19,7 +19,7 @@
       "deliveryWithInstall": true,
       "moduleName": "tablelayout",
       "moduleType": "feature",
-      "installationFree": false
+      "installationFree": true
     },
     "abilities": [
       {

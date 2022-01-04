@@ -12,15 +12,16 @@
         ohos:width="match_parent">
 
         <Image
-            ohos:left_margin="10vp"
+            ohos:start_margin="10vp"
+            ohos:end_margin="0vp"
             ohos:image_src="$media:device"
             ohos:height="match_content"
             ohos:width="match_content" />
 
         <DirectionalLayout
             ohos:alignment="vertical_center"
-            ohos:right_margin="10vp"
-            ohos:left_margin="10vp"
+            ohos:end_margin="10vp"
+            ohos:start_margin="10vp"
             ohos:height="match_parent"
             ohos:orientation="vertical"
             ohos:width="match_content">

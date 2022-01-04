@@ -1,22 +1,26 @@
-<DependentLayout xmlns:ohos="http://schemas.huawei.com/res/ohos"
-				 ohos:id="$+id:video_advertisement_root"
-				 ohos:width="match_parent"
-				 ohos:height="175vp"
-				 ohos:orientation="vertical">
-	<Image
-			ohos:id="$+id:video_advertisement_poster"
-			ohos:width="match_parent"
-			ohos:height="175vp"
-			ohos:scale_mode="stretch"/>
-	<Text
-			ohos:id="$+id:video_advertisement_title"
-			ohos:text_size="16fp"
-			ohos:text_color="#FFFFFFFF"
-			ohos:left_margin="8vp"
-			ohos:bottom_margin="14vp"
-			ohos:text_alignment="left"
-			ohos:align_parent_bottom="true"
-			ohos:text="$string:ghost"
-			ohos:width="match_parent"
-			ohos:height="match_content" />
+<DependentLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:id="$+id:video_advertisement_root"
+    ohos:height="175vp"
+    ohos:width="match_parent"
+    ohos:orientation="vertical">
+
+    <Image
+        ohos:id="$+id:video_advertisement_poster"
+        ohos:height="175vp"
+        ohos:width="match_parent"
+        ohos:scale_mode="stretch"/>
+
+    <Text
+        ohos:id="$+id:video_advertisement_title"
+        ohos:height="match_content"
+        ohos:width="match_parent"
+        ohos:align_parent_bottom="true"
+        ohos:bottom_margin="14vp"
+        ohos:end_margin="8vp"
+        ohos:start_margin="8vp"
+        ohos:text="$string:ghost"
+        ohos:text_alignment="left"
+        ohos:text_color="#FFFFFFFF"
+        ohos:text_size="16fp"/>
 </DependentLayout>

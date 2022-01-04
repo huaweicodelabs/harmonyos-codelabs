@@ -5,31 +5,31 @@ apply plugin: 'com.huawei.ohos.app'
 ohos {
     compileSdkVersion 7
     defaultConfig {
-        compatibleSdkVersion 6
+        compatibleSdkVersion 7
     }
 }
 
 buildscript {
     repositories {
         maven {
-            url 'http://repo.ark.tools.huawei.com/artifactory/maven-public/'
+            url 'https://repo.huaweicloud.com/repository/maven/'
         }
         maven {
-            url 'http://mirrors.tools.huawei.com/maven/'
+            url 'https://developer.huawei.com/repo/'
         }
     }
     dependencies {
-        classpath 'com.huawei.ohos:hap:3.0.3.1'
+        classpath 'com.huawei.ohos:hap:3.0.3.4'
     }
 }
 
 allprojects {
     repositories {
         maven {
-            url 'http://repo.ark.tools.huawei.com/artifactory/maven-public/'
+            url 'https://repo.huaweicloud.com/repository/maven/'
         }
         maven {
-            url 'http://mirrors.tools.huawei.com/maven/'
+            url 'https://developer.huawei.com/repo/'
         }
     }
 }

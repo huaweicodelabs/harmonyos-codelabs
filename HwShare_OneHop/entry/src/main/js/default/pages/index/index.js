@@ -56,7 +56,7 @@ export default {
   },
   async checkRegisterProxy(callbackJson) {
     Log.info('checkRegisterProxy:' + JSON.stringify(callbackJson));
-    if (callbackJson.data.flag === 1) { // 已经注册,启动到控住
+    if (callbackJson.data.flag === 1) { // 已经注册,启动到控制
       commonOperator.startAbility(config.bundleName, config.ControlAbility, callbackJson => {
         Log.info('app terminate');
         app.terminate();
@@ -135,7 +135,6 @@ export default {
   },
   async onAdapeterAvailable() {
     Log.info('onAdapeterAvailable scanRequired=' + config.scanRequired);
-    if (config.scanRequired) {
       if (await this.isBleConnect()) {
         Log.info('start......');
         commonOperator.startAbility(config.bundleName, config.ControlAbility, callbackJson => {
@@ -150,9 +149,6 @@ export default {
       } else {
         this.scanDevice();
       }
-    } else {
-      this.connectToDevice();
-    }
   },
   async isBleConnect() {
     const result = await bleOperator.isBleConnected();

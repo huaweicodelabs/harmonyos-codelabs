@@ -3,5 +3,6 @@
        ohos:shape="rectangle">
     <solid
         ohos:color="#E3F8F9"/>
-    <corners ohos:radius="5vp"></corners>
+
+    <corners ohos:radius="5vp"/>
 </shape>

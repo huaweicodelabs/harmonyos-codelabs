@@ -32,7 +32,6 @@ export default {
   },
   onInit() {
     Log.info('onInit');
-
     this.$watch('state', 'onStateChange');
   },
   onStateChange() {

@@ -42,9 +42,9 @@ import java.util.Optional;
  */
 public class DevicesListAdapter extends BaseItemProvider {
     private static final int FOUR = 4;
-    private List<DeviceInfo> deviceInfoList;
-    private Context context;
-    private List<Integer> selectPositions = new ArrayList<>(0);
+    private final List<DeviceInfo> deviceInfoList;
+    private final Context context;
+    private final List<Integer> selectPositions = new ArrayList<>(0);
 
     /**
      * 设备列表适配器 构造函数
@@ -77,14 +77,11 @@ public class DevicesListAdapter extends BaseItemProvider {
     public Component getComponent(int position, Component component, ComponentContainer componentContainer) {
         ViewHolder viewHolder = null;
         Component mComponent = component;
-        AbsButton.CheckedStateChangedListener changedListener = new AbsButton.CheckedStateChangedListener() {
-            @Override
-            public void onCheckedChanged(AbsButton absButton, boolean isSelected) {
-                if (isSelected) {
-                    selectPositions.add(new Integer(position));
-                } else {
-                    selectPositions.remove(new Integer(position));
-                }
+        AbsButton.CheckedStateChangedListener changedListener = (absButton, isSelected) -> {
+            if (isSelected) {
+                selectPositions.add(position);
+            } else {
+                selectPositions.remove(new Integer(position));
             }
         };
         if (mComponent == null) {
@@ -92,7 +89,7 @@ public class DevicesListAdapter extends BaseItemProvider {
             viewHolder = new ViewHolder();
             if (mComponent.findComponentById(ResourceTable.Id_device_name) instanceof Checkbox) {
                 viewHolder.devicesName = (Checkbox) mComponent.findComponentById(ResourceTable.Id_device_name);
-                viewHolder.devicesName.setButtonElement(viewHolder.getCheckElement());
+                viewHolder.devicesName.setButtonElement(ViewHolder.getCheckElement());
                 viewHolder.devicesName.setCheckedStateChangedListener(changedListener);
             }
             if (mComponent.findComponentById(ResourceTable.Id_device_id) instanceof Text) {

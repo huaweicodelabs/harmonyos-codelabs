@@ -54,7 +54,7 @@ public class SimplePlayerController extends ComponentContainer implements HmPlay
     private static final int CONTROLLER_HIDE_DLEY_TIME = 5000;
     private static final int PROGRESS_RUNNING_TIME = 1000;
     private boolean mIsDragMode = false;
-    private Context mContext;
+    private final Context mContext;
     private ImplHmPlayer mPlayer;
     private DependentLayout topLayout;
     private DirectionalLayout bottomLayout;
@@ -66,7 +66,7 @@ public class SimplePlayerController extends ComponentContainer implements HmPlay
     private Text mCurrentTime;
     private Text mTotleTime;
     private ControllerHandler mHandler;
-    private StatuChangeListener mStatuChangeListener = new StatuChangeListener() {
+    private final StatuChangeListener mStatuChangeListener = new StatuChangeListener() {
         @Override
         public void statuCallback(PlayerStatu statu) {
             mContext.getUITaskDispatcher().asyncDispatch(() -> {

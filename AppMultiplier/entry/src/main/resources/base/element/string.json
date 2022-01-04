@@ -1,0 +1,80 @@
+{
+  "string": [
+    {
+      "name": "entry_MainAbility",
+      "value": "entry_MainAbility"
+    },
+    {
+      "name": "mainability_description",
+      "value": "Java_Empty Ability"
+    },
+    {
+      "name": "mainability_HelloWorld",
+      "value": "Hello World"
+    },
+    {
+      "name": "rightability_description",
+      "value": "Java_Empty Ability"
+    },
+    {
+      "name": "rightability_HelloWorld",
+      "value": "Hello World"
+    },
+    {
+      "name": "entry_RightAbility",
+      "value": "entry_RightAbility"
+    },
+    {
+      "name": "rightability_crop",
+      "value": "裁剪"
+    },
+    {
+      "name": "rightability_scale",
+      "value": "缩放"
+    },
+    {
+      "name": "rightability_mirror",
+      "value": "镜像"
+    },
+    {
+      "name": "rightability_save",
+      "value": "保存"
+    },
+    {
+      "name": "rightability_select",
+      "value": "连接"
+    },
+    {
+      "name": "rightability_cir",
+      "value": "流转"
+    },
+    {
+      "name": "select_add",
+      "value": "新增"
+    },
+    {
+      "name": "select_update",
+      "value": "替换"
+    },
+    {
+      "name": "select_cancel",
+      "value": "取消"
+    },
+    {
+      "name": "select_confirm",
+      "value": "确定"
+    },
+    {
+      "name": "toast_error",
+      "value": "显示错误"
+    },
+    {
+      "name": "permreason_device",
+      "value": "show device"
+    },
+    {
+      "name": "permreason_file",
+      "value": "remote file"
+    }
+  ]
+}

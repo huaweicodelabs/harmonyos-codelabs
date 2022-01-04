@@ -87,12 +87,14 @@ export default {
   },
   checkLoginStatus() {
     Log.info(JS_TAG + 'Check login status start');
+    // 静默登录校验
     HMSAccount.silentSignIn(constants.loginPermissions, config.scopeList)
       .then(this.processLogin)
       .catch(this.processLoginError);
   },
   processLogin(loginResult) {
     Log.info(JS_TAG + 'Sign in success, result:' + JSON.stringify(loginResult));
+    // 校验授权
     HMSAccount.containScopes(loginResult.data, config.scopeList)
       .then((resultAuth) => {
         Log.info(JS_TAG + 'Authentication verification success! All scopes granted: ' + JSON

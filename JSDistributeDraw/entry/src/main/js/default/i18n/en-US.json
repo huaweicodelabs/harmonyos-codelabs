@@ -1,0 +1,12 @@
+{
+  "strings": {
+    "local": "Local",
+    "remote": "Remote",
+    "go_back": "Go back",
+    "select_device": "Select device",
+    "yes": "Yes",
+    "cancels": "Cancels"
+  },
+  "Files": {
+  }
+}

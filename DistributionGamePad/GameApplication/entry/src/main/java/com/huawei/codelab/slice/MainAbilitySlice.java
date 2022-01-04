@@ -46,8 +46,7 @@ import java.util.List;
  */
 public class MainAbilitySlice extends AbilitySlice {
     private static final HiLogLabel TAG = new HiLogLabel(HiLog.LOG_APP, 0xD001400, "mainAbilitySlice");
-    private static List<Handle> handles = new ArrayList<>(0); // 保存手柄连接信息
-    private SelectDeviceDialog dialog;
+    private static final List<Handle> handles = new ArrayList<>(0); // 保存手柄连接信息
 
     @Override
     public void onStart(Intent intent) {
@@ -56,7 +55,7 @@ public class MainAbilitySlice extends AbilitySlice {
 
         // 设备弹出框
         if (handles == null || handles.size() == 0) { // 清空连接信息
-            dialog = showDialog();
+            SelectDeviceDialog dialog = showDialog();
             dialog.initDialog().show();
             startService();
         }
@@ -84,7 +83,7 @@ public class MainAbilitySlice extends AbilitySlice {
                     intent.setOperation(operation);
                     startAbility(intent);
                     // 保存手柄连接信息
-                    boolean isConn = connectRemotePa(deviceInfo.getDeviceId(), 1, handleInfo);
+                    boolean isConn = connectRemotePa(deviceInfo.getDeviceId(), handleInfo);
                     handleInfo.setDeviceId(deviceInfo.getDeviceId());
                     handleInfo.setConn(isConn);
                     handles.add(handleInfo);
@@ -115,7 +114,7 @@ public class MainAbilitySlice extends AbilitySlice {
         startAbility(intent);
     }
 
-    private boolean connectRemotePa(String deviceId, int requestType, Handle handleInfo) {
+    private boolean connectRemotePa(String deviceId, Handle handleInfo) {
         Intent connectPaIntent = new Intent();
         Operation operation = new Intent.OperationBuilder()
                 .withDeviceId(deviceId)
@@ -140,8 +139,7 @@ public class MainAbilitySlice extends AbilitySlice {
             }
         };
 
-        boolean ret = connectAbility(connectPaIntent, conn);
-        return ret;
+        return connectAbility(connectPaIntent, conn);
     }
 
     /**
@@ -153,13 +151,9 @@ public class MainAbilitySlice extends AbilitySlice {
      */
     public static void returnScore(int score, String deviceId) {
         for (Handle handleInfo: handles) {
-            try {
-                if (handleInfo.getDeviceId().equals(deviceId) && handleInfo.isConn() && handleInfo.getProxy() != null) {
-                    handleInfo.getProxy().senDataToRemote(1, score);
-                    break;
-                }
-            } catch (RemoteException e) {
-                HiLog.error(TAG, handleInfo.getDeviceId() + "::GameServiceAbility::returnScore faild");
+            if (handleInfo.getDeviceId().equals(deviceId) && handleInfo.isConn() && handleInfo.getProxy() != null) {
+                handleInfo.getProxy().senDataToRemote(score);
+                break;
             }
         }
     }
@@ -170,10 +164,7 @@ public class MainAbilitySlice extends AbilitySlice {
      * @since 2021-03-15
      *
      */
-    public class GameRemoteProxy implements IRemoteBroker {
-        private static final int ERR_OK = 0;
-        private static final int REQUEST_START_ABILITY = 1;
-        private static final int REQUEST_SEND_DATA = 2;
+    public static class GameRemoteProxy implements IRemoteBroker {
         private final IRemoteObject remote;
 
         GameRemoteProxy(IRemoteObject remote) {
@@ -185,13 +176,13 @@ public class MainAbilitySlice extends AbilitySlice {
             return remote;
         }
 
-        private void senDataToRemote(int requestType, int score) throws RemoteException {
+        private void senDataToRemote(int score) {
             MessageParcel data = MessageParcel.obtain();
             MessageParcel reply = MessageParcel.obtain();
             try {
                 data.writeInt(score);
                 MessageOption option = new MessageOption(MessageOption.TF_SYNC);
-                remote.sendRequest(requestType, data, reply, option);
+                remote.sendRequest(1, data, reply, option);
             } catch (RemoteException e) {
                 HiLog.error(TAG, "GameRemoteProxy::senDataToRemote faild");
             } finally {

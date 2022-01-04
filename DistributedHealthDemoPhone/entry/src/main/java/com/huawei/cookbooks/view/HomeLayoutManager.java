@@ -44,7 +44,7 @@ public class HomeLayoutManager {
     private static final int OTHER_TAB_ID = 2;
     private static final int TABBAR_TEXT_SIZE = 30 * 3;
     private static final int TABBAR_TOP_PADDING = 8 * 3;
-    private AbilitySlice slice;
+    private final AbilitySlice slice;
     private Map<Integer, AbstractTabView> tabViews;
     private List<AbstractTabView> tabViewList;
     private TabList.Tab defaultSelectedTab;

@@ -43,32 +43,11 @@ public class ScreenUtils {
         DisplayManager displayManager = DisplayManager.getInstance();
         Optional<Display> optDisplay = displayManager.getDefaultDisplay(context);
         Point point = new Point(0, 0);
-        if (!optDisplay.isPresent()) {
-            return (int) point.position[1];
-        } else {
+        if (optDisplay.isPresent()) {
             Display display = optDisplay.get();
             display.getSize(point);
-            return (int) point.position[1];
         }
-    }
-
-    /**
-     * get screen width
-     *
-     * @param context context
-     * @return screen width
-     */
-    public static int getScreenWidth(Context context) {
-        DisplayManager displayManager = DisplayManager.getInstance();
-        Optional<Display> optDisplay = displayManager.getDefaultDisplay(context);
-        Point point = new Point(0, 0);
-        if (!optDisplay.isPresent()) {
-            return (int) point.position[0];
-        } else {
-            Display display = optDisplay.get();
-            display.getSize(point);
-            return (int) point.position[0];
-        }
+        return (int) point.position[1];
     }
 
     /**

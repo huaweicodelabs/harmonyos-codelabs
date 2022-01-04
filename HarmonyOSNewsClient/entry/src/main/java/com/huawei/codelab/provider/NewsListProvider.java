@@ -35,8 +35,8 @@ import java.util.List;
  * @since 2020-12-04
  */
 public class NewsListProvider extends BaseItemProvider {
-    private List<NewsInfo> newsInfoList;
-    private Context context;
+    private final List<NewsInfo> newsInfoList;
+    private final Context context;
 
     /**
      * constructor function
