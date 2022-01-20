@@ -1,9 +1,10 @@
 apply plugin: 'com.huawei.ohos.hap'
 apply plugin: 'com.huawei.ohos.decctest'
+//For instructions on signature configuration, see https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ide_debug_device-0000001053822404#section1112183053510
 ohos {
-    compileSdkVersion 5
+    compileSdkVersion 7
     defaultConfig {
-        compatibleSdkVersion 5
+        compatibleSdkVersion 7
     }
     buildTypes {
         release {
@@ -13,24 +14,13 @@ ohos {
             }
         }
     }
-    signingConfigs {
-        debug {
-            storeFile file('D:\\sign\\phone.p12')
-            storePassword '0000001DFD4F958C1AE34A8496C2A34CAF604D3867D6DED173979A61D68700A11A64FF9EE2D1A5B55A4B54DB6D'
-            keyAlias = 'phone'
-            keyPassword '0000001D7D43C2F5B3F3D98747032F3B4377811CE51E7E9DE535440657268221C77AB3ED0B1511EE1FE913F001'
-            signAlg = 'SHA256withECDSA'
-            profile file('D:\\sign\\KaRaoKePhoneDebug.p7b')
-            certpath file('D:\\sign\\phone.cer')
-        }
-    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar', '*.har'])
-    testImplementation 'junit:junit:4.13'
-    ohosTestImplementation 'com.huawei.ohos.testkit:runner:1.0.0.100'
+    testImplementation 'junit:junit:4.13.1'
+    ohosTestImplementation 'com.huawei.ohos.testkit:runner:2.0.0.200'
 }
 decc {
-    supportType = ['html','xml']
+    supportType = ['html', 'xml']
 }

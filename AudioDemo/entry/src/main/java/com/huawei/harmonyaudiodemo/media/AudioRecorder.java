@@ -38,6 +38,9 @@ import java.io.IOException;
  */
 public class AudioRecorder {
     private static final String TAG = AudioRecorder.class.getSimpleName();
+    private static final int HALF_BUFFER = 2;
+    private static final int OXFF = 0xff;
+    private static final int NUMBER_8 = 8;
     private AudioCapturer audioCapturer;
     private AudioStreamInfo audioStreamInfo;
     private final EventHandler audioRecorderHandler;
@@ -86,7 +89,8 @@ public class AudioRecorder {
             int length = audioCapturer.read(buffers, 0, bufferSize);
             while (length != Const.NUMBER_NEGATIVE_1) {
                 if (audioRecordListener != null) {
-                    audioRecordListener.onGetRecordBuffer(buffers, length);
+                    int inputSize = getInputVolume(buffers, length);
+                    audioRecordListener.onGetRecordBuffer(buffers, length, inputSize);
                 }
                 if (dos != null) {
                     dos.write(buffers);
@@ -104,6 +108,23 @@ public class AudioRecorder {
                 }
             }
         }
+    }
+
+    private int getInputVolume(byte[] buffer, int bufferLength) {
+        int mShortArrayLenght = bufferLength / HALF_BUFFER;
+        short[] retVals = new short[mShortArrayLenght];
+        for (int i = 0; i < mShortArrayLenght; i++) {
+            retVals[i] = (short) ((buffer[i * HALF_BUFFER] & OXFF) | (buffer[i * HALF_BUFFER + 1] & OXFF) << NUMBER_8);
+        }
+        int max = 0;
+        if (bufferLength > 0) {
+            for (int i = 0; i < mShortArrayLenght; i++) {
+                if (Math.abs(retVals[i]) > max) {
+                    max = Math.abs(retVals[i]);
+                }
+            }
+        }
+        return max;
     }
 
     /**

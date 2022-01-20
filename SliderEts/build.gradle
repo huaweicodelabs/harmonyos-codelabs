@@ -16,8 +16,8 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'com.huawei.ohos:hap:3.0.1.4'
-        classpath 'com.huawei.ohos:decctest:3.0.1.0'
+        classpath 'com.huawei.ohos:hap:3.0.5.2'
+        classpath 'com.huawei.ohos:decctest:1.2.7.2'
     }
 }
 

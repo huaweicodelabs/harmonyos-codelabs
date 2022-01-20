@@ -1,9 +1,10 @@
 /* 页面整体纵向布局 */
 .container {
-    flex-direction: column;/*    justify-content: center;*/
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    padding-top: 30px;
-
 }
 
 /* 平均分等级样式 */
@@ -21,7 +22,7 @@
     font-size: 20px;
     width: 200px;
     color: #5A554D;
-    margin-top: 80px;
+    margin-top: 50px;
     font-weight: 900
 }
 

@@ -26,6 +26,7 @@ public interface AudioRecordListener {
      *
      * @param length length
      * @param buffer buffer
+     * @param inputSize inputSize
      */
-    void onGetRecordBuffer(byte[] buffer, int length);
+    void onGetRecordBuffer(byte[] buffer, int length,int inputSize);
 }

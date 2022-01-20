@@ -1,8 +1,8 @@
 apply plugin: 'com.huawei.ohos.hap'
 ohos {
-    compileSdkVersion 5
+    compileSdkVersion 6
     defaultConfig {
-        compatibleSdkVersion 5
+        compatibleSdkVersion 6
     }
     buildTypes {
         release {
@@ -18,4 +18,3 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar', '*.har'])
     testCompile 'junit:junit:4.12'
 }
-

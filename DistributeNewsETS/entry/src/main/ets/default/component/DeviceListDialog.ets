@@ -46,7 +46,6 @@ export struct DeviceListDialog {
                 .fontSize(18)
                 .layoutWeight(1)
 
-              // TODO:红色、样式
               Toggle({ type: ToggleType.Checkbox })
                 .onChange((isOn: boolean) => {
                   if (isOn) {

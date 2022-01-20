@@ -342,7 +342,7 @@
 }
 
 .dialog-divider {
-    stroke-width: 3;
+    stroke-width: 3px;
     height: 25px;
     margin: 0px 10px;
 }

@@ -14,6 +14,7 @@
  */
 
 .container {
+    width: 100%;
     background-color: #F8FCF5;
     flex-direction: column;
     justify-content: center;

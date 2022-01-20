@@ -80,6 +80,7 @@
                     ohos:text_size="10fp"
                     ohos:text_weight="400"
                     ohos:top_margin="2vp"
+                    ohos:max_text_lines="1"
                     />
             </DirectionalLayout>
         </DependentLayout>
@@ -119,6 +120,7 @@
                     ohos:text_size="10fp"
                     ohos:text_weight="400"
                     ohos:top_margin="2vp"
+                    ohos:max_text_lines="1"
                     />
             </DirectionalLayout>
         </DependentLayout>

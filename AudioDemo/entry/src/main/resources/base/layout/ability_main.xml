@@ -11,10 +11,10 @@
         ohos:height="50vp"
         ohos:width="150vp"
         ohos:background_element="$graphic:selector_ability_main"
-        ohos:start_padding="10vp"
         ohos:end_padding="10vp"
+        ohos:start_padding="10vp"
         ohos:text="$string:audio_play"
-        ohos:text_color="$color:blue"
+        ohos:text_color="$color:dark_grey"
         ohos:text_size="18vp"/>
 
     <Button
@@ -23,10 +23,10 @@
         ohos:width="150vp"
         ohos:background_element="$graphic:selector_ability_main"
         ohos:below="$id:sound_music_play_btn"
-        ohos:start_padding="10vp"
         ohos:end_padding="10vp"
+        ohos:start_padding="10vp"
         ohos:text="$string:short_play"
-        ohos:text_color="$color:blue"
+        ohos:text_color="$color:dark_grey"
         ohos:text_size="18vp"
         ohos:top_margin="10vp"/>
 
@@ -36,10 +36,10 @@
         ohos:width="150vp"
         ohos:background_element="$graphic:selector_ability_main"
         ohos:below="$id:sound_system_play_btn"
-        ohos:start_padding="10vp"
         ohos:end_padding="10vp"
+        ohos:start_padding="10vp"
         ohos:text="$string:audio_record"
-        ohos:text_color="$color:blue"
+        ohos:text_color="$color:dark_grey"
         ohos:text_size="18vp"
         ohos:top_margin="10vp"/>
 
@@ -49,10 +49,10 @@
         ohos:width="150vp"
         ohos:background_element="$graphic:selector_ability_main"
         ohos:below="$id:sound_record_btn"
-        ohos:start_padding="10vp"
         ohos:end_padding="10vp"
+        ohos:start_padding="10vp"
         ohos:text="$string:audio_setting"
-        ohos:text_color="$color:blue"
+        ohos:text_color="$color:dark_grey"
         ohos:text_size="18vp"
         ohos:top_margin="10vp"/>
 

@@ -39,7 +39,7 @@ public class PermissionBridge {
 
     private static OnPermissionStateListener onPermissionStateListener;
 
-    private static EventHandler handler = new EventHandler(EventRunner.current()) {
+    private static final EventHandler handler = new EventHandler(EventRunner.current()) {
         @Override
         protected void processEvent(InnerEvent event) {
             switch (event.eventId) {

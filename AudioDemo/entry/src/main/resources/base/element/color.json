@@ -1,6 +1,10 @@
 {
   "color": [
     {
+      "name": "light_red",
+      "value": "#fb4e44"
+    },
+    {
       "name": "red",
       "value": "#FF0000"
     },
@@ -11,6 +15,18 @@
     {
       "name": "white",
       "value": "#ffffff"
+    },
+    {
+      "name": "dark_grey",
+      "value": "#5c5c66"
+    },
+    {
+      "name": "half_transparent",
+      "value": "#44000000"
+    },
+    {
+      "name": "dark_transparent",
+      "value": "#88000000"
     }
   ]
 }

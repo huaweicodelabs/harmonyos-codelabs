@@ -38,7 +38,7 @@
             ]
           }
         ],
-        "orientation": "unspecified",
+        "orientation": "portrait",
         "name": "com.huawei.harmonyaudiodemo.MainAbility",
         "icon": "$media:icon",
         "description": "$string:mainability_description",

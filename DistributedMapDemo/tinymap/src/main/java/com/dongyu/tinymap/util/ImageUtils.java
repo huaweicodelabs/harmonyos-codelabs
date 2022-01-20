@@ -134,7 +134,7 @@ public class ImageUtils {
             options.desiredSize = new Size(TILE_LENGTH, TILE_LENGTH);
             pixelMap = source.createPixelmap(options);
             return pixelMap;
-        } catch (IOException exception) {
+        } catch (IOException | NullPointerException exception) {
             LogUtils.info(TAG, "getImagePixelMap:" + exception.getMessage());
         } finally {
             if (is != null) {

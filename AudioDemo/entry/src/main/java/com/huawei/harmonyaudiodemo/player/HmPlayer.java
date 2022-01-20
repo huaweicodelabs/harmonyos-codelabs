@@ -92,13 +92,7 @@ public class HmPlayer implements ImplHmPlayer {
             if (i1 == 0) {
                 switch (info) {
                     case Player.PLAYER_INFO_VIDEO_RENDERING_START:
-                        for (StatuChangeListener callback : statuChangeCallbacks) {
-                            mStatu = PlayerStatu.PLAY;
-                            callback.statuCallback(PlayerStatu.PLAY);
-                        }
-                        if (mBuilder.isPause) {
-                            pause();
-                        }
+                        prepareEnd();
                         break;
                     case Player.PLAYER_INFO_BUFFERING_START:
                         for (StatuChangeListener callback : statuChangeCallbacks) {
@@ -164,20 +158,24 @@ public class HmPlayer implements ImplHmPlayer {
         public void onMediaTimeIncontinuity(Player.MediaTimeInfo mediaTimeInfo) {
             LogUtil.info(TAG, "onMediaTimeIncontinuity is called");
             Player.StreamInfo[] streamInfos = mPlayer.getStreamInfo();
-            if(streamInfos!=null){
+            if (streamInfos != null) {
                 for (Player.StreamInfo streanInfo : streamInfos) {
                     int streamType = streanInfo.getStreamType();
                     if (streamType == Player.StreamInfo.MEDIA_STREAM_TYPE_AUDIO && mStatu == PlayerStatu.PREPARED) {
-                        for (StatuChangeListener callback : statuChangeCallbacks) {
-                            mStatu = PlayerStatu.PLAY;
-                            callback.statuCallback(PlayerStatu.PLAY);
-                        }
-                        if (mBuilder.isPause) {
-                            pause();
-                        }
+                        prepareEnd();
                     }
                 }
             }
+        }
+    }
+
+    private void prepareEnd() {
+        for (StatuChangeListener callback : statuChangeCallbacks) {
+            mStatu = PlayerStatu.PLAY;
+            callback.statuCallback(PlayerStatu.PLAY);
+        }
+        if (mBuilder.isPause) {
+            pause();
         }
     }
 

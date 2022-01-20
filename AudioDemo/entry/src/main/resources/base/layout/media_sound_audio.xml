@@ -1,76 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<DirectionalLayout
+<DependentLayout
     xmlns:ohos="http://schemas.huawei.com/res/ohos"
     ohos:height="match_parent"
     ohos:width="match_parent"
-    ohos:orientation="vertical">
-
-    <DirectionalLayout
-        ohos:height="match_content"
-        ohos:width="match_parent"
-        ohos:alignment="vertical_center"
-        ohos:bottom_margin="50vp"
-        ohos:left_margin="20vp"
-        ohos:orientation="horizontal"
-        ohos:top_margin="50vp">
-
-        <Text
-            ohos:id="$+id:real_time_text"
-            ohos:height="match_content"
-            ohos:width="match_content"
-            ohos:text="$string:play_real"
-            ohos:text_color="#000000"
-            ohos:text_size="14vp"/>
-
-        <Switch
-            ohos:id="$+id:real_time_switch"
-            ohos:height="20vp"
-            ohos:width="40vp"
-            ohos:text_state_off="$string:state_off"
-            ohos:text_state_on="$string:state_on"
-            ohos:thumb_element="$graphic:thumb"
-            ohos:track_element="$graphic:track"/>
-
-    </DirectionalLayout>
-
+    ohos:bottom_padding="50vp"
+    ohos:top_padding="50vp">
 
     <SlideDrawer
         ohos:id="$+id:slide_drawer_record"
-        ohos:height="match_content"
-        ohos:width="match_parent"
-        ohos:left_padding="20vp">
+        ohos:height="100vp"
+        ohos:width="match_content"
+        ohos:horizontal_center="true">
 
-        <DependentLayout
-            ohos:height="100vp"
-            ohos:width="100vp"
-            ohos:alignment="center">
+        <DirectionalLayout
+            ohos:height="match_content"
+            ohos:width="match_parent"
+            ohos:alignment="vertical_center"
+            ohos:orientation="horizontal">
 
-            <RoundProgressBar
-                ohos:id="$+id:progressbar_record"
-                ohos:height="match_parent"
-                ohos:width="match_parent"
-                ohos:background_instruct_element="$graphic:background_record_progress"
-                ohos:center_in_parent="true"
-                ohos:progress_color="$color:blue"
-                ohos:progress_width="10vp"
-                />
+            <Text
+                ohos:id="$+id:real_time_text"
+                ohos:height="match_content"
+                ohos:width="match_content"
+                ohos:text="$string:play_real"
+                ohos:text_color="#000000"
+                ohos:text_size="14vp"/>
 
-            <Button
-                ohos:id="$+id:button_record"
-                ohos:height="80vp"
-                ohos:width="80vp"
+            <Switch
+                ohos:id="$+id:real_time_switch"
+                ohos:height="20vp"
+                ohos:width="40vp"
+                ohos:end_margin="5vp"
+                ohos:start_margin="5vp"
+                ohos:text_state_off="$string:state_off"
+                ohos:text_state_on="$string:state_on"
+                ohos:thumb_element="$graphic:thumb"
+                ohos:track_element="$graphic:track"/>
 
-                ohos:background_element="$graphic:selector_button_record"
-                ohos:center_in_parent="true"/>
-
-            <Image
-                ohos:height="50vp"
-                ohos:width="50vp"
-                ohos:center_in_parent="true"
-                ohos:image_src="$media:ic_recorder"
-                ohos:scale_mode="stretch"/>
-        </DependentLayout>
+        </DirectionalLayout>
 
     </SlideDrawer>
 
-</DirectionalLayout>
+    <DependentLayout
+        ohos:height="100vp"
+        ohos:width="100vp"
+        ohos:align_parent_bottom="true"
+        ohos:alignment="center"
+        ohos:horizontal_center="true">
+
+        <RoundProgressBar
+            ohos:id="$+id:progressbar_record"
+            ohos:height="match_parent"
+            ohos:width="match_parent"
+            ohos:background_instruct_element="$graphic:background_record_progress"
+            ohos:center_in_parent="true"
+            ohos:progress_color="$color:light_red"
+            ohos:progress_width="10vp"
+            />
+
+        <Image
+            ohos:height="30vp"
+            ohos:width="30vp"
+            ohos:center_in_parent="true"
+            ohos:clickable="false"
+            ohos:image_src="$media:ic_record"
+            ohos:scale_mode="stretch"/>
+
+        <Button
+            ohos:id="$+id:button_record"
+            ohos:height="80vp"
+            ohos:width="80vp"
+            ohos:background_element="$graphic:selector_button_record"
+            ohos:center_in_parent="true"/>
+
+    </DependentLayout>
+
+    <com.huawei.harmonyaudiodemo.component.WaveView
+        ohos:id="$+id:wave_view"
+        ohos:height="120vp"
+        ohos:width="120vp"
+        ohos:background_element="$graphic:background_talk_dialog"
+        ohos:bottom_padding="20vp"
+        ohos:center_in_parent="true"
+        ohos:top_padding="20vp"
+        ohos:visibility="hide"/>
+
+</DependentLayout>

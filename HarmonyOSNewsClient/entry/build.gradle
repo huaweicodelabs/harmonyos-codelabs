@@ -1,9 +1,9 @@
 apply plugin: 'com.huawei.ohos.hap'
 apply plugin: 'com.huawei.ohos.decctest'
 ohos {
-    compileSdkVersion 5
+    compileSdkVersion 6
     defaultConfig {
-        compatibleSdkVersion 4
+        compatibleSdkVersion 6
     }
     buildTypes {
         release {
@@ -18,9 +18,9 @@ ohos {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar', '*.har'])
-    ohosTestImplementation 'com.huawei.ohos.testkit:runner:1.0.0.100'
+    testImplementation 'junit:junit:4.13.1'
+    ohosTestImplementation 'com.huawei.ohos.testkit:runner:2.0.0.200'
     implementation 'com.google.code.gson:gson:2.8.6'
-    testImplementation 'junit:junit:4.13'
 }
 
 decc {

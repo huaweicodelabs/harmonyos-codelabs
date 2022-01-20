@@ -17,10 +17,13 @@
   ~  */
   -->
 
-<shape xmlns:ohos="http://schemas.huawei.com/res/ohos"
-       ohos:shape="rectangle">
+<shape
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:shape="rectangle">
+
     <solid
         ohos:color="#00000000"/>
+
     <corners
         ohos:radius="50vp"/>
 </shape>

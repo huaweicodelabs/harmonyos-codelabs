@@ -15,10 +15,11 @@
             ohos:id="$+id:item_news_title"
             ohos:height="match_content"
             ohos:width="0vp"
+            ohos:end_padding="20vp"
             ohos:max_text_lines="3"
+            ohos:truncation_mode="ellipsis_at_end"
             ohos:multiple_lines="true"
             ohos:start_padding="10vp"
-            ohos:end_padding="20vp"
             ohos:text_size="18vp"
             ohos:weight="3"/>
 

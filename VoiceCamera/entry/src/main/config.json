@@ -1,6 +1,6 @@
 {
   "app": {
-    "bundleName": "com.huawei.camerademo",
+    "bundleName": "com.huawei.codelab",
     "vendor": "huawei",
     "version": {
       "code": 1000000,

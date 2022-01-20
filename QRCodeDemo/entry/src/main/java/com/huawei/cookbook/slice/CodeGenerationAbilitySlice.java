@@ -116,7 +116,7 @@ public class CodeGenerationAbilitySlice extends AbilitySlice {
 
         if (findComponentById(ResourceTable.Id_englishQRCode)
                 instanceof Image) {
-            englishQRCode = (Image) findComponentById(
+            englishQRCode =  findComponentById(
                     ResourceTable.Id_englishQRCode);
             config.setMarginLeft(NUMBER40);
             config.setMarginRight(NUMBER10);
@@ -124,7 +124,7 @@ public class CodeGenerationAbilitySlice extends AbilitySlice {
         }
         if (findComponentById(ResourceTable.Id_chineseQRCode)
                 instanceof Image) {
-            chineseQRCode = (Image) findComponentById(
+            chineseQRCode =  findComponentById(
                     ResourceTable.Id_chineseQRCode);
             config.setMarginLeft(NUMBER10);
             config.setMarginRight(NUMBER40);
@@ -132,7 +132,7 @@ public class CodeGenerationAbilitySlice extends AbilitySlice {
         }
         if (findComponentById(ResourceTable.Id_colorQRCode)
                 instanceof Image) {
-            colorQRCode = (Image) findComponentById(
+            colorQRCode =  findComponentById(
                     ResourceTable.Id_colorQRCode);
             config.setMarginLeft(NUMBER40);
             config.setMarginRight(NUMBER10);
@@ -140,7 +140,7 @@ public class CodeGenerationAbilitySlice extends AbilitySlice {
         }
         if (findComponentById(ResourceTable.Id_logoQRCode)
                 instanceof Image) {
-            logoQRCode = (Image) findComponentById(
+            logoQRCode =  findComponentById(
                     ResourceTable.Id_logoQRCode);
             config.setMarginLeft(NUMBER10);
             config.setMarginRight(NUMBER40);

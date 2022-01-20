@@ -22,16 +22,16 @@ limitations under the License.
                 onchange="change"></switch>
     </div>
     <div class="chart-block">
-        <text class="text-speed">利润</text>
+        <text class="text-vertical">时速</text>
         <chart class="chart-data" type="line" ref="linechart" options="{{lineOps}}" datasets="{{lineData}}"></chart>
-        <text class="text-time">年份</text>
+        <text class="text-abscissa">时刻</text>
     </div>
     <div class="gauge-block">
         <chart class="data-gauge" type="gauge" percent = "{{percent}}"></chart>
     </div>
     <div class="bar-block">
-        <text class="text-speed">销量</text>
+        <text class="text-vertical">销量</text>
         <chart class="data-bar" type="bar" id="bar-chart" options="{{barOps}}" datasets="{{barData}}"></chart>
-        <text class="text-time">年份</text>
+        <text class="text-abscissa">年份</text>
     </div>
 </div>

@@ -239,7 +239,7 @@ struct DialogExample {
   action: () => void;
   build() {
     Column() {
-      Progress({value: this.value++ >=100?100:this.value, total: 100, style: ProgressStyle.Capsule})
+      Progress({value: this.value++ >=100?100:this.value, total: 100, style: ProgressStyle.Eclipse})
         .height(50)
         .width(100)
         .margin({top:5})

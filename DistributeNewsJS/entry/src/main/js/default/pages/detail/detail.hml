@@ -34,11 +34,13 @@
             <text class="select-device-title">选择设备</text>
             <list class="select-device-list">
                 <list-item class="select-device-item" for="{{ deviceList }}" id="list">
-                    <text class="select-device-item-left">{{ $item.deviceName }}
-                    </text>
-                    <input class="select-device-item-right" type="checkbox" name="Device" value="{{$idx}}"
-                           @change="selectDevice({{$idx}})" checked="{{$item.checked}}">
-                    </input>
+                    <div>
+                        <text class="select-device-item-left">{{ $item.deviceName }}
+                        </text>
+                        <input class="select-device-item-right" type="checkbox" name="Device" value="{{$idx}}"
+                               @change="selectDevice({{$idx}})" checked="{{$item.checked}}">
+                        </input>
+                    </div>
                 </list-item>
             </list>
             <div class="choose-ok-or-not">

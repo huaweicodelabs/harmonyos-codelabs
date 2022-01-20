@@ -1,6 +1,6 @@
 {
   "app": {
-    "bundleName": "com.huawei.codelab",
+    "bundleName": "com.huawei.cookbook",
     "vendor": "huawei",
     "version": {
       "code": 1000000,

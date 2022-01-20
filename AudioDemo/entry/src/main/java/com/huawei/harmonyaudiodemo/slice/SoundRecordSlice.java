@@ -16,6 +16,7 @@
 package com.huawei.harmonyaudiodemo.slice;
 
 import com.huawei.harmonyaudiodemo.ResourceTable;
+import com.huawei.harmonyaudiodemo.component.WaveView;
 import com.huawei.harmonyaudiodemo.constant.Const;
 import com.huawei.harmonyaudiodemo.media.AudioRecorder;
 import com.huawei.harmonyaudiodemo.media.AudioRender;
@@ -49,13 +50,60 @@ public class SoundRecordSlice extends AbilitySlice {
     private RoundProgressBar recordProgressBar;
     private Button recordButton;
     private SlideDrawer slideDrawer;
-    private Component playAnimView;
     private AudioRecorder audioRecorder;
     private AudioRender recordWithPlayRender;
     private AudioRender oneOffLoadRender;
+    private WaveView waveView;
     private boolean isRealTimePlay;
     private String savefilePath;
     private int recordTag;
+    private final Component.TouchEventListener recordBtnTouchListener = new Component.TouchEventListener() {
+        private int progress = 0;
+        private boolean canRecord;
+
+        private void stopRecord() {
+            if (audioRecorder.isRecording()) {
+                canRecord = false;
+                progress = 0;
+                recordButton.setPressState(false);
+                waveView.setVisibility(Component.HIDE);
+                recordProgressBar.setProgressValue(progress);
+                shutdownRecord();
+            }
+        }
+
+        private void startRecord(){
+            if(!audioRecorder.isRecording()){
+                canRecord = true;
+                recordButton.setPressState(true);
+                waveView.setVisibility(Component.VISIBLE);
+                beginRecord();
+            }
+        }
+
+        @Override
+        public boolean onTouchEvent(Component component, TouchEvent touchEvent) {
+            int action = touchEvent.getAction();
+            switch (action) {
+                case TouchEvent.PRIMARY_POINT_DOWN:
+                    startRecord();
+                    break;
+                case TouchEvent.PRIMARY_POINT_UP:
+                    stopRecord();
+                    break;
+                case TouchEvent.POINT_MOVE:
+                    if (canRecord && recordButton.isPressed() && progress <= Const.NUMBER_100) {
+                        recordProgressBar.setProgressValue(progress++);
+                    } else {
+                        stopRecord();
+                    }
+                    break;
+                default:
+                    break;
+            }
+            return true;
+        }
+    };
 
     @Override
     public void onStart(Intent intent) {
@@ -74,6 +122,9 @@ public class SoundRecordSlice extends AbilitySlice {
     }
 
     private void initView() {
+        if (findComponentById(ResourceTable.Id_wave_view) instanceof WaveView) {
+            waveView = (WaveView) findComponentById(ResourceTable.Id_wave_view);
+        }
         if (findComponentById(ResourceTable.Id_real_time_switch) instanceof Switch) {
             Switch realTimeSwitch = (Switch) findComponentById(ResourceTable.Id_real_time_switch);
             realTimeSwitch.setCheckedStateChangedListener((absButton, bool) -> {
@@ -89,36 +140,7 @@ public class SoundRecordSlice extends AbilitySlice {
     }
 
     private void initListener() {
-        recordButton.setTouchEventListener(new Component.TouchEventListener() {
-            private int progress = 0;
-
-            @Override
-            public boolean onTouchEvent(Component component, TouchEvent touchEvent) {
-                if (touchEvent.getAction() == TouchEvent.PRIMARY_POINT_DOWN
-                        || touchEvent.getAction() == TouchEvent.OTHER_POINT_DOWN) {
-                    progress = 0;
-                    oneOffLoadRender.stop();
-                    recordWithPlayRender.stop();
-                }
-                int action = progress >= Const.NUMBER_500 ? TouchEvent.CANCEL : touchEvent.getAction();
-                recordButton.setPressState(true);
-                switch (action) {
-                    case TouchEvent.PRIMARY_POINT_UP:
-                    case TouchEvent.OTHER_POINT_UP:
-                    case TouchEvent.CANCEL:
-                        recordButton.setPressState(false);
-                        recordProgressBar.setProgressValue(0);
-                        shutdownRecord();
-                        return false;
-                    default:
-                        progress++;
-                        beginRecord();
-                        break;
-                }
-                recordProgressBar.setProgressValue(progress);
-                return true;
-            }
-        });
+        recordButton.setTouchEventListener(recordBtnTouchListener);
     }
 
     private void initRecordView() {
@@ -128,29 +150,28 @@ public class SoundRecordSlice extends AbilitySlice {
         if (findComponentById(ResourceTable.Id_button_record) instanceof Button) {
             recordButton = (Button) findComponentById(ResourceTable.Id_button_record);
         }
-        recordProgressBar.setMaxValue(Const.NUMBER_500);
+        recordProgressBar.setMaxValue(Const.NUMBER_100);
     }
 
     private void initPlayView() {
-        if (findComponentById(ResourceTable.Id_slide_drawer_record) instanceof SlideDrawer) {
-            slideDrawer = (SlideDrawer) findComponentById(ResourceTable.Id_slide_drawer_record);
-        }
-        slideDrawer.setDisplayMode(SlideDrawer.DisplayMode.WITH_ANIMATION);
-        slideDrawer.setSlideEnabled(false);
-        slideDrawer.setTouchForClose(false);
         Component playButton = LayoutScatter
                 .getInstance(this)
                 .parse(ResourceTable.Layout_record_play_button, null, false);
-        playAnimView = playButton.findComponentById(ResourceTable.Id_animation_view);
-        playAnimView.setBackground(frameAnimationElement);
-        SlideDrawer.LayoutConfig layoutConfig = new SlideDrawer
-                .LayoutConfig(Const.NUMBER_300, Const.NUMBER_114, SlideDrawer.SlideDirection.START);
-        layoutConfig.setMarginsLeftAndRight(Const.NUMBER_60, 0);
-        playButton.setLayoutConfig(layoutConfig);
-        slideDrawer.addComponent(playButton);
+        if (findComponentById(ResourceTable.Id_slide_drawer_record) instanceof SlideDrawer) {
+            slideDrawer = (SlideDrawer) findComponentById(ResourceTable.Id_slide_drawer_record);
+            slideDrawer.setDisplayMode(SlideDrawer.DisplayMode.WITH_ANIMATION);
+            slideDrawer.setSlideEnabled(false);
+            slideDrawer.setTouchForClose(false);
+            Component playAnimView = playButton.findComponentById(ResourceTable.Id_animation_view);
+            playAnimView.setBackground(frameAnimationElement);
+            SlideDrawer.LayoutConfig layoutConfig = new SlideDrawer
+                    .LayoutConfig(Const.NUMBER_300, Const.NUMBER_114, SlideDrawer.SlideDirection.TOP);
+            layoutConfig.setMarginsTopAndBottom(0, Const.NUMBER_60);
+            playButton.setLayoutConfig(layoutConfig);
+            slideDrawer.addComponent(playButton);
+        }
         playButton.setClickedListener(component -> {
             oneOffLoadRender.stop();
-            getUITaskDispatcher().asyncDispatch(() -> playAnimView.setVisibility(Component.VISIBLE));
             frameAnimationElement.start();
             playLocalAudioFile();
         });
@@ -163,7 +184,8 @@ public class SoundRecordSlice extends AbilitySlice {
 
     private void setupRecordWithPlayRender() {
         recordWithPlayRender = new AudioRender.Builder().setOneOffLoad(false).create();
-        audioRecorder.setAudioRecordListener((buffer, length) -> {
+        audioRecorder.setAudioRecordListener((buffer, length, inputSize) -> {
+            waveView.start(inputSize / Const.NUMBER_300, Const.NUMBER_300);
             if (recordTag == 0) {
                 recordWithPlayRender.play(buffer, length);
             }
@@ -174,7 +196,6 @@ public class SoundRecordSlice extends AbilitySlice {
         oneOffLoadRender = new AudioRender.Builder().create();
         oneOffLoadRender.setPlayListener(() -> {
             frameAnimationElement.stop();
-            getUITaskDispatcher().asyncDispatch(() -> playAnimView.setVisibility(Component.INVISIBLE));
         });
     }
 

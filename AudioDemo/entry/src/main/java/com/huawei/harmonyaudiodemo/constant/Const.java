@@ -26,13 +26,13 @@ public class Const {
      */
     public static final int NUMBER_NEGATIVE_1 = -1;
     /**
-     * 100
-     */
-    public static final int NUMBER_100 = 100;
-    /**
      * 60
      */
     public static final int NUMBER_60 = 60;
+    /**
+     * 100
+     */
+    public static final int NUMBER_100 = 100;
     /**
      * 114
      */

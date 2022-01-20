@@ -1,6 +1,6 @@
 {
   "app": {
-    "bundleName": "com.huawei.codedemo",
+    "bundleName": "com.huawei.codelab",
     "vendor": "huawei",
     "version": {
       "code": 1000000,
@@ -35,7 +35,7 @@
             ]
           }
         ],
-        "visible": false,
+        "visible": true,
         "configChanges": [
           "orientation"
         ],

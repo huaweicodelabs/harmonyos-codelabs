@@ -23,8 +23,8 @@ struct Search_Input {
       // @ts-ignore
       TextInput({ placeholder: '请输入...', text: this.historyInput })
         .type(InputType.Normal)
-        .placeholderColor(Color.Red)
-        .placeholderFont({ size: 50, weight: 2 })
+        .placeholderColor(Color.Gray)
+        .placeholderFont({ size: 20, weight: 2 })
         .enterKeyType(EnterKeyType.Search)
         .caretColor(Color.Green)
         .layoutWeight(8)

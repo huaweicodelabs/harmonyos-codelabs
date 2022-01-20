@@ -33,6 +33,7 @@
             ]
           }
         ],
+        "orientation": "portrait",
         "name": "com.huawei.cookbook.MainAbility",
         "icon": "$media:icon",
         "description": "$string:mainability_description",

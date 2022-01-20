@@ -19,8 +19,8 @@ ohos {
 dependencies {
     entryImplementation project(':entry')
     implementation fileTree(dir: 'libs', include: ['*.jar', '*.har'])
-    testImplementation 'junit:junit:4.13'
-    ohosTestImplementation 'com.huawei.ohos.testkit:runner:1.0.0.100'
+    testImplementation 'junit:junit:4.13.1'
+    ohosTestImplementation 'com.huawei.ohos.testkit:runner:2.0.0.100'
 }
 decc {
     supportType = ['html', 'xml']
