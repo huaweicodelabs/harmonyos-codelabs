@@ -22,25 +22,48 @@
 许可
 请参阅LICENSE文件以获得更多信息。
 
-What is it?
+## What is it?
 The RemoteInputDemo application is to show cross-device inputmethod capability.You can expediently use phone to type words to TV search bar,then find and select the movie that you want to see.For convenience of your test,We use phone to simulate TV side in this sample.
 
-Installation requirements
+## Installation requirements
 • Install DevEco Studio
 • Set up the DevEco Studio development environment.The DevEco Studio development environment needs to depend on the network environment. It needs to be connected to the network to ensure the normal use of the tool.The development environment can be configured according to the following two situations
 	1.If you can directly access the Internet, just download the HarmonyOS SDK
 	2.If the network cannot access the Internet directly, it can be accessed through a proxy server
 • Generate secret key and apply for certificate
 
-User guide
+## User guide
 • Download this Project
 • Open HUAWEI DevEco Studio, click File> Open> Then select and open this Project
 • Click Build> Build App(s)/Hap(s)>Build Debug Hap(s) to compile the hap package
 • Click Run> Run 'entry' to run the hap package
 
-Note
+## Note
 • You can choose to run the hap package on the simulator or the phone.
 • If you run it on the phone, you need to configure the signature and certificate information in the project's File> Project Structure> Modules> Signing Configs.
+
+
+## Device Detection
+For the HarmonyOS devices (TV, Phone, tablet, etc..) to find each other:
+1. The Bluetooth on both devices should be enabled
+2. They need to be [logged to the same Huawei ID](https://consumer.huawei.com/en/support/content/en-us00770240/)
+
+
+
+## The Result
+These are the screens of a phone and a TV (simulated on a tablet).
+The device detection is called when the Text input field is focused and shows a dialog with nearby devices.
+
+![](https://i.imgur.com/dYDvDav.gif)
+
+
+
+![](https://i.imgur.com/R2EKr0k.gif)
+
+
+
+
+---
 
 Licensing
 Please see LICENSE for more info.
